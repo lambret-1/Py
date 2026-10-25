@@ -1,0 +1,449 @@
+{
+  "source": "八零新婚夜，空间囤货养崽暴富",
+  "promptLang": "en",
+  "params": {
+    "maxSegmentSeconds": 15,
+    "minCutSeconds": 2,
+    "maxCutSeconds": 5,
+    "maxOnScreen": 3,
+    "tolerance": 0.15
+  },
+  "episodes": [
+    {
+      "ep": 1,
+      "segments": [
+        {
+          "id": "E01-01",
+          "sceneIndex": 1,
+          "blocking": "女主躺在土炕中央，面朝天花板；镜头从上方俯拍她的脸。",
+          "soundscape": "昏暗土房内，灶膛余烬噼啪声，远处微弱鸡鸣。",
+          "music": "低沉弦乐缓慢铺底，营造重生前的压抑感。",
+          "h3Prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 8.00-second mark of the target video.\n\nintegrated_multimodal_description:\n[Shot 1] Close-up of a young Chinese woman's face on a dilapidated rural earthen kang bed at night. Her eyes suddenly snap open, pupils contracting in the dim firelight. Push In slowly on her face. She gasps for air, eyes darting. <d>[Chinese]这……这是哪里？</d> says a young woman in a hoarse, confused voice.\n[Shot 2] At 00:04.000, the camera cuts to her hand reaching up to touch her own cheek, fingers trembling. Static Shot, camera holds steady on her hand.\n[Shot 3] At 00:08.000, the camera cuts to her eyes darting left and right, taking in the cracked mud wall and thatched roof above. Push In on her eyes as recognition dawns.\n\noverall_soundscape: Dim rural interior at night, distant faint rooster crowing, crackle of dying embers in the stove.\n\nnon_diegetic_music: Low sustained strings slowly building, creating a disorienting rebirth atmosphere.",
+          "cuts": [
+            {
+              "beats": [
+                1,
+                3
+              ],
+              "seconds": 4,
+              "size": "close",
+              "camera": "Push In",
+              "characters": [
+                "C01"
+              ],
+              "frame": "特写：苏晚的脸在昏暗灶火光中猛地睁开眼，瞳孔收缩，大口喘气。",
+              "shot": "年轻女子躺在土炕上，眼睛猛然睁开，大口喘气，环顾四周，嘴里喃喃问这是哪里。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "女主面部 + 俯视30°",
+              "composition": "中心构图",
+              "eyeline": "天花板",
+              "focus": "锁定女主双眼",
+              "stability": "stable"
+            },
+            {
+              "beats": [
+                4,
+                4
+              ],
+              "seconds": 4,
+              "size": "close",
+              "camera": "Static Shot",
+              "characters": [
+                "C01"
+              ],
+              "frame": "特写：苏晚的手抬起，颤抖着摸自己的脸。",
+              "shot": "她抬手摸自己的脸颊，不敢相信眼前的一切。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "女主手部 + 俯视",
+              "composition": "对角线",
+              "eyeline": "她的脸",
+              "focus": "锁定手指",
+              "stability": "stable"
+            },
+            {
+              "beats": [
+                5,
+                5
+              ],
+              "seconds": 5,
+              "size": "close",
+              "camera": "Push In",
+              "characters": [
+                "C01"
+              ],
+              "frame": "特写：苏晚的眼睛左右转动，看清头顶的裂缝土墙和草房顶。",
+              "shot": "她的眼神从迷茫变清晰，认出了这间破旧的土房。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "女主眼睛 + 俯视",
+              "composition": "中心构图",
+              "eyeline": "四周",
+              "focus": "锁定瞳孔",
+              "stability": "stable"
+            }
+          ]
+        },
+        {
+          "id": "E01-02",
+          "sceneIndex": 1,
+          "blocking": "女主转头看向炕边，两个瘦小孩缩在那里；镜头从女主肩后拍过去。",
+          "soundscape": "小宝压抑的哭声，三岁大宝小声安慰。",
+          "music": "弦乐渐弱，留出呼吸感。",
+          "h3Prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.50-second mark of the target video; Picture 3 (from Shot 3) aligns with the 8.50-second mark of the target video.\n\nintegrated_multimodal_description:\n[Shot 1] Medium shot over the woman's shoulder, looking at two tiny children huddled on the edge of the kang bed. The little girl is crying loudly, tears streaming down her thin face. Static Shot, camera holds. <d>[Chinese]妈……饿……</d> says a toddler girl in a wailing, hungry voice.\n[Shot 2] At 00:04.500, the camera cuts to the three-year-old boy gripping his sister's hand, his own mouth trembling but trying not to cry. Push In slowly on the boy's determined little face. <d>[Chinese]妹妹不哭……哥哥去找吃的……</d> says a three-year-old boy in a small, trembling voice.\n[Shot 3] At 00:08.500, the camera cuts back to the young woman's face as she stares at the children, her expression shifting from confusion to heartbreak. Static Shot.\n\noverall_soundscape: A toddler girl's suppressed crying, the soft sound of a three-year-old boy's voice comforting her, fabric rustling on the kang.\n\nnon_diegetic_music: Strings fade to a quiet piano note, emphasizing the mother's heartbreak.",
+          "cuts": [
+            {
+              "beats": [
+                6,
+                6
+              ],
+              "seconds": 4.5,
+              "size": "medium",
+              "camera": "Static Shot",
+              "characters": [
+                "C01",
+                "C04",
+                "C05"
+              ],
+              "frame": "中景：苏晚转头看向炕边，两个瘦得皮包骨的小孩缩在那里，小宝正在哇哇哭。",
+              "shot": "她转头看见炕边两个小孩，小女孩哭得满脸是泪，嘴里喊饿。",
+              "lens": "50mm 标准，中浅景深",
+              "cameraPosition": "炕边侧面 + 平视",
+              "composition": "三分法",
+              "eyeline": "两个孩子",
+              "focus": "锁定三个角色",
+              "stability": "stable"
+            },
+            {
+              "beats": [
+                7,
+                8
+              ],
+              "seconds": 4,
+              "size": "medium",
+              "camera": "Push In",
+              "characters": [
+                "C04",
+                "C05"
+              ],
+              "frame": "中景：三岁大宝攥着小宝的手，自己瘪着嘴不敢哭，小声安慰妹妹。",
+              "shot": "三岁男孩攥着妹妹的手，小声说不哭，哥哥去找吃的。",
+              "lens": "50mm 标准，中浅景深",
+              "cameraPosition": "两个孩子侧面 + 平视",
+              "composition": "对角线",
+              "eyeline": "彼此",
+              "focus": "锁定男孩面部",
+              "stability": "stable"
+            },
+            {
+              "beats": [
+                9,
+                10
+              ],
+              "seconds": 4.5,
+              "size": "close",
+              "camera": "Static Shot",
+              "characters": [
+                "C01"
+              ],
+              "frame": "特写：苏晚看着两个孩子，眼神从迷茫变心碎，前世记忆涌回。",
+              "shot": "女主看着两个孩子，前世记忆像潮水涌进来——她想起前世自己跟渣男跑了，两个孩子饿死在这间破屋。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "女主正面 + 平视",
+              "composition": "中心构图",
+              "eyeline": "孩子方向",
+              "focus": "锁定女主双眼",
+              "stability": "stable"
+            }
+          ]
+        },
+        {
+          "id": "E01-03",
+          "sceneIndex": 1,
+          "blocking": "女主坐起身，把两个孩子搂进怀里；母子三人挤在炕角。",
+          "soundscape": "小宝的哭声渐弱，女主哽咽的呼吸声。",
+          "music": "弦乐渐强，带一丝温暖。",
+          "h3Prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 5.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 10.00-second mark of the target video.\n\nintegrated_multimodal_description:\n[Shot 1] Medium shot of the young woman sitting up on the kang, reaching out to pull both children into her arms. Tracking Shot slowly follows her movement. <d>[Chinese]大宝……小宝……</d> says a young woman in a trembling voice.\n[Shot 2] At 00:05.000, the camera cuts to a close-up of her arms wrapping tightly around the two thin children. Static Shot, camera holds. Her grip tightens protectively. <d>[Chinese]别怕，妈在。这一世，妈再也不会让你们饿肚子。</d> says the young woman firmly.\n[Shot 3] At 00:10.000, the camera cuts to her face as tears stream down, but her expression hardens from grief to determination. Push In slowly on her jaw tightening.\n\noverall_soundscape: The toddler's crying subsides into sniffles, the young woman's shaky breathing, fabric rustling as she pulls the children close.\n\nnon_diegetic_music: Strings swell with a warm undertone, shifting from grief to resolve.",
+          "cuts": [
+            {
+              "beats": [
+                11,
+                12
+              ],
+              "seconds": 5,
+              "size": "medium",
+              "camera": "Tracking Shot",
+              "characters": [
+                "C01",
+                "C04",
+                "C05"
+              ],
+              "frame": "中景：苏晚坐起身，伸手把两个孩子搂进怀里，动作又急又轻。",
+              "shot": "她颤抖着叫两个孩子的名字，伸手把他们搂紧。",
+              "lens": "50mm 标准，中浅景深",
+              "cameraPosition": "炕角侧面 + 平视",
+              "composition": "中心构图",
+              "eyeline": "孩子头顶",
+              "focus": "锁定女主上半身",
+              "stability": "stable"
+            },
+            {
+              "beats": [
+                13,
+                13
+              ],
+              "seconds": 5,
+              "size": "close",
+              "camera": "Static Shot",
+              "characters": [
+                "C01",
+                "C04",
+                "C05"
+              ],
+              "frame": "特写：苏晚的手臂紧紧搂着两个瘦巴巴的孩子，小宝的脸贴在她胸口。",
+              "shot": "她把两个孩子搂得紧紧的，发誓这一世再也不让他们饿肚子。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "母子三人侧面 + 平视",
+              "composition": "对角线",
+              "eyeline": "怀中孩子",
+              "focus": "锁定手臂与孩子",
+              "stability": "stable"
+            },
+            {
+              "beats": [
+                14,
+                15
+              ],
+              "seconds": 4,
+              "size": "close",
+              "camera": "Push In",
+              "characters": [
+                "C01"
+              ],
+              "frame": "特写：苏晚的脸，眼泪掉下来，但眼神从悲伤变坚定。",
+              "shot": "她擦了擦眼泪，喃喃说自己真的回来了，不是在做梦。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "女主正面 + 平视",
+              "composition": "中心构图",
+              "eyeline": "前方",
+              "focus": "锁定女主双眼",
+              "stability": "stable"
+            }
+          ]
+        },
+        {
+          "id": "E01-04",
+          "sceneIndex": 1,
+          "blocking": "女主坐在炕沿，环顾破败的土房；两个孩子在她身后炕上。",
+          "soundscape": "灶膛余烬噼啪声，夜风从窗缝吹进来。",
+          "music": "弦乐渐弱，留出呼吸感。",
+          "h3Prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 8.00-second mark of the target video.\n\nintegrated_multimodal_description:\n[Shot 1] Wide shot of the dilapidated rural mud-brick interior — cracked walls, broken paper window, empty stove. The young woman sits on the edge of the kang, looking around the room. Static Shot, camera holds on the empty room's bleakness.\n[Shot 2] At 00:04.000, the camera cuts to a close-up of the window — dawn light beginning to show through the cracked paper. Push In slowly on the window. <d>[Chinese]天要亮了。新的一天，新的开始。</d> says the young woman softly.\n[Shot 3] At 00:08.000, the camera cuts back to the woman's profile as she looks down at the children in her arms, her expression tender but resolute. Static Shot. <d>[Chinese]我不是在做梦……我真的回来了。</d> says the young woman softly.\n\noverall_soundscape: Crackling embers in the stove, faint wind whistling through the paper window cracks, distant dog bark.\n\nnon_diegetic_music: Strings fade to a low drone, leaving space for the quiet determination of the moment.",
+          "cuts": [
+            {
+              "beats": [
+                16,
+                17
+              ],
+              "seconds": 4,
+              "size": "wide",
+              "camera": "Static Shot",
+              "characters": [
+                "C01"
+              ],
+              "frame": "全景：破败的土房内景，裂缝土墙、破纸窗、空锅，苏晚坐在炕沿环顾四周。",
+              "shot": "她环视这间破屋——墙裂缝、炕席破洞、锅里空的，但眼神里没有绝望，只有一股劲。",
+              "lens": "24mm 广角，深景深",
+              "cameraPosition": "屋内对角 + 平视",
+              "composition": "三分法",
+              "eyeline": "整个房间",
+              "focus": "全景深",
+              "stability": "stable"
+            },
+            {
+              "beats": [
+                18,
+                18
+              ],
+              "seconds": 4,
+              "size": "close",
+              "camera": "Push In",
+              "characters": [
+                "C01"
+              ],
+              "frame": "特写：窗外天边泛起一线鱼肚白，晨光透过破纸窗照进来。",
+              "shot": "她抬头看向窗外，天边泛起鱼肚白。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "窗户 + 平视",
+              "composition": "中心构图",
+              "eyeline": "窗外",
+              "focus": "锁定窗户",
+              "stability": "stable"
+            },
+            {
+              "beats": [
+                19,
+                20
+              ],
+              "seconds": 5,
+              "size": "close",
+              "camera": "Static Shot",
+              "characters": [
+                "C01",
+                "C04",
+                "C05"
+              ],
+              "frame": "特写：苏晚低头看着怀里两个瘦巴巴的孩子，小宝哭得打嗝。",
+              "shot": "她低头看着怀里两个孩子，小女孩哭得一抽一抽，小身子发抖。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "母子三人侧面 + 俯视",
+              "composition": "对角线",
+              "eyeline": "孩子",
+              "focus": "锁定小女孩的脸",
+              "stability": "stable"
+            }
+          ]
+        },
+        {
+          "id": "E01-05",
+          "sceneIndex": 1,
+          "blocking": "女主低头看着孩子，大宝抬头说话；母子对视。",
+          "soundscape": "小宝的打嗝声，大宝小声说话。",
+          "music": "钢琴单音轻柔。",
+          "h3Prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 7.50-second mark of the target video.\n\nintegrated_multimodal_description:\n[Shot 1] Close-up of the three-year-old boy looking up at his mother, his small voice trembling. Static Shot, camera holds on the boy's earnest face.\n[Shot 2] At 00:04.000, the camera cuts to the mother's face as her heart breaks, tears welling up in her eyes. Push In slowly on her eyes. <d>[Chinese]天要亮了。新的一天，新的开始。</d> says the young woman softly.\n[Shot 3] At 00:07.500, the camera cuts to the mother wiping her tears away, her expression hardening. Static Shot. <d>[Chinese]妈，妹妹三天没吃饭了……</d> says a small boy's voice off-screen.\n\noverall_soundscape: A toddler's hiccuping sobs, a three-year-old's small voice, the mother's shaky breathing.\n\nnon_diegetic_music: Soft single piano notes, gentle but melancholic.",
+          "cuts": [
+            {
+              "beats": [
+                21,
+                21
+              ],
+              "seconds": 4,
+              "size": "close",
+              "camera": "Static Shot",
+              "characters": [
+                "C04"
+              ],
+              "frame": "特写：三岁大宝抬头看着苏晚，小声说妹妹三天没吃饭了。",
+              "shot": "三岁男孩低着头小声说，妹妹三天没吃饭了。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "男孩正面 + 仰视",
+              "composition": "中心构图",
+              "eyeline": "女主",
+              "focus": "锁定男孩眼睛",
+              "stability": "stable"
+            },
+            {
+              "beats": [
+                22,
+                23
+              ],
+              "seconds": 3.5,
+              "size": "close",
+              "camera": "Push In",
+              "characters": [
+                "C01"
+              ],
+              "frame": "特写：苏晚的脸，听到这话心像被刀扎了，眼泪涌上来。",
+              "shot": "她的心像被刀扎了一下，声音哽咽说对不起孩子。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "女主正面 + 平视",
+              "composition": "中心构图",
+              "eyeline": "孩子方向",
+              "focus": "锁定女主双眼",
+              "stability": "stable"
+            },
+            {
+              "beats": [
+                24,
+                25
+              ],
+              "seconds": 4.5,
+              "size": "close",
+              "camera": "Static Shot",
+              "characters": [
+                "C01"
+              ],
+              "frame": "特写：苏晚深吸一口气，把眼泪擦掉，眼神变硬。",
+              "shot": "她深吸一口气擦掉眼泪，眼神变得坚硬——从今天起谁也别想再欺负他们。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "女主正面 + 平视",
+              "composition": "中心构图",
+              "eyeline": "前方",
+              "focus": "锁定女主下颌",
+              "stability": "stable"
+            }
+          ]
+        },
+        {
+          "id": "E01-06",
+          "sceneIndex": 1,
+          "blocking": "女主坐在炕上，两个孩子在身后安睡；镜头从她正面拍。",
+          "soundscape": "灶膛余烬噼啪，远处鸡叫第二遍。",
+          "music": "弦乐渐强，走向希望。",
+          "h3Prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 5.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 10.00-second mark of the target video.\n\nintegrated_multimodal_description:\n[Shot 1] Medium shot of the young woman sitting on the kang, the two children sleeping behind her. She looks out the window with a resolute expression. Static Shot, camera holds. <d>[Chinese]妈，妹妹三天没吃饭了……</d> says a small boy's voice off-screen.\n[Shot 2] At 00:05.000, the camera cuts to the mother's face as tears well up again, but she blinks them away. Push In slowly on her eyes. <d>[Chinese]是妈不好……妈对不起你们……</d> says the young woman, voice choking.\n[Shot 3] At 00:10.000, the camera cuts to a close-up of her clenched fist on her lap, knuckles white with determination. Static Shot. <d>[Chinese]从今天起，谁也别想再欺负我们。</d> says the young woman firmly.\n\noverall_soundscape: Crackling embers, a second distant rooster crow, the soft breathing of sleeping children.\n\nnon_diegetic_music: Strings build slowly, shifting from melancholy to quiet hope and determination.",
+          "cuts": [
+            {
+              "beats": [
+                26,
+                27
+              ],
+              "seconds": 5,
+              "size": "medium",
+              "camera": "Static Shot",
+              "characters": [
+                "C01",
+                "C04",
+                "C05"
+              ],
+              "frame": "中景：苏晚坐在炕上，两个孩子在她身后睡着，她看着窗外，眼神坚定。",
+              "shot": "她深吸一口气稳住心神，两个孩子在身后安睡，远处鸡叫了第二遍。",
+              "lens": "50mm 标准，中浅景深",
+              "cameraPosition": "女主正面 + 平视",
+              "composition": "三分法",
+              "eyeline": "窗外",
+              "focus": "锁定女主上半身",
+              "stability": "stable"
+            },
+            {
+              "beats": [
+                28,
+                28
+              ],
+              "seconds": 5,
+              "size": "close",
+              "camera": "Push In",
+              "characters": [
+                "C01"
+              ],
+              "frame": "特写：苏晚的脸，眼泪又涌上来，但她硬生生眨回去。",
+              "shot": "她的心像被刀扎了一下，声音哽咽说对不起孩子。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "女主正面 + 平视",
+              "composition": "中心构图",
+              "eyeline": "孩子方向",
+              "focus": "锁定女主双眼",
+              "stability": "stable"
+            },
+            {
+              "beats": [
+                29,
+                30
+              ],
+              "seconds": 2,
+              "size": "close",
+              "camera": "Static Shot",
+              "characters": [
+                "C01"
+              ],
+              "frame": "特写：苏晚攥紧的拳头放在膝上，指节发白。",
+              "shot": "她攥紧拳头——新的一天开始了，好日子才刚刚起步。",
+              "lens": "85mm 长焦，极浅景深",
+              "cameraPosition": "女主膝上 + 俯视",
+              "composition": "中心构图",
+              "eyeline": "拳头",
+              "focus": "锁定拳头",
+              "stability": "stable"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
