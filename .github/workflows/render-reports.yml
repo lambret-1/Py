@@ -26,22 +26,28 @@ jobs:
 
     - name: 执行渲染
       run: |
-        # 关闭“遇错即停”，防止一个脚本报错导致后面全盘失败
         set +e
         mkdir -p 剧本
         
         echo "======================================="
-        echo "当前仓库文件结构："
-        ls -R . | head -n 50
+        echo "正在扫描 01_剧本数据 下的所有 JSON..."
+        
+        # 1. 提取所有文件名，去掉后缀，并去重，存入临时文件
+        ls 01_剧本数据/*.json 2>/dev/null | xargs -n 1 basename 2>/dev/null | sed -E 's/-(outline|cast|art|script|storyboard)\.json$//' | sort -u > books_list.txt
+        
+        if [ ! -s books_list.txt ]; then
+          echo "❌ 错误：在 01_剧本数据 里没有找到任何 JSON 文件！"
+          exit 1
+        fi
+        
+        echo "发现以下项目："
+        cat books_list.txt
         echo "======================================="
         
-        FOUND=0
-        for outline in 01_剧本数据/*-outline.json; do
-          [ -e "$outline" ] || continue
-          FOUND=1
-          
-          filename=$(basename "$outline")
-          BOOK_NAME="${filename%-outline.json}"
+        # 2. 遍历去重后的书名
+        while IFS= read -r BOOK_NAME; do
+          # 忽略空行
+          [ -z "$BOOK_NAME" ] && continue
           
           echo "======================================="
           echo "正在处理项目: $BOOK_NAME"
@@ -53,9 +59,11 @@ jobs:
           STORYBOARD_FILE="01_剧本数据/${BOOK_NAME}-storyboard.json"
 
           # 1. 渲染大纲
-          echo "--- [1/5] 渲染大纲 ---"
-          node 02_核心代码/novel-outline.mjs render "$OUTLINE_FILE" --md > "剧本/${BOOK_NAME}_大纲.md" || echo "❌ 大纲(MD)渲染报错"
-          node 02_核心代码/novel-outline.mjs render "$OUTLINE_FILE" --html > "剧本/${BOOK_NAME}_大纲报告.html" || echo "❌ 大纲(HTML)渲染报错"
+          if [ -f "$OUTLINE_FILE" ]; then
+            echo "--- [1/5] 渲染大纲 ---"
+            node 02_核心代码/novel-outline.mjs render "$OUTLINE_FILE" --md > "剧本/${BOOK_NAME}_大纲.md" || echo "❌ 大纲(MD)渲染报错"
+            node 02_核心代码/novel-outline.mjs render "$OUTLINE_FILE" --html > "剧本/${BOOK_NAME}_大纲报告.html" || echo "❌ 大纲(HTML)渲染报错"
+          fi
 
           # 2. 渲染角色
           if [ -f "$CAST_FILE" ]; then
@@ -93,12 +101,9 @@ jobs:
             node 02_核心代码/novel-storyboard.mjs render "$STORYBOARD_FILE" --md $ARGS > "剧本/${BOOK_NAME}_分镜表.md" || echo "❌ 分镜(MD)渲染报错"
             node 02_核心代码/novel-storyboard.mjs render "$STORYBOARD_FILE" --html $ARGS > "剧本/${BOOK_NAME}_分镜报告.html" || echo "❌ 分镜(HTML)渲染报错"
           fi
-        done
-
-        if [ "$FOUND" = "0" ]; then
-          echo "❌ 错误：在 01_剧本数据 里没有找到任何 *-outline.json 文件！"
-          echo "请检查文件是否上传，且后缀严格为 -outline.json。"
-        fi
+        done < books_list.txt
+        
+        rm books_list.txt
         
         echo "======================================="
         echo "生成的剧本文件如下："
