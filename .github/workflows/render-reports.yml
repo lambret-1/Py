@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '01_剧本数据/**.json'
+      - 'JSON/**.json'
   workflow_dispatch:
 
 jobs:
@@ -35,7 +36,7 @@ jobs:
         # 使用关联数组进行去重，纯 Bash 语法，完美支持中文
         declare -A BOOK_MAP
         
-        for f in 01_剧本数据/*.json; do
+        for f in JSON/*.json; do
           [ -e "$f" ] || continue
           filename=$(basename "$f")
           name="${filename%.json}"
