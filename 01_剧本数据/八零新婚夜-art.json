@@ -1,528 +1,275 @@
 {
-  "source": "八零新婚夜，空间囤货养崽暴富",
+  "source": "渡口",
   "scenes": [
     {
       "id": "S01",
-      "name": "陆家土房",
-      "primary": false,
-      "summary": "1. **裂缝土砖墙** — 黄泥墙皮剥落，露出里面土坯块，墙上有一道从屋顶斜到地面的裂缝\n2. **土灶台** — 黑铁锅嵌在黄泥灶台上，灶台边堆着柴火，烟囱伸出屋顶\n3. **旧土炕** — 炕上铺着洗得发白的旧棉褥，炕头叠着两床打补丁的被子\n4. **木格窗** — 木框窗户糊着白纸，有几处破洞用旧报纸糊着",
+      "name": "渡船船舱",
+      "primary": true,
+      "summary": "全剧的主舞台：一条老木船的敞篷客舱，六排坐板，篷布漏光。空间要小到人与人躲不开视线，又要有足够的前后景层次给正反打留位置。所有秘密都在这里被逼出来，舱体本身要像个沉默的审讯室。",
       "anchors": [
         {
-          "name": "裂缝土砖墙",
-          "desc": "黄泥墙皮剥落，露出里面土坯块，墙上有一道从屋顶斜到地面的裂缝"
+          "name": "补丁船篷",
+          "desc": "篷布右后角一块颜色更深的方形补丁，漏下一道光缝"
         },
         {
-          "name": "土灶台",
-          "desc": "黑铁锅嵌在黄泥灶台上，灶台边堆着柴火，烟囱伸出屋顶"
+          "name": "磨白的坐板",
+          "desc": "第二排坐板中段被四十年乘客磨出浅色包浆，木纹发亮"
         },
         {
-          "name": "旧土炕",
-          "desc": "炕上铺着洗得发白的旧棉褥，炕头叠着两床打补丁的被子"
+          "name": "船头铜铃",
+          "desc": "拳头大的旧铜铃挂在篷杆前端，绿锈斑驳，缆绳打着水手结"
         },
         {
-          "name": "木格窗",
-          "desc": "木框窗户糊着白纸，有几处破洞用旧报纸糊着"
+          "name": "舱底积水线",
+          "desc": "舱板接缝处一条深色水渍线，随戏可见微微反光"
         }
       ],
       "lighting": [
         {
-          "state": "清晨",
-          "prompt": "early morning light through paper window, soft grey-blue dawn, thin light beam hitting dirt floor, sparse rural 1980s China"
+          "state": "晨雾",
+          "prompt": "dense white morning fog outside the canopy, soft diffuse light with no shadows, cool grey palette, visibility beyond the gunwale fading to white"
         },
         {
-          "state": "夜晚灶火",
-          "prompt": "dark interior lit only by firewood flames in stove, warm orange glow on mud wall, deep shadows in corners, nighttime rural China"
+          "state": "雾散近岸",
+          "prompt": "fog thinning to warm haze, low golden sunlight entering through the canopy seam, long soft shadows across the benches, mood lifting"
         }
       ],
       "image": {
-        "tags": [],
-        "prompt": "Interior of a dilapidated rural Chinese mud-brick house in 1980s northern China. Cracked yellow mud walls with peeling plaster, a black iron wok on a mud stove with firewood pile beside it. An old earthen kang bed with faded cotton bedding and patched quilts. Wooden lattice window covered with white paper, some holes patched with old newspaper. Empty room, no people, no furniture except stove and kang.",
-        "negativePrompt": "people, person, figure, modern furniture, electric light, concrete wall, clean room, bright colors, TV, plastic",
-        "sheet": "Single environment concept sheet on 16:9 canvas. LEFT ZONE (~34%): wide interior view showing stove on left, kang on right, cracked mud wall behind. RIGHT-TOP ZONE: close-up detail of the mud stove with black wok and firewood. RIGHT-BOTTOM ZONE: close-up detail of the earthen kang with patched bedding and paper window. Thin dividing lines. No people. 1980s rural northern China."
+        "prompt": "Interior of an old wooden ferry passenger cabin under a canvas canopy, Republican-era China, six worn bench rows, patched canopy corner leaking a seam of light, verdigris bronze bell at the bow, morning fog beyond the gunwale, empty scene with no people",
+        "negativePrompt": "people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature",
+        "sheet": "Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: wide shot of the old wooden ferry passenger cabin from the bow looking aft, six worn bench rows under the canvas canopy, dense white morning fog beyond the gunwale — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the patched canopy corner leaking a seam of light and the verdigris bronze bell with its rope knot. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the polished pale mid-section of the second bench, the dark waterline stain along the deck seam, worn wood grain and joinery of the bench legs. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows",
+        "tags": [
+          "environment sheet",
+          "weathered materials",
+          "ferry cabin interior"
+        ]
       },
       "usage": {
-        "episodes": [],
-        "beats": []
+        "episodes": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "beats": [
+          "悬念钩",
+          "身份揭破",
+          "反转",
+          "收束"
+        ]
       }
     },
     {
       "id": "S02",
-      "name": "村口老槐树",
-      "primary": false,
-      "summary": "1. **老槐树** — 粗壮的老槐树，树干要两人合抱，枝丫光秃秃伸着，树皮皲裂\n2. **黄土路** — 从村口延伸出去的黄土路，路面坑坑洼洼，两边长着枯草\n3. **土路尽头** — 远处能看到几座土房的轮廓，路两边是光秃秃的田地",
+      "name": "渡口栈桥",
+      "primary": true,
+      "summary": "开场与收尾的门面景：一条探进雾里的旧木栈桥，岸端连着土坡，水端消失在白雾里。它承担「进入故事」和「离开故事」两个仪式性时刻，构图要有明确的纵深引导——栈桥就是一条通往未知的走廊。",
       "anchors": [
         {
-          "name": "老槐树",
-          "desc": "粗壮的老槐树，树干要两人合抱，枝丫光秃秃伸着，树皮皲裂"
+          "name": "断裂的第七块桥板",
+          "desc": "从岸边数第七块桥板断了一角，用麻绳捆着一截圆木补上"
         },
         {
-          "name": "黄土路",
-          "desc": "从村口延伸出去的黄土路，路面坑坑洼洼，两边长着枯草"
+          "name": "系缆石桩",
+          "desc": "岸端一只矮石桩，缆绳勒出深槽，顶面被磨得发亮"
         },
         {
-          "name": "土路尽头",
-          "desc": "远处能看到几座土房的轮廓，路两边是光秃秃的田地"
+          "name": "挑灯木杆",
+          "desc": "栈桥中段一根歪斜的木杆，铁钩上挂一盏熄着的纸灯笼"
         }
       ],
       "lighting": [
         {
-          "state": "白天",
-          "prompt": "overcast daytime, flat grey light on yellow dirt road, bare tree branches silhouetted against pale sky, desolate rural 1980s China"
-        },
-        {
-          "state": "黄昏",
-          "prompt": "golden sunset low on horizon, long shadows across dirt road, orange glow on bare branches, rural dusk 1980s China"
+          "state": "浓雾清晨",
+          "prompt": "thick white fog swallowing the far end of the pier, flat shadowless light, wet plank surfaces with faint sheen, cold desaturated palette"
         }
       ],
       "image": {
-        "tags": [],
-        "prompt": "Village entrance in 1980s northern rural China. A huge old locust tree with gnarled bare branches, trunk two people wide. Yellow dirt road stretching from foreground to distant mud-brick houses. Withered grass on both sides of road. Overcast grey sky. Empty road, no people, no cars.",
-        "negativePrompt": "people, person, modern road, asphalt, cars, power lines, green leaves, buildings, shops",
-        "sheet": "Single environment concept sheet on 16:9 canvas. LEFT ZONE: wide shot of village entrance with old locust tree on left, dirt road extending right. RIGHT-TOP ZONE: close-up of gnarled tree trunk and cracked bark. RIGHT-BOTTOM ZONE: close-up of dirt road surface with potholes and dry grass. No people. 1980s rural China."
+        "prompt": "An old wooden ferry pier reaching into dense white fog, Republican-era southern China riverside, broken seventh plank patched with a rope-bound log, worn mooring stone, tilted lantern pole with an unlit paper lantern, wet planks, empty scene with no people",
+        "negativePrompt": "people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature",
+        "sheet": "Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: low wide shot from the bank end of the old wooden ferry pier, planks leading straight into white fog, tilted lantern pole midway — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the rope-bound log patching the broken seventh plank and the unlit paper lantern on its iron hook. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the grooved mooring stone worn shiny on top, wet plank surfaces with faint sheen, rope fibres and knots on the mooring line. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows",
+        "tags": [
+          "environment sheet",
+          "foggy riverside",
+          "wooden pier"
+        ]
       },
       "usage": {
-        "episodes": [],
-        "beats": []
+        "episodes": [
+          1,
+          6
+        ],
+        "beats": [
+          "悬念钩",
+          "收束"
+        ]
       }
     },
     {
       "id": "S03",
-      "name": "镇上集市",
+      "name": "对岸芦苇滩",
       "primary": false,
-      "summary": "1. **木板摊位** — 几张旧木板拼在长条凳上当摊位，上面铺着粗布\n2. **布棚顶** — 竹竿搭的架子，上面盖着旧蓝布当遮阳棚\n3. **泥地集市** — 压实的泥地，地面有车辙印和脚印\n4. **远处供销社门** — 集市尽头能看到供销社的砖房门脸，上面写着红字标语",
+      "variantOf": "S02",
+      "changes": "栈桥同一机位换背板：水端方向替换成大片芦苇荡前景，去掉挑灯木杆，雾更薄、色温更暖，桥板细节复用 S02 的资产",
+      "summary": "第 5 集反转戏的远景背板：船过河心时隐约可见的对岸。它只需要「存在感」不需要细节——一片被雾泡软的芦苇剪影，暗示彼岸并不比此岸更可靠。作为 S02 的变体生成，省一套环境资产。",
       "anchors": [
         {
-          "name": "木板摊位",
-          "desc": "几张旧木板拼在长条凳上当摊位，上面铺着粗布"
+          "name": "芦苇浪线",
+          "desc": "芦苇顶端在雾中连成一条起伏的灰线，是画面唯一的轮廓"
         },
         {
-          "name": "布棚顶",
-          "desc": "竹竿搭的架子，上面盖着旧蓝布当遮阳棚"
+          "name": "半沉的旧船骨",
+          "desc": "滩涂近水处露出一截朽烂的船肋骨，黑色，挂着水草"
         },
         {
-          "name": "泥地集市",
-          "desc": "压实的泥地，地面有车辙印和脚印"
-        },
-        {
-          "name": "远处供销社门",
-          "desc": "集市尽头能看到供销社的砖房门脸，上面写着红字标语"
+          "name": "一线滩涂反光",
+          "desc": "退潮泥滩在薄雾下泛一条冷光，分开水面与苇丛"
         }
       ],
       "lighting": [
         {
-          "state": "上午",
-          "prompt": "morning sunlight at 9am, bright but diffused through cloth canopy, warm yellow light on wooden stalls, lively rural market 1980s China"
-        },
-        {
-          "state": "正午",
-          "prompt": "harsh noon sunlight, short shadows under cloth canopies, bright white light on mud ground, rural market daytime"
+          "state": "薄雾午前",
+          "prompt": "thin warm haze, diffuse pale gold light, reed silhouettes soft-edged, mudflat sheen catching the brightest value in frame"
         }
       ],
       "image": {
-        "tags": [],
-        "prompt": "A rural open-air market in 1980s northern town China. Rough wooden plank stalls on long benches, covered with coarse cloth. Bamboo poles with old blue cloth as canopy. Packed mud ground with cart tracks and footprints. In the distance a brick supply-and-shop storefront with red characters. Empty market, no people, no customers.",
-        "negativePrompt": "people, person, modern shops, concrete, plastic, neon, cars, shopping bags, clean",
-        "sheet": "Single environment concept sheet on 16:9 canvas. LEFT ZONE: wide view of market stalls with blue cloth canopy, wooden tables, mud ground. RIGHT-TOP ZONE: close-up of wooden plank stall with coarse cloth on top. RIGHT-BOTTOM ZONE: close-up of blue cloth canopy on bamboo poles. No people. 1980s rural China."
+        "prompt": "A desolate reed marsh riverbank seen across the water, Republican-era southern China, soft grey band of reeds in thinning warm haze, rotten wooden boat ribs half-buried in the mudflat, cold glint on wet mud, empty scene with no people",
+        "negativePrompt": "people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature",
+        "sheet": "Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: the reed marsh bank seen across the water from mid-river, soft grey reed band in thinning warm haze, mudflat glint separating water and reeds — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the rotten boat rib skeleton draped with waterweed and the undulating reed skyline dissolving into haze. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the cold glint line on the wet mudflat, reed stems and seed heads at close range, dark silt texture with shallow tide pools. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows",
+        "tags": [
+          "environment sheet",
+          "reed marsh",
+          "foggy river"
+        ]
       },
       "usage": {
-        "episodes": [],
-        "beats": []
+        "episodes": [
+          5
+        ],
+        "beats": [
+          "反转"
+        ]
       }
-    },
-    {
-      "id": "S04",
-      "name": "供销社",
-      "primary": false,
-      "summary": "1. **木质货架** — 靠墙的旧木货架，上面摆着散装的酱油瓶、醋瓶、布料卷\n2. **玻璃柜台** — 木头柜子上面嵌着玻璃柜台，里面摆着水果糖和针线\n3. **白炽灯泡** — 天花板上吊着一个裸灯泡，昏黄的光",
-      "anchors": [
-        {
-          "name": "木质货架",
-          "desc": "靠墙的旧木货架，上面摆着散装的酱油瓶、醋瓶、布料卷"
-        },
-        {
-          "name": "玻璃柜台",
-          "desc": "木头柜子上面嵌着玻璃柜台，里面摆着水果糖和针线"
-        },
-        {
-          "name": "白炽灯泡",
-          "desc": "天花板上吊着一个裸灯泡，昏黄的光"
-        }
-      ],
-      "lighting": [
-        {
-          "state": "白天室内",
-          "prompt": "dim interior lit by single bare incandescent bulb, warm yellow glow, shadows on wooden shelves, rural supply shop 1980s China"
-        }
-      ],
-      "image": {
-        "tags": [],
-        "prompt": "Interior of a rural supply-and-marketing cooperative shop in 1980s China. Old wooden shelves against wall with soy sauce bottles, vinegar bottles, rolled cloth bolts. Glass-topped wooden counter with fruit candies and sewing kits inside. A single bare incandescent bulb hanging from ceiling. Empty shop, no people.",
-        "negativePrompt": "people, person, modern supermarket, bright fluorescent lights, plastic shelves, cash register",
-        "sheet": "Single environment concept sheet on 16:9 canvas. LEFT ZONE: wide interior view showing wooden shelves on left, glass counter on right, bare bulb overhead. RIGHT-TOP ZONE: close-up of glass counter with candies inside. RIGHT-BOTTOM ZONE: close-up of wooden shelf with soy sauce bottles. No people. 1980s China."
-      },
-      "usage": {
-        "episodes": [],
-        "beats": []
-      },
-      "variantOf": "S03",
-      "changes": "改为室内：去掉布棚和露天摊位，加木质货架和玻璃柜台，灯光改为暖黄白炽灯"
-    },
-    {
-      "id": "S05",
-      "name": "后山小路",
-      "primary": false,
-      "summary": "1. **落叶小路** — 泥土小路上落满枯黄的树叶，两边是茂密的杂树\n2. **杂树林** — 两边是落叶后的杂树，枝丫交错，地上有灌木枯枝\n3. **远处山影** — 小路尽头能看到远处灰绿色的山影",
-      "anchors": [
-        {
-          "name": "落叶小路",
-          "desc": "泥土小路上落满枯黄的树叶，两边是茂密的杂树"
-        },
-        {
-          "name": "杂树林",
-          "desc": "两边是落叶后的杂树，枝丫交错，地上有灌木枯枝"
-        },
-        {
-          "name": "远处山影",
-          "desc": "小路尽头能看到远处灰绿色的山影"
-        }
-      ],
-      "lighting": [
-        {
-          "state": "黄昏",
-          "prompt": "late afternoon golden light filtering through bare branches, dappled shadows on leaf-covered path, quiet mountain edge 1980s China"
-        }
-      ],
-      "image": {
-        "tags": [],
-        "prompt": "A narrow dirt path on the edge of a mountain forest in 1980s northern China. Ground covered with dry yellow leaves. Bare deciduous trees on both sides, interlacing branches. Distant grey-green mountain silhouette at path end. Empty path, no people.",
-        "negativePrompt": "people, person, green summer leaves, modern trail, cars, concrete",
-        "sheet": "Single environment concept sheet on 16:9 canvas. LEFT ZONE: wide path view with bare trees on both sides, leaves on ground. RIGHT-TOP ZONE: close-up of dry leaf-covered path surface. RIGHT-BOTTOM ZONE: close-up of bare tree branches and twigs. No people. 1980s China."
-      },
-      "usage": {
-        "episodes": [],
-        "beats": []
-      },
-      "variantOf": "S02",
-      "changes": "改为山林：去掉开阔的村口，加两侧树木遮挡和落叶地景，时段改为黄昏"
-    },
-    {
-      "id": "S06",
-      "name": "大队部",
-      "primary": false,
-      "summary": "1. **旧办公桌** — 一张刷着绿漆的旧办公桌，上面放着油灯和账本\n2. **墙上奖状** — 墙上贴着几张红色奖状，边角卷起来\n3. **长条板凳** — 办公桌前放着两条长条板凳，给来评理的人坐",
-      "anchors": [
-        {
-          "name": "旧办公桌",
-          "desc": "一张刷着绿漆的旧办公桌，上面放着油灯和账本"
-        },
-        {
-          "name": "墙上奖状",
-          "desc": "墙上贴着几张红色奖状，边角卷起来"
-        },
-        {
-          "name": "长条板凳",
-          "desc": "办公桌前放着两条长条板凳，给来评理的人坐"
-        }
-      ],
-      "lighting": [
-        {
-          "state": "白天",
-          "prompt": "daytime light through small window, flat grey light on wooden desk, red posters on wall, rural village office 1980s China"
-        }
-      ],
-      "image": {
-        "tags": [],
-        "prompt": "Interior of a rural village brigade office in 1980s China. An old wooden desk with peeling green paint, oil lamp and account books on top. Two long wooden benches in front of desk. Red paper award certificates on wall, corners curled. Small window letting in grey daylight. Empty office, no people.",
-        "negativePrompt": "people, person, modern office, computer, fluorescent light, carpet, bookshelf",
-        "sheet": "Single environment concept sheet on 16:9 canvas. LEFT ZONE: wide office view with green desk on left, benches facing it, red posters on wall. RIGHT-TOP ZONE: close-up of peeling green paint on desk edge. RIGHT-BOTTOM ZONE: close-up of curled red award certificate. No people. 1980s China."
-      },
-      "usage": {
-        "episodes": [],
-        "beats": []
-      },
-      "variantOf": "S01",
-      "changes": "改为办公：去掉炕和灶台，加一张旧办公桌、墙上奖状、解放帽挂钉"
-    },
-    {
-      "id": "S07",
-      "name": "苏家门口",
-      "primary": false,
-      "summary": "1. **土砖墙** — 黄土砌的矮墙，墙头上插着碎玻璃防贼\n2. **旧木门** — 两扇旧木板门，一扇开着一扇关着，门上有铁环\n3. **院里柴堆** — 从门口能看到院里堆着柴火和杂物",
-      "anchors": [
-        {
-          "name": "土砖墙",
-          "desc": "黄土砌的矮墙，墙头上插着碎玻璃防贼"
-        },
-        {
-          "name": "旧木门",
-          "desc": "两扇旧木板门，一扇开着一扇关着，门上有铁环"
-        },
-        {
-          "name": "院里柴堆",
-          "desc": "从门口能看到院里堆着柴火和杂物"
-        }
-      ],
-      "lighting": [
-        {
-          "state": "阴天",
-          "prompt": "overcast grey light on mud brick wall, flat shadows, dull weather in front of rural house 1980s China"
-        }
-      ],
-      "image": {
-        "tags": [],
-        "prompt": "Front of a rural Chinese family house in 1980s northern China. Low mud-brick wall with broken glass pieces on top. Two old wooden doors, one open one closed, with iron ring handles. Firewood and clutter visible in courtyard. Overcast grey sky. Empty doorway, no people.",
-        "negativePrompt": "people, person, modern gate, concrete wall, painted door, car, flowers",
-        "sheet": "Single environment concept sheet on 16:9 canvas. LEFT ZONE: wide doorway view with mud wall on left, wooden door in center, courtyard visible behind. RIGHT-TOP ZONE: close-up of broken glass on mud wall top. RIGHT-BOTTOM ZONE: close-up of old wooden door with iron ring. No people. 1980s China."
-      },
-      "usage": {
-        "episodes": [],
-        "beats": []
-      },
-      "variantOf": "S02",
-      "changes": "改为门脸：去掉开阔村口，加土砖墙和木门框，天气改为阴天"
-    },
-    {
-      "id": "S08",
-      "name": "镇上街道",
-      "primary": false,
-      "summary": "1. **土街面** — 镇上的土街面，两边是低矮的砖房门面\n2. **旧自行车** — 路边靠着一辆黑色二八大杠自行车\n3. **砖房门脸** — 两边是灰砖房的门脸，有的挂着木牌子写店名",
-      "anchors": [
-        {
-          "name": "土街面",
-          "desc": "镇上的土街面，两边是低矮的砖房门面"
-        },
-        {
-          "name": "旧自行车",
-          "desc": "路边靠着一辆黑色二八大杠自行车"
-        },
-        {
-          "name": "砖房门脸",
-          "desc": "两边是灰砖房的门脸，有的挂着木牌子写店名"
-        }
-      ],
-      "lighting": [
-        {
-          "state": "傍晚",
-          "prompt": "warm sunset light on brick storefronts, long shadows on dirt street, quiet town evening 1980s China"
-        }
-      ],
-      "image": {
-        "tags": [],
-        "prompt": "A small town dirt street in 1980s northern China. Low grey-brick storefronts on both sides. A black vintage bicycle leaning against wall. Wooden shop signs hanging from eaves. Warm sunset light. Empty street, no people, no cars.",
-        "negativePrompt": "people, person, modern road, asphalt, neon, cars, telephone poles, concrete",
-        "sheet": "Single environment concept sheet on 16:9 canvas. LEFT ZONE: wide street view with brick storefronts on both sides, bicycle on left. RIGHT-TOP ZONE: close-up of black vintage bicycle leaning on wall. RIGHT-BOTTOM ZONE: close-up of wooden shop sign on brick wall. No people. 1980s China."
-      },
-      "usage": {
-        "episodes": [],
-        "beats": []
-      },
-      "variantOf": "S03",
-      "changes": "改为街道：撤掉摊位和布棚，加自行车和路人背影，改为傍晚"
     }
   ],
   "props": [
     {
       "id": "P01",
-      "name": "公社摆摊许可证",
-      "scale": "",
-      "summary": "1. **粗糙黄纸** — 粗糙的黄宣纸，边缘不齐，像是手写后油印的\n2. **红色公章** — 右下角盖着一个圆形红色公章，字模糊但能看清公社字样\n3. **手写毛笔字** — 上面是毛笔手写的批准摆摊内容，字迹工整",
+      "name": "旧皮箱",
+      "scale": "手持级",
+      "summary": "全剧最强的悬念道具：沈知微从第 1 集抱到第 6 集，谁碰翻谁的脸。观众要在六集里反复看到它的每个细节，最后开箱那一刻它就是主角——一致性崩了整部剧的底牌就穿帮。",
       "anchors": [
         {
-          "name": "粗糙黄纸",
-          "desc": "粗糙的黄宣纸，边缘不齐，像是手写后油印的"
+          "name": "绿锈铜扣",
+          "desc": "两只方形铜搭扣，绿锈从缝里渗出来，右边那只有一道新划痕"
         },
         {
-          "name": "红色公章",
-          "desc": "右下角盖着一个圆形红色公章，字模糊但能看清公社字样"
+          "name": "磨白的边角",
+          "desc": "四个包角的牛皮磨得发白起毛，右下角最重"
         },
         {
-          "name": "手写毛笔字",
-          "desc": "上面是毛笔手写的批准摆摊内容，字迹工整"
+          "name": "提手缠布",
+          "desc": "皮质提手断过，用靛蓝土布缠了两圈，布头塞在内侧"
         }
       ],
       "states": [
         {
-          "state": "折叠",
-          "prompt": "a folded yellow paper permit, small size held in palm, creased edges, red circular seal visible on one corner, handwritten Chinese characters, handheld size, pure white background, no hands, no people, handheld scale."
+          "state": "合上",
+          "prompt": "the suitcase closed and latched, resting upright, brass clasps fastened, worn leather surfaces catching soft light"
         },
         {
-          "state": "展开",
-          "prompt": "a fully unfolded yellow paper permit, rectangular, red circular stamp in bottom right corner, handwritten Chinese text across middle, rough paper texture, handheld size, pure white background, no hands, no people, handheld scale."
+          "state": "打开",
+          "prompt": "the suitcase lying open, lid at full angle, revealing a stack of folded petition papers and a small wooden memorial tablet inside, dark fabric lining creased"
         }
       ],
-      "relatedScenes": [],
-      "carriedBy": "苏晚",
+      "relatedScenes": [
+        "S01"
+      ],
+      "carriedBy": [
+        "沈知微"
+      ],
       "image": {
-        "tags": [],
-        "prompt": "a hand-sized yellow paper permit from 1980s Chinese commune, rough rice paper texture, red circular official stamp in bottom right, handwritten brush characters in center, creased fold marks, pure white background, no hands, no people, handheld scale.",
-        "negativePrompt": "hands, fingers, people, person, modern printed paper, plastic, glossy, English text",
-        "sheet": "Single prop sheet on 16:9 canvas, pure white background. LEFT ZONE (~34%): folded permit small view showing creased yellow paper and red corner stamp. RIGHT-TOP ZONE: fully unfolded flat view showing handwritten text and red circular seal. RIGHT-BOTTOM ZONE: close-up of red circular stamp detail and rough paper fiber texture. No hands, no people. 1980s China, handheld scale."
+        "prompt": "A weathered Republican-era Chinese leather suitcase at handheld scale, worn brown cowhide with whitened corners, two square verdigris brass clasps, broken handle wrapped in indigo cloth, isolated on a pure white background, no people, no hands",
+        "negativePrompt": "people, human figures, characters, crowds, silhouettes of people, hands, fingers, plastic CG look, oversaturated colours, warped perspective, melted geometry, floating objects, text, watermark, signature",
+        "sheet": "Prop reference sheet on ONE 16:9 landscape canvas on a pure white background, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the suitcase closed, three-quarter hero view at handheld scale — the canonical look of this prop. RIGHT COLUMN, stacked small panels: close-up detail studies of the verdigris brass clasps with the fresh scratch and the whitened worn corner. BOTTOM ROW beneath the main zone: the suitcase in its open state showing petition papers and the memorial tablet inside, a straight-on side profile, and a close-up of the indigo cloth-wrapped handle. Every panel shows the SAME suitcase — same wear, same scratches, same proportions. Absolutely no people and no hands anywhere. Pure white background in every panel for clean cut-out. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows",
+        "tags": [
+          "prop sheet",
+          "leather suitcase",
+          "white background"
+        ]
       },
       "usage": {
-        "episodes": [],
-        "beats": []
+        "episodes": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "beats": [
+          "悬念钩",
+          "收束"
+        ]
       }
     },
     {
       "id": "P02",
-      "name": "卤味摊锅灶",
-      "scale": "",
-      "summary": "1. **黑铁锅** — 一口厚重的黑铁锅，锅沿有使用痕迹和卤渍\n2. **红亮卤汤** — 锅里是红棕色的卤汤，表面浮着油花和八角\n3. **竹筐卤味** — 锅旁边摆着竹编筐，里面装着卤好的豆腐干和五花肉",
+      "name": "县衙旧砚",
+      "scale": "手持级",
+      "summary": "第 3 集大爆点的实体：陆行远口袋里的「硬东西」。掏出来之前它是威胁，掏出来之后它是冤案的钥匙——砚底的县衙刻印是全剧最重要的一个特写镜头。",
       "anchors": [
         {
-          "name": "黑铁锅",
-          "desc": "一口厚重的黑铁锅，锅沿有使用痕迹和卤渍"
+          "name": "砚底县衙刻印",
+          "desc": "底面阴刻两行小字官印，笔画里积着旧墨"
         },
         {
-          "name": "红亮卤汤",
-          "desc": "锅里是红棕色的卤汤，表面浮着油花和八角"
+          "name": "缺角",
+          "desc": "右上角磕掉指甲盖大小一块，断面颜色更深"
         },
         {
-          "name": "竹筐卤味",
-          "desc": "锅旁边摆着竹编筐，里面装着卤好的豆腐干和五花肉"
+          "name": "墨池月痕",
+          "desc": "墨池边缘磨出一圈月牙形浅痕，用了几十年的证据"
         }
       ],
       "states": [
         {
-          "state": "冒着热气",
-          "prompt": "a large black iron pot filled with reddish-brown braising liquid, steam rising, star anise floating on surface, rough iron texture with sauce stains on rim, on wooden table, tabletop size, pure white background, no hands, no people, tabletop scale."
+          "state": "正面",
+          "prompt": "the inkstone face up, moon-shaped wear ring around the ink pool visible, chipped corner facing camera"
         },
         {
-          "state": "卖空后",
-          "prompt": "an empty black iron pot with residual sauce stains inside, wooden spoon resting on rim, no steam, on wooden table, tabletop size, pure white background, no hands, no people, tabletop scale."
+          "state": "底面刻印",
+          "prompt": "the inkstone flipped bottom up, two lines of carved official seal characters filled with dried ink, raking light making the carving legible"
         }
       ],
-      "relatedScenes": [],
-      "carriedBy": "苏晚",
+      "relatedScenes": [
+        "S01"
+      ],
+      "carriedBy": [
+        "陆行远"
+      ],
       "image": {
-        "tags": [],
-        "prompt": "a large black iron wok filled with dark reddish braising sauce, star anise and spices visible, steam curling up, worn iron surface with sauce stains on rim, tabletop size, pure white background, no hands, no people, tabletop scale.",
-        "negativePrompt": "hands, fingers, people, person, modern stainless steel pot, electric stove, plastic",
-        "sheet": "Single prop sheet on 16:9 canvas, pure white background. LEFT ZONE: wide view of black iron pot with braising sauce and rising steam. RIGHT-TOP ZONE: close-up of reddish sauce surface with star anise. RIGHT-BOTTOM ZONE: close-up of worn iron rim with sauce stains. No hands, no people. 1980s China, tabletop scale."
+        "prompt": "An old Chinese ink stone at handheld scale, dark grey duan stone with a chipped upper corner, moon-shaped wear ring around the ink pool, two lines of carved official seal characters on its underside, isolated on a pure white background, no people, no hands",
+        "negativePrompt": "people, human figures, characters, crowds, silhouettes of people, hands, fingers, plastic CG look, oversaturated colours, warped perspective, melted geometry, floating objects, text, watermark, signature",
+        "sheet": "Prop reference sheet on ONE 16:9 landscape canvas on a pure white background, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the ink stone face up in three-quarter hero view at handheld scale — the canonical look of this prop. RIGHT COLUMN, stacked small panels: close-up detail studies of the chipped corner with its darker fracture face and the moon-shaped wear ring around the ink pool. BOTTOM ROW beneath the main zone: the inkstone flipped to show the carved official seal characters on the underside under raking light, a straight-on side profile showing its thickness, and a macro close-up of dried ink caught in the carved strokes. Every panel shows the SAME ink stone — same chip, same wear, same proportions. Absolutely no people and no hands anywhere. Pure white background in every panel for clean cut-out. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows",
+        "tags": [
+          "prop sheet",
+          "ink stone",
+          "white background"
+        ]
       },
       "usage": {
-        "episodes": [],
-        "beats": []
-      }
-    },
-    {
-      "id": "P03",
-      "name": "旧木推车",
-      "scale": "",
-      "summary": "1. **实木车身** — 旧木板拼成的车斗，木板上有补丁和铁钉\n2. **木轮子** — 两个实木轮子，外圈包着铁皮，磨得发亮\n3. **车把** — 两根长木杆当车把，握的地方磨得光滑",
-      "anchors": [
-        {
-          "name": "实木车身",
-          "desc": "旧木板拼成的车斗，木板上有补丁和铁钉"
-        },
-        {
-          "name": "木轮子",
-          "desc": "两个实木轮子，外圈包着铁皮，磨得发亮"
-        },
-        {
-          "name": "车把",
-          "desc": "两根长木杆当车把，握的地方磨得光滑"
-        }
-      ],
-      "states": [
-        {
-          "state": "空车",
-          "prompt": "an old wooden handcart with two solid wood wheels wrapped in iron rim, worn wood planks bed, two long wooden push handles, furniture size, pure white background, no hands, no people, furniture scale."
-        },
-        {
-          "state": "载货",
-          "prompt": "an old wooden handcart loaded with black iron pot and bamboo baskets covered by white cloth, wooden wheels, furniture size, pure white background, no hands, no people, furniture scale."
-        }
-      ],
-      "relatedScenes": [],
-      "carriedBy": "苏晚",
-      "image": {
-        "tags": [],
-        "prompt": "an old rural wooden handcart in 1980s China, two solid wood wheels with iron band rims, worn plank bed with nail holes, two long wooden push handles smoothed by use, furniture size, pure white background, no hands, no people, furniture scale.",
-        "negativePrompt": "hands, fingers, people, person, modern wheelbarrow, rubber tires, metal frame, plastic",
-        "sheet": "Single prop sheet on 16:9 canvas, pure white background. LEFT ZONE: side view of empty wooden handcart. RIGHT-TOP ZONE: close-up of wooden wheel with iron rim. RIGHT-BOTTOM ZONE: close-up of worn push handle. No hands, no people. 1980s China, furniture scale."
-      },
-      "usage": {
-        "episodes": [],
-        "beats": []
-      }
-    },
-    {
-      "id": "P04",
-      "name": "粗布包袱",
-      "scale": "",
-      "summary": "1. **蓝灰粗布** — 蓝灰色粗棉布，洗得发白，边角有补丁\n2. **四角打结** — 四个角系成死结，里面鼓鼓囊囊装着干货\n3. **布纹粗糙** — 布面能看到粗糙的棉线纹理",
-      "anchors": [
-        {
-          "name": "蓝灰粗布",
-          "desc": "蓝灰色粗棉布，洗得发白，边角有补丁"
-        },
-        {
-          "name": "四角打结",
-          "desc": "四个角系成死结，里面鼓鼓囊囊装着干货"
-        },
-        {
-          "name": "布纹粗糙",
-          "desc": "布面能看到粗糙的棉线纹理"
-        }
-      ],
-      "states": [
-        {
-          "state": "装货",
-          "prompt": "a bulging blue-grey coarse cloth bundle, four corners tied in knots, stuffed with dried goods visible through fabric, hand-held size, pure white background, no hands, no people, handheld scale."
-        }
-      ],
-      "relatedScenes": [],
-      "carriedBy": "苏晚",
-      "image": {
-        "tags": [],
-        "prompt": "a bulging blue-grey washed-out coarse cloth bundle, four corners tied in tight knots, stuffed with dried mushrooms and fungus, rough cotton texture visible, handheld size, pure white background, no hands, no people, handheld scale.",
-        "negativePrompt": "hands, fingers, people, person, modern shopping bag, plastic, leather, new fabric",
-        "sheet": "Single prop sheet on 16:9 canvas, pure white background. LEFT ZONE: wide view of bulging cloth bundle. RIGHT-TOP ZONE: close-up of tied cloth knot. RIGHT-BOTTOM ZONE: close-up of rough cotton fabric texture. No hands, no people. 1980s China, handheld scale."
-      },
-      "usage": {
-        "episodes": [],
-        "beats": []
-      }
-    },
-    {
-      "id": "P05",
-      "name": "分家字据与汇款单",
-      "scale": "",
-      "summary": "1. **泛黄信纸** — 一叠泛黄的信纸，边缘卷折，有手写钢笔字\n2. **蓝色墨水** — 字迹是蓝色钢笔墨水写的，有些晕开\n3. **红色手印** — 字据末尾有一个红色的手印泥",
-      "anchors": [
-        {
-          "name": "泛黄信纸",
-          "desc": "一叠泛黄的信纸，边缘卷折，有手写钢笔字"
-        },
-        {
-          "name": "蓝色墨水",
-          "desc": "字迹是蓝色钢笔墨水写的，有些晕开"
-        },
-        {
-          "name": "红色手印",
-          "desc": "字据末尾有一个红色的手印泥"
-        }
-      ],
-      "states": [
-        {
-          "state": "摊开",
-          "prompt": "a stack of yellowed old papers, handwritten blue fountain pen text, one red fingerprint at bottom, creased and folded edges, handheld size, pure white background, no hands, no people, handheld scale."
-        }
-      ],
-      "relatedScenes": [],
-      "carriedBy": "苏晚",
-      "image": {
-        "tags": [],
-        "prompt": "a stack of yellowed old Chinese papers with handwritten blue fountain pen characters, one red fingerprint stamp at bottom, creased edges, aged paper texture, handheld size, pure white background, no hands, no people, handheld scale.",
-        "negativePrompt": "hands, fingers, people, person, modern printed document, typed paper, white new paper",
-        "sheet": "Single prop sheet on 16:9 canvas, pure white background. LEFT ZONE: stack of yellowed papers. RIGHT-TOP ZONE: close-up of blue handwritten characters. RIGHT-BOTTOM ZONE: close-up of red fingerprint impression. No hands, no people. 1980s China, handheld scale."
-      },
-      "usage": {
-        "episodes": [],
-        "beats": []
+        "episodes": [
+          3,
+          4,
+          6
+        ],
+        "beats": [
+          "身份揭破"
+        ]
       }
     }
-  ],
-  "dynasty": "1980年代中国北方农村"
+  ]
 }
