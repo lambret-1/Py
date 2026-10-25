@@ -5,6 +5,121 @@ on:
     branches:
       - main
     paths:
+      - '01_剧本数据/**.json'
+  workflow_dispatch: # 允许在 GitHub 网页上手动点击按钮触发
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+
+    - name: 设置 Node.js 环境
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: 执行渲染
+      run: |
+        mkdir -p 剧本
+        
+        echo "======================================="
+        echo "检查 01_剧本数据 目录下的文件："
+        ls -lh 01_剧本数据/ || echo "警告：没有找到 01_剧本数据 文件夹！"
+        echo "======================================="
+        
+        FOUND=0
+        for outline in 01_剧本数据/*-outline.json; do
+          [ -e "$outline" ] || continue
+          FOUND=1
+          
+          filename=$(basename "$outline")
+          BOOK_NAME="${filename%-outline.json}"
+          
+          echo "开始处理项目: $BOOK_NAME"
+          
+          OUTLINE_FILE="01_剧本数据/${BOOK_NAME}-outline.json"
+          CAST_FILE="01_剧本数据/${BOOK_NAME}-cast.json"
+          ART_FILE="01_剧本数据/${BOOK_NAME}-art.json"
+          SCRIPT_FILE="01_剧本数据/${BOOK_NAME}-script.json"
+          STORYBOARD_FILE="01_剧本数据/${BOOK_NAME}-storyboard.json"
+          
+          # 1. 大纲
+          echo "  -> 渲染大纲..."
+          node 02_核心代码/novel-outline.mjs render "$OUTLINE_FILE" --md > "剧本/${BOOK_NAME}_大纲.md"
+          node 02_核心代码/novel-outline.mjs render "$OUTLINE_FILE" --html > "剧本/${BOOK_NAME}_大纲报告.html"
+          
+          # 2. 角色
+          if [ -f "$CAST_FILE" ]; then
+            echo "  -> 渲染角色..."
+            node 02_核心代码/novel-characters.mjs render "$CAST_FILE" --md > "剧本/${BOOK_NAME}_角色设定.md"
+            node 02_核心代码/novel-characters.mjs render "$CAST_FILE" --html > "剧本/${BOOK_NAME}_角色报告.html"
+          fi
+          
+          # 3. 美术
+          if [ -f "$ART_FILE" ]; then
+            echo "  -> 渲染美术..."
+            node 02_核心代码/novel-art.mjs render "$ART_FILE" --md > "剧本/${BOOK_NAME}_美术设定.md"
+            node 02_核心代码/novel-art.mjs render "$ART_FILE" --html > "剧本/${BOOK_NAME}_美术报告.html"
+          fi
+          
+          # 4. 剧本
+          if [ -f "$SCRIPT_FILE" ]; then
+            echo "  -> 渲染剧本..."
+            ARGS=""
+            [ -f "$OUTLINE_FILE" ] && ARGS="$ARGS --outline $OUTLINE_FILE"
+            [ -f "$ART_FILE" ] && ARGS="$ARGS --art $ART_FILE"
+            node 02_核心代码/novel-script.mjs render "$SCRIPT_FILE" --md $ARGS > "剧本/${BOOK_NAME}_剧本.md"
+            node 02_核心代码/novel-script.mjs render "$SCRIPT_FILE" --html $ARGS > "剧本/${BOOK_NAME}_剧本报告.html"
+          fi
+          
+          # 5. 分镜
+          if [ -f "$STORYBOARD_FILE" ]; then
+            echo "  -> 渲染分镜..."
+            ARGS=""
+            [ -f "$SCRIPT_FILE" ] && ARGS="$ARGS --script $SCRIPT_FILE"
+            [ -f "$OUTLINE_FILE" ] && ARGS="$ARGS --outline $OUTLINE_FILE"
+            [ -f "$ART_FILE" ] && ARGS="$ARGS --art $ART_FILE"
+            node 02_核心代码/novel-storyboard.mjs render "$STORYBOARD_FILE" --md $ARGS > "剧本/${BOOK_NAME}_分镜表.md"
+            node 02_核心代码/novel-storyboard.mjs render "$STORYBOARD_FILE" --html $ARGS > "剧本/${BOOK_NAME}_分镜报告.html"
+          fi
+        done
+        
+        if [ "$FOUND" = "0" ]; then
+          echo "错误：在 01_剧本数据 里没有找到任何 *-outline.json 文件！"
+          exit 1
+        fi
+        
+        echo "======================================="
+        echo "渲染完成，当前生成的报告文件如下："
+        ls -lh 剧本/
+        echo "======================================="
+
+    - name: 将报告打包为下载附件 (防丢失)
+      uses: actions/upload-artifact@v4
+      with:
+        name: 剧本渲染报告
+        path: 剧本/
+        if-no-files-found: error
+
+    - name: 提交并推送生成的报告到仓库
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Auto-generated: 更新渲染报告 [skip ci]"
+        file_pattern: '剧本/*.md 剧本/*.html'
+        commit_user_name: "GitHub Actions Bot"
+        commit_user_email: "actions@github.com"name: 渲染 JSON 为剧本报告
+
+on:
+  push:
+    branches:
+      - main
+    paths:
       - '01_剧本数据/**.json' # 只有当剧本数据更新时才触发
   workflow_dispatch: # 允许在 GitHub 网页上手动点击触发
 
