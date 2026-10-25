@@ -31,7 +31,7 @@ jobs:
         mkdir -p 剧本
         
         echo "======================================="
-        echo "正在扫描 01_剧本数据 下的所有 JSON..."
+        echo "正在扫描 json 下的所有 JSON..."
         
         # 使用关联数组进行去重，纯 Bash 语法，完美支持中文
         declare -A BOOK_MAP
@@ -72,7 +72,7 @@ jobs:
           echo "正在处理项目: $BOOK_NAME"
           
           # 自动匹配文件名（兼容 书名-xxx.json 和 书名xxx.json）
-          FILE_PREFIX="01_剧本数据/${BOOK_NAME}"
+          FILE_PREFIX="JSON/${BOOK_NAME}"
           
           OUTLINE_FILE="${FILE_PREFIX}-outline.json"
           if [ ! -f "$OUTLINE_FILE" ]; then OUTLINE_FILE="${FILE_PREFIX}outline.json"; fi
