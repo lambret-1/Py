@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>影笔代理人 · 短剧改编大纲</title>
+<style>
+:root{
+  --paper:#eceded; --panel:#f5f6f5; --side:#e4e6e3; --ink:#191d21; --ink-2:#5b636a; --ink-3:#8c9298;
+  --rule:#d2d5d0; --rule-2:#c2c6bf; --seal:#8a3324; --seal-2:#c56a4e; --seal-3:#e0a98c; --seal-soft:#8a332412; --ok:#3d6b4f;
+  --serif:"Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC",Georgia,serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+.page{max-width:1600px;margin:0 auto;padding:24px 32px 90px}
+h1,h2,h3{margin:0;font-weight:400}
+
+.hd{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.hd h1{font:400 28px/1.1 var(--serif);letter-spacing:.06em}
+.hd .sub{font-size:13px;color:var(--ink-2)}
+.hd .right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.gatepill{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--sans);border-radius:99px;padding:6px 12px}
+.gatepill.pass{color:var(--ok);border:1px solid var(--ok)}
+.gatepill.fail{color:var(--seal);border:1px solid var(--seal);background:var(--seal-soft)}
+.expo{font:500 11px/1 var(--sans);color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule-2);border-radius:2px;padding:7px 11px;cursor:pointer;transition:.15s}
+.expo:hover{border-color:var(--seal);color:var(--seal)}
+.expo:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:18px 0 6px}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:11px 14px 9px}
+.kpi .l{font:500 10px/1 var(--sans);letter-spacing:.18em;color:var(--ink-3)}
+.kpi .v{font:400 28px/1.15 var(--serif);margin-top:5px}
+.kpi .v small{font:400 14px var(--serif);color:var(--ink-2)}
+.kpi .v.mode{font-size:21px;padding-top:5px}
+.kpi .d{font-size:11px;color:var(--ink-2);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kpi.accent{border-top:2px solid var(--seal)}
+
+.galert{margin:14px 0 0;border:1px solid var(--seal);background:var(--seal-soft);border-radius:2px;
+  padding:10px 14px;font-size:13px}
+.galert b{color:var(--seal)}
+.galert span{display:block;font-size:12px;color:var(--ink-2)}
+
+section{margin-top:34px}
+.sec-h{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule-2);padding-bottom:8px;margin-bottom:16px}
+.sec-h .no{font:500 12px/1 var(--mono);color:var(--seal)}
+.sec-h h2{font:400 20px/1.2 var(--serif);letter-spacing:.05em}
+.sec-h .note{margin-left:auto;font-size:12px;color:var(--ink-3)}
+
+.tabs{display:flex;width:max-content;margin-bottom:12px;border:1px solid var(--rule-2);
+  border-radius:2px;overflow:hidden}
+.tab{font:500 12px/1 var(--sans);letter-spacing:.06em;padding:7px 16px;background:var(--panel);
+  border:0;cursor:pointer;color:var(--ink-2);transition:.15s}
+.tab + .tab{border-left:1px solid var(--rule-2)}
+.tab.on{background:var(--seal);color:#fff}
+.tab:focus-visible{outline:2px solid var(--seal);outline-offset:-2px}
+.tabpane{display:none}
+.tabpane.on{display:block}
+
+.epswrap{position:relative}
+.eps{position:relative}
+.epswrap.clip .eps .ep:nth-child(n+4){display:none}
+.epswrap.clip .eps::after{content:'';position:absolute;left:0;right:0;bottom:0;height:90px;
+  background:linear-gradient(180deg,transparent,var(--paper));pointer-events:none}
+.epsmore{display:block;margin:10px auto 0;font:500 12px/1 var(--sans);letter-spacing:.06em;
+  color:var(--ink-2);background:var(--panel);border:1px solid var(--rule-2);border-radius:2px;
+  padding:8px 18px;cursor:pointer;transition:.15s}
+.epsmore:hover{border-color:var(--seal);color:var(--seal)}
+.epsmore:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+
+.dec3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:start}
+@media(max-width:1080px){.dec3{grid-template-columns:1fr}}
+.dcol{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:4px 18px 14px}
+.dhead{margin:8px 0 0;font-size:12.5px;color:var(--ink-2)}
+.dlist{list-style:none;margin:8px 0 0;padding:0}
+.dlist li{padding:7px 0;border-top:1px solid var(--rule)}
+.dlist li:first-child{border-top:0}
+.dlist b{display:block;font:400 13.5px/1.6 var(--serif)}
+.dlist small{display:block;font-size:11.5px;color:var(--ink-2);line-height:1.6}
+.dnote{margin:10px 0 0;font-size:12px;color:var(--ink-2);line-height:1.7}
+.dnote.seal{color:var(--seal);background:var(--seal-soft);padding:7px 10px;border-radius:2px}
+.dmaj{list-style:none;margin:8px 0 0;padding:0}
+.dmaj li{display:flex;gap:9px;align-items:baseline;padding:5.5px 0;border-top:1px solid var(--rule);font-size:12.5px}
+.dmaj li:first-child{border-top:0}
+.dmaj i{flex:none;font:500 11px/1 var(--mono);color:var(--seal);font-style:normal;min-width:38px}
+.dmaj b{font:400 12.5px var(--serif)}
+.dmaj span{min-width:0}
+.dmaj em{flex:none;margin-left:auto;font:500 10px/1 var(--sans);letter-spacing:.1em;font-style:normal;
+  color:var(--seal);border:1px solid var(--seal);border-radius:99px;padding:2px 7px}
+
+.chart{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 20px 10px}
+.chart .legend{display:flex;gap:18px;font-size:12px;color:var(--ink-2);margin-bottom:2px}
+.chart .legend i{font-style:normal;display:inline-flex;align-items:center;gap:6px}
+.dotk{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--seal-2)}
+.dotk.major{width:12px;height:12px;background:var(--seal)}
+.rhythm svg{display:block;width:100%;height:auto}
+.rhythm .axis{stroke:var(--rule-2);stroke-width:1.5}
+.rhythm .tick{font:400 10.5px var(--mono);fill:var(--ink-3);paint-order:stroke;stroke:var(--panel);stroke-width:3px}
+.rhythm .stem{stroke:var(--seal-2);stroke-width:1.5}
+.rhythm .stem.major{stroke:var(--seal)}
+.rhythm .bdot{fill:var(--seal-2);stroke:var(--panel);stroke-width:2}
+.rhythm .bdot.major{fill:var(--seal)}
+.rhythm .blabel{font:500 12px var(--sans);fill:var(--ink)}
+.rhythm .bsub{font:400 10.5px var(--sans);fill:var(--ink-2)}
+.rhythm .gapnote{font:400 10.5px var(--sans);fill:var(--ink-3)}
+.rhythm .gapnote.bad{fill:var(--seal);font-weight:500}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--rule);font-size:13px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{font:500 11px/1 var(--sans);letter-spacing:.1em;color:var(--ink-3);background:var(--side)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink-2);white-space:nowrap}
+q{quotes:"「" "」";font-family:var(--serif);border-left:2px solid var(--seal);padding-left:8px;display:inline-block}
+
+.eps{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:13px}
+.ep{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:14px 16px 12px;position:relative}
+.ep .num{position:absolute;top:10px;right:14px;font:400 30px/1 var(--serif);color:var(--rule-2)}
+.ep header{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding-right:44px;flex-wrap:wrap}
+.ep header b{font:500 15px var(--serif);letter-spacing:.04em}
+.bt{font-style:normal;font-size:11px;padding:2px 8px;border:1px solid var(--seal);border-radius:99px;color:var(--seal)}
+.bt.major{background:var(--seal);color:#fff}
+.ep .syn{margin:0 0 8px;font-size:13px;line-height:1.75}
+.hk{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px;font-size:12.5px;padding:6px 0;border-top:1px solid var(--rule)}
+.hk b{font:500 11px/1.8 var(--sans);letter-spacing:.14em;color:var(--seal);white-space:nowrap}
+:root[lang="en"] .hk b,html[lang="en"] .hk b{letter-spacing:.06em}
+.ep .meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.ep .meta i{font-style:normal;font:400 10.5px/1.5 var(--mono);border:1px solid var(--rule-2);
+  border-radius:2px;padding:0 5px;background:var(--paper);color:var(--ink-2)}
+.ep .meta .warn{border-color:var(--seal);color:var(--seal);background:var(--seal-soft)}
+
+.matrix{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 18px;overflow-x:auto}
+.matrix table{border-collapse:separate;border-spacing:3px;font-size:12px;background:none;border:0;width:auto}
+.matrix th,.matrix td{border:0;padding:0}
+.matrix th{font:500 10px/1 var(--sans);letter-spacing:.1em;color:var(--ink-3);background:none;
+  text-align:left;padding:0 8px 5px 0;white-space:nowrap}
+.matrix th.ep-h{text-align:center;padding:0 0 5px;font-family:var(--mono)}
+.matrix td.name{padding-right:10px;white-space:nowrap;font-family:var(--serif);font-size:13px}
+.matrix td.tier{padding-right:10px;color:var(--ink-3);font-size:11px;white-space:nowrap}
+.matrix td.mc{width:var(--cw,26px);min-width:var(--cw,26px);height:22px;border-radius:2px;
+  background:var(--paper);border:1px solid var(--rule)}
+.matrix td.mc.on{background:var(--seal);border-color:var(--seal)}
+.matrix td.mc.on.sc{background:var(--seal-2);border-color:var(--seal-2)}
+.matrix td.mc.on.pp{background:var(--seal-3);border-color:var(--seal-3)}
+.matrix td.n{padding-left:10px;font-family:var(--mono);font-size:11px;color:var(--ink-2);white-space:nowrap}
+.matrix tr.div td{padding:8px 0 3px;font:500 10px/1 var(--sans);letter-spacing:.18em;color:var(--ink-3)}
+.matrix .mnote{font-size:11px;color:var(--ink-3);margin:10px 0 0}
+
+.scenes{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:13px;align-items:start}
+.scard{position:relative;background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:14px 16px}
+.snum{position:absolute;top:10px;right:16px;font:400 26px/1 var(--serif);color:var(--rule-2);letter-spacing:.04em}
+.scard h3{font:400 16px/1.3 var(--serif);letter-spacing:.03em;display:flex;align-items:center;gap:8px;
+  padding-right:90px;flex-wrap:wrap}
+.scard h3 .id{font:400 10.5px var(--mono);color:var(--ink-3)}
+.badge{font:500 10.5px/1 var(--sans);padding:2px 8px;border-radius:99px;border:1px solid var(--seal);color:var(--seal)}
+.badge.once{border-color:var(--seal-2);color:var(--seal-2)}
+.strip{display:flex;flex-wrap:wrap;gap:3px;margin:7px 0 6px}
+.strip i{width:16px;height:10px;border-radius:2px;background:var(--paper);border:1px solid var(--rule)}
+.strip i.on{background:var(--seal);border-color:var(--seal)}
+.strip i.on.lt{background:var(--seal-2);border-color:var(--seal-2)}
+.srow{font-size:11.5px;color:var(--ink-2);display:flex;gap:6px;flex-wrap:wrap;align-items:baseline;margin-top:3px}
+.srow b{font:500 10px/1.8 var(--sans);letter-spacing:.12em;color:var(--ink-3);flex:none}
+.srow i{font-style:normal;font:400 10.5px/1.5 var(--mono);border:1px solid var(--rule-2);
+  border-radius:2px;padding:0 5px;background:var(--paper)}
+.srow .reuse{color:var(--seal)}
+
+.plan{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 18px}
+.plan table{background:none;border:0}
+.plan th{background:none;padding-left:0}
+.plan td{padding-left:0;border-top:1px solid var(--rule);border-bottom:0}
+.plan tr:first-child td{border-top:0}
+.plan td:first-child{font-family:var(--serif);font-size:13px;color:var(--ink)}
+
+.core{font:400 17px/1.9 var(--serif);margin:0 0 6px}
+h3.sub{font:500 12px/1 var(--sans);letter-spacing:.18em;color:var(--seal);margin:20px 0 8px}
+
+.gate{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 28px}
+@media(max-width:900px){.gate{grid-template-columns:1fr}}
+.gate li{display:flex;gap:8px;padding:5px 0;font-size:12.5px;line-height:1.55}
+.gate .m{flex:none;font-weight:700}
+.gate .ok .m,.gate li.ok .m{color:var(--ok)}
+.gate li.bad .m{color:var(--seal)}
+.gate li.bad{background:var(--seal-soft);border-radius:2px;padding-left:6px}
+.gate small{display:block;color:var(--ink-3)}
+.gsum{margin:10px 0 0;font-size:12px;color:var(--ink-2)}
+.gsum b{color:var(--seal)}
+
+.foot{margin-top:40px;font-size:11px;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+  .expo,.tabs,.epsmore{display:none!important}
+  .tabpane{display:block!important;margin-bottom:14px}
+  .epswrap.clip .eps .ep{display:block!important}
+  .epswrap.clip .eps::after{display:none}
+  .page{max-width:none;padding:0}
+  section,.ep,.scard{page-break-inside:avoid}
+  body{background:#fff}
+}
+</style></head><body>
+<div class="page">
+
+<header class="hd">
+  <h1>影笔代理人</h1>
+  <span class="sub">短剧改编大纲 · 30 集 × 1 分钟 · 年代重生爽文 · 抽核改编</span>
+  <span class="right">
+    <span class="gatepill fail">✗ 质量门 12 / 14</span>
+    <button class="expo" data-name="影笔代理人-outline.json">导出 JSON</button>
+  </span>
+</header>
+
+<div class="kpis">
+  <div class="kpi accent"><div class="l">总集数</div><div class="v">30 <small>× 1 分钟</small></div><div class="d">正片约 30 分钟</div></div>
+  <div class="kpi"><div class="l">爽点</div><div class="v">5</div><div class="d">2 大爆点 · 最大间隔 10 集</div></div>
+  <div class="kpi"><div class="l">角色</div><div class="v">10</div><div class="d">主角 3 · 配角 5 · 功能 2</div></div>
+  <div class="kpi"><div class="l">主场景</div><div class="v">6 <small>+5</small></div><div class="d">一次性场景 1，需复用方案</div></div>
+  <div class="kpi"><div class="l">生成难点</div><div class="v">30</div><div class="d">影子实体化剪影 ×7（第 1、2、5、9、10、…</div></div>
+  <div class="kpi"><div class="l">改编幅度</div><div class="v mode">抽核</div><div class="d">砍 2 线 · 合 1 组</div></div>
+</div>
+<div class="galert"><b>✗ 2 项未过</b><span>爽点间隔 ≤ 3 集，无真空区 — 第 3–8 集之间断档</span><span>场景/角色引用完整，无失业角色、无空转场景 — 角色 C09 从未在任何一集出现</span></div>
+
+<section id="sec-rhythm">
+  <div class="sec-h"><span class="no">01</span><h2>爽点节奏</h2></div>
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-pane="pane-timeline">时间轴</button>
+    <button class="tab" data-pane="pane-table">明细表</button>
+  </div>
+  <div class="tabpane on" id="pane-timeline"><div class="chart rhythm">
+  <div class="legend">
+    <i><span class="dotk major"></span>大爆点</i>
+    <i><span class="dotk"></span>常规爽点</i>
+  </div>
+  <svg viewBox="0 0 1520 352" role="img" aria-label="爽点节奏">
+    <line class="axis" x1="30" y1="92" x2="1490" y2="92"/>
+    <line class="axis" x1="66.5" y1="88" x2="66.5" y2="96"/>
+    <line class="axis" x1="139.5" y1="88" x2="139.5" y2="96"/>
+    <line class="axis" x1="212.5" y1="88" x2="212.5" y2="96"/>
+    <line class="axis" x1="285.5" y1="88" x2="285.5" y2="96"/>
+    <line class="axis" x1="358.5" y1="88" x2="358.5" y2="96"/>
+    <line class="axis" x1="431.5" y1="88" x2="431.5" y2="96"/>
+    <line class="axis" x1="504.5" y1="88" x2="504.5" y2="96"/>
+    <line class="axis" x1="577.5" y1="88" x2="577.5" y2="96"/>
+    <line class="axis" x1="650.5" y1="88" x2="650.5" y2="96"/>
+    <line class="axis" x1="723.5" y1="88" x2="723.5" y2="96"/>
+    <line class="axis" x1="796.5" y1="88" x2="796.5" y2="96"/>
+    <line class="axis" x1="869.5" y1="88" x2="869.5" y2="96"/>
+    <line class="axis" x1="942.5" y1="88" x2="942.5" y2="96"/>
+    <line class="axis" x1="1015.5" y1="88" x2="1015.5" y2="96"/>
+    <line class="axis" x1="1088.5" y1="88" x2="1088.5" y2="96"/>
+    <line class="axis" x1="1161.5" y1="88" x2="1161.5" y2="96"/>
+    <line class="axis" x1="1234.5" y1="88" x2="1234.5" y2="96"/>
+    <line class="axis" x1="1307.5" y1="88" x2="1307.5" y2="96"/>
+    <line class="axis" x1="1380.5" y1="88" x2="1380.5" y2="96"/>
+    <line class="axis" x1="1453.5" y1="88" x2="1453.5" y2="96"/>
+    <line class="axis" x1="30" y1="268" x2="760" y2="268"/>
+    <line class="axis" x1="66.5" y1="264" x2="66.5" y2="272"/>
+    <line class="axis" x1="139.5" y1="264" x2="139.5" y2="272"/>
+    <line class="axis" x1="212.5" y1="264" x2="212.5" y2="272"/>
+    <line class="axis" x1="285.5" y1="264" x2="285.5" y2="272"/>
+    <line class="axis" x1="358.5" y1="264" x2="358.5" y2="272"/>
+    <line class="axis" x1="431.5" y1="264" x2="431.5" y2="272"/>
+    <line class="axis" x1="504.5" y1="264" x2="504.5" y2="272"/>
+    <line class="axis" x1="577.5" y1="264" x2="577.5" y2="272"/>
+    <line class="axis" x1="650.5" y1="264" x2="650.5" y2="272"/>
+    <line class="axis" x1="723.5" y1="264" x2="723.5" y2="272"/>
+    <text class="gapnote bad" x="395" y="80" text-anchor="middle">— 4 集空档 —</text>
+    <text class="gapnote" x="687" y="80" text-anchor="middle">— 2 集空档 —</text>
+    <text class="gapnote bad" x="1015.5" y="80" text-anchor="middle">— 5 集空档 —</text>
+    <line class="stem major" x1="212.5" y1="92" x2="212.5" y2="57"/>
+    <circle class="bdot major" cx="212.5" cy="48" r="9"><title>B01 打脸宣泄｜周明长期被主管压榨欺辱，自身怯懦不敢反抗 → 周明的影子在部门例会当众举证，揭露赵国栋剽窃项目成果，递交离职申请</title></circle>
+    <text class="blabel" x="212.5" y="26" text-anchor="middle">打脸宣泄</text>
+    <text class="bsub" x="212.5" y="12" text-anchor="middle">周明长期被主管压榨欺辱，自身…</text>
+    <line class="stem" x1="577.5" y1="92" x2="577.5" y2="122"/>
+    <circle class="bdot" cx="577.5" cy="128" r="6"><title>B05 困境压制｜周明影子被暗纹侵蚀，逐步走向空洞化 → 苏听晚纯白影子释放微光，暂时压制影子身上的寄生暗纹</title></circle>
+    <text class="blabel" x="577.5" y="150" text-anchor="middle">困境压制</text>
+    <text class="bsub" x="577.5" y="164" text-anchor="middle">周明影子被暗纹侵蚀，逐步走向…</text>
+    <line class="stem" x1="796.5" y1="92" x2="796.5" y2="62"/>
+    <circle class="bdot" cx="796.5" cy="56" r="6"><title>B02 危机防御｜黑市影商出手向苏听晚打出伪契墨线 → 苏听晚的纯白影子自主展开光幕，直接消融黑市攻击</title></circle>
+    <text class="blabel" x="796.5" y="34" text-anchor="middle">危机防御</text>
+    <text class="bsub" x="796.5" y="20" text-anchor="middle">黑市影商出手向苏听晚打出伪契…</text>
+    <line class="stem" x1="1234.5" y1="92" x2="1234.5" y2="122"/>
+    <circle class="bdot" cx="1234.5" cy="128" r="6"><title>B03 信息揭秘｜多方线索碎片散落，上代代理人悲剧疑点重重 → 陈婆婆拿出遗留手记，揭开归一需要黑白两半影子的核心秘密</title></circle>
+    <text class="blabel" x="1234.5" y="150" text-anchor="middle">信息揭秘</text>
+    <text class="bsub" x="1234.5" y="164" text-anchor="middle">多方线索碎片散落，上代代理人…</text>
+    <line class="stem major" x1="504.5" y1="268" x2="504.5" y2="233"/>
+    <circle class="bdot major" cx="504.5" cy="224" r="9"><title>B04 宿命反抗｜千年本源力量催动黑白影子强制相融，所有人被宿命裹挟 → 沈砚以自身意志强行隔开本源归一仪式，拒绝被本源命运支配</title></circle>
+    <text class="blabel" x="504.5" y="202" text-anchor="middle">宿命反抗</text>
+    <text class="bsub" x="504.5" y="188" text-anchor="middle">千年本源力量催动黑白影子强制…</text>
+    <text class="tick" x="66.5" y="112" text-anchor="middle">1</text>
+    <text class="tick" x="139.5" y="112" text-anchor="middle">2</text>
+    <text class="tick" x="212.5" y="112" text-anchor="middle">3</text>
+    <text class="tick" x="285.5" y="112" text-anchor="middle">4</text>
+    <text class="tick" x="358.5" y="112" text-anchor="middle">5</text>
+    <text class="tick" x="431.5" y="112" text-anchor="middle">6</text>
+    <text class="tick" x="504.5" y="112" text-anchor="middle">7</text>
+    <text class="tick" x="577.5" y="112" text-anchor="middle">8</text>
+    <text class="tick" x="650.5" y="112" text-anchor="middle">9</text>
+    <text class="tick" x="723.5" y="112" text-anchor="middle">10</text>
+    <text class="tick" x="796.5" y="112" text-anchor="middle">11</text>
+    <text class="tick" x="869.5" y="112" text-anchor="middle">12</text>
+    <text class="tick" x="942.5" y="112" text-anchor="middle">13</text>
+    <text class="tick" x="1015.5" y="112" text-anchor="middle">14</text>
+    <text class="tick" x="1088.5" y="112" text-anchor="middle">15</text>
+    <text class="tick" x="1161.5" y="112" text-anchor="middle">16</text>
+    <text class="tick" x="1234.5" y="112" text-anchor="middle">17</text>
+    <text class="tick" x="1307.5" y="112" text-anchor="middle">18</text>
+    <text class="tick" x="1380.5" y="112" text-anchor="middle">19</text>
+    <text class="tick" x="1453.5" y="112" text-anchor="middle">20</text>
+    <text class="tick" x="66.5" y="288" text-anchor="middle">21</text>
+    <text class="tick" x="139.5" y="288" text-anchor="middle">22</text>
+    <text class="tick" x="212.5" y="288" text-anchor="middle">23</text>
+    <text class="tick" x="285.5" y="288" text-anchor="middle">24</text>
+    <text class="tick" x="358.5" y="288" text-anchor="middle">25</text>
+    <text class="tick" x="431.5" y="288" text-anchor="middle">26</text>
+    <text class="tick" x="504.5" y="288" text-anchor="middle">27</text>
+    <text class="tick" x="577.5" y="288" text-anchor="middle">28</text>
+    <text class="tick" x="650.5" y="288" text-anchor="middle">29</text>
+    <text class="tick" x="723.5" y="288" text-anchor="middle">30</text>
+  </svg>
+</div></div>
+  <div class="tabpane" id="pane-table">
+  <table><thead><tr><th>ID</th><th>类型</th><th>量级</th><th>集</th><th>铺垫</th><th>兑现</th></tr></thead>
+<tbody><tr><td>B01</td><td>打脸宣泄</td><td>大爆点</td><td>3</td><td>周明长期被主管压榨欺辱，自身怯懦不敢反抗</td><td>周明的影子在部门例会当众举证，揭露赵国栋剽窃项目成果，递交离职申请</td></tr>
+<tr><td>B02</td><td>危机防御</td><td>常规</td><td>11</td><td>黑市影商出手向苏听晚打出伪契墨线</td><td>苏听晚的纯白影子自主展开光幕，直接消融黑市攻击</td></tr>
+<tr><td>B03</td><td>信息揭秘</td><td>常规</td><td>17</td><td>多方线索碎片散落，上代代理人悲剧疑点重重</td><td>陈婆婆拿出遗留手记，揭开归一需要黑白两半影子的核心秘密</td></tr>
+<tr><td>B04</td><td>宿命反抗</td><td>大爆点</td><td>27</td><td>千年本源力量催动黑白影子强制相融，所有人被宿命裹挟</td><td>沈砚以自身意志强行隔开本源归一仪式，拒绝被本源命运支配</td></tr>
+<tr><td>B05</td><td>困境压制</td><td>常规</td><td>8</td><td>周明影子被暗纹侵蚀，逐步走向空洞化</td><td>苏听晚纯白影子释放微光，暂时压制影子身上的寄生暗纹</td></tr></tbody></table>
+  </div>
+</section>
+
+<section id="sec-episodes">
+  <div class="sec-h"><span class="no">02</span><h2>分集概览</h2><span class="note">核心交付 · 每集三栏齐全</span></div>
+  <div class="epswrap clip">
+    <div class="eps">
+<article class="ep" id="ep-1">
+  <span class="num">1</span>
+  <header><b>第 1 集</b></header>
+  <p class="syn">黄昏梧水街，一心堂画室之内，没有影子的沈砚等候委托人。绘图员周明上门，想要委托影子替自己参加部门例会，当面揭发主管长期侵占自己劳动成果。沈砚向周明讲明影契交易的规则，交易需要剥离自身一项人格作为不可逆代价。周明内心挣扎，最终同意开启照心纹绘制。</p>
+  <div class="hk"><b>钩子</b><span>照心纹即将成型，即将揭露出周明心底真正的渴求。</span></div>
+  <div class="hk"><b>悬念</b><span>周明嘴上想要离职，照心纹显现的真心究竟是什么。</span></div>
+  <div class="meta"><i>S01</i><i>S02</i><i>C01</i><i>C03</i><i class="warn">影子实体化剪影</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-2">
+  <span class="num">2</span>
+  <header><b>第 2 集</b></header>
+  <p class="syn">画纸上照心纹自行演化画面，展示周明从小到大习惯性隐忍不敢愤怒的过往，点破他真正渴求的是愤怒的勇气。周明的影子从地面隆起化为漆黑人形，复述周明积压多年不敢吐露的内心。沈砚告知代价是永久剥离愤怒情绪，周明权衡之后确认缔约，代行纹与偿价纹成型。契约完成，周明离开画室，沈砚手背上墨痕出现异常的共鸣发烫。</p>
+  <div class="hk"><b>钩子</b><span>契约已经缔结，周一例会影子将替周明行动，异常的墨痕共鸣预示潜藏危机。</span></div>
+  <div class="hk"><b>悬念</b><span>剥离愤怒的代价会给周明未来带来怎样的改变，沈砚墨痕异常来自何方。</span></div>
+  <div class="meta"><i>S01</i><i>C01</i><i>C03</i><i class="warn">影子实体化剪影</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-3">
+  <span class="num">3</span>
+  <header><b>第 3 集</b><i class="bt major">打脸宣泄</i></header>
+  <p class="syn">周一设计院会议室，周明走进会场，实际由影子接管身体行动。影子拿出多年项目原始图纸与邮件记录，当众揭发赵国栋剽窃成果，递交离职申请，击碎赵国栋的嚣张姿态。赵国栋当众颜面尽失。同一时间一心堂画室，沈砚依靠影契连接远程感知会议全过程，手背上墨痕进一步加深。会议结束，契约完成。</p>
+  <div class="hk"><b>钩子</b><span>刚处理完周明的委托，门外迎来新的访客敲响画室大门。</span></div>
+  <div class="hk"><b>悬念</b><span>新来的访客知晓无影画师与影契的传说，她的目的是什么。</span></div>
+  <div class="meta"><i>S03</i><i>S01</i><i>C01</i><i>C03</i><i>C05</i><i class="warn">无</i><i class="warn" title="会议室多人，同框拆解：镜头优先给到周明与赵国栋正反特写，其余参会人员使用过肩镜头、背影带过，分切单人反应镜头，不做完整全景群像。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-4">
+  <span class="num">4</span>
+  <header><b>第 4 集</b></header>
+  <p class="syn">档案馆职员苏听晚登门拜访，拿出旧档案报道与多起不明原因衰竭死亡案件资料。她调查得知梧水街一心堂无影画师的民间传说，前来求证影子契约的真相。沈砚留意到苏听晚脚下的影子异于常人，完全没有普通人影子该有的情绪波动。苏听晚留下一枚刻有归一纹路的古老银书签，沈砚触碰书签手背墨痕再次产生异样感应。沈砚让苏听晚黄昏时分再来。</p>
+  <div class="hk"><b>钩子</b><span>黄昏来临苏听晚再度赴约，沈砚将让她亲眼看见影子的真实模样。</span></div>
+  <div class="hk"><b>悬念</b><span>苏听晚那片死寂的影子背后藏着怎样的秘密，七起离奇死亡案件和一心堂有什么关联。</span></div>
+  <div class="meta"><i>S01</i><i>C01</i><i>C02</i><i class="warn">无</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-5">
+  <span class="num">5</span>
+  <header><b>第 5 集</b></header>
+  <p class="syn">黄昏降临，苏听晚如约回到一心堂。沈砚在她手腕画上临时照心纹，给予她看见并感知影子情绪的短暂能力。二人走上梧水街，苏听晚得以看见街上路人表象之下，各自的影子在低语，诉说主人压抑在心不敢吐露的念头。</p>
+  <div class="hk"><b>钩子</b><span>二人拐入偏僻小巷，一名酗酒男子的影子已经进入空洞化前期，正在蚕食本体人格。</span></div>
+  <div class="hk"><b>悬念</b><span>空洞化究竟如何发生，那些档案中死去的人是否都是这样被影子吞噬。</span></div>
+  <div class="meta"><i>S01</i><i>S02</i><i>S04</i><i>C01</i><i>C02</i><i class="warn">影子实体化剪影</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-6">
+  <span class="num">6</span>
+  <header><b>第 6 集</b></header>
+  <p class="syn">小巷之中，苏听晚亲眼目睹空洞化前期男子的影子不断抽取本体人格，了解空洞化带来的死亡结局。沈砚说明自己作为代理人只负责见证契约，无权强行干预他人选择。返回画室，沈砚向苏听晚完整解释正规影契、人格剥离，以及黑市影商篡改契约制造空洞化的存在。苏听晚下定决心要追查黑市影商。临别，苏听晚发问沈砚消失的影子是否还存在于世间。</p>
+  <div class="hk"><b>钩子</b><span>手机收到周明发来的短信，缔约的代价已经开始在他身上显现。</span></div>
+  <div class="hk"><b>悬念</b><span>周明失去愤怒之后生活会遭遇什么困境，黑市影商隐藏在哪里。</span></div>
+  <div class="meta"><i>S04</i><i>S01</i><i>C01</i><i>C02</i><i class="warn">无</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-7">
+  <span class="num">7</span>
+  <header><b>第 7 集</b></header>
+  <p class="syn">周明来到一心堂，诉说自己已经完全感受不到愤怒。妻子和他爆发家庭争执，他内心毫无怒火，只剩冷静理智。家庭氛围变得怪异，家人看待他的态度日渐陌生。周明想要取回被剥离的愤怒，沈砚告知代价不可逆。周明失魂落魄离开，沈砚心底生出一丝陌生的怜悯情绪，手背墨痕持续发烫。</p>
+  <div class="hk"><b>钩子</b><span>苏听晚带着新调查结果前来，多起死亡案件受害者生前都去过同一家茶馆。</span></div>
+  <div class="hk"><b>悬念</b><span>归一盏茶馆，是不是黑市影商的秘密据点。</span></div>
+  <div class="meta"><i>S01</i><i>C01</i><i>C03</i><i class="warn">无</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-8">
+  <span class="num">8</span>
+  <header><b>第 8 集</b><i class="bt">困境压制</i></header>
+  <p class="syn">苏听晚铺出调查地图，所有空洞化死者出事前都去过茶香巷归一盏旧茶馆。沈砚下楼向房东陈婆婆打听茶馆的过往，陈婆婆拿出一份焦黑的古老契约残片，告知沈砚四十多年前上代无影代理人的悲剧，警示沈砚，他的影子并没有真正消亡，依旧在某处慢慢成长。沈砚脑海闪过黑暗深处传来的呼唤，墨痕蔓延到手腕。</p>
+  <div class="hk"><b>钩子</b><span>二人决定一同前往归一盏茶馆实地探查黑市据点。</span></div>
+  <div class="hk"><b>悬念</b><span>归一盏茶馆内部藏着什么，上代代理人遭遇的悲剧会不会重演在沈砚身上。</span></div>
+  <div class="meta"><i>S01</i><i>S05</i><i>C01</i><i>C02</i><i>C06</i><i class="warn">无</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-9">
+  <span class="num">9</span>
+  <header><b>第 9 集</b></header>
+  <p class="syn">清晨薄雾笼罩茶香巷，沈砚与苏听晚走进归一盏茶馆。茶馆内多名客人已经处在空洞化早期。茶馆老板看穿沈砚无影人的身份。二人穿过厅堂走入后院，推开暗门进入地下空间，撞见黑市影商正在诱导一名女子缔结伪造的影子契约。</p>
+  <div class="hk"><b>钩子</b><span>黑市影商注意到苏听晚脚下的纯白影子，露出巨大震惊。</span></div>
+  <div class="hk"><b>悬念</b><span>为什么黑市影商会对苏听晚的影子产生如此强烈反应，纯白影子有什么特殊价值。</span></div>
+  <div class="meta"><i>S06</i><i>S07</i><i>C01</i><i>C02</i><i>C04</i><i>C08</i><i class="warn">影子实体化剪影</i><i class="warn" title="多人，同框拆解：正反主角色特写，其余背景人物背影侧影带过，分场拍摄。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-10">
+  <span class="num">10</span>
+  <header><b>第 10 集</b></header>
+  <p class="syn">黑市影商释放黑色墨线袭击苏听晚，苏听晚脚下长久死寂的纯白影子自主展开一层微光光幕，将攻击全部消融。黑市影商说出始祖影、归一的关键词，随即带着手下从密道撤退，留下被蛊惑的普通女子。苏听晚的纯白影子自诞生以来第一次出现情绪波动，边缘泛起涟漪。茶馆老板讲述，黑市持续收集情绪碎片喂养始祖影，四十多年前悲剧即将重演。</p>
+  <div class="hk"><b>钩子</b><span>苏听晚回到档案馆调取四十多年前留存的目击笔录。</span></div>
+  <div class="hk"><b>悬念</b><span>上代代理人留下的卷宗会记录下契约的什么秘密。</span></div>
+  <div class="meta"><i>S07</i><i>S06</i><i>C01</i><i>C02</i><i>C04</i><i>C08</i><i class="warn">影子实体化剪影</i><i class="warn" title="多人，同框拆解：正反主角色特写，其余背景人物背影侧影带过，分场拍摄。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-11">
+  <span class="num">11</span>
+  <header><b>第 11 集</b><i class="bt">危机防御</i></header>
+  <p class="syn">苏听晚在档案馆地下库房找到四十多年前周老师写下的目击笔录与草图。笔录还原上代无影代理人被影子反噬的全过程，草图记录契约末端多出一道上代代理人自己都不知情的隐秘暗纹。沈砚对照焦黑残片确认暗纹真实存在，黑市依靠这道暗纹，即便正规契约完成之后依旧可以侵染普通人的影子，收割人格养料。</p>
+  <div class="hk"><b>钩子</b><span>周明发来求救信息，他的影子夜里会自主发出充满戾气的低语。</span></div>
+  <div class="hk"><b>悬念</b><span>周明明明签订沈砚的正规契约，为什么影子会出现暗纹侵蚀。</span></div>
+  <div class="meta"><i>S08</i><i>S01</i><i>C01</i><i>C02</i><i>C10</i><i class="warn">无</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-12">
+  <span class="num">12</span>
+  <header><b>第 12 集</b></header>
+  <p class="syn">沈砚翻看速写本上周明的画像，发现周明影子之上悄悄被人附加上那道隐秘暗纹。并非篡改纸面契约，黑市影商可以在现实之中直接接触普通人的影子种下印记。沈砚和苏听晚立刻动身赶往周明家中。</p>
+  <div class="hk"><b>钩子</b><span>来到周明家中，看见暗纹如同黑色藤蔓缠绕在周明的影子上，正在不断向内侵蚀。</span></div>
+  <div class="hk"><b>悬念</b><span>直接抹除暗纹会损伤影子本体，该如何阻止周明滑向空洞化死亡。</span></div>
+  <div class="meta"><i>S01</i><i>S09</i><i>C01</i><i>C02</i><i>C03</i><i class="warn">影子实体化剪影</i><i class="warn" title="仅三人，同框拆解：交替给到每个人物特写，过肩镜头切换。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-13">
+  <span class="num">13</span>
+  <header><b>第 13 集</b></header>
+  <p class="syn">沈砚判断不能暴力清除暗纹，否则会彻底损毁周明影子。苏听晚催动自己纯白影子释放微光靠近周明的影子，微光可以压制寄生的黑色暗纹。在影子相互触碰瞬间，碎片记忆涌入苏听晚脑海，看见黑市副手在周明归家路上，趁本体毫无察觉，隔空给影子种下暗纹的画面。</p>
+  <div class="hk"><b>钩子</b><span>暗纹只能被压制无法根除，必须抓住黑市执行者才能彻底解除印记。苏听晚的纯白影子向她传递一句低语，告知有存在正在寻找她。</span></div>
+  <div class="hk"><b>悬念</b><span>寻找苏听晚的存在是不是始祖影，黑市执行者还会不会回到归一盏。</span></div>
+  <div class="meta"><i>S09</i><i>C01</i><i>C02</i><i>C03</i><i class="warn">影子实体化剪影</i><i class="warn" title="仅三人，同框拆解：交替给到每个人物特写，过肩镜头切换。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-14">
+  <span class="num">14</span>
+  <header><b>第 14 集</b></header>
+  <p class="syn">叮嘱周明远离偏僻阴影，二人离开居民楼，决定深夜守候在归一盏茶馆外，等待种下暗纹的黑市副手现身。夜深，茶香巷雾气弥漫，整条小巷寂静冷清。</p>
+  <div class="hk"><b>钩子</b><span>巷子尽头传来脚步声，黑市影商带着副手朝着归一盏走来。</span></div>
+  <div class="hk"><b>悬念</b><span>二人潜伏跟踪，能不能窃听到黑市关于始祖影与归一的计划。</span></div>
+  <div class="meta"><i>S02</i><i>S10</i><i>C01</i><i>C02</i><i class="warn">无</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-15">
+  <span class="num">15</span>
+  <header><b>第 15 集</b></header>
+  <p class="syn">黑市影商与副手叩门进入归一盏。沈砚、苏听晚绕路翻进后院，贴近地下密室门缝偷听对话。黑市提到情绪养料收集进度，提到纯白影子是始祖影缺失的另一半，引诱苏听晚主动靠近本源完成归一。沈砚当场分辨出部分话术是刻意编织的陷阱。</p>
+  <div class="hk"><b>钩子</b><span>黑市影商察觉到门外有人偷听。</span></div>
+  <div class="hk"><b>悬念</b><span>二人行踪暴露，该如何从黑市据点脱身。</span></div>
+  <div class="meta"><i>S10</i><i>S06</i><i>S07</i><i>C01</i><i>C02</i><i>C04</i><i>C07</i><i class="warn">无</i><i class="warn" title="多人，同框拆解：门缝主观视角，分别给到屋内角色特写，偷听角色侧影，分场拍摄。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-16">
+  <span class="num">16</span>
+  <header><b>第 16 集</b></header>
+  <p class="syn">黑市影商主动开口唤二人现身，数道黑色墨线直扑苏听晚，再度被纯白影子的微光光幕挡下。黑市放开自身影子化作满地黑色潮水，无数被吞噬者的低语充斥地下空间。沈砚在地面画出照心纹短暂禁锢黑潮，掩护苏听晚突围，二人翻过后墙逃离茶香巷。</p>
+  <div class="hk"><b>钩子</b><span>逃回到梧水街主街，苏听晚心中动摇，开始思索自己是否真的属于始祖影缺失的那一半。</span></div>
+  <div class="hk"><b>悬念</b><span>黑白影子同源这件事究竟几分真几分假，始祖影苏醒会带来什么后果。</span></div>
+  <div class="meta"><i>S07</i><i>S06</i><i>S10</i><i>C01</i><i>C02</i><i>C04</i><i>C07</i><i class="warn">影子潮水剪影特效</i><i class="warn" title="多人，同框拆解：正反主角色特写，其余用黑影群体剪影处理。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-17">
+  <span class="num">17</span>
+  <header><b>第 17 集</b><i class="bt">信息揭秘</i></header>
+  <p class="syn">回到一心堂画室，沈砚反复比对卷宗、残片梳理全部线索。天光破晓，沈砚下楼拜访陈婆婆。陈婆婆确认归一的真相，千年前本源分裂，黑暗与纯白两半被迫分开，黑市世代布局就是为促成二者重新合一。陈婆婆交出遗留铁盒，里面存放上代代理人手记。</p>
+  <div class="hk"><b>钩子</b><span>苏听晚刚好来到小院，她脚下纯白影子与手记残存古老气息隔空产生感应。</span></div>
+  <div class="hk"><b>悬念</b><span>完整的本源真相记录在档案馆深处一处封闭密室之内。</span></div>
+  <div class="meta"><i>S01</i><i>S05</i><i>C01</i><i>C02</i><i>C06</i><i class="warn">影子微光特效</i><i class="warn" title="仅三人，同框拆解：交替给到每个人物特写，过肩镜头切换。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-18">
+  <span class="num">18</span>
+  <header><b>第 18 集</b></header>
+  <p class="syn">二人再次前往档案馆地下库房，走到库房最深处那把锈迹锁头封闭的隐秘铁门。靠近铁门瞬间，苏听晚的纯白影子挣脱地面悬浮起来，铁门后方传来一道呼唤，清晰叫出苏听晚的名字。</p>
+  <div class="hk"><b>钩子</b><span>腐朽铁锁碎裂，尘封的密室大门即将开启。</span></div>
+  <div class="hk"><b>悬念</b><span>密室之中留存的影册，会揭露怎样震撼的本源真相。</span></div>
+  <div class="meta"><i>S08</i><i>C01</i><i>C02</i><i class="warn">影子悬浮微光特效</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-19">
+  <span class="num">19</span>
+  <header><b>第 19 集</b></header>
+  <p class="syn">推开密室铁门，石室中央石台上平放由光影凝成的古老影册。苏听晚触碰影册，千年过往记忆画面同时涌入沈砚与苏听晚的意识。二人知晓影子本源千年前分裂的始末，也明白历代无影代理人的真实身份，沈砚本身就是黑暗始祖影的人间载体。苏听晚的肉身之内寄宿本源分裂出来的纯白影灵。</p>
+  <div class="hk"><b>钩子</b><span>影册页面浮起黑白两道本源纹路，黑白力量互相吸引，归一仪式被被动触发。</span></div>
+  <div class="hk"><b>悬念</b><span>千年宿命之下，二人是否只能接受本源强制的归位结局。</span></div>
+  <div class="meta"><i>S11</i><i>C01</i><i>C02</i><i class="warn">光影纹路特效</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-20">
+  <span class="num">20</span>
+  <header><b>第 20 集</b></header>
+  <p class="syn">纯白影灵缓缓飘向沈砚，微光包裹住他身上翻涌的墨色气息。黑白两股本源力量开始相融，沈砚感知到属于本源的千万情绪与孤独执念向自己涌来，千年轮回的宿命在推动二者彻底合一。</p>
+  <div class="hk"><b>钩子</b><span>在两道纹路即将完全融合的紧要关头，沈砚出手强行隔开黑白本源力量。</span></div>
+  <div class="hk"><b>悬念</b><span>违抗本源意志会带来什么代价，黑市影商还在外伺机而动。</span></div>
+  <div class="meta"><i>S11</i><i>C01</i><i>C02</i><i class="warn">光影纹路特效</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-21">
+  <span class="num">21</span>
+  <header><b>第 21 集</b></header>
+  <p class="syn">沈砚以人的意志拒绝本源的宿命安排，宣告本源的归宿不能直接定义人间之人的选择。黑白本源力量被硬生生分开，密室之内的微光剧烈震荡。被动触发的归一仪式就此中断。</p>
+  <div class="hk"><b>钩子</b><span>密室之外隐约传来脚步声，黑市影商已经追踪到档案馆。</span></div>
+  <div class="hk"><b>悬念</b><span>仪式被打断，黑市影商会做出怎样的行动，黑白两股本源力量后续将何去何从。</span></div>
+  <div class="meta"><i>S11</i><i>C01</i><i>C02</i><i class="warn">光影纹路特效</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-22">
+  <span class="num">22</span>
+  <header><b>第 22 集</b></header>
+  <p class="syn">沈砚将古老影册合上，压制住体内躁动的黑暗本源气息。二人快速离开档案馆密室，黑市影商与副手晚来一步，望着紧闭的密室大门，清楚归一仪式被中途打断，计划遭到破坏。黑市影商并不气馁，打算继续收集情绪养料，寻找下一次促成归一的机会。</p>
+  <div class="hk"><b>钩子</b><span>周明那边传来消息，影子身上被压制的暗纹又开始躁动。</span></div>
+  <div class="hk"><b>悬念</b><span>黑市会不会继续拿普通委托人当做筹码逼迫沈砚和苏听晚妥协。</span></div>
+  <div class="meta"><i>S11</i><i>S08</i><i>C01</i><i>C02</i><i>C04</i><i>C07</i><i class="warn">无</i><i class="warn" title="多人，同框拆解：分场拍摄，两组人物不在同一镜头。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-23">
+  <span class="num">23</span>
+  <header><b>第 23 集</b></header>
+  <p class="syn">回到一心堂，苏听晚的纯白影灵因为强行中断归一出现消耗，光芒变得暗淡。沈砚小臂之上的墨痕因为对抗本源本能，灼烧感持续不断。二人复盘当前局势：周明身上暗纹威胁还在，黑市据点依旧存在，始祖影本源的本能渴求没有消失。</p>
+  <div class="hk"><b>钩子</b><span>陈婆婆到访画室，带来上代代理人留下的零碎笔记残页，记录对抗本源本能的微弱办法。</span></div>
+  <div class="hk"><b>悬念</b><span>笔记残页之中，有没有彻底破解轮回宿命的可行道路。</span></div>
+  <div class="meta"><i>S01</i><i>C01</i><i>C02</i><i>C06</i><i class="warn">无</i><i class="warn" title="仅三人，同框拆解：交替给到每个人物特写，过肩镜头切换。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-24">
+  <span class="num">24</span>
+  <header><b>第 24 集</b></header>
+  <p class="syn">残页记载，黑白本源虽同源，但如果依托人的自我意志隔开，就不会被本能驱使强行归一，代价是沈砚会持续承受体内黑暗本源的侵蚀，苏听晚的纯白影灵也会持续被本源呼唤拉扯。想要彻底根除危机，必须摧毁黑市用来收集情绪养料的整套体系。</p>
+  <div class="hk"><b>钩子</b><span>归一盏茶馆那边有异动，大量普通人被引诱前往茶馆缔结伪契。</span></div>
+  <div class="hk"><b>悬念</b><span>黑市加快收割养料，沈砚苏听晚要如何阻止大规模空洞化灾难。</span></div>
+  <div class="meta"><i>S01</i><i>C01</i><i>C02</i><i class="warn">无</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-25">
+  <span class="num">25</span>
+  <header><b>第 25 集</b></header>
+  <p class="syn">沈砚与苏听晚再度奔赴茶香巷归一盏，此刻茶馆内外已经聚集多名被蛊惑的普通人。黑市影商打算批量种下暗纹，加速养料积累，逼迫黑白本源再次产生感应。茶馆老板没有继续漠视，暗中给二人传递黑市地下密道布局信息。</p>
+  <div class="hk"><b>钩子</b><span>黑市副手发现老板暗中通消息，出手牵制住茶馆老板。</span></div>
+  <div class="hk"><b>悬念</b><span>失去掩护，二人要直面黑市影商，能否打断批量收割仪式。</span></div>
+  <div class="meta"><i>S06</i><i>S10</i><i>C01</i><i>C02</i><i>C04</i><i>C07</i><i>C08</i><i class="warn">影子剪影</i><i class="warn" title="多人，同框拆解：主角与反派正反特写，受害普通人背影侧影带过。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-26">
+  <span class="num">26</span>
+  <header><b>第 26 集</b></header>
+  <p class="syn">沈砚闯入地下密室，出手干扰黑市批量绘制伪契纹路的仪式。苏听晚催动纯白影子微光，一一驱散已经种在普通受害者影子之上的浅层暗纹，救下在场普通人。黑市影商见状，不再隐藏实力，调动积攒已久的情绪碎片力量，与沈砚对峙。</p>
+  <div class="hk"><b>钩子</b><span>战斗的冲击扰动沈砚体内黑暗本源，小臂墨痕疯狂扩张，始祖影的意识在他脑海不断回响。</span></div>
+  <div class="hk"><b>悬念</b><span>沈砚会不会被体内的黑暗本源吞噬，重蹈上代代理人的覆辙。</span></div>
+  <div class="meta"><i>S07</i><i>C01</i><i>C02</i><i>C04</i><i>C07</i><i class="warn">影子剪影</i><i class="warn" title="多人，同框拆解：正反主角色特写，次要反派侧影，分场拍摄。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-27">
+  <span class="num">27</span>
+  <header><b>第 27 集</b><i class="bt major">宿命反抗</i></header>
+  <p class="syn">沈砚一边对抗黑市影商，一边拼命压制来自黑暗本源的吞噬。苏听晚的纯白影子分出一部分微光护住沈砚，帮助他守住人的自我意识。黑市影商被黑白两股力量联手击退，大量已经收集的情绪碎片四散消散。黑市副手掩护黑市影商从备用密道逃走，没有被当场擒获。</p>
+  <div class="hk"><b>钩子</b><span>危机暂时解除，但黑市核心首脑逃脱，始祖影的威胁并没有彻底消除。</span></div>
+  <div class="hk"><b>悬念</b><span>逃脱的黑市影商还会策划怎样的阴谋，千年轮回是不是还存在重启的可能性。</span></div>
+  <div class="meta"><i>S07</i><i>C01</i><i>C02</i><i>C04</i><i>C07</i><i class="warn">影子微光剪影</i><i class="warn" title="多人，同框拆解：正反主角色特写，次要反派侧影，分场拍摄。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-28">
+  <span class="num">28</span>
+  <header><b>第 28 集</b></header>
+  <p class="syn">危机平息之后，周明身上的寄生暗纹因为黑市情绪供给被打散，彻底被纯白微光清除。虽然被剥离的愤怒人格永远无法取回，但周明不用再面临空洞化死亡的结局，得以保全完整自我意识，回归普通生活。</p>
+  <div class="hk"><b>钩子</b><span>周明专程来到一心堂道谢，坦言自己学会接纳失去愤怒之后全新的人生。</span></div>
+  <div class="hk"><b>悬念</b><span>沈砚要长久背负体内黑暗本源的侵蚀，他可以一直守住自我吗。</span></div>
+  <div class="meta"><i>S01</i><i>C01</i><i>C02</i><i>C03</i><i class="warn">无</i><i class="warn" title="仅三人，同框拆解：交替给到每个人物特写，过肩镜头切换。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-29">
+  <span class="num">29</span>
+  <header><b>第 29 集</b></header>
+  <p class="syn">梧水街恢复表面的平静，但是沈砚小臂上蔓延的墨痕没有消退，黑暗本源的呼唤依旧会时不时在意识深处响起。苏听晚的纯白影子也依旧持续感受到来自本源的遥远拉扯。二人清楚，黑市影商还在逃，归一的宿命枷锁并没有完全粉碎。</p>
+  <div class="hk"><b>钩子</b><span>沈砚拿起速写本，画下没有依附任何人的独立影子。</span></div>
+  <div class="hk"><b>悬念</b><span>未来他们还要继续追查黑市残余势力，寻找彻底斩断千年轮回的办法。</span></div>
+  <div class="meta"><i>S01</i><i>S02</i><i>C01</i><i>C02</i><i class="warn">影子剪影</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-30">
+  <span class="num">30</span>
+  <header><b>第 30 集</b></header>
+  <p class="syn">黄昏，一心堂画室木格窗吹进晚风。沈砚与苏听晚站在窗前望向整条梧水街，脚下一个没有影子，一个脚下悬浮着一团安静的纯白虚影。过往的案件尘埃落定，但属于影笔代理人的对抗远没有到此结束，二人选择继续并肩，守护梧水街普通人不被影子阴谋伤害。故事在此处留下开放式收尾。</p>
+  <div class="hk"><b>钩子</b><span>远方黑暗之中，逃脱的黑市影商还在谋划，下一场风波已经在酝酿。</span></div>
+  <div class="hk"><b>悬念</b><span>黑市影商下一步计划是什么，黑白本源之间的宿命纠缠最终会走向何方。</span></div>
+  <div class="meta"><i>S01</i><i>C01</i><i>C02</i><i class="warn">影子剪影微光</i><i class="warn" title="仅两人，无需分切">同框拆解 ✓</i></div>
+</article>
+    </div>
+    <button class="epsmore">▾ 展开全部 30 集</button>
+  </div>
+</section>
+
+<section id="sec-scenes">
+  <div class="sec-h"><span class="no">03</span><h2>场景概览</h2><span class="note">右上 = 出现集</span></div>
+  <div class="scenes">
+<article class="scard">
+  <span class="snum">16 集</span>
+  <h3><span class="id">S01</span>一心堂画室<span class="badge">主场景</span></h3>
+  <div class="strip"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+  <div class="srow"><b>承载爽点</b><span>打脸宣泄 · 危机防御 · 信息揭秘 · 困境压制</span></div>
+  <div class="srow"><b>出场角色</b><i>C01</i><i>C03</i><i>C05</i><i>C02</i><i>C06</i><i>C10</i></div>
+</article>
+<article class="scard">
+  <span class="snum">1 · 5 · 14 · 29</span>
+  <h3><span class="id">S02</span>梧水街老街<span class="badge">主场景</span></h3>
+  <div class="strip"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>出场角色</b><i>C01</i><i>C03</i><i>C02</i></div>
+</article>
+<article class="scard">
+  <span class="snum">3</span>
+  <h3><span class="id">S03</span>设计院会议室<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>打脸宣泄</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">复用S07地下密室基础置景，更换会议桌椅道具，白天光线</span></div>
+</article>
+<article class="scard">
+  <span class="snum">5–6</span>
+  <h3><span class="id">S04</span>老街暗巷<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">复用S02老街外景，增加遮光布，调暗灯光</span></div>
+</article>
+<article class="scard">
+  <span class="snum">8 · 17</span>
+  <h3><span class="id">S05</span>陈婆婆家中<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>信息揭秘 · 困境压制</span></div>
+  <div class="srow"><b>出场角色</b><i>C01</i><i>C02</i><i>C06</i></div>
+</article>
+<article class="scard">
+  <span class="snum">5 集</span>
+  <h3><span class="id">S06</span>归一盏茶馆厅堂<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>出场角色</b><i>C01</i><i>C02</i><i>C04</i><i>C08</i><i>C07</i></div>
+</article>
+<article class="scard">
+  <span class="snum">6 集</span>
+  <h3><span class="id">S07</span>归一盏地下密室<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>宿命反抗</span></div>
+  <div class="srow"><b>出场角色</b><i>C01</i><i>C02</i><i>C04</i><i>C08</i><i>C07</i></div>
+</article>
+<article class="scard">
+  <span class="snum">11 · 18 · 22</span>
+  <h3><span class="id">S08</span>档案馆地下库房<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>危机防御</span></div>
+  <div class="srow"><b>出场角色</b><i>C01</i><i>C02</i><i>C10</i><i>C04</i><i>C07</i></div>
+</article>
+<article class="scard">
+  <span class="snum">12–13</span>
+  <h3><span class="id">S09</span>周明家客厅<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">复用S01画室基础墙面，更换居家家具陈设</span></div>
+</article>
+<article class="scard">
+  <span class="snum">14 · 15 · 16 · 25</span>
+  <h3><span class="id">S10</span>茶香巷夜晚外景<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class="on lt"></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">复用S02老街外景，增加巷弄景片，夜晚布光</span></div>
+</article>
+<article class="scard">
+  <span class="snum">19–22</span>
+  <h3><span class="id">S11</span>档案馆隐秘密室<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class="on lt"></i><i class="on lt"></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">复用S08库房基础置景，增加石台、影册道具，冷调光影</span></div>
+</article>
+  </div>
+</section>
+
+<section id="sec-decisions">
+  <div class="sec-h"><span class="no">04</span><h2>关键决策</h2><span class="note">拍板过的三件事，落进纸面</span></div>
+  <div class="dec3">
+  <div class="dcol">
+    <h3 class="sub">砍了哪条线</h3>
+    <ul class="dlist"><li><b>部分路人影子细碎支线，多个街头普通人影子低语的重复片段</b><small>压缩单元戏份，避免节奏拖沓，集中推进主线对抗黑市与归一宿命</small></li><li><b>次要路人空洞化受害者完整出场戏份，仅保留信息提及</b><small>减少角色数量，把叙事重心放在周明这条代表性受害个案</small></li></ul>
+    
+  </div>
+  <div class="dcol">
+    <h3 class="sub">合了哪些人</h3>
+    <p class="dhead">10 个角色位（主角组 3 · 重要配角 5 · 功能性 2）</p>
+    <p class="dhead">主角组：沈砚、苏听晚、周明</p>
+    <ul class="dlist"><li><b>黑市影商多个喽啰合并为单一黑市副手角色</b><small>减少功能性反派数量，冲突集中在核心黑市影商身上</small></li></ul>
+    
+  </div>
+  <div class="dcol">
+    <h3 class="sub">大爆点落在第几集</h3>
+    <ul class="dmaj"><li><i>ep3</i><span><b>打脸宣泄</b> 周明的影子在部门例会当众举证，揭露赵国栋…</span><em>首个</em></li><li><i>ep27</i><span><b>宿命反抗</b> 沈砚以自身意志强行隔开本源归一仪式，拒绝…</span><em>终局</em></li></ul>
+  </div>
+</div>
+</section>
+
+<section id="sec-matrix">
+  <div class="sec-h"><span class="no">05</span><h2>每集调度矩阵</h2><span class="note">一列 = 这一集要谁、在哪拍</span></div>
+  <div class="matrix" style="--cw:20px">
+  <table>
+    <tr><th>角色 / 场景 / 道具</th><th>层级</th><th class="ep-h">1</th><th class="ep-h">2</th><th class="ep-h">3</th><th class="ep-h">4</th><th class="ep-h">5</th><th class="ep-h">6</th><th class="ep-h">7</th><th class="ep-h">8</th><th class="ep-h">9</th><th class="ep-h">10</th><th class="ep-h">11</th><th class="ep-h">12</th><th class="ep-h">13</th><th class="ep-h">14</th><th class="ep-h">15</th><th class="ep-h">16</th><th class="ep-h">17</th><th class="ep-h">18</th><th class="ep-h">19</th><th class="ep-h">20</th><th class="ep-h">21</th><th class="ep-h">22</th><th class="ep-h">23</th><th class="ep-h">24</th><th class="ep-h">25</th><th class="ep-h">26</th><th class="ep-h">27</th><th class="ep-h">28</th><th class="ep-h">29</th><th class="ep-h">30</th><th>合计</th></tr>
+    <tr><td class="name">沈砚</td><td class="tier">主角组</td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="n">30</td></tr>
+<tr><td class="name">苏听晚</td><td class="tier">主角组</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="n">26</td></tr>
+<tr><td class="name">周明</td><td class="tier">主角组</td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="n">7</td></tr>
+<tr><td class="name">黑市影商</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">8</td></tr>
+<tr><td class="name">赵国栋</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1</td></tr>
+<tr><td class="name">陈婆婆</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">3</td></tr>
+<tr><td class="name">黑市副手</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">6</td></tr>
+<tr><td class="name">茶馆老板</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">3</td></tr>
+<tr><td class="name">周明妻子</td><td class="tier">功能性角色</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">0</td></tr>
+<tr><td class="name">档案馆管理员</td><td class="tier">功能性角色</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1</td></tr>
+<tr class="div"><td colspan="33">场　景</td></tr>
+<tr><td class="name">一心堂画室</td><td class="tier">主场景</td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="n">16</td></tr>
+<tr><td class="name">梧水街老街</td><td class="tier">主场景</td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="n">4</td></tr>
+<tr><td class="name">设计院会议室</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1 ⚠</td></tr>
+<tr><td class="name">老街暗巷</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">2</td></tr>
+<tr><td class="name">陈婆婆家中</td><td class="tier">主场景</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">2</td></tr>
+<tr><td class="name">归一盏茶馆厅堂</td><td class="tier">主场景</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">5</td></tr>
+<tr><td class="name">归一盏地下密室</td><td class="tier">主场景</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">6</td></tr>
+<tr><td class="name">档案馆地下库房</td><td class="tier">主场景</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">3</td></tr>
+<tr><td class="name">周明家客厅</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">2</td></tr>
+<tr><td class="name">茶香巷夜晚外景</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">4</td></tr>
+<tr><td class="name">档案馆隐秘密室</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">4</td></tr>
+  </table>
+  <p class="mnote">⚠ 设计院会议室 · 复用方案：复用S07地下密室基础置景，更换会议桌椅道具，白天光线</p>
+</div>
+</section>
+
+<section id="sec-plan">
+  <div class="sec-h"><span class="no">06</span><h2>资产量折算</h2><span class="note">按档自动折算 · 不让模型写</span></div>
+  <div class="plan">
+  <table><thead><tr><th>层级</th><th>人数</th><th>角色</th><th>资产量</th></tr></thead>
+<tbody><tr><td>主角组</td><td>3</td><td>沈砚、苏听晚、周明</td><td>全套角色设定图 + 逐镜一致性核对</td></tr>
+<tr><td>重要配角</td><td>5</td><td>黑市影商、赵国栋、陈婆婆、黑市副手、茶馆老板</td><td>半身参考图，关键戏核对</td></tr>
+<tr><td>功能性角色</td><td>2</td><td>周明妻子、档案馆管理员</td><td>提示词直出，松散一致即可</td></tr>
+<tr><td>场景环境</td><td>6+1</td><td>一心堂画室、梧水街老街、陈婆婆家中、归一盏茶馆厅堂、归一盏地下密室、档案馆地下库房（+设计院会议室复用）</td><td>主场景各一套环境参考 + 光照基调</td></tr>
+<tr><td>生成难点</td><td>30</td><td>影子实体化剪影 ×7（第 1、2、5、9、10、12、13 集） · 无 ×12（第 3、4、6、7、8、11、14、15、22、23、24、28 集） · 影子潮水剪影特效 ×1（第 16 集） · 影子微光特效 ×1（第 17 集） · 影子悬浮微光特效 ×1（第 18 集） · 光影纹路特效 ×3（第 19、20、21 集） · 影子剪影 ×3（第 25、26、29 集） · 影子微光剪影 ×1（第 27 集） · 影子剪影微光 ×1（第 30 集）</td><td>拍摄前逐条过预警清单</td></tr></tbody></table>
+  </div>
+</section>
+
+<section id="sec-characters">
+  <div class="sec-h"><span class="no">07</span><h2>人物表</h2></div>
+  <table><thead><tr><th>ID</th><th>角色</th><th>层级</th><th>定位</th><th>人物弧</th><th>← 改动记录</th></tr></thead>
+<tbody><tr><td>C01</td><td>沈砚</td><td>主角组</td><td>男主，无影影笔代理人</td><td>从冰冷中立的见证者，觉醒人的意志，拒绝本源赋予的归一宿命</td><td>原著主角</td></tr>
+<tr><td>C02</td><td>苏听晚</td><td>主角组</td><td>女主，市档案馆职员</td><td>从追查离奇死亡案件的调查者，认清自己是纯白影灵载体，坚守人身自我</td><td>原著女主</td></tr>
+<tr><td>C03</td><td>周明</td><td>主角组</td><td>单元委托人，设计院绘图员</td><td>用愤怒换取勇气反抗上司，失去愤怒人格，又遭受黑市暗纹侵染，努力保全自我意识</td><td>原著单元人物</td></tr>
+<tr><td>C04</td><td>黑市影商</td><td>重要配角</td><td>主要反派，黑市伪契制造者</td><td>执着促成黑白归一，收割情绪养料，不择手段诱导普通人缔结伪影契</td><td>原著反派</td></tr>
+<tr><td>C05</td><td>赵国栋</td><td>重要配角</td><td>周明的直属主管</td><td>掠夺下属劳动成果，被周明影子当众揭发之后身败名裂</td><td>原著配角</td></tr>
+<tr><td>C06</td><td>陈婆婆</td><td>重要配角</td><td>沈砚房东，梧水街老街知情者</td><td>守着四十多年前上代代理人的秘密，向沈砚揭露轮回过往</td><td>原著配角</td></tr>
+<tr><td>C07</td><td>黑市副手</td><td>重要配角</td><td>黑市影商手下</td><td>执行黑市外勤任务，埋伏侵染普通人影子</td><td>合并原著多名黑市喽啰</td></tr>
+<tr><td>C08</td><td>茶馆老板</td><td>重要配角</td><td>归一盏茶馆店主，知情旁观者</td><td>知晓黑市运作，不直接站队，提供关键线索</td><td>原著配角</td></tr>
+<tr><td>C09</td><td>周明妻子</td><td>功能性角色</td><td>委托人亲属</td><td>因周明情绪改变产生家庭矛盾</td><td>原著</td></tr>
+<tr><td>C10</td><td>档案馆管理员</td><td>功能性角色</td><td>档案馆工作人员</td><td>协助苏听晚调取封存旧卷宗</td><td>原创功能性角色</td></tr></tbody></table>
+</section>
+
+<section id="sec-adaptation">
+  <div class="sec-h"><span class="no">08</span><h2>改编说明</h2><span class="note">为什么这么改 · 附原文依据</span></div>
+  <p class="core">无影影契代理人沈砚，遇上拥有纯白本源影子的档案馆职员苏听晚，二人对抗黑市影商，挣脱影子本源强制归一的千年宿命。</p>
+  <h3 class="sub">保留</h3><table><thead><tr><th>内容</th><th>理由</th><th>原文依据</th></tr></thead>
+<tbody><tr><td>周明缔约线，剥离愤怒人格，后被黑市植入暗纹</td><td>开篇单元故事，完整展示影契规则与黑市威胁</td><td><q>“影子替你完成一件事，你要付出一项人格作为代价”</q></td></tr>
+<tr><td>沈砚无影子、手背墨痕、一心堂画室设定</td><td>核心主角基础设定，驱动全剧悬念</td><td><q>“沈砚站在画架前……脚下干干净净。没有影子”</q></td></tr>
+<tr><td>苏听晚纯白影子、档案馆调查空洞化死亡案件</td><td>女主核心身份，串联主线谜团</td><td><q>“苏听晚的影子，贴在木地板上……完全没有晃动”</q></td></tr>
+<tr><td>归一盏茶馆黑市据点、上代无影代理人悲剧往事</td><td>交代世界观背景，铺垫宿命危机</td><td><q>“上一个没有影子的人……他是被自己的影子，吃掉了”</q></td></tr>
+<tr><td>千年本源分裂，黑白两半需要归一，沈砚是黑暗本源载体</td><td>终极核心世界观与冲突</td><td><q>“天地初分光影之时，世间本有唯一的影子本源……硬生生撕裂成两半”</q></td></tr></tbody></table>
+  <h3 class="sub">砍掉</h3><table><thead><tr><th>内容</th><th>理由</th></tr></thead>
+<tbody><tr><td>部分路人影子细碎支线，多个街头普通人影子低语的重复片段</td><td>压缩单元戏份，避免节奏拖沓，集中推进主线对抗黑市与归一宿命</td></tr>
+<tr><td>次要路人空洞化受害者完整出场戏份，仅保留信息提及</td><td>减少角色数量，把叙事重心放在周明这条代表性受害个案</td></tr></tbody></table>
+  <h3 class="sub">合并</h3><table><thead><tr><th>内容</th><th>理由</th></tr></thead>
+<tbody><tr><td>黑市影商多个喽啰合并为单一黑市副手角色</td><td>减少功能性反派数量，冲突集中在核心黑市影商身上</td></tr></tbody></table>
+  <h3 class="sub">风险与对策</h3><table><thead><tr><th>内容</th><th>对策</th></tr></thead>
+<tbody><tr><td>大量影子特效画面，低成本短剧落地难度高</td><td>影子多用剪影、地面黑影、微光光晕表现，减少大量悬浮动态特效，对话心理冲突优先使用人物表演</td></tr>
+<tr><td>设定信息量大，容易观众看不懂</td><td>借周明单元故事具象演示影契代价，逐步释放本源设定，不一次性堆设定</td></tr></tbody></table>
+</section>
+
+<section id="sec-gates">
+  <div class="sec-h"><span class="no">09</span><h2>质量门</h2></div>
+  <ul class="gate">
+  <li class="ok"><span class="m">✓</span><span>主角组 1–5 人</span></li>
+  <li class="ok"><span class="m">✓</span><span>重要配角 ≤ 10 人</span></li>
+  <li class="ok"><span class="m">✓</span><span>功能性角色 ≤ 10 人</span></li>
+  <li class="ok"><span class="m">✓</span><span>主场景 ≤ 8</span></li>
+  <li class="ok"><span class="m">✓</span><span>叙事道具 ≤ 8 件</span></li>
+  <li class="ok"><span class="m">✓</span><span>一次性场景已标注规避方案</span></li>
+  <li class="bad"><span class="m">✗</span><span>爽点间隔 ≤ 3 集，无真空区<small>第 3–8 集之间断档</small></span></li>
+  <li class="ok"><span class="m">✓</span><span>第 1 集有钩子</span></li>
+  <li class="ok"><span class="m">✓</span><span>大爆点不在最后一集才首次出现</span></li>
+  <li class="ok"><span class="m">✓</span><span>每集梗概三栏齐全（含【钩子】【悬念】）</span></li>
+  <li class="ok"><span class="m">✓</span><span>三人以上同框已标注拆解方案</span></li>
+  <li class="ok"><span class="m">✓</span><span>生成难点已进预警清单</span></li>
+  <li class="bad"><span class="m">✗</span><span>场景/角色引用完整，无失业角色、无空转场景<small>角色 C09 从未在任何一集出现</small></span></li>
+  <li class="ok"><span class="m">✓</span><span>梗概是叙述体，无引号对白</span></li>
+</ul>
+  <p class="gsum"><b>2 项未过</b></p>
+</section>
+
+<p class="foot">大纲由模型依据原文生成，质量门由脚本确定性检查。</p>
+</div>
+
+<script type="application/json" id="outline-data">{"source":"影笔代理人","lang":"zh","params":{"episodes":30,"minutesPerEpisode":1,"genre":"年代重生爽文","adaptMode":"抽核","preferences":[],"thresholds":{"maxLeads":5,"maxSupport":10,"maxFunctional":10,"maxBeatGap":3,"maxPrimaryScenes":8}},"adaptation":{"core":"无影影契代理人沈砚，遇上拥有纯白本源影子的档案馆职员苏听晚，二人对抗黑市影商，挣脱影子本源强制归一的千年宿命。","keep":[{"what":"周明缔约线，剥离愤怒人格，后被黑市植入暗纹","why":"开篇单元故事，完整展示影契规则与黑市威胁","evidence":"“影子替你完成一件事，你要付出一项人格作为代价”"},{"what":"沈砚无影子、手背墨痕、一心堂画室设定","why":"核心主角基础设定，驱动全剧悬念","evidence":"“沈砚站在画架前……脚下干干净净。没有影子”"},{"what":"苏听晚纯白影子、档案馆调查空洞化死亡案件","why":"女主核心身份，串联主线谜团","evidence":"“苏听晚的影子，贴在木地板上……完全没有晃动”"},{"what":"归一盏茶馆黑市据点、上代无影代理人悲剧往事","why":"交代世界观背景，铺垫宿命危机","evidence":"“上一个没有影子的人……他是被自己的影子，吃掉了”"},{"what":"千年本源分裂，黑白两半需要归一，沈砚是黑暗本源载体","why":"终极核心世界观与冲突","evidence":"“天地初分光影之时，世间本有唯一的影子本源……硬生生撕裂成两半”"}],"cut":[{"what":"部分路人影子细碎支线，多个街头普通人影子低语的重复片段","why":"压缩单元戏份，避免节奏拖沓，集中推进主线对抗黑市与归一宿命"},{"what":"次要路人空洞化受害者完整出场戏份，仅保留信息提及","why":"减少角色数量，把叙事重心放在周明这条代表性受害个案"}],"merge":[{"what":"黑市影商多个喽啰合并为单一黑市副手角色","why":"减少功能性反派数量，冲突集中在核心黑市影商身上"}],"risks":[{"what":"大量影子特效画面，低成本短剧落地难度高","plan":"影子多用剪影、地面黑影、微光光晕表现，减少大量悬浮动态特效，对话心理冲突优先使用人物表演"},{"what":"设定信息量大，容易观众看不懂","plan":"借周明单元故事具象演示影契代价，逐步释放本源设定，不一次性堆设定"}]},"characters":[{"id":"C01","name":"沈砚","role":"男主，无影影笔代理人","tier":"lead","arc":"从冰冷中立的见证者，觉醒人的意志，拒绝本源赋予的归一宿命","from":["原著主角"]},{"id":"C02","name":"苏听晚","role":"女主，市档案馆职员","tier":"lead","arc":"从追查离奇死亡案件的调查者，认清自己是纯白影灵载体，坚守人身自我","from":["原著女主"]},{"id":"C03","name":"周明","role":"单元委托人，设计院绘图员","tier":"lead","arc":"用愤怒换取勇气反抗上司，失去愤怒人格，又遭受黑市暗纹侵染，努力保全自我意识","from":["原著单元人物"]},{"id":"C04","name":"黑市影商","role":"主要反派，黑市伪契制造者","tier":"support","arc":"执着促成黑白归一，收割情绪养料，不择手段诱导普通人缔结伪影契","from":["原著反派"]},{"id":"C05","name":"赵国栋","role":"周明的直属主管","tier":"support","arc":"掠夺下属劳动成果，被周明影子当众揭发之后身败名裂","from":["原著配角"]},{"id":"C06","name":"陈婆婆","role":"沈砚房东，梧水街老街知情者","tier":"support","arc":"守着四十多年前上代代理人的秘密，向沈砚揭露轮回过往","from":["原著配角"]},{"id":"C07","name":"黑市副手","role":"黑市影商手下","tier":"support","arc":"执行黑市外勤任务，埋伏侵染普通人影子","from":["合并原著多名黑市喽啰"]},{"id":"C08","name":"茶馆老板","role":"归一盏茶馆店主，知情旁观者","tier":"support","arc":"知晓黑市运作，不直接站队，提供关键线索","from":["原著配角"]},{"id":"C09","name":"周明妻子","role":"委托人亲属","tier":"functional","arc":"因周明情绪改变产生家庭矛盾","from":["原著"]},{"id":"C10","name":"档案馆管理员","role":"档案馆工作人员","tier":"functional","arc":"协助苏听晚调取封存旧卷宗","from":["原创功能性角色"]}],"scenes":[{"id":"S01","name":"一心堂画室","primary":true,"reusePlan":""},{"id":"S02","name":"梧水街老街","primary":true,"reusePlan":""},{"id":"S03","name":"设计院会议室","primary":false,"reusePlan":"复用S07地下密室基础置景，更换会议桌椅道具，白天光线"},{"id":"S04","name":"老街暗巷","primary":false,"reusePlan":"复用S02老街外景，增加遮光布，调暗灯光"},{"id":"S05","name":"陈婆婆家中","primary":true,"reusePlan":""},{"id":"S06","name":"归一盏茶馆厅堂","primary":true,"reusePlan":""},{"id":"S07","name":"归一盏地下密室","primary":true,"reusePlan":""},{"id":"S08","name":"档案馆地下库房","primary":true,"reusePlan":""},{"id":"S09","name":"周明家客厅","primary":false,"reusePlan":"复用S01画室基础墙面，更换居家家具陈设"},{"id":"S10","name":"茶香巷夜晚外景","primary":false,"reusePlan":"复用S02老街外景，增加巷弄景片，夜晚布光"},{"id":"S11","name":"档案馆隐秘密室","primary":false,"reusePlan":"复用S08库房基础置景，增加石台、影册道具，冷调光影"}],"beats":[{"id":"B01","type":"打脸宣泄","weight":"major","episode":3,"setup":"周明长期被主管压榨欺辱，自身怯懦不敢反抗","payoff":"周明的影子在部门例会当众举证，揭露赵国栋剽窃项目成果，递交离职申请"},{"id":"B02","type":"危机防御","weight":"minor","episode":11,"setup":"黑市影商出手向苏听晚打出伪契墨线","payoff":"苏听晚的纯白影子自主展开光幕，直接消融黑市攻击"},{"id":"B03","type":"信息揭秘","weight":"minor","episode":17,"setup":"多方线索碎片散落，上代代理人悲剧疑点重重","payoff":"陈婆婆拿出遗留手记，揭开归一需要黑白两半影子的核心秘密"},{"id":"B04","type":"宿命反抗","weight":"major","episode":27,"setup":"千年本源力量催动黑白影子强制相融，所有人被宿命裹挟","payoff":"沈砚以自身意志强行隔开本源归一仪式，拒绝被本源命运支配"},{"id":"B05","type":"困境压制","weight":"minor","episode":8,"setup":"周明影子被暗纹侵蚀，逐步走向空洞化","payoff":"苏听晚纯白影子释放微光，暂时压制影子身上的寄生暗纹"}],"episodes":[{"ep":1,"synopsis":"黄昏梧水街，一心堂画室之内，没有影子的沈砚等候委托人。绘图员周明上门，想要委托影子替自己参加部门例会，当面揭发主管长期侵占自己劳动成果。沈砚向周明讲明影契交易的规则，交易需要剥离自身一项人格作为不可逆代价。周明内心挣扎，最终同意开启照心纹绘制。","hook":"照心纹即将成型，即将揭露出周明心底真正的渴求。","suspense":"周明嘴上想要离职，照心纹显现的真心究竟是什么。","sceneIds":["S01","S02"],"characterIds":["C01","C03"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["影子实体化剪影"]},{"ep":2,"synopsis":"画纸上照心纹自行演化画面，展示周明从小到大习惯性隐忍不敢愤怒的过往，点破他真正渴求的是愤怒的勇气。周明的影子从地面隆起化为漆黑人形，复述周明积压多年不敢吐露的内心。沈砚告知代价是永久剥离愤怒情绪，周明权衡之后确认缔约，代行纹与偿价纹成型。契约完成，周明离开画室，沈砚手背上墨痕出现异常的共鸣发烫。","hook":"契约已经缔结，周一例会影子将替周明行动，异常的墨痕共鸣预示潜藏危机。","suspense":"剥离愤怒的代价会给周明未来带来怎样的改变，沈砚墨痕异常来自何方。","sceneIds":["S01"],"characterIds":["C01","C03"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["影子实体化剪影"]},{"ep":3,"synopsis":"周一设计院会议室，周明走进会场，实际由影子接管身体行动。影子拿出多年项目原始图纸与邮件记录，当众揭发赵国栋剽窃成果，递交离职申请，击碎赵国栋的嚣张姿态。赵国栋当众颜面尽失。同一时间一心堂画室，沈砚依靠影契连接远程感知会议全过程，手背上墨痕进一步加深。会议结束，契约完成。","hook":"刚处理完周明的委托，门外迎来新的访客敲响画室大门。","suspense":"新来的访客知晓无影画师与影契的传说，她的目的是什么。","sceneIds":["S03","S01"],"characterIds":["C01","C03","C05"],"propIds":[],"crowdPlan":"会议室多人，同框拆解：镜头优先给到周明与赵国栋正反特写，其余参会人员使用过肩镜头、背影带过，分切单人反应镜头，不做完整全景群像。","warnings":["无"]},{"ep":4,"synopsis":"档案馆职员苏听晚登门拜访，拿出旧档案报道与多起不明原因衰竭死亡案件资料。她调查得知梧水街一心堂无影画师的民间传说，前来求证影子契约的真相。沈砚留意到苏听晚脚下的影子异于常人，完全没有普通人影子该有的情绪波动。苏听晚留下一枚刻有归一纹路的古老银书签，沈砚触碰书签手背墨痕再次产生异样感应。沈砚让苏听晚黄昏时分再来。","hook":"黄昏来临苏听晚再度赴约，沈砚将让她亲眼看见影子的真实模样。","suspense":"苏听晚那片死寂的影子背后藏着怎样的秘密，七起离奇死亡案件和一心堂有什么关联。","sceneIds":["S01"],"characterIds":["C01","C02"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["无"]},{"ep":5,"synopsis":"黄昏降临，苏听晚如约回到一心堂。沈砚在她手腕画上临时照心纹，给予她看见并感知影子情绪的短暂能力。二人走上梧水街，苏听晚得以看见街上路人表象之下，各自的影子在低语，诉说主人压抑在心不敢吐露的念头。","hook":"二人拐入偏僻小巷，一名酗酒男子的影子已经进入空洞化前期，正在蚕食本体人格。","suspense":"空洞化究竟如何发生，那些档案中死去的人是否都是这样被影子吞噬。","sceneIds":["S01","S02","S04"],"characterIds":["C01","C02"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["影子实体化剪影"]},{"ep":6,"synopsis":"小巷之中，苏听晚亲眼目睹空洞化前期男子的影子不断抽取本体人格，了解空洞化带来的死亡结局。沈砚说明自己作为代理人只负责见证契约，无权强行干预他人选择。返回画室，沈砚向苏听晚完整解释正规影契、人格剥离，以及黑市影商篡改契约制造空洞化的存在。苏听晚下定决心要追查黑市影商。临别，苏听晚发问沈砚消失的影子是否还存在于世间。","hook":"手机收到周明发来的短信，缔约的代价已经开始在他身上显现。","suspense":"周明失去愤怒之后生活会遭遇什么困境，黑市影商隐藏在哪里。","sceneIds":["S04","S01"],"characterIds":["C01","C02"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["无"]},{"ep":7,"synopsis":"周明来到一心堂，诉说自己已经完全感受不到愤怒。妻子和他爆发家庭争执，他内心毫无怒火，只剩冷静理智。家庭氛围变得怪异，家人看待他的态度日渐陌生。周明想要取回被剥离的愤怒，沈砚告知代价不可逆。周明失魂落魄离开，沈砚心底生出一丝陌生的怜悯情绪，手背墨痕持续发烫。","hook":"苏听晚带着新调查结果前来，多起死亡案件受害者生前都去过同一家茶馆。","suspense":"归一盏茶馆，是不是黑市影商的秘密据点。","sceneIds":["S01"],"characterIds":["C01","C03"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["无"]},{"ep":8,"synopsis":"苏听晚铺出调查地图，所有空洞化死者出事前都去过茶香巷归一盏旧茶馆。沈砚下楼向房东陈婆婆打听茶馆的过往，陈婆婆拿出一份焦黑的古老契约残片，告知沈砚四十多年前上代无影代理人的悲剧，警示沈砚，他的影子并没有真正消亡，依旧在某处慢慢成长。沈砚脑海闪过黑暗深处传来的呼唤，墨痕蔓延到手腕。","hook":"二人决定一同前往归一盏茶馆实地探查黑市据点。","suspense":"归一盏茶馆内部藏着什么，上代代理人遭遇的悲剧会不会重演在沈砚身上。","sceneIds":["S01","S05"],"characterIds":["C01","C02","C06"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["无"]},{"ep":9,"synopsis":"清晨薄雾笼罩茶香巷，沈砚与苏听晚走进归一盏茶馆。茶馆内多名客人已经处在空洞化早期。茶馆老板看穿沈砚无影人的身份。二人穿过厅堂走入后院，推开暗门进入地下空间，撞见黑市影商正在诱导一名女子缔结伪造的影子契约。","hook":"黑市影商注意到苏听晚脚下的纯白影子，露出巨大震惊。","suspense":"为什么黑市影商会对苏听晚的影子产生如此强烈反应，纯白影子有什么特殊价值。","sceneIds":["S06","S07"],"characterIds":["C01","C02","C04","C08"],"propIds":[],"crowdPlan":"多人，同框拆解：正反主角色特写，其余背景人物背影侧影带过，分场拍摄。","warnings":["影子实体化剪影"]},{"ep":10,"synopsis":"黑市影商释放黑色墨线袭击苏听晚，苏听晚脚下长久死寂的纯白影子自主展开一层微光光幕，将攻击全部消融。黑市影商说出始祖影、归一的关键词，随即带着手下从密道撤退，留下被蛊惑的普通女子。苏听晚的纯白影子自诞生以来第一次出现情绪波动，边缘泛起涟漪。茶馆老板讲述，黑市持续收集情绪碎片喂养始祖影，四十多年前悲剧即将重演。","hook":"苏听晚回到档案馆调取四十多年前留存的目击笔录。","suspense":"上代代理人留下的卷宗会记录下契约的什么秘密。","sceneIds":["S07","S06"],"characterIds":["C01","C02","C04","C08"],"propIds":[],"crowdPlan":"多人，同框拆解：正反主角色特写，其余背景人物背影侧影带过，分场拍摄。","warnings":["影子实体化剪影"]},{"ep":11,"synopsis":"苏听晚在档案馆地下库房找到四十多年前周老师写下的目击笔录与草图。笔录还原上代无影代理人被影子反噬的全过程，草图记录契约末端多出一道上代代理人自己都不知情的隐秘暗纹。沈砚对照焦黑残片确认暗纹真实存在，黑市依靠这道暗纹，即便正规契约完成之后依旧可以侵染普通人的影子，收割人格养料。","hook":"周明发来求救信息，他的影子夜里会自主发出充满戾气的低语。","suspense":"周明明明签订沈砚的正规契约，为什么影子会出现暗纹侵蚀。","sceneIds":["S08","S01"],"characterIds":["C01","C02","C10"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["无"]},{"ep":12,"synopsis":"沈砚翻看速写本上周明的画像，发现周明影子之上悄悄被人附加上那道隐秘暗纹。并非篡改纸面契约，黑市影商可以在现实之中直接接触普通人的影子种下印记。沈砚和苏听晚立刻动身赶往周明家中。","hook":"来到周明家中，看见暗纹如同黑色藤蔓缠绕在周明的影子上，正在不断向内侵蚀。","suspense":"直接抹除暗纹会损伤影子本体，该如何阻止周明滑向空洞化死亡。","sceneIds":["S01","S09"],"characterIds":["C01","C02","C03"],"propIds":[],"crowdPlan":"仅三人，同框拆解：交替给到每个人物特写，过肩镜头切换。","warnings":["影子实体化剪影"]},{"ep":13,"synopsis":"沈砚判断不能暴力清除暗纹，否则会彻底损毁周明影子。苏听晚催动自己纯白影子释放微光靠近周明的影子，微光可以压制寄生的黑色暗纹。在影子相互触碰瞬间，碎片记忆涌入苏听晚脑海，看见黑市副手在周明归家路上，趁本体毫无察觉，隔空给影子种下暗纹的画面。","hook":"暗纹只能被压制无法根除，必须抓住黑市执行者才能彻底解除印记。苏听晚的纯白影子向她传递一句低语，告知有存在正在寻找她。","suspense":"寻找苏听晚的存在是不是始祖影，黑市执行者还会不会回到归一盏。","sceneIds":["S09"],"characterIds":["C01","C02","C03"],"propIds":[],"crowdPlan":"仅三人，同框拆解：交替给到每个人物特写，过肩镜头切换。","warnings":["影子实体化剪影"]},{"ep":14,"synopsis":"叮嘱周明远离偏僻阴影，二人离开居民楼，决定深夜守候在归一盏茶馆外，等待种下暗纹的黑市副手现身。夜深，茶香巷雾气弥漫，整条小巷寂静冷清。","hook":"巷子尽头传来脚步声，黑市影商带着副手朝着归一盏走来。","suspense":"二人潜伏跟踪，能不能窃听到黑市关于始祖影与归一的计划。","sceneIds":["S02","S10"],"characterIds":["C01","C02"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["无"]},{"ep":15,"synopsis":"黑市影商与副手叩门进入归一盏。沈砚、苏听晚绕路翻进后院，贴近地下密室门缝偷听对话。黑市提到情绪养料收集进度，提到纯白影子是始祖影缺失的另一半，引诱苏听晚主动靠近本源完成归一。沈砚当场分辨出部分话术是刻意编织的陷阱。","hook":"黑市影商察觉到门外有人偷听。","suspense":"二人行踪暴露，该如何从黑市据点脱身。","sceneIds":["S10","S06","S07"],"characterIds":["C01","C02","C04","C07"],"propIds":[],"crowdPlan":"多人，同框拆解：门缝主观视角，分别给到屋内角色特写，偷听角色侧影，分场拍摄。","warnings":["无"]},{"ep":16,"synopsis":"黑市影商主动开口唤二人现身，数道黑色墨线直扑苏听晚，再度被纯白影子的微光光幕挡下。黑市放开自身影子化作满地黑色潮水，无数被吞噬者的低语充斥地下空间。沈砚在地面画出照心纹短暂禁锢黑潮，掩护苏听晚突围，二人翻过后墙逃离茶香巷。","hook":"逃回到梧水街主街，苏听晚心中动摇，开始思索自己是否真的属于始祖影缺失的那一半。","suspense":"黑白影子同源这件事究竟几分真几分假，始祖影苏醒会带来什么后果。","sceneIds":["S07","S06","S10"],"characterIds":["C01","C02","C04","C07"],"propIds":[],"crowdPlan":"多人，同框拆解：正反主角色特写，其余用黑影群体剪影处理。","warnings":["影子潮水剪影特效"]},{"ep":17,"synopsis":"回到一心堂画室，沈砚反复比对卷宗、残片梳理全部线索。天光破晓，沈砚下楼拜访陈婆婆。陈婆婆确认归一的真相，千年前本源分裂，黑暗与纯白两半被迫分开，黑市世代布局就是为促成二者重新合一。陈婆婆交出遗留铁盒，里面存放上代代理人手记。","hook":"苏听晚刚好来到小院，她脚下纯白影子与手记残存古老气息隔空产生感应。","suspense":"完整的本源真相记录在档案馆深处一处封闭密室之内。","sceneIds":["S01","S05"],"characterIds":["C01","C02","C06"],"propIds":[],"crowdPlan":"仅三人，同框拆解：交替给到每个人物特写，过肩镜头切换。","warnings":["影子微光特效"]},{"ep":18,"synopsis":"二人再次前往档案馆地下库房，走到库房最深处那把锈迹锁头封闭的隐秘铁门。靠近铁门瞬间，苏听晚的纯白影子挣脱地面悬浮起来，铁门后方传来一道呼唤，清晰叫出苏听晚的名字。","hook":"腐朽铁锁碎裂，尘封的密室大门即将开启。","suspense":"密室之中留存的影册，会揭露怎样震撼的本源真相。","sceneIds":["S08"],"characterIds":["C01","C02"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["影子悬浮微光特效"]},{"ep":19,"synopsis":"推开密室铁门，石室中央石台上平放由光影凝成的古老影册。苏听晚触碰影册，千年过往记忆画面同时涌入沈砚与苏听晚的意识。二人知晓影子本源千年前分裂的始末，也明白历代无影代理人的真实身份，沈砚本身就是黑暗始祖影的人间载体。苏听晚的肉身之内寄宿本源分裂出来的纯白影灵。","hook":"影册页面浮起黑白两道本源纹路，黑白力量互相吸引，归一仪式被被动触发。","suspense":"千年宿命之下，二人是否只能接受本源强制的归位结局。","sceneIds":["S11"],"characterIds":["C01","C02"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["光影纹路特效"]},{"ep":20,"synopsis":"纯白影灵缓缓飘向沈砚，微光包裹住他身上翻涌的墨色气息。黑白两股本源力量开始相融，沈砚感知到属于本源的千万情绪与孤独执念向自己涌来，千年轮回的宿命在推动二者彻底合一。","hook":"在两道纹路即将完全融合的紧要关头，沈砚出手强行隔开黑白本源力量。","suspense":"违抗本源意志会带来什么代价，黑市影商还在外伺机而动。","sceneIds":["S11"],"characterIds":["C01","C02"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["光影纹路特效"]},{"ep":21,"synopsis":"沈砚以人的意志拒绝本源的宿命安排，宣告本源的归宿不能直接定义人间之人的选择。黑白本源力量被硬生生分开，密室之内的微光剧烈震荡。被动触发的归一仪式就此中断。","hook":"密室之外隐约传来脚步声，黑市影商已经追踪到档案馆。","suspense":"仪式被打断，黑市影商会做出怎样的行动，黑白两股本源力量后续将何去何从。","sceneIds":["S11"],"characterIds":["C01","C02"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["光影纹路特效"]},{"ep":22,"synopsis":"沈砚将古老影册合上，压制住体内躁动的黑暗本源气息。二人快速离开档案馆密室，黑市影商与副手晚来一步，望着紧闭的密室大门，清楚归一仪式被中途打断，计划遭到破坏。黑市影商并不气馁，打算继续收集情绪养料，寻找下一次促成归一的机会。","hook":"周明那边传来消息，影子身上被压制的暗纹又开始躁动。","suspense":"黑市会不会继续拿普通委托人当做筹码逼迫沈砚和苏听晚妥协。","sceneIds":["S11","S08"],"characterIds":["C01","C02","C04","C07"],"propIds":[],"crowdPlan":"多人，同框拆解：分场拍摄，两组人物不在同一镜头。","warnings":["无"]},{"ep":23,"synopsis":"回到一心堂，苏听晚的纯白影灵因为强行中断归一出现消耗，光芒变得暗淡。沈砚小臂之上的墨痕因为对抗本源本能，灼烧感持续不断。二人复盘当前局势：周明身上暗纹威胁还在，黑市据点依旧存在，始祖影本源的本能渴求没有消失。","hook":"陈婆婆到访画室，带来上代代理人留下的零碎笔记残页，记录对抗本源本能的微弱办法。","suspense":"笔记残页之中，有没有彻底破解轮回宿命的可行道路。","sceneIds":["S01"],"characterIds":["C01","C02","C06"],"propIds":[],"crowdPlan":"仅三人，同框拆解：交替给到每个人物特写，过肩镜头切换。","warnings":["无"]},{"ep":24,"synopsis":"残页记载，黑白本源虽同源，但如果依托人的自我意志隔开，就不会被本能驱使强行归一，代价是沈砚会持续承受体内黑暗本源的侵蚀，苏听晚的纯白影灵也会持续被本源呼唤拉扯。想要彻底根除危机，必须摧毁黑市用来收集情绪养料的整套体系。","hook":"归一盏茶馆那边有异动，大量普通人被引诱前往茶馆缔结伪契。","suspense":"黑市加快收割养料，沈砚苏听晚要如何阻止大规模空洞化灾难。","sceneIds":["S01"],"characterIds":["C01","C02"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["无"]},{"ep":25,"synopsis":"沈砚与苏听晚再度奔赴茶香巷归一盏，此刻茶馆内外已经聚集多名被蛊惑的普通人。黑市影商打算批量种下暗纹，加速养料积累，逼迫黑白本源再次产生感应。茶馆老板没有继续漠视，暗中给二人传递黑市地下密道布局信息。","hook":"黑市副手发现老板暗中通消息，出手牵制住茶馆老板。","suspense":"失去掩护，二人要直面黑市影商，能否打断批量收割仪式。","sceneIds":["S06","S10"],"characterIds":["C01","C02","C04","C07","C08"],"propIds":[],"crowdPlan":"多人，同框拆解：主角与反派正反特写，受害普通人背影侧影带过。","warnings":["影子剪影"]},{"ep":26,"synopsis":"沈砚闯入地下密室，出手干扰黑市批量绘制伪契纹路的仪式。苏听晚催动纯白影子微光，一一驱散已经种在普通受害者影子之上的浅层暗纹，救下在场普通人。黑市影商见状，不再隐藏实力，调动积攒已久的情绪碎片力量，与沈砚对峙。","hook":"战斗的冲击扰动沈砚体内黑暗本源，小臂墨痕疯狂扩张，始祖影的意识在他脑海不断回响。","suspense":"沈砚会不会被体内的黑暗本源吞噬，重蹈上代代理人的覆辙。","sceneIds":["S07"],"characterIds":["C01","C02","C04","C07"],"propIds":[],"crowdPlan":"多人，同框拆解：正反主角色特写，次要反派侧影，分场拍摄。","warnings":["影子剪影"]},{"ep":27,"synopsis":"沈砚一边对抗黑市影商，一边拼命压制来自黑暗本源的吞噬。苏听晚的纯白影子分出一部分微光护住沈砚，帮助他守住人的自我意识。黑市影商被黑白两股力量联手击退，大量已经收集的情绪碎片四散消散。黑市副手掩护黑市影商从备用密道逃走，没有被当场擒获。","hook":"危机暂时解除，但黑市核心首脑逃脱，始祖影的威胁并没有彻底消除。","suspense":"逃脱的黑市影商还会策划怎样的阴谋，千年轮回是不是还存在重启的可能性。","sceneIds":["S07"],"characterIds":["C01","C02","C04","C07"],"propIds":[],"crowdPlan":"多人，同框拆解：正反主角色特写，次要反派侧影，分场拍摄。","warnings":["影子微光剪影"]},{"ep":28,"synopsis":"危机平息之后，周明身上的寄生暗纹因为黑市情绪供给被打散，彻底被纯白微光清除。虽然被剥离的愤怒人格永远无法取回，但周明不用再面临空洞化死亡的结局，得以保全完整自我意识，回归普通生活。","hook":"周明专程来到一心堂道谢，坦言自己学会接纳失去愤怒之后全新的人生。","suspense":"沈砚要长久背负体内黑暗本源的侵蚀，他可以一直守住自我吗。","sceneIds":["S01"],"characterIds":["C01","C02","C03"],"propIds":[],"crowdPlan":"仅三人，同框拆解：交替给到每个人物特写，过肩镜头切换。","warnings":["无"]},{"ep":29,"synopsis":"梧水街恢复表面的平静，但是沈砚小臂上蔓延的墨痕没有消退，黑暗本源的呼唤依旧会时不时在意识深处响起。苏听晚的纯白影子也依旧持续感受到来自本源的遥远拉扯。二人清楚，黑市影商还在逃，归一的宿命枷锁并没有完全粉碎。","hook":"沈砚拿起速写本，画下没有依附任何人的独立影子。","suspense":"未来他们还要继续追查黑市残余势力，寻找彻底斩断千年轮回的办法。","sceneIds":["S01","S02"],"characterIds":["C01","C02"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["影子剪影"]},{"ep":30,"synopsis":"黄昏，一心堂画室木格窗吹进晚风。沈砚与苏听晚站在窗前望向整条梧水街，脚下一个没有影子，一个脚下悬浮着一团安静的纯白虚影。过往的案件尘埃落定，但属于影笔代理人的对抗远没有到此结束，二人选择继续并肩，守护梧水街普通人不被影子阴谋伤害。故事在此处留下开放式收尾。","hook":"远方黑暗之中，逃脱的黑市影商还在谋划，下一场风波已经在酝酿。","suspense":"黑市影商下一步计划是什么，黑白本源之间的宿命纠缠最终会走向何方。","sceneIds":["S01"],"characterIds":["C01","C02"],"propIds":[],"crowdPlan":"仅两人，无需分切","warnings":["影子剪影微光"]}]}</script>
+<script>
+document.querySelectorAll('.tab').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach((b) => b.classList.toggle('on', b === btn));
+    document.querySelectorAll('.tabpane').forEach((p) => p.classList.toggle('on', p.id === btn.dataset.pane));
+  });
+});
+
+const epsMore = document.querySelector('.epsmore');
+if (epsMore) {
+  epsMore.addEventListener('click', () => {
+    document.querySelector('.epswrap').classList.remove('clip');
+    epsMore.remove();
+  });
+}
+
+document.querySelector('.expo').addEventListener('click', (e) => {
+  const btn = e.currentTarget;
+  const url = URL.createObjectURL(
+    new Blob([document.getElementById('outline-data').textContent], { type: 'application/json' }),
+  );
+  const a = Object.assign(document.createElement('a'), { href: url, download: btn.dataset.name });
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+});
+</script>
+</body></html>
