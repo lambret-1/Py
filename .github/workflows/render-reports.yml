@@ -32,78 +32,121 @@ jobs:
         echo "======================================="
         echo "正在扫描 01_剧本数据 下的所有 JSON..."
         
-        # 1. 提取所有文件名，去掉后缀，并去重，存入临时文件
-        ls 01_剧本数据/*.json 2>/dev/null | xargs -n 1 basename 2>/dev/null | sed -E 's/-(outline|cast|art|script|storyboard)\.json$//' | sort -u > books_list.txt
+        # 使用关联数组进行去重，纯 Bash 语法，完美支持中文
+        declare -A BOOK_MAP
         
-        if [ ! -s books_list.txt ]; then
-          echo "❌ 错误：在 01_剧本数据 里没有找到任何 JSON 文件！"
+        for f in 01_剧本数据/*.json; do
+          [ -e "$f" ] || continue
+          filename=$(basename "$f")
+          name="${filename%.json}"
+          
+          # 暴力移除各种后缀，兼容带横杠和不带横杠的情况
+          name="${name%-outline}"
+          name="${name%outline}"
+          name="${name%-cast}"
+          name="${name%cast}"
+          name="${name%-art}"
+          name="${name%art}"
+          name="${name%-script}"
+          name="${name%script}"
+          name="${name%-storyboard}"
+          name="${name%storyboard}"
+          
+          # 记录到字典里（自动去重）
+          BOOK_MAP["$name"]=1
+        done
+        
+        if [ ${#BOOK_MAP[@]} -eq 0 ]; then
+          echo "❌ 错误：在 01_剧本数据 里没有找到任何合法的 JSON 文件！"
           exit 1
         fi
         
-        echo "发现以下项目："
-        cat books_list.txt
+        echo "成功提取到以下项目："
+        for b in "${!BOOK_MAP[@]}"; do echo " - $b"; done
         echo "======================================="
         
-        # 2. 遍历去重后的书名
-        while IFS= read -r BOOK_NAME; do
-          # 忽略空行
-          [ -z "$BOOK_NAME" ] && continue
-          
+        # 遍历所有识别出的书名
+        for BOOK_NAME in "${!BOOK_MAP[@]}"; do
           echo "======================================="
           echo "正在处理项目: $BOOK_NAME"
           
-          OUTLINE_FILE="01_剧本数据/${BOOK_NAME}-outline.json"
-          CAST_FILE="01_剧本数据/${BOOK_NAME}-cast.json"
-          ART_FILE="01_剧本数据/${BOOK_NAME}-art.json"
-          SCRIPT_FILE="01_剧本数据/${BOOK_NAME}-script.json"
-          STORYBOARD_FILE="01_剧本数据/${BOOK_NAME}-storyboard.json"
+          # 自动匹配文件名（兼容 书名-xxx.json 和 书名xxx.json）
+          FILE_PREFIX="01_剧本数据/${BOOK_NAME}"
+          
+          OUTLINE_FILE="${FILE_PREFIX}-outline.json"
+          if [ ! -f "$OUTLINE_FILE" ]; then OUTLINE_FILE="${FILE_PREFIX}outline.json"; fi
+          if [ ! -f "$OUTLINE_FILE" ]; then OUTLINE_FILE=""; fi
+          
+          CAST_FILE="${FILE_PREFIX}-cast.json"
+          if [ ! -f "$CAST_FILE" ]; then CAST_FILE="${FILE_PREFIX}cast.json"; fi
+          if [ ! -f "$CAST_FILE" ]; then CAST_FILE=""; fi
+          
+          ART_FILE="${FILE_PREFIX}-art.json"
+          if [ ! -f "$ART_FILE" ]; then ART_FILE="${FILE_PREFIX}art.json"; fi
+          if [ ! -f "$ART_FILE" ]; then ART_FILE=""; fi
+          
+          SCRIPT_FILE="${FILE_PREFIX}-script.json"
+          if [ ! -f "$SCRIPT_FILE" ]; then SCRIPT_FILE="${FILE_PREFIX}script.json"; fi
+          if [ ! -f "$SCRIPT_FILE" ]; then SCRIPT_FILE=""; fi
+          
+          STORYBOARD_FILE="${FILE_PREFIX}-storyboard.json"
+          if [ ! -f "$STORYBOARD_FILE" ]; then STORYBOARD_FILE="${FILE_PREFIX}storyboard.json"; fi
+          if [ ! -f "$STORYBOARD_FILE" ]; then STORYBOARD_FILE=""; fi
 
           # 1. 渲染大纲
-          if [ -f "$OUTLINE_FILE" ]; then
+          if [ -n "$OUTLINE_FILE" ]; then
             echo "--- [1/5] 渲染大纲 ---"
-            node 02_核心代码/novel-outline.mjs render "$OUTLINE_FILE" --md > "剧本/${BOOK_NAME}_大纲.md" || echo "❌ 大纲(MD)渲染报错"
-            node 02_核心代码/novel-outline.mjs render "$OUTLINE_FILE" --html > "剧本/${BOOK_NAME}_大纲报告.html" || echo "❌ 大纲(HTML)渲染报错"
+            node 02_核心代码/novel-outline.mjs render "$OUTLINE_FILE" --md > "剧本/${BOOK_NAME}_大纲.md" 2>&1 || echo "❌ 大纲(MD)渲染报错"
+            node 02_核心代码/novel-outline.mjs render "$OUTLINE_FILE" --html > "剧本/${BOOK_NAME}_大纲报告.html" 2>&1 || echo "❌ 大纲(HTML)渲染报错"
+          else
+            echo "--- [1/5] 缺少 outline.json，跳过大纲 ---"
           fi
 
           # 2. 渲染角色
-          if [ -f "$CAST_FILE" ]; then
+          if [ -n "$CAST_FILE" ]; then
             echo "--- [2/5] 渲染角色 ---"
-            node 02_核心代码/novel-characters.mjs render "$CAST_FILE" --md > "剧本/${BOOK_NAME}_角色设定.md" || echo "❌ 角色(MD)渲染报错"
-            node 02_核心代码/novel-characters.mjs render "$CAST_FILE" --html > "剧本/${BOOK_NAME}_角色报告.html" || echo "❌ 角色(HTML)渲染报错"
+            node 02_核心代码/novel-characters.mjs render "$CAST_FILE" --md > "剧本/${BOOK_NAME}_角色设定.md" 2>&1 || echo "❌ 角色(MD)渲染报错"
+            node 02_核心代码/novel-characters.mjs render "$CAST_FILE" --html > "剧本/${BOOK_NAME}_角色报告.html" 2>&1 || echo "❌ 角色(HTML)渲染报错"
+          else
+            echo "--- [2/5] 缺少 cast.json，跳过角色 ---"
           fi
 
           # 3. 渲染美术
-          if [ -f "$ART_FILE" ]; then
+          if [ -n "$ART_FILE" ]; then
             echo "--- [3/5] 渲染美术 ---"
-            node 02_核心代码/novel-art.mjs render "$ART_FILE" --md > "剧本/${BOOK_NAME}_美术设定.md" || echo "❌ 美术(MD)渲染报错"
-            node 02_核心代码/novel-art.mjs render "$ART_FILE" --html > "剧本/${BOOK_NAME}_美术报告.html" || echo "❌ 美术(HTML)渲染报错"
+            node 02_核心代码/novel-art.mjs render "$ART_FILE" --md > "剧本/${BOOK_NAME}_美术设定.md" 2>&1 || echo "❌ 美术(MD)渲染报错"
+            node 02_核心代码/novel-art.mjs render "$ART_FILE" --html > "剧本/${BOOK_NAME}_美术报告.html" 2>&1 || echo "❌ 美术(HTML)渲染报错"
+          else
+            echo "--- [3/5] 缺少 art.json，跳过美术 ---"
           fi
 
           # 4. 渲染剧本
-          if [ -f "$SCRIPT_FILE" ]; then
+          if [ -n "$SCRIPT_FILE" ]; then
             echo "--- [4/5] 渲染剧本 ---"
             ARGS=""
-            [ -f "$OUTLINE_FILE" ] && ARGS="$ARGS --outline $OUTLINE_FILE"
-            [ -f "$ART_FILE" ] && ARGS="$ARGS --art $ART_FILE"
+            [ -n "$OUTLINE_FILE" ] && ARGS="$ARGS --outline $OUTLINE_FILE"
+            [ -n "$ART_FILE" ] && ARGS="$ARGS --art $ART_FILE"
             
-            node 02_核心代码/novel-script.mjs render "$SCRIPT_FILE" --md $ARGS > "剧本/${BOOK_NAME}_剧本.md" || echo "❌ 剧本(MD)渲染报错"
-            node 02_核心代码/novel-script.mjs render "$SCRIPT_FILE" --html $ARGS > "剧本/${BOOK_NAME}_剧本报告.html" || echo "❌ 剧本(HTML)渲染报错"
+            node 02_核心代码/novel-script.mjs render "$SCRIPT_FILE" --md $ARGS > "剧本/${BOOK_NAME}_剧本.md" 2>&1 || echo "❌ 剧本(MD)渲染报错"
+            node 02_核心代码/novel-script.mjs render "$SCRIPT_FILE" --html $ARGS > "剧本/${BOOK_NAME}_剧本报告.html" 2>&1 || echo "❌ 剧本(HTML)渲染报错"
+          else
+            echo "--- [4/5] 缺少 script.json，跳过剧本 ---"
           fi
 
           # 5. 渲染分镜
-          if [ -f "$STORYBOARD_FILE" ]; then
+          if [ -n "$STORYBOARD_FILE" ]; then
             echo "--- [5/5] 渲染分镜 ---"
             ARGS=""
-            [ -f "$SCRIPT_FILE" ] && ARGS="$ARGS --script $SCRIPT_FILE"
-            [ -f "$OUTLINE_FILE" ] && ARGS="$ARGS --outline $OUTLINE_FILE"
-            [ -f "$ART_FILE" ] && ARGS="$ARGS --art $ART_FILE"
+            [ -n "$SCRIPT_FILE" ] && ARGS="$ARGS --script $SCRIPT_FILE"
+            [ -n "$OUTLINE_FILE" ] && ARGS="$ARGS --outline $OUTLINE_FILE"
+            [ -n "$ART_FILE" ] && ARGS="$ARGS --art $ART_FILE"
             
-            node 02_核心代码/novel-storyboard.mjs render "$STORYBOARD_FILE" --md $ARGS > "剧本/${BOOK_NAME}_分镜表.md" || echo "❌ 分镜(MD)渲染报错"
-            node 02_核心代码/novel-storyboard.mjs render "$STORYBOARD_FILE" --html $ARGS > "剧本/${BOOK_NAME}_分镜报告.html" || echo "❌ 分镜(HTML)渲染报错"
+            node 02_核心代码/novel-storyboard.mjs render "$STORYBOARD_FILE" --md $ARGS > "剧本/${BOOK_NAME}_分镜表.md" 2>&1 || echo "❌ 分镜(MD)渲染报错"
+            node 02_核心代码/novel-storyboard.mjs render "$STORYBOARD_FILE" --html $ARGS > "剧本/${BOOK_NAME}_分镜报告.html" 2>&1 || echo "❌ 分镜(HTML)渲染报错"
+          else
+            echo "--- [5/5] 缺少 storyboard.json，跳过分镜 ---"
           fi
-        done < books_list.txt
-        
-        rm books_list.txt
+        done
         
         echo "======================================="
         echo "生成的剧本文件如下："
