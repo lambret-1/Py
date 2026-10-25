@@ -1,0 +1,29 @@
+{
+  "source": "",
+  "lang": "zh",
+  "params": {
+    "episodes": 36,
+    "minutesPerEpisode": 1.5,
+    "genre": "年代重生爽文",
+    "adaptMode": "抽核",
+    "preferences": [],
+    "thresholds": {
+      "maxLeads": 5,
+      "maxSupport": 10,
+      "maxFunctional": 10,
+      "maxBeatGap": 3,
+      "maxPrimaryScenes": 8
+    }
+  },
+  "adaptation": {
+    "core": "",
+    "keep": [],
+    "cut": [],
+    "merge": [],
+    "risks": []
+  },
+  "characters": [],
+  "scenes": [],
+  "beats": [],
+  "episodes": []
+}
