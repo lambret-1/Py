@@ -1,0 +1,101 @@
+name: 渲染 JSON 为剧本报告
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '01_剧本数据/**.json' # 只有当剧本数据更新时才触发
+  workflow_dispatch: # 允许在 GitHub 网页上手动点击触发
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # 允许 Action 把生成的文件提交回仓库
+
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+
+    - name: 设置 Node.js 环境
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20' # 使用 Node 20
+
+    - name: 创建输出目录并执行渲染
+      run: |
+        mkdir -p 剧本
+        
+        # 遍历所有大纲文件提取书名
+        for outline in 01_剧本数据/*-outline.json; do
+          # 如果找不到文件就跳过
+          [ -e "$outline" ] || continue
+          
+          # 提取文件名并去掉 -outline.json 后缀
+          filename=$(basename "$outline")
+          BOOK_NAME="${filename%-outline.json}"
+          
+          echo "======================================="
+          echo "正在处理项目: $BOOK_NAME"
+          echo "======================================="
+          
+          # 定义各类文件路径
+          OUTLINE_FILE="01_剧本数据/${BOOK_NAME}-outline.json"
+          CAST_FILE="01_剧本数据/${BOOK_NAME}-cast.json"
+          ART_FILE="01_剧本数据/${BOOK_NAME}-art.json"
+          SCRIPT_FILE="01_剧本数据/${BOOK_NAME}-script.json"
+          STORYBOARD_FILE="01_剧本数据/${BOOK_NAME}-storyboard.json"
+          
+          # 1. 生成大纲
+          echo "[1/5] 渲染大纲..."
+          node 02_核心代码/novel-outline.mjs render "$OUTLINE_FILE" --md > "剧本/${BOOK_NAME}_大纲.md"
+          node 02_核心代码/novel-outline.mjs render "$OUTLINE_FILE" --html > "剧本/${BOOK_NAME}_大纲报告.html"
+          
+          # 2. 生成角色
+          if [ -f "$CAST_FILE" ]; then
+            echo "[2/5] 渲染角色设定..."
+            node 02_核心代码/novel-characters.mjs render "$CAST_FILE" --md > "剧本/${BOOK_NAME}_角色设定.md"
+            node 02_核心代码/novel-characters.mjs render "$CAST_FILE" --html > "剧本/${BOOK_NAME}_角色报告.html"
+          fi
+          
+          # 3. 生成美术
+          if [ -f "$ART_FILE" ]; then
+            echo "[3/5] 渲染美术设定..."
+            node 02_核心代码/novel-art.mjs render "$ART_FILE" --md > "剧本/${BOOK_NAME}_美术设定.md"
+            node 02_核心代码/novel-art.mjs render "$ART_FILE" --html > "剧本/${BOOK_NAME}_美术报告.html"
+          fi
+          
+          # 4. 生成剧本（动态拼装参数）
+          if [ -f "$SCRIPT_FILE" ]; then
+            echo "[4/5] 渲染剧本..."
+            ARGS=""
+            [ -f "$OUTLINE_FILE" ] && ARGS="$ARGS --outline $OUTLINE_FILE"
+            [ -f "$ART_FILE" ] && ARGS="$ARGS --art $ART_FILE"
+            
+            node 02_核心代码/novel-script.mjs render "$SCRIPT_FILE" --md $ARGS > "剧本/${BOOK_NAME}_剧本.md"
+            node 02_核心代码/novel-script.mjs render "$SCRIPT_FILE" --html $ARGS > "剧本/${BOOK_NAME}_剧本报告.html"
+          fi
+          
+          # 5. 生成分镜表（动态拼装参数）
+          if [ -f "$STORYBOARD_FILE" ]; then
+            echo "[5/5] 渲染分镜表..."
+            ARGS=""
+            [ -f "$SCRIPT_FILE" ] && ARGS="$ARGS --script $SCRIPT_FILE"
+            [ -f "$OUTLINE_FILE" ] && ARGS="$ARGS --outline $OUTLINE_FILE"
+            [ -f "$ART_FILE" ] && ARGS="$ARGS --art $ART_FILE"
+            
+            node 02_核心代码/novel-storyboard.mjs render "$STORYBOARD_FILE" --md $ARGS > "剧本/${BOOK_NAME}_分镜表.md"
+            node 02_核心代码/novel-storyboard.mjs render "$STORYBOARD_FILE" --html $ARGS > "剧本/${BOOK_NAME}_分镜报告.html"
+          fi
+          
+          echo "【$BOOK_NAME】处理完毕！"
+          echo ""
+        done
+
+    - name: 提交并推送生成的报告
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Auto-generated: 更新渲染报告 [skip ci]"
+        file_pattern: '剧本/**/*'
