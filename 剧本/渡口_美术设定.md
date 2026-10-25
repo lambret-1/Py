@@ -1,0 +1,211 @@
+# 渡口 · 美术设定集
+
+## 场景清单
+
+| ID | 场景 | 类型 | 出现集 | 锚点 | 光照 | 变体 |
+| --- | --- | --- | --- | --- | --- | --- |
+| S01 | 渡船船舱 | 主场景 | 1、2、3、4、5、6 | 4 | 晨雾、雾散近岸 | — |
+| S02 | 渡口栈桥 | 主场景 | 1、6 | 3 | 浓雾清晨 | — |
+| S03 | 对岸芦苇滩 | 变体 ← S02 | 5 | 3 | 薄雾午前 | 栈桥同一机位换背板：水端方向替换成大片芦苇荡前景，去掉挑灯木杆，雾更薄、色温更暖，桥板细节复用 S02 的资产 |
+
+---
+
+## S01 渡船船舱
+
+全剧的主舞台：一条老木船的敞篷客舱，六排坐板，篷布漏光。空间要小到人与人躲不开视线，又要有足够的前后景层次给正反打留位置。所有秘密都在这里被逼出来，舱体本身要像个沉默的审讯室。
+
+### 一致性锚点
+
+1. **补丁船篷** — 篷布右后角一块颜色更深的方形补丁，漏下一道光缝
+2. **磨白的坐板** — 第二排坐板中段被四十年乘客磨出浅色包浆，木纹发亮
+3. **船头铜铃** — 拳头大的旧铜铃挂在篷杆前端，绿锈斑驳，缆绳打着水手结
+4. **舱底积水线** — 舱板接缝处一条深色水渍线，随戏可见微微反光
+
+### 光照与时段
+
+- **晨雾**：`dense white morning fog outside the canopy, soft diffuse light with no shadows, cool grey palette, visibility beyond the gunwale fading to white`
+- **雾散近岸**：`fog thinning to warm haze, low golden sunlight entering through the canopy seam, long soft shadows across the benches, mood lifting`
+
+### 出图提示词包
+
+**主视角 EN**
+
+```text
+Interior of an old wooden ferry passenger cabin under a canvas canopy, Republican-era China, six worn bench rows, patched canopy corner leaking a seam of light, verdigris bronze bell at the bow, morning fog beyond the gunwale, empty scene with no people
+```
+
+**反向提示词**
+
+```text
+people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature
+```
+
+**设定图 EN**
+
+```text
+Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: wide shot of the old wooden ferry passenger cabin from the bow looking aft, six worn bench rows under the canvas canopy, dense white morning fog beyond the gunwale — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the patched canopy corner leaking a seam of light and the verdigris bronze bell with its rope knot. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the polished pale mid-section of the second bench, the dark waterline stain along the deck seam, worn wood grain and joinery of the bench legs. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows
+```
+
+`environment sheet`, `weathered materials`, `ferry cabin interior`
+
+---
+
+## S02 渡口栈桥
+
+开场与收尾的门面景：一条探进雾里的旧木栈桥，岸端连着土坡，水端消失在白雾里。它承担「进入故事」和「离开故事」两个仪式性时刻，构图要有明确的纵深引导——栈桥就是一条通往未知的走廊。
+
+### 一致性锚点
+
+1. **断裂的第七块桥板** — 从岸边数第七块桥板断了一角，用麻绳捆着一截圆木补上
+2. **系缆石桩** — 岸端一只矮石桩，缆绳勒出深槽，顶面被磨得发亮
+3. **挑灯木杆** — 栈桥中段一根歪斜的木杆，铁钩上挂一盏熄着的纸灯笼
+
+### 光照与时段
+
+- **浓雾清晨**：`thick white fog swallowing the far end of the pier, flat shadowless light, wet plank surfaces with faint sheen, cold desaturated palette`
+
+### 出图提示词包
+
+**主视角 EN**
+
+```text
+An old wooden ferry pier reaching into dense white fog, Republican-era southern China riverside, broken seventh plank patched with a rope-bound log, worn mooring stone, tilted lantern pole with an unlit paper lantern, wet planks, empty scene with no people
+```
+
+**反向提示词**
+
+```text
+people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature
+```
+
+**设定图 EN**
+
+```text
+Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: low wide shot from the bank end of the old wooden ferry pier, planks leading straight into white fog, tilted lantern pole midway — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the rope-bound log patching the broken seventh plank and the unlit paper lantern on its iron hook. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the grooved mooring stone worn shiny on top, wet plank surfaces with faint sheen, rope fibres and knots on the mooring line. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows
+```
+
+`environment sheet`, `foggy riverside`, `wooden pier`
+
+---
+
+## S03 对岸芦苇滩
+
+第 5 集反转戏的远景背板：船过河心时隐约可见的对岸。它只需要「存在感」不需要细节——一片被雾泡软的芦苇剪影，暗示彼岸并不比此岸更可靠。作为 S02 的变体生成，省一套环境资产。
+
+### 一致性锚点
+
+1. **芦苇浪线** — 芦苇顶端在雾中连成一条起伏的灰线，是画面唯一的轮廓
+2. **半沉的旧船骨** — 滩涂近水处露出一截朽烂的船肋骨，黑色，挂着水草
+3. **一线滩涂反光** — 退潮泥滩在薄雾下泛一条冷光，分开水面与苇丛
+
+### 光照与时段
+
+- **薄雾午前**：`thin warm haze, diffuse pale gold light, reed silhouettes soft-edged, mudflat sheen catching the brightest value in frame`
+
+> 变体来源：S02　改动：栈桥同一机位换背板：水端方向替换成大片芦苇荡前景，去掉挑灯木杆，雾更薄、色温更暖，桥板细节复用 S02 的资产
+
+### 出图提示词包
+
+**主视角 EN**
+
+```text
+A desolate reed marsh riverbank seen across the water, Republican-era southern China, soft grey band of reeds in thinning warm haze, rotten wooden boat ribs half-buried in the mudflat, cold glint on wet mud, empty scene with no people
+```
+
+**反向提示词**
+
+```text
+people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature
+```
+
+**设定图 EN**
+
+```text
+Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: the reed marsh bank seen across the water from mid-river, soft grey reed band in thinning warm haze, mudflat glint separating water and reeds — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the rotten boat rib skeleton draped with waterweed and the undulating reed skyline dissolving into haze. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the cold glint line on the wet mudflat, reed stems and seed heads at close range, dark silt texture with shallow tide pools. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows
+```
+
+`environment sheet`, `reed marsh`, `foggy river`
+
+---
+
+## 道具清单
+
+| ID | 道具 | 尺度 | 状态 | 关联场景 | 出现集 | 锚点 |
+| --- | --- | --- | --- | --- | --- | --- |
+| P01 | 旧皮箱 | 手持级 | 合上、打开 | S01 | 1、2、3、4、5、6 | 3 |
+| P02 | 县衙旧砚 | 手持级 | 正面、底面刻印 | S01 | 3、4、6 | 3 |
+
+---
+
+## P01 旧皮箱
+
+全剧最强的悬念道具：沈知微从第 1 集抱到第 6 集，谁碰翻谁的脸。观众要在六集里反复看到它的每个细节，最后开箱那一刻它就是主角——一致性崩了整部剧的底牌就穿帮。
+
+### 一致性锚点
+
+1. **绿锈铜扣** — 两只方形铜搭扣，绿锈从缝里渗出来，右边那只有一道新划痕
+2. **磨白的边角** — 四个包角的牛皮磨得发白起毛，右下角最重
+3. **提手缠布** — 皮质提手断过，用靛蓝土布缠了两圈，布头塞在内侧
+
+### 状态变体
+
+- **合上**：`the suitcase closed and latched, resting upright, brass clasps fastened, worn leather surfaces catching soft light`
+- **打开**：`the suitcase lying open, lid at full angle, revealing a stack of folded petition papers and a small wooden memorial tablet inside, dark fabric lining creased`
+
+### 出图提示词包
+
+**主视角 EN**
+
+```text
+A weathered Republican-era Chinese leather suitcase at handheld scale, worn brown cowhide with whitened corners, two square verdigris brass clasps, broken handle wrapped in indigo cloth, isolated on a pure white background, no people, no hands
+```
+
+**反向提示词**
+
+```text
+people, human figures, characters, crowds, silhouettes of people, hands, fingers, plastic CG look, oversaturated colours, warped perspective, melted geometry, floating objects, text, watermark, signature
+```
+
+**设定图 EN**
+
+```text
+Prop reference sheet on ONE 16:9 landscape canvas on a pure white background, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the suitcase closed, three-quarter hero view at handheld scale — the canonical look of this prop. RIGHT COLUMN, stacked small panels: close-up detail studies of the verdigris brass clasps with the fresh scratch and the whitened worn corner. BOTTOM ROW beneath the main zone: the suitcase in its open state showing petition papers and the memorial tablet inside, a straight-on side profile, and a close-up of the indigo cloth-wrapped handle. Every panel shows the SAME suitcase — same wear, same scratches, same proportions. Absolutely no people and no hands anywhere. Pure white background in every panel for clean cut-out. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows
+```
+
+---
+
+## P02 县衙旧砚
+
+第 3 集大爆点的实体：陆行远口袋里的「硬东西」。掏出来之前它是威胁，掏出来之后它是冤案的钥匙——砚底的县衙刻印是全剧最重要的一个特写镜头。
+
+### 一致性锚点
+
+1. **砚底县衙刻印** — 底面阴刻两行小字官印，笔画里积着旧墨
+2. **缺角** — 右上角磕掉指甲盖大小一块，断面颜色更深
+3. **墨池月痕** — 墨池边缘磨出一圈月牙形浅痕，用了几十年的证据
+
+### 状态变体
+
+- **正面**：`the inkstone face up, moon-shaped wear ring around the ink pool visible, chipped corner facing camera`
+- **底面刻印**：`the inkstone flipped bottom up, two lines of carved official seal characters filled with dried ink, raking light making the carving legible`
+
+### 出图提示词包
+
+**主视角 EN**
+
+```text
+An old Chinese ink stone at handheld scale, dark grey duan stone with a chipped upper corner, moon-shaped wear ring around the ink pool, two lines of carved official seal characters on its underside, isolated on a pure white background, no people, no hands
+```
+
+**反向提示词**
+
+```text
+people, human figures, characters, crowds, silhouettes of people, hands, fingers, plastic CG look, oversaturated colours, warped perspective, melted geometry, floating objects, text, watermark, signature
+```
+
+**设定图 EN**
+
+```text
+Prop reference sheet on ONE 16:9 landscape canvas on a pure white background, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the ink stone face up in three-quarter hero view at handheld scale — the canonical look of this prop. RIGHT COLUMN, stacked small panels: close-up detail studies of the chipped corner with its darker fracture face and the moon-shaped wear ring around the ink pool. BOTTOM ROW beneath the main zone: the inkstone flipped to show the carved official seal characters on the underside under raking light, a straight-on side profile showing its thickness, and a macro close-up of dried ink caught in the carved strokes. Every panel shows the SAME ink stone — same chip, same wear, same proportions. Absolutely no people and no hands anywhere. Pure white background in every panel for clean cut-out. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows
+```
+

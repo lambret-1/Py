@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>渡口 · 美术设定集</title>
+<style>
+:root{
+  --paper:#eceded; --panel:#f5f6f5; --side:#e4e6e3; --ink:#191d21; --ink-2:#5b636a; --ink-3:#8c9298;
+  --rule:#d2d5d0; --rule-2:#c2c6bf; --seal:#8a3324; --seal-2:#c56a4e; --seal-soft:#8a332412; --ok:#3d6b4f;
+  --serif:"Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC",Georgia,serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+.page{max-width:1600px;margin:0 auto;padding:24px 32px 90px}
+h1,h2,h3,h4{margin:0;font-weight:400}
+
+.hd{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.hd h1{font:400 28px/1.1 var(--serif);letter-spacing:.06em}
+.hd .sub{font-size:13px;color:var(--ink-2)}
+.hd .right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.gatepill{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--sans);border-radius:99px;padding:6px 12px}
+.gatepill.pass{color:var(--ok);border:1px solid var(--ok)}
+.gatepill.fail{color:var(--seal);border:1px solid var(--seal);background:var(--seal-soft)}
+.expo{font:500 11px/1 var(--sans);color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule-2);border-radius:2px;padding:7px 11px;cursor:pointer;transition:.15s}
+.expo:hover{border-color:var(--seal);color:var(--seal)}
+.expo:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 6px}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:11px 14px 9px}
+.kpi .l{font:500 10px/1 var(--sans);letter-spacing:.18em;color:var(--ink-3)}
+.kpi .v{font:400 28px/1.15 var(--serif);margin-top:5px}
+.kpi .d{font-size:11px;color:var(--ink-2);margin-top:1px}
+.kpi.accent{border-top:2px solid var(--seal)}
+.galert{margin:14px 0 0;border:1px solid var(--seal);background:var(--seal-soft);border-radius:2px;
+  padding:10px 14px;font-size:13px}
+.galert b{color:var(--seal)}
+.galert span{display:block;font-size:12px;color:var(--ink-2)}
+
+section.top-sec{margin-top:34px}
+.sec-h{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule-2);padding-bottom:8px;margin-bottom:16px}
+.sec-h .no{font:500 12px/1 var(--mono);color:var(--seal)}
+.sec-h h2{font:400 20px/1.2 var(--serif);letter-spacing:.05em}
+.sec-h .note{margin-left:auto;font-size:12px;color:var(--ink-3)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--rule);font-size:13px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{font:500 11px/1 var(--sans);letter-spacing:.1em;color:var(--ink-3);background:var(--side)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink-2);white-space:nowrap}
+.mono{font:400 11.5px/1.7 var(--mono);color:var(--ink-2);word-break:break-word}
+
+/* 场景设定卡：一排两张（方便截图宣传），卡内纵排、设定图占满卡宽 */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+@media(max-width:1100px){.cards{grid-template-columns:1fr}}
+.scene{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:18px 20px}
+.sc-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--rule-2);padding-bottom:10px}
+.sc-id{font:500 12px/1 var(--mono);color:var(--seal)}
+.sc-h h3{font:400 20px/1.2 var(--serif);letter-spacing:.04em}
+.badge{font:500 10.5px/1 var(--sans);padding:2px 8px;border-radius:99px;border:1px solid var(--seal);color:var(--seal)}
+.badge.once{border-color:var(--seal-2);color:var(--seal-2)}
+.sc-use{margin-left:auto;font-size:12px;color:var(--ink-2)}
+.sc-sum{margin:10px 0 12px;font:400 14.5px/1.9 var(--serif)}
+.scene .blk{margin-top:16px}
+.scene .pgroup{margin-top:16px}
+
+.plate{margin:0;background:#fff;border:1px solid var(--rule-2);border-radius:2px;overflow:hidden}
+.plate .zoom{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.plate .zoom:focus-visible{outline:2px solid var(--seal);outline-offset:-2px}
+.plate img{display:block;width:100%;height:auto}
+/* 图片弹层 */
+.lightbox{position:fixed;inset:0;z-index:50;display:none;place-items:center;
+  background:#191d21e6;padding:32px;cursor:zoom-out}
+.lightbox.on{display:grid}
+.lightbox img{max-width:100%;max-height:100%;background:#fff;border-radius:2px;
+  box-shadow:0 8px 40px #0006}
+.lightbox-x{position:absolute;top:18px;right:22px;font:500 13px/1 var(--sans);color:#fff;
+  background:none;border:1px solid #fff6;border-radius:3px;padding:8px 12px;cursor:pointer}
+.lightbox-x:hover{border-color:#fff}
+.plate figcaption{font-size:11px;letter-spacing:.08em;color:var(--ink-3);padding:6px 10px;border-top:1px solid var(--rule)}
+.plate-empty{display:grid;place-items:center;min-height:180px;text-align:center;
+  border:1px dashed var(--rule-2);background:var(--paper);color:var(--ink-3);font-size:13px}
+.plate-empty em{font-style:normal;font-size:12px;opacity:.8}
+.variant{margin:10px 0 0;font-size:12.5px;color:var(--seal);background:var(--seal-soft);padding:7px 10px;border-radius:2px}
+.variant b{font-family:var(--mono);font-weight:500}
+
+.blk{margin-bottom:16px}
+.blk h4{font:500 11px/1.6 var(--sans);letter-spacing:.18em;color:var(--seal);margin-bottom:8px}
+.blk h4 small{display:block;letter-spacing:0;font-weight:400;color:var(--ink-3);font-size:11px}
+.anchors{margin:0;padding:0 0 0 2px;list-style:none;counter-reset:an}
+/* ::before 序号也是网格项，desc 必须显式钉在第二列，否则会掉进 22px 窄列一字一行 */
+.anchors li{counter-increment:an;display:grid;grid-template-columns:22px minmax(0,1fr);column-gap:8px;
+  padding:6px 0;border-top:1px solid var(--rule);font-size:13px}
+.anchors li:first-child{border-top:0}
+.anchors li::before{content:counter(an,decimal-leading-zero);grid-column:1;grid-row:1;
+  font:500 11px/1.9 var(--mono);color:var(--seal)}
+.anchors b{grid-column:2;font-weight:500}
+.anchors span{grid-column:2;display:block;font-size:12px;color:var(--ink-2)}
+.lights{display:flex;flex-direction:column;gap:6px}
+.light{display:flex;align-items:baseline;gap:10px;background:var(--paper);border:1px solid var(--rule);
+  border-radius:2px;padding:7px 10px}
+.light i{flex:none;font-style:normal;font:500 12px/1.6 var(--sans);color:var(--ink)}
+.light .mono{flex:1;min-width:0}
+
+.pgroup{border:1px solid var(--rule);border-radius:2px;background:var(--paper);padding:4px 12px 8px;margin-top:12px}
+.pr{border-bottom:1px solid var(--rule)}
+.pgroup .pr:last-of-type{border-bottom:0}
+.pr summary{display:flex;align-items:center;gap:10px;padding:10px 0;cursor:pointer;list-style:none;
+  font:500 12px/1 var(--sans);letter-spacing:.04em}
+.pr summary::-webkit-details-marker{display:none}
+.pr summary::before{content:"▸";color:var(--seal);font-size:11px;transition:transform .15s}
+.pr[open] summary::before{transform:rotate(90deg)}
+.pr summary span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pr p{margin:0 0 10px;padding:10px 12px;background:var(--panel);border:1px solid var(--rule);
+  border-radius:2px;font:400 12px/1.75 var(--mono);white-space:pre-wrap;word-break:break-word}
+.pgroup-f{padding:10px 0 4px}
+.copy{flex:none;font:500 11px/1 var(--sans);color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule-2);border-radius:2px;padding:4px 10px;cursor:pointer;transition:.15s}
+.copy:hover{border-color:var(--seal);color:var(--seal)}
+.copy:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+.copy[data-done]{border-color:var(--seal);color:var(--seal)}
+.copy.wide{width:100%;padding:9px}
+.copy.mini{padding:2px 7px;font-size:10.5px}
+
+.gate{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 28px}
+@media(max-width:900px){.gate{grid-template-columns:1fr}}
+.gate li{display:flex;gap:8px;padding:5px 0;font-size:12.5px;line-height:1.55}
+.gate .m{flex:none;font-weight:700}
+.gate li.ok .m{color:var(--ok)}
+.gate li.bad .m{color:var(--seal)}
+.gate li.bad{background:var(--seal-soft);border-radius:2px;padding-left:6px}
+.gate small{display:block;color:var(--ink-3)}
+.gsum{margin:10px 0 0;font-size:12px;color:var(--ink-2)}
+.gsum b{color:var(--seal)}
+
+.foot{margin-top:40px;font-size:11px;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+  .expo,.copy{display:none!important}
+  .pr p{display:block!important}
+  .pr summary::before{content:""}
+  .page{max-width:none;padding:0}
+  section.top-sec,.scene{page-break-inside:avoid}
+  body{background:#fff}
+}
+</style></head><body>
+<div class="page">
+
+<header class="hd">
+  <h1>渡口</h1>
+  <span class="sub">美术设定集</span>
+  <span class="right">
+    <span class="gatepill pass">✓ 质量门 10 / 10</span>
+    <button class="expo" data-name="渡口-art.json">导出 JSON</button>
+  </span>
+</header>
+
+<div class="kpis">
+  <div class="kpi accent"><div class="l">场景</div><div class="v">3</div><div class="d">主场景 2 · 变体 1</div></div>
+  <div class="kpi"><div class="l">叙事道具</div><div class="v">2</div><div class="d">4 个状态变体</div></div>
+  <div class="kpi"><div class="l">一致性锚点</div><div class="v">16</div><div class="d">生成镜头的核对表（场景 + 道具）</div></div>
+  <div class="kpi"><div class="l">光照状态</div><div class="v">4</div><div class="d">换时段 = 重新生成</div></div>
+</div>
+
+
+<section class="top-sec" id="sec-list">
+  <div class="sec-h"><span class="no">01</span><h2>场景清单</h2></div>
+  <table><thead><tr><th>ID</th><th>场景</th><th>类型</th><th>出现集</th><th>锚点</th><th>光照</th><th>变体</th></tr></thead>
+<tbody><tr><td>S01</td><td>渡船船舱</td><td>主场景</td><td>1、2、3、4、5、6</td><td>4</td><td>晨雾、雾散近岸</td><td>—</td></tr>
+<tr><td>S02</td><td>渡口栈桥</td><td>主场景</td><td>1、6</td><td>3</td><td>浓雾清晨</td><td>—</td></tr>
+<tr><td>S03</td><td>对岸芦苇滩</td><td>变体 ← S02</td><td>5</td><td>3</td><td>薄雾午前</td><td>栈桥同一机位换背板：水端方向替换成大片芦苇荡前景，去掉挑灯木杆，雾更薄、色温更暖，桥板细节复用 S02 的资产</td></tr></tbody></table>
+</section>
+
+<section class="top-sec" id="sec-cards">
+  <div class="sec-h"><span class="no">02</span><h2>场景设定卡</h2></div>
+  <div class="cards">
+<article class="scene" id="sc-S01">
+  <header class="sc-h">
+    <span class="sc-id">S01</span>
+    <h3>渡船船舱</h3>
+    <span class="badge">主场景</span>
+    <span class="sc-use">出现集 1、2、3、4、5、6　承载爽点 悬念钩 · 身份揭破 · 反转 · 收束</span>
+  </header>
+  <p class="sc-sum">全剧的主舞台：一条老木船的敞篷客舱，六排坐板，篷布漏光。空间要小到人与人躲不开视线，又要有足够的前后景层次给正反打留位置。所有秘密都在这里被逼出来，舱体本身要像个沉默的审讯室。</p>
+  <div class="plate plate-empty"><span>渡船船舱 · 尚未出图<br><em>用下方提示词生成</em></span></div>
+  
+  <section class="blk">
+    <h4>一致性锚点<small>每次生成都必须出现的特征——认场景靠它，QC 也靠它</small></h4>
+    <ol class="anchors"><li><b>补丁船篷</b><span>篷布右后角一块颜色更深的方形补丁，漏下一道光缝</span></li><li><b>磨白的坐板</b><span>第二排坐板中段被四十年乘客磨出浅色包浆，木纹发亮</span></li><li><b>船头铜铃</b><span>拳头大的旧铜铃挂在篷杆前端，绿锈斑驳，缆绳打着水手结</span></li><li><b>舱底积水线</b><span>舱板接缝处一条深色水渍线，随戏可见微微反光</span></li></ol>
+  </section>
+  <section class="blk">
+    <h4>光照与时段</h4>
+    <div class="lights"><div class="light"><i>晨雾</i><span class="mono">dense white morning fog outside the canopy, soft diffuse light with no shadows, cool grey palette, visibility beyond the gunwale fading to white</span><button class="copy mini" data-copy="dense white morning fog outside the canopy, soft diffuse light with no shadows, cool grey palette, visibility beyond the gunwale fading to white">复制</button></div><div class="light"><i>雾散近岸</i><span class="mono">fog thinning to warm haze, low golden sunlight entering through the canopy seam, long soft shadows across the benches, mood lifting</span><button class="copy mini" data-copy="fog thinning to warm haze, low golden sunlight entering through the canopy seam, long soft shadows across the benches, mood lifting">复制</button></div></div>
+  </section>
+  <div class="pgroup">
+    <details class="pr">
+  <summary><span>主视角 EN</span><button class="copy" data-copy="Interior of an old wooden ferry passenger cabin under a canvas canopy, Republican-era China, six worn bench rows, patched canopy corner leaking a seam of light, verdigris bronze bell at the bow, morning fog beyond the gunwale, empty scene with no people">复制</button></summary>
+  <p>Interior of an old wooden ferry passenger cabin under a canvas canopy, Republican-era China, six worn bench rows, patched canopy corner leaking a seam of light, verdigris bronze bell at the bow, morning fog beyond the gunwale, empty scene with no people</p>
+</details>
+    <details class="pr">
+  <summary><span>设定图 EN</span><button class="copy" data-copy="Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: wide shot of the old wooden ferry passenger cabin from the bow looking aft, six worn bench rows under the canvas canopy, dense white morning fog beyond the gunwale — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the patched canopy corner leaking a seam of light and the verdigris bronze bell with its rope knot. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the polished pale mid-section of the second bench, the dark waterline stain along the deck seam, worn wood grain and joinery of the bench legs. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows">复制</button></summary>
+  <p>Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: wide shot of the old wooden ferry passenger cabin from the bow looking aft, six worn bench rows under the canvas canopy, dense white morning fog beyond the gunwale — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the patched canopy corner leaking a seam of light and the verdigris bronze bell with its rope knot. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the polished pale mid-section of the second bench, the dark waterline stain along the deck seam, worn wood grain and joinery of the bench legs. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows</p>
+</details>
+    <details class="pr">
+  <summary><span>反向提示词</span><button class="copy" data-copy="people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature">复制</button></summary>
+  <p>people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature</p>
+</details>
+    <div class="pgroup-f"><button class="copy wide" data-copy="{
+  &quot;id&quot;: &quot;S01&quot;,
+  &quot;name&quot;: &quot;渡船船舱&quot;,
+  &quot;primary&quot;: true,
+  &quot;summary&quot;: &quot;全剧的主舞台：一条老木船的敞篷客舱，六排坐板，篷布漏光。空间要小到人与人躲不开视线，又要有足够的前后景层次给正反打留位置。所有秘密都在这里被逼出来，舱体本身要像个沉默的审讯室。&quot;,
+  &quot;anchors&quot;: [
+    {
+      &quot;name&quot;: &quot;补丁船篷&quot;,
+      &quot;desc&quot;: &quot;篷布右后角一块颜色更深的方形补丁，漏下一道光缝&quot;
+    },
+    {
+      &quot;name&quot;: &quot;磨白的坐板&quot;,
+      &quot;desc&quot;: &quot;第二排坐板中段被四十年乘客磨出浅色包浆，木纹发亮&quot;
+    },
+    {
+      &quot;name&quot;: &quot;船头铜铃&quot;,
+      &quot;desc&quot;: &quot;拳头大的旧铜铃挂在篷杆前端，绿锈斑驳，缆绳打着水手结&quot;
+    },
+    {
+      &quot;name&quot;: &quot;舱底积水线&quot;,
+      &quot;desc&quot;: &quot;舱板接缝处一条深色水渍线，随戏可见微微反光&quot;
+    }
+  ],
+  &quot;lighting&quot;: [
+    {
+      &quot;state&quot;: &quot;晨雾&quot;,
+      &quot;prompt&quot;: &quot;dense white morning fog outside the canopy, soft diffuse light with no shadows, cool grey palette, visibility beyond the gunwale fading to white&quot;
+    },
+    {
+      &quot;state&quot;: &quot;雾散近岸&quot;,
+      &quot;prompt&quot;: &quot;fog thinning to warm haze, low golden sunlight entering through the canopy seam, long soft shadows across the benches, mood lifting&quot;
+    }
+  ],
+  &quot;image&quot;: {
+    &quot;prompt&quot;: &quot;Interior of an old wooden ferry passenger cabin under a canvas canopy, Republican-era China, six worn bench rows, patched canopy corner leaking a seam of light, verdigris bronze bell at the bow, morning fog beyond the gunwale, empty scene with no people&quot;,
+    &quot;negativePrompt&quot;: &quot;people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature&quot;,
+    &quot;sheet&quot;: &quot;Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: wide shot of the old wooden ferry passenger cabin from the bow looking aft, six worn bench rows under the canvas canopy, dense white morning fog beyond the gunwale — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the patched canopy corner leaking a seam of light and the verdigris bronze bell with its rope knot. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the polished pale mid-section of the second bench, the dark waterline stain along the deck seam, worn wood grain and joinery of the bench legs. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows&quot;,
+    &quot;tags&quot;: [
+      &quot;environment sheet&quot;,
+      &quot;weathered materials&quot;,
+      &quot;ferry cabin interior&quot;
+    ]
+  },
+  &quot;usage&quot;: {
+    &quot;episodes&quot;: [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    &quot;beats&quot;: [
+      &quot;悬念钩&quot;,
+      &quot;身份揭破&quot;,
+      &quot;反转&quot;,
+      &quot;收束&quot;
+    ]
+  }
+}">复制整个场景 JSON</button></div>
+  </div>
+</article>
+<article class="scene" id="sc-S02">
+  <header class="sc-h">
+    <span class="sc-id">S02</span>
+    <h3>渡口栈桥</h3>
+    <span class="badge">主场景</span>
+    <span class="sc-use">出现集 1、6　承载爽点 悬念钩 · 收束</span>
+  </header>
+  <p class="sc-sum">开场与收尾的门面景：一条探进雾里的旧木栈桥，岸端连着土坡，水端消失在白雾里。它承担「进入故事」和「离开故事」两个仪式性时刻，构图要有明确的纵深引导——栈桥就是一条通往未知的走廊。</p>
+  <div class="plate plate-empty"><span>渡口栈桥 · 尚未出图<br><em>用下方提示词生成</em></span></div>
+  
+  <section class="blk">
+    <h4>一致性锚点<small>每次生成都必须出现的特征——认场景靠它，QC 也靠它</small></h4>
+    <ol class="anchors"><li><b>断裂的第七块桥板</b><span>从岸边数第七块桥板断了一角，用麻绳捆着一截圆木补上</span></li><li><b>系缆石桩</b><span>岸端一只矮石桩，缆绳勒出深槽，顶面被磨得发亮</span></li><li><b>挑灯木杆</b><span>栈桥中段一根歪斜的木杆，铁钩上挂一盏熄着的纸灯笼</span></li></ol>
+  </section>
+  <section class="blk">
+    <h4>光照与时段</h4>
+    <div class="lights"><div class="light"><i>浓雾清晨</i><span class="mono">thick white fog swallowing the far end of the pier, flat shadowless light, wet plank surfaces with faint sheen, cold desaturated palette</span><button class="copy mini" data-copy="thick white fog swallowing the far end of the pier, flat shadowless light, wet plank surfaces with faint sheen, cold desaturated palette">复制</button></div></div>
+  </section>
+  <div class="pgroup">
+    <details class="pr">
+  <summary><span>主视角 EN</span><button class="copy" data-copy="An old wooden ferry pier reaching into dense white fog, Republican-era southern China riverside, broken seventh plank patched with a rope-bound log, worn mooring stone, tilted lantern pole with an unlit paper lantern, wet planks, empty scene with no people">复制</button></summary>
+  <p>An old wooden ferry pier reaching into dense white fog, Republican-era southern China riverside, broken seventh plank patched with a rope-bound log, worn mooring stone, tilted lantern pole with an unlit paper lantern, wet planks, empty scene with no people</p>
+</details>
+    <details class="pr">
+  <summary><span>设定图 EN</span><button class="copy" data-copy="Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: low wide shot from the bank end of the old wooden ferry pier, planks leading straight into white fog, tilted lantern pole midway — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the rope-bound log patching the broken seventh plank and the unlit paper lantern on its iron hook. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the grooved mooring stone worn shiny on top, wet plank surfaces with faint sheen, rope fibres and knots on the mooring line. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows">复制</button></summary>
+  <p>Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: low wide shot from the bank end of the old wooden ferry pier, planks leading straight into white fog, tilted lantern pole midway — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the rope-bound log patching the broken seventh plank and the unlit paper lantern on its iron hook. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the grooved mooring stone worn shiny on top, wet plank surfaces with faint sheen, rope fibres and knots on the mooring line. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows</p>
+</details>
+    <details class="pr">
+  <summary><span>反向提示词</span><button class="copy" data-copy="people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature">复制</button></summary>
+  <p>people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature</p>
+</details>
+    <div class="pgroup-f"><button class="copy wide" data-copy="{
+  &quot;id&quot;: &quot;S02&quot;,
+  &quot;name&quot;: &quot;渡口栈桥&quot;,
+  &quot;primary&quot;: true,
+  &quot;summary&quot;: &quot;开场与收尾的门面景：一条探进雾里的旧木栈桥，岸端连着土坡，水端消失在白雾里。它承担「进入故事」和「离开故事」两个仪式性时刻，构图要有明确的纵深引导——栈桥就是一条通往未知的走廊。&quot;,
+  &quot;anchors&quot;: [
+    {
+      &quot;name&quot;: &quot;断裂的第七块桥板&quot;,
+      &quot;desc&quot;: &quot;从岸边数第七块桥板断了一角，用麻绳捆着一截圆木补上&quot;
+    },
+    {
+      &quot;name&quot;: &quot;系缆石桩&quot;,
+      &quot;desc&quot;: &quot;岸端一只矮石桩，缆绳勒出深槽，顶面被磨得发亮&quot;
+    },
+    {
+      &quot;name&quot;: &quot;挑灯木杆&quot;,
+      &quot;desc&quot;: &quot;栈桥中段一根歪斜的木杆，铁钩上挂一盏熄着的纸灯笼&quot;
+    }
+  ],
+  &quot;lighting&quot;: [
+    {
+      &quot;state&quot;: &quot;浓雾清晨&quot;,
+      &quot;prompt&quot;: &quot;thick white fog swallowing the far end of the pier, flat shadowless light, wet plank surfaces with faint sheen, cold desaturated palette&quot;
+    }
+  ],
+  &quot;image&quot;: {
+    &quot;prompt&quot;: &quot;An old wooden ferry pier reaching into dense white fog, Republican-era southern China riverside, broken seventh plank patched with a rope-bound log, worn mooring stone, tilted lantern pole with an unlit paper lantern, wet planks, empty scene with no people&quot;,
+    &quot;negativePrompt&quot;: &quot;people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature&quot;,
+    &quot;sheet&quot;: &quot;Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: low wide shot from the bank end of the old wooden ferry pier, planks leading straight into white fog, tilted lantern pole midway — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the rope-bound log patching the broken seventh plank and the unlit paper lantern on its iron hook. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the grooved mooring stone worn shiny on top, wet plank surfaces with faint sheen, rope fibres and knots on the mooring line. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows&quot;,
+    &quot;tags&quot;: [
+      &quot;environment sheet&quot;,
+      &quot;foggy riverside&quot;,
+      &quot;wooden pier&quot;
+    ]
+  },
+  &quot;usage&quot;: {
+    &quot;episodes&quot;: [
+      1,
+      6
+    ],
+    &quot;beats&quot;: [
+      &quot;悬念钩&quot;,
+      &quot;收束&quot;
+    ]
+  }
+}">复制整个场景 JSON</button></div>
+  </div>
+</article>
+<article class="scene" id="sc-S03">
+  <header class="sc-h">
+    <span class="sc-id">S03</span>
+    <h3>对岸芦苇滩</h3>
+    <span class="badge once">变体</span>
+    <span class="sc-use">出现集 5　承载爽点 反转</span>
+  </header>
+  <p class="sc-sum">第 5 集反转戏的远景背板：船过河心时隐约可见的对岸。它只需要「存在感」不需要细节——一片被雾泡软的芦苇剪影，暗示彼岸并不比此岸更可靠。作为 S02 的变体生成，省一套环境资产。</p>
+  <div class="plate plate-empty"><span>对岸芦苇滩 · 尚未出图<br><em>用下方提示词生成</em></span></div>
+  <p class="variant">变体来源：<b>S02</b>　改动：栈桥同一机位换背板：水端方向替换成大片芦苇荡前景，去掉挑灯木杆，雾更薄、色温更暖，桥板细节复用 S02 的资产</p>
+  <section class="blk">
+    <h4>一致性锚点<small>每次生成都必须出现的特征——认场景靠它，QC 也靠它</small></h4>
+    <ol class="anchors"><li><b>芦苇浪线</b><span>芦苇顶端在雾中连成一条起伏的灰线，是画面唯一的轮廓</span></li><li><b>半沉的旧船骨</b><span>滩涂近水处露出一截朽烂的船肋骨，黑色，挂着水草</span></li><li><b>一线滩涂反光</b><span>退潮泥滩在薄雾下泛一条冷光，分开水面与苇丛</span></li></ol>
+  </section>
+  <section class="blk">
+    <h4>光照与时段</h4>
+    <div class="lights"><div class="light"><i>薄雾午前</i><span class="mono">thin warm haze, diffuse pale gold light, reed silhouettes soft-edged, mudflat sheen catching the brightest value in frame</span><button class="copy mini" data-copy="thin warm haze, diffuse pale gold light, reed silhouettes soft-edged, mudflat sheen catching the brightest value in frame">复制</button></div></div>
+  </section>
+  <div class="pgroup">
+    <details class="pr">
+  <summary><span>主视角 EN</span><button class="copy" data-copy="A desolate reed marsh riverbank seen across the water, Republican-era southern China, soft grey band of reeds in thinning warm haze, rotten wooden boat ribs half-buried in the mudflat, cold glint on wet mud, empty scene with no people">复制</button></summary>
+  <p>A desolate reed marsh riverbank seen across the water, Republican-era southern China, soft grey band of reeds in thinning warm haze, rotten wooden boat ribs half-buried in the mudflat, cold glint on wet mud, empty scene with no people</p>
+</details>
+    <details class="pr">
+  <summary><span>设定图 EN</span><button class="copy" data-copy="Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: the reed marsh bank seen across the water from mid-river, soft grey reed band in thinning warm haze, mudflat glint separating water and reeds — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the rotten boat rib skeleton draped with waterweed and the undulating reed skyline dissolving into haze. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the cold glint line on the wet mudflat, reed stems and seed heads at close range, dark silt texture with shallow tide pools. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows">复制</button></summary>
+  <p>Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: the reed marsh bank seen across the water from mid-river, soft grey reed band in thinning warm haze, mudflat glint separating water and reeds — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the rotten boat rib skeleton draped with waterweed and the undulating reed skyline dissolving into haze. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the cold glint line on the wet mudflat, reed stems and seed heads at close range, dark silt texture with shallow tide pools. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows</p>
+</details>
+    <details class="pr">
+  <summary><span>反向提示词</span><button class="copy" data-copy="people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature">复制</button></summary>
+  <p>people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature</p>
+</details>
+    <div class="pgroup-f"><button class="copy wide" data-copy="{
+  &quot;id&quot;: &quot;S03&quot;,
+  &quot;name&quot;: &quot;对岸芦苇滩&quot;,
+  &quot;primary&quot;: false,
+  &quot;variantOf&quot;: &quot;S02&quot;,
+  &quot;changes&quot;: &quot;栈桥同一机位换背板：水端方向替换成大片芦苇荡前景，去掉挑灯木杆，雾更薄、色温更暖，桥板细节复用 S02 的资产&quot;,
+  &quot;summary&quot;: &quot;第 5 集反转戏的远景背板：船过河心时隐约可见的对岸。它只需要「存在感」不需要细节——一片被雾泡软的芦苇剪影，暗示彼岸并不比此岸更可靠。作为 S02 的变体生成，省一套环境资产。&quot;,
+  &quot;anchors&quot;: [
+    {
+      &quot;name&quot;: &quot;芦苇浪线&quot;,
+      &quot;desc&quot;: &quot;芦苇顶端在雾中连成一条起伏的灰线，是画面唯一的轮廓&quot;
+    },
+    {
+      &quot;name&quot;: &quot;半沉的旧船骨&quot;,
+      &quot;desc&quot;: &quot;滩涂近水处露出一截朽烂的船肋骨，黑色，挂着水草&quot;
+    },
+    {
+      &quot;name&quot;: &quot;一线滩涂反光&quot;,
+      &quot;desc&quot;: &quot;退潮泥滩在薄雾下泛一条冷光，分开水面与苇丛&quot;
+    }
+  ],
+  &quot;lighting&quot;: [
+    {
+      &quot;state&quot;: &quot;薄雾午前&quot;,
+      &quot;prompt&quot;: &quot;thin warm haze, diffuse pale gold light, reed silhouettes soft-edged, mudflat sheen catching the brightest value in frame&quot;
+    }
+  ],
+  &quot;image&quot;: {
+    &quot;prompt&quot;: &quot;A desolate reed marsh riverbank seen across the water, Republican-era southern China, soft grey band of reeds in thinning warm haze, rotten wooden boat ribs half-buried in the mudflat, cold glint on wet mud, empty scene with no people&quot;,
+    &quot;negativePrompt&quot;: &quot;people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature&quot;,
+    &quot;sheet&quot;: &quot;Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: the reed marsh bank seen across the water from mid-river, soft grey reed band in thinning warm haze, mudflat glint separating water and reeds — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the rotten boat rib skeleton draped with waterweed and the undulating reed skyline dissolving into haze. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the cold glint line on the wet mudflat, reed stems and seed heads at close range, dark silt texture with shallow tide pools. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows&quot;,
+    &quot;tags&quot;: [
+      &quot;environment sheet&quot;,
+      &quot;reed marsh&quot;,
+      &quot;foggy river&quot;
+    ]
+  },
+  &quot;usage&quot;: {
+    &quot;episodes&quot;: [
+      5
+    ],
+    &quot;beats&quot;: [
+      &quot;反转&quot;
+    ]
+  }
+}">复制整个场景 JSON</button></div>
+  </div>
+</article>
+  </div>
+</section>
+
+<section class="top-sec" id="sec-prop-list">
+  <div class="sec-h"><span class="no">03</span><h2>道具清单</h2></div>
+  <table><thead><tr><th>ID</th><th>道具</th><th>尺度</th><th>状态</th><th>关联场景</th><th>出现集</th><th>锚点</th></tr></thead>
+<tbody><tr><td>P01</td><td>旧皮箱</td><td>手持级</td><td>合上、打开</td><td>S01</td><td>1、2、3、4、5、6</td><td>3</td></tr>
+<tr><td>P02</td><td>县衙旧砚</td><td>手持级</td><td>正面、底面刻印</td><td>S01</td><td>3、4、6</td><td>3</td></tr></tbody></table>
+</section>
+
+<section class="top-sec" id="sec-prop-cards">
+  <div class="sec-h"><span class="no">04</span><h2>道具设定卡</h2></div>
+  <div class="cards">
+<article class="scene" id="pr-P01">
+  <header class="sc-h">
+    <span class="sc-id">P01</span>
+    <h3>旧皮箱</h3>
+    <span class="badge">手持级</span>
+    <span class="sc-use">出现集 1、2、3、4、5、6　承载爽点 悬念钩 · 收束</span>
+  </header>
+  <p class="sc-sum">全剧最强的悬念道具：沈知微从第 1 集抱到第 6 集，谁碰翻谁的脸。观众要在六集里反复看到它的每个细节，最后开箱那一刻它就是主角——一致性崩了整部剧的底牌就穿帮。</p>
+  <div class="plate plate-empty"><span>旧皮箱 · 尚未出图<br><em>用下方提示词生成</em></span></div>
+  <p class="variant">关联场景：<b>S01</b>　关联角色：沈知微</p>
+  <section class="blk">
+    <h4>一致性锚点<small>每次生成都必须出现的特征——认场景靠它，QC 也靠它</small></h4>
+    <ol class="anchors"><li><b>绿锈铜扣</b><span>两只方形铜搭扣，绿锈从缝里渗出来，右边那只有一道新划痕</span></li><li><b>磨白的边角</b><span>四个包角的牛皮磨得发白起毛，右下角最重</span></li><li><b>提手缠布</b><span>皮质提手断过，用靛蓝土布缠了两圈，布头塞在内侧</span></li></ol>
+  </section>
+  <section class="blk">
+    <h4>状态变体</h4>
+    <div class="lights"><div class="light"><i>合上</i><span class="mono">the suitcase closed and latched, resting upright, brass clasps fastened, worn leather surfaces catching soft light</span><button class="copy mini" data-copy="the suitcase closed and latched, resting upright, brass clasps fastened, worn leather surfaces catching soft light">复制</button></div><div class="light"><i>打开</i><span class="mono">the suitcase lying open, lid at full angle, revealing a stack of folded petition papers and a small wooden memorial tablet inside, dark fabric lining creased</span><button class="copy mini" data-copy="the suitcase lying open, lid at full angle, revealing a stack of folded petition papers and a small wooden memorial tablet inside, dark fabric lining creased">复制</button></div></div>
+  </section>
+  <div class="pgroup">
+    <details class="pr">
+  <summary><span>主视角 EN</span><button class="copy" data-copy="A weathered Republican-era Chinese leather suitcase at handheld scale, worn brown cowhide with whitened corners, two square verdigris brass clasps, broken handle wrapped in indigo cloth, isolated on a pure white background, no people, no hands">复制</button></summary>
+  <p>A weathered Republican-era Chinese leather suitcase at handheld scale, worn brown cowhide with whitened corners, two square verdigris brass clasps, broken handle wrapped in indigo cloth, isolated on a pure white background, no people, no hands</p>
+</details>
+    <details class="pr">
+  <summary><span>设定图 EN</span><button class="copy" data-copy="Prop reference sheet on ONE 16:9 landscape canvas on a pure white background, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the suitcase closed, three-quarter hero view at handheld scale — the canonical look of this prop. RIGHT COLUMN, stacked small panels: close-up detail studies of the verdigris brass clasps with the fresh scratch and the whitened worn corner. BOTTOM ROW beneath the main zone: the suitcase in its open state showing petition papers and the memorial tablet inside, a straight-on side profile, and a close-up of the indigo cloth-wrapped handle. Every panel shows the SAME suitcase — same wear, same scratches, same proportions. Absolutely no people and no hands anywhere. Pure white background in every panel for clean cut-out. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows">复制</button></summary>
+  <p>Prop reference sheet on ONE 16:9 landscape canvas on a pure white background, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the suitcase closed, three-quarter hero view at handheld scale — the canonical look of this prop. RIGHT COLUMN, stacked small panels: close-up detail studies of the verdigris brass clasps with the fresh scratch and the whitened worn corner. BOTTOM ROW beneath the main zone: the suitcase in its open state showing petition papers and the memorial tablet inside, a straight-on side profile, and a close-up of the indigo cloth-wrapped handle. Every panel shows the SAME suitcase — same wear, same scratches, same proportions. Absolutely no people and no hands anywhere. Pure white background in every panel for clean cut-out. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows</p>
+</details>
+    <details class="pr">
+  <summary><span>反向提示词</span><button class="copy" data-copy="people, human figures, characters, crowds, silhouettes of people, hands, fingers, plastic CG look, oversaturated colours, warped perspective, melted geometry, floating objects, text, watermark, signature">复制</button></summary>
+  <p>people, human figures, characters, crowds, silhouettes of people, hands, fingers, plastic CG look, oversaturated colours, warped perspective, melted geometry, floating objects, text, watermark, signature</p>
+</details>
+    <div class="pgroup-f"><button class="copy wide" data-copy="{
+  &quot;id&quot;: &quot;P01&quot;,
+  &quot;name&quot;: &quot;旧皮箱&quot;,
+  &quot;scale&quot;: &quot;手持级&quot;,
+  &quot;summary&quot;: &quot;全剧最强的悬念道具：沈知微从第 1 集抱到第 6 集，谁碰翻谁的脸。观众要在六集里反复看到它的每个细节，最后开箱那一刻它就是主角——一致性崩了整部剧的底牌就穿帮。&quot;,
+  &quot;anchors&quot;: [
+    {
+      &quot;name&quot;: &quot;绿锈铜扣&quot;,
+      &quot;desc&quot;: &quot;两只方形铜搭扣，绿锈从缝里渗出来，右边那只有一道新划痕&quot;
+    },
+    {
+      &quot;name&quot;: &quot;磨白的边角&quot;,
+      &quot;desc&quot;: &quot;四个包角的牛皮磨得发白起毛，右下角最重&quot;
+    },
+    {
+      &quot;name&quot;: &quot;提手缠布&quot;,
+      &quot;desc&quot;: &quot;皮质提手断过，用靛蓝土布缠了两圈，布头塞在内侧&quot;
+    }
+  ],
+  &quot;states&quot;: [
+    {
+      &quot;state&quot;: &quot;合上&quot;,
+      &quot;prompt&quot;: &quot;the suitcase closed and latched, resting upright, brass clasps fastened, worn leather surfaces catching soft light&quot;
+    },
+    {
+      &quot;state&quot;: &quot;打开&quot;,
+      &quot;prompt&quot;: &quot;the suitcase lying open, lid at full angle, revealing a stack of folded petition papers and a small wooden memorial tablet inside, dark fabric lining creased&quot;
+    }
+  ],
+  &quot;relatedScenes&quot;: [
+    &quot;S01&quot;
+  ],
+  &quot;carriedBy&quot;: [
+    &quot;沈知微&quot;
+  ],
+  &quot;image&quot;: {
+    &quot;prompt&quot;: &quot;A weathered Republican-era Chinese leather suitcase at handheld scale, worn brown cowhide with whitened corners, two square verdigris brass clasps, broken handle wrapped in indigo cloth, isolated on a pure white background, no people, no hands&quot;,
+    &quot;negativePrompt&quot;: &quot;people, human figures, characters, crowds, silhouettes of people, hands, fingers, plastic CG look, oversaturated colours, warped perspective, melted geometry, floating objects, text, watermark, signature&quot;,
+    &quot;sheet&quot;: &quot;Prop reference sheet on ONE 16:9 landscape canvas on a pure white background, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the suitcase closed, three-quarter hero view at handheld scale — the canonical look of this prop. RIGHT COLUMN, stacked small panels: close-up detail studies of the verdigris brass clasps with the fresh scratch and the whitened worn corner. BOTTOM ROW beneath the main zone: the suitcase in its open state showing petition papers and the memorial tablet inside, a straight-on side profile, and a close-up of the indigo cloth-wrapped handle. Every panel shows the SAME suitcase — same wear, same scratches, same proportions. Absolutely no people and no hands anywhere. Pure white background in every panel for clean cut-out. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows&quot;,
+    &quot;tags&quot;: [
+      &quot;prop sheet&quot;,
+      &quot;leather suitcase&quot;,
+      &quot;white background&quot;
+    ]
+  },
+  &quot;usage&quot;: {
+    &quot;episodes&quot;: [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    &quot;beats&quot;: [
+      &quot;悬念钩&quot;,
+      &quot;收束&quot;
+    ]
+  }
+}">复制整个场景 JSON</button></div>
+  </div>
+</article>
+<article class="scene" id="pr-P02">
+  <header class="sc-h">
+    <span class="sc-id">P02</span>
+    <h3>县衙旧砚</h3>
+    <span class="badge">手持级</span>
+    <span class="sc-use">出现集 3、4、6　承载爽点 身份揭破</span>
+  </header>
+  <p class="sc-sum">第 3 集大爆点的实体：陆行远口袋里的「硬东西」。掏出来之前它是威胁，掏出来之后它是冤案的钥匙——砚底的县衙刻印是全剧最重要的一个特写镜头。</p>
+  <div class="plate plate-empty"><span>县衙旧砚 · 尚未出图<br><em>用下方提示词生成</em></span></div>
+  <p class="variant">关联场景：<b>S01</b>　关联角色：陆行远</p>
+  <section class="blk">
+    <h4>一致性锚点<small>每次生成都必须出现的特征——认场景靠它，QC 也靠它</small></h4>
+    <ol class="anchors"><li><b>砚底县衙刻印</b><span>底面阴刻两行小字官印，笔画里积着旧墨</span></li><li><b>缺角</b><span>右上角磕掉指甲盖大小一块，断面颜色更深</span></li><li><b>墨池月痕</b><span>墨池边缘磨出一圈月牙形浅痕，用了几十年的证据</span></li></ol>
+  </section>
+  <section class="blk">
+    <h4>状态变体</h4>
+    <div class="lights"><div class="light"><i>正面</i><span class="mono">the inkstone face up, moon-shaped wear ring around the ink pool visible, chipped corner facing camera</span><button class="copy mini" data-copy="the inkstone face up, moon-shaped wear ring around the ink pool visible, chipped corner facing camera">复制</button></div><div class="light"><i>底面刻印</i><span class="mono">the inkstone flipped bottom up, two lines of carved official seal characters filled with dried ink, raking light making the carving legible</span><button class="copy mini" data-copy="the inkstone flipped bottom up, two lines of carved official seal characters filled with dried ink, raking light making the carving legible">复制</button></div></div>
+  </section>
+  <div class="pgroup">
+    <details class="pr">
+  <summary><span>主视角 EN</span><button class="copy" data-copy="An old Chinese ink stone at handheld scale, dark grey duan stone with a chipped upper corner, moon-shaped wear ring around the ink pool, two lines of carved official seal characters on its underside, isolated on a pure white background, no people, no hands">复制</button></summary>
+  <p>An old Chinese ink stone at handheld scale, dark grey duan stone with a chipped upper corner, moon-shaped wear ring around the ink pool, two lines of carved official seal characters on its underside, isolated on a pure white background, no people, no hands</p>
+</details>
+    <details class="pr">
+  <summary><span>设定图 EN</span><button class="copy" data-copy="Prop reference sheet on ONE 16:9 landscape canvas on a pure white background, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the ink stone face up in three-quarter hero view at handheld scale — the canonical look of this prop. RIGHT COLUMN, stacked small panels: close-up detail studies of the chipped corner with its darker fracture face and the moon-shaped wear ring around the ink pool. BOTTOM ROW beneath the main zone: the inkstone flipped to show the carved official seal characters on the underside under raking light, a straight-on side profile showing its thickness, and a macro close-up of dried ink caught in the carved strokes. Every panel shows the SAME ink stone — same chip, same wear, same proportions. Absolutely no people and no hands anywhere. Pure white background in every panel for clean cut-out. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows">复制</button></summary>
+  <p>Prop reference sheet on ONE 16:9 landscape canvas on a pure white background, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the ink stone face up in three-quarter hero view at handheld scale — the canonical look of this prop. RIGHT COLUMN, stacked small panels: close-up detail studies of the chipped corner with its darker fracture face and the moon-shaped wear ring around the ink pool. BOTTOM ROW beneath the main zone: the inkstone flipped to show the carved official seal characters on the underside under raking light, a straight-on side profile showing its thickness, and a macro close-up of dried ink caught in the carved strokes. Every panel shows the SAME ink stone — same chip, same wear, same proportions. Absolutely no people and no hands anywhere. Pure white background in every panel for clean cut-out. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows</p>
+</details>
+    <details class="pr">
+  <summary><span>反向提示词</span><button class="copy" data-copy="people, human figures, characters, crowds, silhouettes of people, hands, fingers, plastic CG look, oversaturated colours, warped perspective, melted geometry, floating objects, text, watermark, signature">复制</button></summary>
+  <p>people, human figures, characters, crowds, silhouettes of people, hands, fingers, plastic CG look, oversaturated colours, warped perspective, melted geometry, floating objects, text, watermark, signature</p>
+</details>
+    <div class="pgroup-f"><button class="copy wide" data-copy="{
+  &quot;id&quot;: &quot;P02&quot;,
+  &quot;name&quot;: &quot;县衙旧砚&quot;,
+  &quot;scale&quot;: &quot;手持级&quot;,
+  &quot;summary&quot;: &quot;第 3 集大爆点的实体：陆行远口袋里的「硬东西」。掏出来之前它是威胁，掏出来之后它是冤案的钥匙——砚底的县衙刻印是全剧最重要的一个特写镜头。&quot;,
+  &quot;anchors&quot;: [
+    {
+      &quot;name&quot;: &quot;砚底县衙刻印&quot;,
+      &quot;desc&quot;: &quot;底面阴刻两行小字官印，笔画里积着旧墨&quot;
+    },
+    {
+      &quot;name&quot;: &quot;缺角&quot;,
+      &quot;desc&quot;: &quot;右上角磕掉指甲盖大小一块，断面颜色更深&quot;
+    },
+    {
+      &quot;name&quot;: &quot;墨池月痕&quot;,
+      &quot;desc&quot;: &quot;墨池边缘磨出一圈月牙形浅痕，用了几十年的证据&quot;
+    }
+  ],
+  &quot;states&quot;: [
+    {
+      &quot;state&quot;: &quot;正面&quot;,
+      &quot;prompt&quot;: &quot;the inkstone face up, moon-shaped wear ring around the ink pool visible, chipped corner facing camera&quot;
+    },
+    {
+      &quot;state&quot;: &quot;底面刻印&quot;,
+      &quot;prompt&quot;: &quot;the inkstone flipped bottom up, two lines of carved official seal characters filled with dried ink, raking light making the carving legible&quot;
+    }
+  ],
+  &quot;relatedScenes&quot;: [
+    &quot;S01&quot;
+  ],
+  &quot;carriedBy&quot;: [
+    &quot;陆行远&quot;
+  ],
+  &quot;image&quot;: {
+    &quot;prompt&quot;: &quot;An old Chinese ink stone at handheld scale, dark grey duan stone with a chipped upper corner, moon-shaped wear ring around the ink pool, two lines of carved official seal characters on its underside, isolated on a pure white background, no people, no hands&quot;,
+    &quot;negativePrompt&quot;: &quot;people, human figures, characters, crowds, silhouettes of people, hands, fingers, plastic CG look, oversaturated colours, warped perspective, melted geometry, floating objects, text, watermark, signature&quot;,
+    &quot;sheet&quot;: &quot;Prop reference sheet on ONE 16:9 landscape canvas on a pure white background, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the ink stone face up in three-quarter hero view at handheld scale — the canonical look of this prop. RIGHT COLUMN, stacked small panels: close-up detail studies of the chipped corner with its darker fracture face and the moon-shaped wear ring around the ink pool. BOTTOM ROW beneath the main zone: the inkstone flipped to show the carved official seal characters on the underside under raking light, a straight-on side profile showing its thickness, and a macro close-up of dried ink caught in the carved strokes. Every panel shows the SAME ink stone — same chip, same wear, same proportions. Absolutely no people and no hands anywhere. Pure white background in every panel for clean cut-out. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows&quot;,
+    &quot;tags&quot;: [
+      &quot;prop sheet&quot;,
+      &quot;ink stone&quot;,
+      &quot;white background&quot;
+    ]
+  },
+  &quot;usage&quot;: {
+    &quot;episodes&quot;: [
+      3,
+      4,
+      6
+    ],
+    &quot;beats&quot;: [
+      &quot;身份揭破&quot;
+    ]
+  }
+}">复制整个场景 JSON</button></div>
+  </div>
+</article>
+  </div>
+</section>
+
+<section class="top-sec" id="sec-gates">
+  <div class="sec-h"><span class="no">05</span><h2>质量门</h2></div>
+  <ul class="gate">
+  <li class="ok"><span class="m">✓</span><span>一致性锚点 3–5 个</span></li>
+  <li class="ok"><span class="m">✓</span><span>光照状态至少 1 个且落成提示词</span></li>
+  <li class="ok"><span class="m">✓</span><span>参考图无人：反向提示词禁人（场景与道具都查）</span></li>
+  <li class="ok"><span class="m">✓</span><span>出图提示词全部英文</span></li>
+  <li class="ok"><span class="m">✓</span><span>提示词不含角色名<small>未提供 cast.json，本门跳过（视为通过）</small></span></li>
+  <li class="ok"><span class="m">✓</span><span>变体引用完整（variantOf 存在且带 changes）</span></li>
+  <li class="ok"><span class="m">✓</span><span>道具状态至少 1 个且落成提示词</span></li>
+  <li class="ok"><span class="m">✓</span><span>道具尺度参照写进提示词</span></li>
+  <li class="ok"><span class="m">✓</span><span>道具参考图无手：反向提示词禁手</span></li>
+  <li class="ok"><span class="m">✓</span><span>道具设定图纯白背景可抠</span></li>
+</ul>
+  <p class="gsum">全部通过</p>
+</section>
+
+<p class="foot">设定与提示词由模型依据大纲/原文生成，质量门由脚本确定性检查。参考图一律无人——人是另一层资产；道具参考图另加无手、纯白背景。</p>
+</div>
+
+<div class="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-x" aria-label="关闭">关闭</button>
+  <img alt="">
+</div>
+
+<script type="application/json" id="art-data">{"source":"渡口","scenes":[{"id":"S01","name":"渡船船舱","primary":true,"summary":"全剧的主舞台：一条老木船的敞篷客舱，六排坐板，篷布漏光。空间要小到人与人躲不开视线，又要有足够的前后景层次给正反打留位置。所有秘密都在这里被逼出来，舱体本身要像个沉默的审讯室。","anchors":[{"name":"补丁船篷","desc":"篷布右后角一块颜色更深的方形补丁，漏下一道光缝"},{"name":"磨白的坐板","desc":"第二排坐板中段被四十年乘客磨出浅色包浆，木纹发亮"},{"name":"船头铜铃","desc":"拳头大的旧铜铃挂在篷杆前端，绿锈斑驳，缆绳打着水手结"},{"name":"舱底积水线","desc":"舱板接缝处一条深色水渍线，随戏可见微微反光"}],"lighting":[{"state":"晨雾","prompt":"dense white morning fog outside the canopy, soft diffuse light with no shadows, cool grey palette, visibility beyond the gunwale fading to white"},{"state":"雾散近岸","prompt":"fog thinning to warm haze, low golden sunlight entering through the canopy seam, long soft shadows across the benches, mood lifting"}],"image":{"prompt":"Interior of an old wooden ferry passenger cabin under a canvas canopy, Republican-era China, six worn bench rows, patched canopy corner leaking a seam of light, verdigris bronze bell at the bow, morning fog beyond the gunwale, empty scene with no people","negativePrompt":"people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature","sheet":"Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: wide shot of the old wooden ferry passenger cabin from the bow looking aft, six worn bench rows under the canvas canopy, dense white morning fog beyond the gunwale — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the patched canopy corner leaking a seam of light and the verdigris bronze bell with its rope knot. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the polished pale mid-section of the second bench, the dark waterline stain along the deck seam, worn wood grain and joinery of the bench legs. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows","tags":["environment sheet","weathered materials","ferry cabin interior"]},"usage":{"episodes":[1,2,3,4,5,6],"beats":["悬念钩","身份揭破","反转","收束"]}},{"id":"S02","name":"渡口栈桥","primary":true,"summary":"开场与收尾的门面景：一条探进雾里的旧木栈桥，岸端连着土坡，水端消失在白雾里。它承担「进入故事」和「离开故事」两个仪式性时刻，构图要有明确的纵深引导——栈桥就是一条通往未知的走廊。","anchors":[{"name":"断裂的第七块桥板","desc":"从岸边数第七块桥板断了一角，用麻绳捆着一截圆木补上"},{"name":"系缆石桩","desc":"岸端一只矮石桩，缆绳勒出深槽，顶面被磨得发亮"},{"name":"挑灯木杆","desc":"栈桥中段一根歪斜的木杆，铁钩上挂一盏熄着的纸灯笼"}],"lighting":[{"state":"浓雾清晨","prompt":"thick white fog swallowing the far end of the pier, flat shadowless light, wet plank surfaces with faint sheen, cold desaturated palette"}],"image":{"prompt":"An old wooden ferry pier reaching into dense white fog, Republican-era southern China riverside, broken seventh plank patched with a rope-bound log, worn mooring stone, tilted lantern pole with an unlit paper lantern, wet planks, empty scene with no people","negativePrompt":"people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature","sheet":"Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: low wide shot from the bank end of the old wooden ferry pier, planks leading straight into white fog, tilted lantern pole midway — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the rope-bound log patching the broken seventh plank and the unlit paper lantern on its iron hook. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the grooved mooring stone worn shiny on top, wet plank surfaces with faint sheen, rope fibres and knots on the mooring line. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows","tags":["environment sheet","foggy riverside","wooden pier"]},"usage":{"episodes":[1,6],"beats":["悬念钩","收束"]}},{"id":"S03","name":"对岸芦苇滩","primary":false,"variantOf":"S02","changes":"栈桥同一机位换背板：水端方向替换成大片芦苇荡前景，去掉挑灯木杆，雾更薄、色温更暖，桥板细节复用 S02 的资产","summary":"第 5 集反转戏的远景背板：船过河心时隐约可见的对岸。它只需要「存在感」不需要细节——一片被雾泡软的芦苇剪影，暗示彼岸并不比此岸更可靠。作为 S02 的变体生成，省一套环境资产。","anchors":[{"name":"芦苇浪线","desc":"芦苇顶端在雾中连成一条起伏的灰线，是画面唯一的轮廓"},{"name":"半沉的旧船骨","desc":"滩涂近水处露出一截朽烂的船肋骨，黑色，挂着水草"},{"name":"一线滩涂反光","desc":"退潮泥滩在薄雾下泛一条冷光，分开水面与苇丛"}],"lighting":[{"state":"薄雾午前","prompt":"thin warm haze, diffuse pale gold light, reed silhouettes soft-edged, mudflat sheen catching the brightest value in frame"}],"image":{"prompt":"A desolate reed marsh riverbank seen across the water, Republican-era southern China, soft grey band of reeds in thinning warm haze, rotten wooden boat ribs half-buried in the mudflat, cold glint on wet mud, empty scene with no people","negativePrompt":"people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature","sheet":"Environment reference sheet on ONE 16:9 landscape canvas, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the master establishing view: the reed marsh bank seen across the water from mid-river, soft grey reed band in thinning warm haze, mudflat glint separating water and reeds — the canonical look of this location. RIGHT COLUMN, full height along the right edge, stacked small panels: close-up detail studies of the rotten boat rib skeleton draped with waterweed and the undulating reed skyline dissolving into haze. BOTTOM ROW, spanning beneath the main zone: close-up detail studies of the cold glint line on the wet mudflat, reed stems and seed heads at close range, dark silt texture with shallow tide pools. Every detail panel is a close-up crop of the SAME space shown in the master view — same geometry, same materials, same wear marks; nothing invented that is not present in the master view. Absolutely no people anywhere on the sheet. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows","tags":["environment sheet","reed marsh","foggy river"]},"usage":{"episodes":[5],"beats":["反转"]}}],"props":[{"id":"P01","name":"旧皮箱","scale":"手持级","summary":"全剧最强的悬念道具：沈知微从第 1 集抱到第 6 集，谁碰翻谁的脸。观众要在六集里反复看到它的每个细节，最后开箱那一刻它就是主角——一致性崩了整部剧的底牌就穿帮。","anchors":[{"name":"绿锈铜扣","desc":"两只方形铜搭扣，绿锈从缝里渗出来，右边那只有一道新划痕"},{"name":"磨白的边角","desc":"四个包角的牛皮磨得发白起毛，右下角最重"},{"name":"提手缠布","desc":"皮质提手断过，用靛蓝土布缠了两圈，布头塞在内侧"}],"states":[{"state":"合上","prompt":"the suitcase closed and latched, resting upright, brass clasps fastened, worn leather surfaces catching soft light"},{"state":"打开","prompt":"the suitcase lying open, lid at full angle, revealing a stack of folded petition papers and a small wooden memorial tablet inside, dark fabric lining creased"}],"relatedScenes":["S01"],"carriedBy":["沈知微"],"image":{"prompt":"A weathered Republican-era Chinese leather suitcase at handheld scale, worn brown cowhide with whitened corners, two square verdigris brass clasps, broken handle wrapped in indigo cloth, isolated on a pure white background, no people, no hands","negativePrompt":"people, human figures, characters, crowds, silhouettes of people, hands, fingers, plastic CG look, oversaturated colours, warped perspective, melted geometry, floating objects, text, watermark, signature","sheet":"Prop reference sheet on ONE 16:9 landscape canvas on a pure white background, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the suitcase closed, three-quarter hero view at handheld scale — the canonical look of this prop. RIGHT COLUMN, stacked small panels: close-up detail studies of the verdigris brass clasps with the fresh scratch and the whitened worn corner. BOTTOM ROW beneath the main zone: the suitcase in its open state showing petition papers and the memorial tablet inside, a straight-on side profile, and a close-up of the indigo cloth-wrapped handle. Every panel shows the SAME suitcase — same wear, same scratches, same proportions. Absolutely no people and no hands anywhere. Pure white background in every panel for clean cut-out. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows","tags":["prop sheet","leather suitcase","white background"]},"usage":{"episodes":[1,2,3,4,5,6],"beats":["悬念钩","收束"]}},{"id":"P02","name":"县衙旧砚","scale":"手持级","summary":"第 3 集大爆点的实体：陆行远口袋里的「硬东西」。掏出来之前它是威胁，掏出来之后它是冤案的钥匙——砚底的县衙刻印是全剧最重要的一个特写镜头。","anchors":[{"name":"砚底县衙刻印","desc":"底面阴刻两行小字官印，笔画里积着旧墨"},{"name":"缺角","desc":"右上角磕掉指甲盖大小一块，断面颜色更深"},{"name":"墨池月痕","desc":"墨池边缘磨出一圈月牙形浅痕，用了几十年的证据"}],"states":[{"state":"正面","prompt":"the inkstone face up, moon-shaped wear ring around the ink pool visible, chipped corner facing camera"},{"state":"底面刻印","prompt":"the inkstone flipped bottom up, two lines of carved official seal characters filled with dried ink, raking light making the carving legible"}],"relatedScenes":["S01"],"carriedBy":["陆行远"],"image":{"prompt":"An old Chinese ink stone at handheld scale, dark grey duan stone with a chipped upper corner, moon-shaped wear ring around the ink pool, two lines of carved official seal characters on its underside, isolated on a pure white background, no people, no hands","negativePrompt":"people, human figures, characters, crowds, silhouettes of people, hands, fingers, plastic CG look, oversaturated colours, warped perspective, melted geometry, floating objects, text, watermark, signature","sheet":"Prop reference sheet on ONE 16:9 landscape canvas on a pure white background, panels separated by thin hairline rules. MAIN ZONE, top-left, about 72% of the canvas width and 70% of its height: the ink stone face up in three-quarter hero view at handheld scale — the canonical look of this prop. RIGHT COLUMN, stacked small panels: close-up detail studies of the chipped corner with its darker fracture face and the moon-shaped wear ring around the ink pool. BOTTOM ROW beneath the main zone: the inkstone flipped to show the carved official seal characters on the underside under raking light, a straight-on side profile showing its thickness, and a macro close-up of dried ink caught in the carved strokes. Every panel shows the SAME ink stone — same chip, same wear, same proportions. Absolutely no people and no hands anywhere. Pure white background in every panel for clean cut-out. Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows","tags":["prop sheet","ink stone","white background"]},"usage":{"episodes":[3,4,6],"beats":["身份揭破"]}}]}</script>
+<script>
+const L = {"copied":"已复制","failed":"复制失败"};
+
+// 图片弹层：点图放大，点背景或 Esc 关闭
+const lb = document.querySelector('.lightbox');
+const lbImg = lb.querySelector('img');
+function closeLb() { lb.classList.remove('on'); lbImg.removeAttribute('src'); }
+document.addEventListener('click', (e) => {
+  const z = e.target.closest('.zoom');
+  if (z) { lbImg.src = z.dataset.src; lb.classList.add('on'); return; }
+  if (e.target.closest('.lightbox')) closeLb();
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
+
+// 复制按钮
+document.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.copy');
+  if (!btn) return;
+  e.preventDefault();
+  const label = btn.textContent;
+  try {
+    await navigator.clipboard.writeText(btn.dataset.copy);
+    btn.textContent = L.copied;
+    btn.dataset.done = '1';
+  } catch {
+    btn.textContent = L.failed;
+  }
+  setTimeout(() => { btn.textContent = label; delete btn.dataset.done; }, 1600);
+});
+
+// 导出：报告自己带着完整的 art.json，下载的是它原样
+document.querySelector('.expo').addEventListener('click', (e) => {
+  const btn = e.currentTarget;
+  const url = URL.createObjectURL(
+    new Blob([document.getElementById('art-data').textContent], { type: 'application/json' }),
+  );
+  const a = Object.assign(document.createElement('a'), { href: url, download: btn.dataset.name });
+  a.click();
+  // 别立刻回收——Safari 会抢在下载读完之前撤掉 blob
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+});
+</script>
+</body></html>

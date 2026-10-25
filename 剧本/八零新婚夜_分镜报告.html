@@ -1,0 +1,1174 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>八零新婚夜，空间囤货养崽暴富 · 分镜（第 1 集）</title>
+<style>
+:root{
+  --paper:#eceded; --panel:#f5f6f5; --side:#e4e6e3; --ink:#191d21; --ink-2:#5b636a; --ink-3:#8c9298;
+  --rule:#d2d5d0; --rule-2:#c2c6bf; --seal:#8a3324; --seal-2:#c56a4e; --seal-soft:#8a332412; --ok:#3d6b4f;
+  --serif:"Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC",Georgia,serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+.page{max-width:1600px;margin:0 auto;padding:24px 32px 90px}
+h1,h2,h3{margin:0;font-weight:400}
+
+.hd{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.hd h1{font:400 28px/1.1 var(--serif);letter-spacing:.06em}
+.hd .sub{font-size:13px;color:var(--ink-2)}
+.hd .right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.gatepill{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--sans);border-radius:99px;padding:6px 12px}
+.gatepill.pass{color:var(--ok);border:1px solid var(--ok)}
+.gatepill.fail{color:var(--seal);border:1px solid var(--seal);background:var(--seal-soft)}
+.expo{font:500 11px/1 var(--sans);color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule-2);border-radius:2px;padding:7px 11px;cursor:pointer;transition:.15s}
+.expo:hover{border-color:var(--seal);color:var(--seal)}
+.expo:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0 6px}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:11px 14px 9px}
+.kpi .l{font:500 10px/1 var(--sans);letter-spacing:.18em;color:var(--ink-3)}
+.kpi .v{font:400 28px/1.15 var(--serif);margin-top:5px}
+.kpi .v small{font:400 14px var(--serif);color:var(--ink-2)}
+.kpi .d{font-size:11px;color:var(--ink-2);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kpi.accent{border-top:2px solid var(--seal)}
+.galert{margin:14px 0 0;border:1px solid var(--seal);background:var(--seal-soft);border-radius:2px;
+  padding:10px 14px;font-size:13px}
+.galert b{color:var(--seal)}
+.galert span{display:block;font-size:12px;color:var(--ink-2)}
+
+section.top-sec{margin-top:34px}
+.sec-h{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule-2);padding-bottom:8px;margin-bottom:16px}
+.sec-h .no{font:500 12px/1 var(--mono);color:var(--seal)}
+.sec-h h2{font:400 20px/1.2 var(--serif);letter-spacing:.05em}
+.sec-h .note{margin-left:auto;font-size:12px;color:var(--ink-3)}
+
+/* 01 cut rhythm strip */
+.rhythm{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 20px 10px}
+.rrow{display:grid;grid-template-columns:44px minmax(0,1fr) 150px;gap:12px;align-items:center;padding:5px 0}
+.rep{font:500 12px/1 var(--mono);color:var(--ink-2)}
+.rtrack{display:flex;height:22px;border:1px solid var(--rule);border-radius:2px;overflow:hidden;background:var(--paper)}
+.rseg{display:flex;border-right:2px solid var(--ink-2)}
+.rseg:last-child{border-right:0}
+.seg{display:block;border-right:1px solid var(--panel)}
+.rseg .seg:last-child{border-right:0}
+.seg:hover{outline:2px solid var(--ink);outline-offset:-2px}
+.rval{font:500 12px/1.5 var(--sans);color:var(--ink-2)}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--ink-2);margin:8px 0 2px;flex-wrap:wrap}
+.legend i{font-style:normal;display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px}
+
+/* 02 segment cards */
+.ep{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:18px 22px;margin-bottom:16px}
+.ep-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--rule-2);padding-bottom:10px;margin-bottom:14px}
+.ep-n{font:400 22px/1 var(--serif);letter-spacing:.04em;color:var(--seal)}
+.ep-est{font-size:12.5px;color:var(--ink-2)}
+.shots{position:relative}
+.shots.clip{max-height:760px;overflow:hidden}
+.shots.clip::after{content:'';position:absolute;left:0;right:0;bottom:0;height:80px;
+  background:linear-gradient(180deg,transparent,var(--panel));pointer-events:none}
+.shmore{display:block;width:100%;margin-top:8px;font:500 11.5px/1 var(--sans);letter-spacing:.06em;
+  color:var(--ink-2);background:var(--paper);border:1px solid var(--rule-2);border-radius:2px;
+  padding:7px 0;cursor:pointer;transition:.15s}
+.shmore:hover{border-color:var(--seal);color:var(--seal)}
+.shmore:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+.seggrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+@media(max-width:1100px){.seggrid{grid-template-columns:minmax(0,1fr)}}
+.segcard{background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.seg-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.seg-h b{font:500 14px/1 var(--mono);color:var(--seal)}
+.sec-badge{font:500 11px/1 var(--mono);border:1px solid var(--seal);color:var(--seal);border-radius:99px;padding:2px 8px}
+.beatsref{margin-left:auto;font-size:10.5px;color:var(--ink-3)}
+.frame{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--rule-2);border-radius:2px;
+  cursor:zoom-in;display:block;background:var(--side)}
+.frame.ph{display:flex;flex-direction:column;gap:6px;padding:10px 12px;cursor:default;overflow:hidden}
+.frame.ph b{font:500 10px/1 var(--sans);letter-spacing:.14em;color:var(--ink-3)}
+.frame.ph span{font:400 10.5px/1.55 var(--mono);color:var(--ink-2);overflow:hidden;display:-webkit-box;
+  -webkit-line-clamp:5;-webkit-box-orient:vertical}
+.subs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.fquad{display:grid;grid-template-columns:1fr;gap:10px;margin:10px 0}
+.fquad .frame.ph{aspect-ratio:auto}
+.fquad .fcell{margin:0;min-height:0}
+.fcell-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
+.fcell-h .copy.mini{margin:0;flex:none}
+.frame.ph .fprompt{font:400 10.5px/1.4 var(--mono);color:var(--ink-2);white-space:pre-wrap;word-break:break-word;display:block;
+  -webkit-line-clamp:none;-webkit-box-orient:vertical;overflow:visible}
+.subf{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--rule-2);border-radius:2px;
+  cursor:zoom-in;display:block;background:var(--side)}
+.subf.ph{display:flex;align-items:center;justify-content:center;cursor:default;
+  font:500 10px/1 var(--sans);color:var(--ink-3);letter-spacing:.08em}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start;border-top:1px solid var(--rule);padding-top:4px}
+@media(max-width:900px){.duo{grid-template-columns:minmax(0,1fr)}}
+.ppanel{border:1px solid var(--rule);border-radius:2px;background:var(--panel);margin-top:7px}
+.pp-h{display:flex;align-items:center;gap:6px;padding:7px 10px;border-bottom:1px solid var(--rule)}
+.pp{display:none;margin:0;padding:9px 12px;font:400 12px/1.8 var(--sans);color:var(--ink);
+  white-space:pre-wrap;word-break:break-word;max-height:400px;overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:var(--rule-2) transparent}
+.pp.on{display:block}
+.pp::-webkit-scrollbar{width:6px}
+.pp::-webkit-scrollbar-thumb{background:var(--rule-2);border-radius:3px}
+.cuts{margin:0;padding:0;list-style:none}
+.cut{padding:7px 0;border-bottom:1px solid var(--rule)}
+.cut:first-child{padding-top:11px}
+.cut:last-child{border-bottom:0}
+.cut-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.cut-h b{font:500 12px/1 var(--mono);color:var(--seal)}
+.cut-t{font:500 10.5px/1.6 var(--mono);color:var(--ink-3)}
+.cut-sc{font-size:11.5px;color:var(--ink-2)}
+.cut-rc{font:400 10.5px/1.6 var(--mono);border:1px dashed var(--rule-2);border-radius:2px;padding:0 6px;color:var(--ink-2)}
+.cut-rc sup{color:var(--seal-2);font-weight:700;cursor:help;margin-left:2px}
+.cut-h .copy{margin-left:auto;opacity:0;transition:.15s}
+.cut:hover .copy{opacity:1}
+.cut p{margin:3px 0 0;font-size:12px;line-height:1.6}
+.sact{color:var(--ink-2)}
+.sline{font-family:var(--serif)}
+.sline b{font-weight:500;margin-right:6px;color:var(--seal)}
+.chip{font:400 10.5px/1.6 var(--mono);border:1px solid var(--rule-2);border-radius:2px;
+  padding:0 6px;background:var(--panel);color:var(--ink-2);text-decoration:none}
+.chip.lite{border-color:var(--seal-2);color:var(--seal-2)}
+.chip.prop{border-color:var(--seal);color:var(--seal)}
+.chip.mono{font-family:var(--mono)}
+a.chip:hover{border-color:var(--seal);color:var(--seal)}
+.prompts{display:flex;gap:6px}
+.seg-note{margin:0;font-size:11px;color:var(--ink-3)}
+.seg-block{margin:0;font-size:11.5px;line-height:1.7;color:var(--ink-2)}
+.seg-block b{font:500 10.5px/1 var(--sans);letter-spacing:.08em;color:var(--seal);margin-right:8px}
+.cut p.scomp{font:400 10.5px/1.6 var(--sans);color:var(--ink-3)}
+.ptabs{display:flex;gap:2px;margin-right:auto}
+.ptab{font:500 11px/1 var(--sans);letter-spacing:.08em;color:var(--ink-3);background:none;border:0;
+  border-bottom:1.5px solid transparent;padding:4px 6px;cursor:pointer}
+.ptab.on{color:var(--ink);border-bottom-color:var(--seal)}
+.ptab:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+
+/* 03 generation batches */
+.batches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+@media(max-width:1100px){.batches{grid-template-columns:minmax(0,1fr)}}
+.batch{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:14px 18px}
+.bimg{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--rule-2);border-radius:2px;
+  cursor:zoom-in;display:block;margin-bottom:10px}
+.batch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.batch-h b{font:500 13px var(--serif);letter-spacing:.06em}
+.batch-shots{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.batch-need{margin:8px 0 0;font-size:12px;color:var(--ink-2)}
+
+/* 04 audio alignment */
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--rule);font-size:13px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{font:500 11px/1 var(--sans);letter-spacing:.1em;color:var(--ink-3);background:var(--side)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-family:var(--mono);font-size:12px;white-space:nowrap}
+td a{color:var(--seal);text-decoration:none}
+td.serif{font-family:var(--serif)}
+
+.copy{flex:none;font:500 11px/1 var(--sans);color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule-2);border-radius:2px;padding:5px 10px;cursor:pointer;transition:.15s}
+.copy:hover{border-color:var(--seal);color:var(--seal)}
+.copy:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+.copy[data-done]{border-color:var(--seal);color:var(--seal)}
+.copy.mini{padding:3px 7px;font-size:10px}
+.copy.h3{border-color:var(--seal-2);color:var(--seal-2);width:100%}
+.copy.h3:hover,.copy.h3[data-done]{border-color:var(--seal);color:var(--seal)}
+
+.gate{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 28px}
+@media(max-width:900px){.gate{grid-template-columns:1fr}}
+.gate li{display:flex;gap:8px;padding:5px 0;font-size:12.5px;line-height:1.55}
+.gate .m{flex:none;font-weight:700}
+.gate li.ok .m{color:var(--ok)}
+.gate li.bad .m{color:var(--seal)}
+.gate li.bad{background:var(--seal-soft);border-radius:2px;padding-left:6px}
+.gate small{display:block;color:var(--ink-3)}
+.gsum{margin:10px 0 0;font-size:12px;color:var(--ink-2)}
+.gsum b{color:var(--seal)}
+
+.lightbox{position:fixed;inset:0;background:rgba(20,22,24,.88);display:none;align-items:center;
+  justify-content:center;z-index:9;cursor:zoom-out;padding:32px}
+.lightbox.on{display:flex}
+.lightbox img{max-width:96%;max-height:96%;border:1px solid #555;border-radius:2px}
+
+.foot{margin-top:40px;font-size:11px;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+  .expo,.copy,.shmore{display:none!important}
+  .pp{max-height:none;overflow:visible}
+  .duo{grid-template-columns:minmax(0,1fr)}
+  .shots.clip{max-height:none}
+  .shots.clip::after{display:none}
+  .seggrid,.batches{grid-template-columns:minmax(0,1fr)}
+  .page{max-width:none;padding:0}
+  section.top-sec,.segcard,.batch{page-break-inside:avoid}
+  body{background:#fff}
+}
+</style></head><body>
+<div class="page">
+
+<header class="hd">
+  <h1>八零新婚夜，空间囤货养崽暴富</h1>
+  <span class="sub">分镜 · 第 1 集</span>
+  <span class="right">
+    <span class="gatepill fail">✗ 质量门 17 / 18</span>
+    <button class="expo" data-name="八零新婚夜，空间囤货养崽暴富-storyboard.json">导出 JSON</button>
+  </span>
+</header>
+
+<div class="kpis">
+  <div class="kpi accent"><div class="l">生成段</div><div class="v">6 <small>段</small></div><div class="d">一段一次调用，上限 15 秒</div></div>
+  <div class="kpi"><div class="l">分镜</div><div class="v">18 <small>切</small></div><div class="d">平均 4.3 秒一切</div></div>
+  <div class="kpi"><div class="l">预估总时长</div><div class="v">1 分 17 秒</div><div class="d">目标 1 分 30 秒</div></div>
+  <div class="kpi"><div class="l">生成批次</div><div class="v">1</div><div class="d">同场景同光照共用环境参考图</div></div>
+  <div class="kpi"><div class="l">台词段</div><div class="v">6 <small>段</small></div><div class="d">其余是纯画面段</div></div>
+</div>
+<div class="galert"><b>✗ 1 项未过</b><span>场次／人物／道具对账剧本 — E01-01#1 的 C01 不在剧本该场人物里；E01-01#2 的 C01 不在剧本该场人物里；E01-01#3 的 C01 不在剧本该场人物里；E01-02#1 的 C01 不在剧本该场人物里；E01-02#1 的 C04 不在剧本该场人物里；E01-02#1 的 C05 不在剧本该场人物里；E01-02#2 的 C04 不在剧本该场人物里；E01-02#2 的 C05 不在剧本该场人物里；E01-02#3 的 C01 不在剧本该场人物里；E01-03#1 的 C01 不在剧本该场人物里；E01-03#1 的 C04 不在剧本该场人物里；E01-03#1 的 C05 不在剧本该场人物里；E01-03#2 的 C01 不在剧本该场人物里；E01-03#2 的 C04 不在剧本该场人物里；E01-03#2 的 C05 不在剧本该场人物里；E01-03#3 的 C01 不在剧本该场人物里；E01-04#1 的 C01 不在剧本该场人物里；E01-04#2 的 C01 不在剧本该场人物里；E01-04#3 的 C01 不在剧本该场人物里；E01-04#3 的 C04 不在剧本该场人物里；E01-04#3 的 C05 不在剧本该场人物里；E01-05#1 的 C04 不在剧本该场人物里；E01-05#2 的 C01 不在剧本该场人物里；E01-05#3 的 C01 不在剧本该场人物里；E01-06#1 的 C01 不在剧本该场人物里；E01-06#1 的 C04 不在剧本该场人物里；E01-06#1 的 C05 不在剧本该场人物里；E01-06#2 的 C01 不在剧本该场人物里；E01-06#3 的 C01 不在剧本该场人物里</span></div>
+
+<section class="top-sec" id="sec-rhythm">
+  <div class="sec-h"><span class="no">01</span><h2>分镜节奏带</h2><span class="note">粗分隔 = 生成段边界 · 段宽 = 分镜时长占比 · 颜色越深景别越近</span></div>
+  <div class="rhythm">
+    <div class="legend"><i><span class="sw" style="background:rgba(138,51,36,0.25)"></span>大远景</i><i><span class="sw" style="background:rgba(138,51,36,0.4)"></span>全景</i><i><span class="sw" style="background:rgba(138,51,36,0.58)"></span>中景</i><i><span class="sw" style="background:rgba(138,51,36,0.78)"></span>特写</i><i><span class="sw" style="background:rgba(138,51,36,1)"></span>大特写</i></div>
+<div class="rrow"><span class="rep">E01</span><div class="rtrack"><span class="rseg" style="width:16.9%"><a class="seg" href="#seg-E01-01" style="width:5.2%;background:rgba(138,51,36,0.78)" title="E01-01#1 · 4s · 特写 · Push In"></a><a class="seg" href="#seg-E01-01" style="width:5.2%;background:rgba(138,51,36,0.78)" title="E01-01#2 · 4s · 特写 · Static Shot"></a><a class="seg" href="#seg-E01-01" style="width:6.5%;background:rgba(138,51,36,0.78)" title="E01-01#3 · 5s · 特写 · Push In"></a></span><span class="rseg" style="width:16.9%"><a class="seg" href="#seg-E01-02" style="width:5.8%;background:rgba(138,51,36,0.58)" title="E01-02#1 · 4.5s · 中景 · Static Shot"></a><a class="seg" href="#seg-E01-02" style="width:5.2%;background:rgba(138,51,36,0.58)" title="E01-02#2 · 4s · 中景 · Push In"></a><a class="seg" href="#seg-E01-02" style="width:5.8%;background:rgba(138,51,36,0.78)" title="E01-02#3 · 4.5s · 特写 · Static Shot"></a></span><span class="rseg" style="width:18.2%"><a class="seg" href="#seg-E01-03" style="width:6.5%;background:rgba(138,51,36,0.58)" title="E01-03#1 · 5s · 中景 · Tracking Shot"></a><a class="seg" href="#seg-E01-03" style="width:6.5%;background:rgba(138,51,36,0.78)" title="E01-03#2 · 5s · 特写 · Static Shot"></a><a class="seg" href="#seg-E01-03" style="width:5.2%;background:rgba(138,51,36,0.78)" title="E01-03#3 · 4s · 特写 · Push In"></a></span><span class="rseg" style="width:16.9%"><a class="seg" href="#seg-E01-04" style="width:5.2%;background:rgba(138,51,36,0.4)" title="E01-04#1 · 4s · 全景 · Static Shot"></a><a class="seg" href="#seg-E01-04" style="width:5.2%;background:rgba(138,51,36,0.78)" title="E01-04#2 · 4s · 特写 · Push In"></a><a class="seg" href="#seg-E01-04" style="width:6.5%;background:rgba(138,51,36,0.78)" title="E01-04#3 · 5s · 特写 · Static Shot"></a></span><span class="rseg" style="width:15.6%"><a class="seg" href="#seg-E01-05" style="width:5.2%;background:rgba(138,51,36,0.78)" title="E01-05#1 · 4s · 特写 · Static Shot"></a><a class="seg" href="#seg-E01-05" style="width:4.5%;background:rgba(138,51,36,0.78)" title="E01-05#2 · 3.5s · 特写 · Push In"></a><a class="seg" href="#seg-E01-05" style="width:5.8%;background:rgba(138,51,36,0.78)" title="E01-05#3 · 4.5s · 特写 · Static Shot"></a></span><span class="rseg" style="width:15.6%"><a class="seg" href="#seg-E01-06" style="width:6.5%;background:rgba(138,51,36,0.58)" title="E01-06#1 · 5s · 中景 · Static Shot"></a><a class="seg" href="#seg-E01-06" style="width:6.5%;background:rgba(138,51,36,0.78)" title="E01-06#2 · 5s · 特写 · Push In"></a><a class="seg" href="#seg-E01-06" style="width:2.6%;background:rgba(138,51,36,0.78)" title="E01-06#3 · 2s · 特写 · Static Shot"></a></span></div><span class="rval">6 段 18 切 · 77s</span></div>
+  </div>
+</section>
+
+<section class="top-sec" id="sec-segments">
+  <div class="sec-h"><span class="no">02</span><h2>分集分镜表</h2><span class="note">一段 = 一次生成：主分镜图钉 0.00 秒，子分镜图钉各自切点</span></div>
+<section class="ep" id="ep-1">
+  <header class="ep-h">
+    <span class="ep-n">E01</span>
+    <span class="ep-est">6 段 18 切 · 共 77 秒 / 目标 90 秒</span>
+  </header>
+  <div class="shots clip">
+    <div class="seggrid">
+<article class="segcard" id="seg-E01-01">
+  <header class="seg-h">
+    <b>E01-01</b>
+    <span class="sec-badge">13s · 3 切</span>
+    <span class="chip">陆家土房 陆家土房</span>
+    <span class="chip lite">夜晚灶火</span>
+    <span class="beatsref">第 1 场 第 1–5 拍</span>
+  </header>
+  <div class="fquad"><div class="frame ph fcell"><div class="fcell-h"><b>主分镜图 · #1 未生成</b><button class="copy mini" data-copy="特写：苏晚的脸在昏暗灶火光中猛地睁开眼，瞳孔收缩，大口喘气。">复制</button></div><span class="fprompt">特写：苏晚的脸在昏暗灶火光中猛地睁开眼，瞳孔收缩，大口喘气。</span></div>
+<div class="frame ph fcell"><div class="fcell-h"><b>子分镜 2 · #2 未生成</b><button class="copy mini" data-copy="特写：苏晚的手抬起，颤抖着摸自己的脸。">复制</button></div><span class="fprompt">特写：苏晚的手抬起，颤抖着摸自己的脸。</span></div>
+<div class="frame ph fcell"><div class="fcell-h"><b>子分镜 3 · #3 未生成</b><button class="copy mini" data-copy="特写：苏晚的眼睛左右转动，看清头顶的裂缝土墙和草房顶。">复制</button></div><span class="fprompt">特写：苏晚的眼睛左右转动，看清头顶的裂缝土墙和草房顶。</span></div></div>
+  
+  <p class="seg-block"><b>走位</b>女主躺在土炕中央，面朝天花板；镜头从上方俯拍她的脸。</p>
+  <div class="duo">
+    <ol class="cuts">
+<li class="cut">
+  <div class="cut-h">
+    <b>#1</b>
+    <span class="cut-t">0.00s 起 · 4s</span>
+    <span class="cut-sc">特写 · Push In</span>
+    
+    <span class="chip">C01</span>
+    
+    <button class="copy mini" data-copy="特写：苏晚的脸在昏暗灶火光中猛地睁开眼，瞳孔收缩，大口喘气。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 女主面部 + 俯视30° · 中心构图 · 视线 天花板 · 焦点 锁定女主双眼 · 稳定</p>
+  <p class="sact">苏晚猛地睁开眼，盯着头顶漏风的草房顶。</p><p class="sact">她大口喘气，眼睛急速转动，像是刚从水里捞出来。</p><p class="sline"><b>苏晚</b>这……这是哪里？</p>
+</li>
+<li class="cut">
+  <div class="cut-h">
+    <b>#2</b>
+    <span class="cut-t">4.00s 起 · 4s</span>
+    <span class="cut-sc">特写 · Static Shot</span>
+    
+    <span class="chip">C01</span>
+    
+    <button class="copy mini" data-copy="特写：苏晚的手抬起，颤抖着摸自己的脸。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 女主手部 + 俯视 · 对角线 · 视线 她的脸 · 焦点 锁定手指 · 稳定</p>
+  <p class="sact">她转头，看见炕边缩着两个瘦得皮包骨的小孩。</p>
+</li>
+<li class="cut">
+  <div class="cut-h">
+    <b>#3</b>
+    <span class="cut-t">8.00s 起 · 5s</span>
+    <span class="cut-sc">特写 · Push In</span>
+    
+    <span class="chip">C01</span>
+    
+    <button class="copy mini" data-copy="特写：苏晚的眼睛左右转动，看清头顶的裂缝土墙和草房顶。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 女主眼睛 + 俯视 · 中心构图 · 视线 四周 · 焦点 锁定瞳孔 · 稳定</p>
+  <p class="sact">小女孩小宝正在哇哇哭，小脸上全是泪。</p>
+</li>
+    </ol>
+    <div class="ppanel">
+      <div class="pp-h">
+        <span class="ptabs"><button class="ptab on" data-i="0">H3 提示词</button><button class="ptab" data-i="1">Seedance 提示词</button></span>
+        <button class="copy" data-copy="How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 8.00-second mark of the target video.
+
+integrated_multimodal_description:
+[Shot 1] Close-up of a young Chinese woman's face on a dilapidated rural earthen kang bed at night. Her eyes suddenly snap open, pupils contracting in the dim firelight. Push In slowly on her face. She gasps for air, eyes darting. &lt;d&gt;[Chinese]这……这是哪里？&lt;/d&gt; says a young woman in a hoarse, confused voice.
+[Shot 2] At 00:04.000, the camera cuts to her hand reaching up to touch her own cheek, fingers trembling. Static Shot, camera holds steady on her hand.
+[Shot 3] At 00:08.000, the camera cuts to her eyes darting left and right, taking in the cracked mud wall and thatched roof above. Push In on her eyes as recognition dawns.
+
+overall_soundscape: Dim rural interior at night, distant faint rooster crowing, crackle of dying embers in the stove.
+
+non_diegetic_music: Low sustained strings slowly building, creating a disorienting rebirth atmosphere.">复制</button>
+      </div>
+      <pre class="pp on">How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 8.00-second mark of the target video.
+
+integrated_multimodal_description:
+[Shot 1] Close-up of a young Chinese woman's face on a dilapidated rural earthen kang bed at night. Her eyes suddenly snap open, pupils contracting in the dim firelight. Push In slowly on her face. She gasps for air, eyes darting. &lt;d&gt;[Chinese]这……这是哪里？&lt;/d&gt; says a young woman in a hoarse, confused voice.
+[Shot 2] At 00:04.000, the camera cuts to her hand reaching up to touch her own cheek, fingers trembling. Static Shot, camera holds steady on her hand.
+[Shot 3] At 00:08.000, the camera cuts to her eyes darting left and right, taking in the cracked mud wall and thatched roof above. Push In on her eyes as recognition dawns.
+
+overall_soundscape: Dim rural interior at night, distant faint rooster crowing, crackle of dying embers in the stove.
+
+non_diegetic_music: Low sustained strings slowly building, creating a disorienting rebirth atmosphere.</pre>
+      <pre class="pp">@[图片1] = 陆家土房
+@[图片2] = C01
+
+【人物关系与构图逻辑】
+女主躺在土炕中央，面朝天花板；镜头从上方俯拍她的脸。
+
+【镜头1】
+焦距：85mm 长焦，极浅景深
+机位：女主面部 + 俯视30°
+构图：中心构图
+运镜：推镜
+景别：特写
+画面：年轻女子躺在土炕上，眼睛猛然睁开，大口喘气，环顾四周，嘴里喃喃问这是哪里。
+台词：{这……这是哪里？}
+视线落点：天花板
+焦点：锁定女主双眼
+稳定性：稳定
+
+【镜头2】
+焦距：85mm 长焦，极浅景深
+机位：女主手部 + 俯视
+构图：对角线
+运镜：固定镜头
+景别：特写
+画面：她抬手摸自己的脸颊，不敢相信眼前的一切。
+台词：{}
+视线落点：她的脸
+焦点：锁定手指
+稳定性：稳定
+
+【镜头3】
+焦距：85mm 长焦，极浅景深
+机位：女主眼睛 + 俯视
+构图：中心构图
+运镜：推镜
+景别：特写
+画面：她的眼神从迷茫变清晰，认出了这间破旧的土房。
+台词：{}
+视线落点：四周
+焦点：锁定瞳孔
+稳定性：稳定
+
+&lt;昏暗土房内，灶膛余烬噼啪声，远处微弱鸡鸣。&gt;
+（低沉弦乐缓慢铺底，营造重生前的压抑感。）
+
+【约束】
+1. 保持无字幕，避免生成任何文字或字幕</pre>
+    </div>
+  </div>
+  
+</article>
+<article class="segcard" id="seg-E01-02">
+  <header class="seg-h">
+    <b>E01-02</b>
+    <span class="sec-badge">13s · 3 切</span>
+    <span class="chip">陆家土房 陆家土房</span>
+    <span class="chip lite">夜晚灶火</span>
+    <span class="beatsref">第 1 场 第 6–10 拍</span>
+  </header>
+  <div class="fquad"><div class="frame ph fcell"><div class="fcell-h"><b>主分镜图 · #1 未生成</b><button class="copy mini" data-copy="中景：苏晚转头看向炕边，两个瘦得皮包骨的小孩缩在那里，小宝正在哇哇哭。">复制</button></div><span class="fprompt">中景：苏晚转头看向炕边，两个瘦得皮包骨的小孩缩在那里，小宝正在哇哇哭。</span></div>
+<div class="frame ph fcell"><div class="fcell-h"><b>子分镜 2 · #2 未生成</b><button class="copy mini" data-copy="中景：三岁大宝攥着小宝的手，自己瘪着嘴不敢哭，小声安慰妹妹。">复制</button></div><span class="fprompt">中景：三岁大宝攥着小宝的手，自己瘪着嘴不敢哭，小声安慰妹妹。</span></div>
+<div class="frame ph fcell"><div class="fcell-h"><b>子分镜 3 · #3 未生成</b><button class="copy mini" data-copy="特写：苏晚看着两个孩子，眼神从迷茫变心碎，前世记忆涌回。">复制</button></div><span class="fprompt">特写：苏晚看着两个孩子，眼神从迷茫变心碎，前世记忆涌回。</span></div></div>
+  
+  <p class="seg-block"><b>走位</b>女主转头看向炕边，两个瘦小孩缩在那里；镜头从女主肩后拍过去。</p>
+  <div class="duo">
+    <ol class="cuts">
+<li class="cut">
+  <div class="cut-h">
+    <b>#1</b>
+    <span class="cut-t">0.00s 起 · 4.5s</span>
+    <span class="cut-sc">中景 · Static Shot</span>
+    
+    <span class="chip">C01</span><span class="chip">C04</span><span class="chip">C05</span>
+    
+    <button class="copy mini" data-copy="中景：苏晚转头看向炕边，两个瘦得皮包骨的小孩缩在那里，小宝正在哇哇哭。">分镜图提示词</button>
+  </div>
+  <p class="scomp">50mm 标准，中浅景深 · 炕边侧面 + 平视 · 三分法 · 视线 两个孩子 · 焦点 锁定三个角色 · 稳定</p>
+  <p class="sline"><b>小宝</b>妈……饿……</p>
+</li>
+<li class="cut">
+  <div class="cut-h">
+    <b>#2</b>
+    <span class="cut-t">4.50s 起 · 4s</span>
+    <span class="cut-sc">中景 · Push In</span>
+    
+    <span class="chip">C04</span><span class="chip">C05</span>
+    
+    <button class="copy mini" data-copy="中景：三岁大宝攥着小宝的手，自己瘪着嘴不敢哭，小声安慰妹妹。">分镜图提示词</button>
+  </div>
+  <p class="scomp">50mm 标准，中浅景深 · 两个孩子侧面 + 平视 · 对角线 · 视线 彼此 · 焦点 锁定男孩面部 · 稳定</p>
+  <p class="sact">大宝攥着小宝的手，自己也瘪着嘴，不敢哭出声。</p><p class="sline"><b>大宝</b>妹妹不哭……哥哥去找吃的……</p>
+</li>
+<li class="cut">
+  <div class="cut-h">
+    <b>#3</b>
+    <span class="cut-t">8.50s 起 · 4.5s</span>
+    <span class="cut-sc">特写 · Static Shot</span>
+    
+    <span class="chip">C01</span>
+    
+    <button class="copy mini" data-copy="特写：苏晚看着两个孩子，眼神从迷茫变心碎，前世记忆涌回。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 女主正面 + 平视 · 中心构图 · 视线 孩子方向 · 焦点 锁定女主双眼 · 稳定</p>
+  <p class="sact">苏晚看着两个孩子，前世的记忆像潮水一样涌进来。</p><p class="sact">她想起前世：自己跟着渣男跑了，两个孩子饿死在这间破屋里。</p>
+</li>
+    </ol>
+    <div class="ppanel">
+      <div class="pp-h">
+        <span class="ptabs"><button class="ptab on" data-i="0">H3 提示词</button><button class="ptab" data-i="1">Seedance 提示词</button></span>
+        <button class="copy" data-copy="How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.50-second mark of the target video; Picture 3 (from Shot 3) aligns with the 8.50-second mark of the target video.
+
+integrated_multimodal_description:
+[Shot 1] Medium shot over the woman's shoulder, looking at two tiny children huddled on the edge of the kang bed. The little girl is crying loudly, tears streaming down her thin face. Static Shot, camera holds. &lt;d&gt;[Chinese]妈……饿……&lt;/d&gt; says a toddler girl in a wailing, hungry voice.
+[Shot 2] At 00:04.500, the camera cuts to the three-year-old boy gripping his sister's hand, his own mouth trembling but trying not to cry. Push In slowly on the boy's determined little face. &lt;d&gt;[Chinese]妹妹不哭……哥哥去找吃的……&lt;/d&gt; says a three-year-old boy in a small, trembling voice.
+[Shot 3] At 00:08.500, the camera cuts back to the young woman's face as she stares at the children, her expression shifting from confusion to heartbreak. Static Shot.
+
+overall_soundscape: A toddler girl's suppressed crying, the soft sound of a three-year-old boy's voice comforting her, fabric rustling on the kang.
+
+non_diegetic_music: Strings fade to a quiet piano note, emphasizing the mother's heartbreak.">复制</button>
+      </div>
+      <pre class="pp on">How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.50-second mark of the target video; Picture 3 (from Shot 3) aligns with the 8.50-second mark of the target video.
+
+integrated_multimodal_description:
+[Shot 1] Medium shot over the woman's shoulder, looking at two tiny children huddled on the edge of the kang bed. The little girl is crying loudly, tears streaming down her thin face. Static Shot, camera holds. &lt;d&gt;[Chinese]妈……饿……&lt;/d&gt; says a toddler girl in a wailing, hungry voice.
+[Shot 2] At 00:04.500, the camera cuts to the three-year-old boy gripping his sister's hand, his own mouth trembling but trying not to cry. Push In slowly on the boy's determined little face. &lt;d&gt;[Chinese]妹妹不哭……哥哥去找吃的……&lt;/d&gt; says a three-year-old boy in a small, trembling voice.
+[Shot 3] At 00:08.500, the camera cuts back to the young woman's face as she stares at the children, her expression shifting from confusion to heartbreak. Static Shot.
+
+overall_soundscape: A toddler girl's suppressed crying, the soft sound of a three-year-old boy's voice comforting her, fabric rustling on the kang.
+
+non_diegetic_music: Strings fade to a quiet piano note, emphasizing the mother's heartbreak.</pre>
+      <pre class="pp">@[图片1] = 陆家土房
+@[图片2] = C01
+@[图片3] = C04
+@[图片4] = C05
+
+【人物关系与构图逻辑】
+女主转头看向炕边，两个瘦小孩缩在那里；镜头从女主肩后拍过去。
+
+【镜头1】
+焦距：50mm 标准，中浅景深
+机位：炕边侧面 + 平视
+构图：三分法
+运镜：固定镜头
+景别：中景
+画面：她转头看见炕边两个小孩，小女孩哭得满脸是泪，嘴里喊饿。
+台词：{妈……饿……}
+视线落点：两个孩子
+焦点：锁定三个角色
+稳定性：稳定
+
+【镜头2】
+焦距：50mm 标准，中浅景深
+机位：两个孩子侧面 + 平视
+构图：对角线
+运镜：推镜
+景别：中景
+画面：三岁男孩攥着妹妹的手，小声说不哭，哥哥去找吃的。
+台词：{妹妹不哭……哥哥去找吃的……}
+视线落点：彼此
+焦点：锁定男孩面部
+稳定性：稳定
+
+【镜头3】
+焦距：85mm 长焦，极浅景深
+机位：女主正面 + 平视
+构图：中心构图
+运镜：固定镜头
+景别：特写
+画面：女主看着两个孩子，前世记忆像潮水涌进来——她想起前世自己跟渣男跑了，两个孩子饿死在这间破屋。
+台词：{}
+视线落点：孩子方向
+焦点：锁定女主双眼
+稳定性：稳定
+
+&lt;小宝压抑的哭声，三岁大宝小声安慰。&gt;
+（弦乐渐弱，留出呼吸感。）
+
+【约束】
+1. 保持无字幕，避免生成任何文字或字幕
+2. 视频全程禁止出现外形、着装、配饰完全一致的人物</pre>
+    </div>
+  </div>
+  
+</article>
+<article class="segcard" id="seg-E01-03">
+  <header class="seg-h">
+    <b>E01-03</b>
+    <span class="sec-badge">14s · 3 切</span>
+    <span class="chip">陆家土房 陆家土房</span>
+    <span class="chip lite">夜晚灶火</span>
+    <span class="beatsref">第 1 场 第 11–15 拍</span>
+  </header>
+  <div class="fquad"><div class="frame ph fcell"><div class="fcell-h"><b>主分镜图 · #1 未生成</b><button class="copy mini" data-copy="中景：苏晚坐起身，伸手把两个孩子搂进怀里，动作又急又轻。">复制</button></div><span class="fprompt">中景：苏晚坐起身，伸手把两个孩子搂进怀里，动作又急又轻。</span></div>
+<div class="frame ph fcell"><div class="fcell-h"><b>子分镜 2 · #2 未生成</b><button class="copy mini" data-copy="特写：苏晚的手臂紧紧搂着两个瘦巴巴的孩子，小宝的脸贴在她胸口。">复制</button></div><span class="fprompt">特写：苏晚的手臂紧紧搂着两个瘦巴巴的孩子，小宝的脸贴在她胸口。</span></div>
+<div class="frame ph fcell"><div class="fcell-h"><b>子分镜 3 · #3 未生成</b><button class="copy mini" data-copy="特写：苏晚的脸，眼泪掉下来，但眼神从悲伤变坚定。">复制</button></div><span class="fprompt">特写：苏晚的脸，眼泪掉下来，但眼神从悲伤变坚定。</span></div></div>
+  
+  <p class="seg-block"><b>走位</b>女主坐起身，把两个孩子搂进怀里；母子三人挤在炕角。</p>
+  <div class="duo">
+    <ol class="cuts">
+<li class="cut">
+  <div class="cut-h">
+    <b>#1</b>
+    <span class="cut-t">0.00s 起 · 5s</span>
+    <span class="cut-sc">中景 · Tracking Shot</span>
+    
+    <span class="chip">C01</span><span class="chip">C04</span><span class="chip">C05</span>
+    
+    <button class="copy mini" data-copy="中景：苏晚坐起身，伸手把两个孩子搂进怀里，动作又急又轻。">分镜图提示词</button>
+  </div>
+  <p class="scomp">50mm 标准，中浅景深 · 炕角侧面 + 平视 · 中心构图 · 视线 孩子头顶 · 焦点 锁定女主上半身 · 稳定</p>
+  <p class="sline"><b>苏晚</b>大宝……小宝……</p><p class="sact">她一把把两个孩子搂进怀里，搂得紧紧的。</p>
+</li>
+<li class="cut">
+  <div class="cut-h">
+    <b>#2</b>
+    <span class="cut-t">5.00s 起 · 5s</span>
+    <span class="cut-sc">特写 · Static Shot</span>
+    
+    <span class="chip">C01</span><span class="chip">C04</span><span class="chip">C05</span>
+    
+    <button class="copy mini" data-copy="特写：苏晚的手臂紧紧搂着两个瘦巴巴的孩子，小宝的脸贴在她胸口。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 母子三人侧面 + 平视 · 对角线 · 视线 怀中孩子 · 焦点 锁定手臂与孩子 · 稳定</p>
+  <p class="sline"><b>苏晚</b>别怕，妈在。这一世，妈再也不会让你们饿肚子。</p>
+</li>
+<li class="cut">
+  <div class="cut-h">
+    <b>#3</b>
+    <span class="cut-t">10.00s 起 · 4s</span>
+    <span class="cut-sc">特写 · Push In</span>
+    
+    <span class="chip">C01</span>
+    
+    <button class="copy mini" data-copy="特写：苏晚的脸，眼泪掉下来，但眼神从悲伤变坚定。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 女主正面 + 平视 · 中心构图 · 视线 前方 · 焦点 锁定女主双眼 · 稳定</p>
+  <p class="sact">陆野默默点了点头。</p><p class="sact">她伸手摸自己的脸——光滑的、年轻的。</p>
+</li>
+    </ol>
+    <div class="ppanel">
+      <div class="pp-h">
+        <span class="ptabs"><button class="ptab on" data-i="0">H3 提示词</button><button class="ptab" data-i="1">Seedance 提示词</button></span>
+        <button class="copy" data-copy="How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 5.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 10.00-second mark of the target video.
+
+integrated_multimodal_description:
+[Shot 1] Medium shot of the young woman sitting up on the kang, reaching out to pull both children into her arms. Tracking Shot slowly follows her movement. &lt;d&gt;[Chinese]大宝……小宝……&lt;/d&gt; says a young woman in a trembling voice.
+[Shot 2] At 00:05.000, the camera cuts to a close-up of her arms wrapping tightly around the two thin children. Static Shot, camera holds. Her grip tightens protectively. &lt;d&gt;[Chinese]别怕，妈在。这一世，妈再也不会让你们饿肚子。&lt;/d&gt; says the young woman firmly.
+[Shot 3] At 00:10.000, the camera cuts to her face as tears stream down, but her expression hardens from grief to determination. Push In slowly on her jaw tightening.
+
+overall_soundscape: The toddler's crying subsides into sniffles, the young woman's shaky breathing, fabric rustling as she pulls the children close.
+
+non_diegetic_music: Strings swell with a warm undertone, shifting from grief to resolve.">复制</button>
+      </div>
+      <pre class="pp on">How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 5.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 10.00-second mark of the target video.
+
+integrated_multimodal_description:
+[Shot 1] Medium shot of the young woman sitting up on the kang, reaching out to pull both children into her arms. Tracking Shot slowly follows her movement. &lt;d&gt;[Chinese]大宝……小宝……&lt;/d&gt; says a young woman in a trembling voice.
+[Shot 2] At 00:05.000, the camera cuts to a close-up of her arms wrapping tightly around the two thin children. Static Shot, camera holds. Her grip tightens protectively. &lt;d&gt;[Chinese]别怕，妈在。这一世，妈再也不会让你们饿肚子。&lt;/d&gt; says the young woman firmly.
+[Shot 3] At 00:10.000, the camera cuts to her face as tears stream down, but her expression hardens from grief to determination. Push In slowly on her jaw tightening.
+
+overall_soundscape: The toddler's crying subsides into sniffles, the young woman's shaky breathing, fabric rustling as she pulls the children close.
+
+non_diegetic_music: Strings swell with a warm undertone, shifting from grief to resolve.</pre>
+      <pre class="pp">@[图片1] = 陆家土房
+@[图片2] = C01
+@[图片3] = C04
+@[图片4] = C05
+
+【人物关系与构图逻辑】
+女主坐起身，把两个孩子搂进怀里；母子三人挤在炕角。
+
+【镜头1】
+焦距：50mm 标准，中浅景深
+机位：炕角侧面 + 平视
+构图：中心构图
+运镜：跟拍
+景别：中景
+画面：她颤抖着叫两个孩子的名字，伸手把他们搂紧。
+台词：{大宝……小宝……}
+视线落点：孩子头顶
+焦点：锁定女主上半身
+稳定性：稳定
+
+【镜头2】
+焦距：85mm 长焦，极浅景深
+机位：母子三人侧面 + 平视
+构图：对角线
+运镜：固定镜头
+景别：特写
+画面：她把两个孩子搂得紧紧的，发誓这一世再也不让他们饿肚子。
+台词：{别怕，妈在。这一世，妈再也不会让你们饿肚子。}
+视线落点：怀中孩子
+焦点：锁定手臂与孩子
+稳定性：稳定
+
+【镜头3】
+焦距：85mm 长焦，极浅景深
+机位：女主正面 + 平视
+构图：中心构图
+运镜：推镜
+景别：特写
+画面：她擦了擦眼泪，喃喃说自己真的回来了，不是在做梦。
+台词：{}
+视线落点：前方
+焦点：锁定女主双眼
+稳定性：稳定
+
+&lt;小宝的哭声渐弱，女主哽咽的呼吸声。&gt;
+（弦乐渐强，带一丝温暖。）
+
+【约束】
+1. 保持无字幕，避免生成任何文字或字幕
+2. 视频全程禁止出现外形、着装、配饰完全一致的人物</pre>
+    </div>
+  </div>
+  
+</article>
+<article class="segcard" id="seg-E01-04">
+  <header class="seg-h">
+    <b>E01-04</b>
+    <span class="sec-badge">13s · 3 切</span>
+    <span class="chip">陆家土房 陆家土房</span>
+    <span class="chip lite">夜晚灶火</span>
+    <span class="beatsref">第 1 场 第 16–20 拍</span>
+  </header>
+  <div class="fquad"><div class="frame ph fcell"><div class="fcell-h"><b>主分镜图 · #1 未生成</b><button class="copy mini" data-copy="全景：破败的土房内景，裂缝土墙、破纸窗、空锅，苏晚坐在炕沿环顾四周。">复制</button></div><span class="fprompt">全景：破败的土房内景，裂缝土墙、破纸窗、空锅，苏晚坐在炕沿环顾四周。</span></div>
+<div class="frame ph fcell"><div class="fcell-h"><b>子分镜 2 · #2 未生成</b><button class="copy mini" data-copy="特写：窗外天边泛起一线鱼肚白，晨光透过破纸窗照进来。">复制</button></div><span class="fprompt">特写：窗外天边泛起一线鱼肚白，晨光透过破纸窗照进来。</span></div>
+<div class="frame ph fcell"><div class="fcell-h"><b>子分镜 3 · #3 未生成</b><button class="copy mini" data-copy="特写：苏晚低头看着怀里两个瘦巴巴的孩子，小宝哭得打嗝。">复制</button></div><span class="fprompt">特写：苏晚低头看着怀里两个瘦巴巴的孩子，小宝哭得打嗝。</span></div></div>
+  
+  <p class="seg-block"><b>走位</b>女主坐在炕沿，环顾破败的土房；两个孩子在她身后炕上。</p>
+  <div class="duo">
+    <ol class="cuts">
+<li class="cut">
+  <div class="cut-h">
+    <b>#1</b>
+    <span class="cut-t">0.00s 起 · 4s</span>
+    <span class="cut-sc">全景 · Static Shot</span>
+    
+    <span class="chip">C01</span>
+    
+    <button class="copy mini" data-copy="全景：破败的土房内景，裂缝土墙、破纸窗、空锅，苏晚坐在炕沿环顾四周。">分镜图提示词</button>
+  </div>
+  <p class="scomp">24mm 广角，深景深 · 屋内对角 + 平视 · 三分法 · 视线 整个房间 · 焦点 全景深 · 稳定</p>
+  <p class="sact">风吹过院子，衣角微微晃动。</p><p class="sact">远处传来鸡鸣声。</p>
+</li>
+<li class="cut">
+  <div class="cut-h">
+    <b>#2</b>
+    <span class="cut-t">4.00s 起 · 4s</span>
+    <span class="cut-sc">特写 · Push In</span>
+    
+    <span class="chip">C01</span>
+    
+    <button class="copy mini" data-copy="特写：窗外天边泛起一线鱼肚白，晨光透过破纸窗照进来。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 窗户 + 平视 · 中心构图 · 视线 窗外 · 焦点 锁定窗户 · 稳定</p>
+  <p class="sline"><b>苏晚</b>我不是在做梦……我真的回来了。</p>
+</li>
+<li class="cut">
+  <div class="cut-h">
+    <b>#3</b>
+    <span class="cut-t">8.00s 起 · 5s</span>
+    <span class="cut-sc">特写 · Static Shot</span>
+    
+    <span class="chip">C01</span><span class="chip">C04</span><span class="chip">C05</span>
+    
+    <button class="copy mini" data-copy="特写：苏晚低头看着怀里两个瘦巴巴的孩子，小宝哭得打嗝。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 母子三人侧面 + 俯视 · 对角线 · 视线 孩子 · 焦点 锁定小女孩的脸 · 稳定</p>
+  <p class="sact">苏晚的眼神从迷茫变成锐利，像换了一个人。</p><p class="sact">她抬头看向窗外，天边泛起一线鱼肚白。</p>
+</li>
+    </ol>
+    <div class="ppanel">
+      <div class="pp-h">
+        <span class="ptabs"><button class="ptab on" data-i="0">H3 提示词</button><button class="ptab" data-i="1">Seedance 提示词</button></span>
+        <button class="copy" data-copy="How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 8.00-second mark of the target video.
+
+integrated_multimodal_description:
+[Shot 1] Wide shot of the dilapidated rural mud-brick interior — cracked walls, broken paper window, empty stove. The young woman sits on the edge of the kang, looking around the room. Static Shot, camera holds on the empty room's bleakness.
+[Shot 2] At 00:04.000, the camera cuts to a close-up of the window — dawn light beginning to show through the cracked paper. Push In slowly on the window. &lt;d&gt;[Chinese]天要亮了。新的一天，新的开始。&lt;/d&gt; says the young woman softly.
+[Shot 3] At 00:08.000, the camera cuts back to the woman's profile as she looks down at the children in her arms, her expression tender but resolute. Static Shot. &lt;d&gt;[Chinese]我不是在做梦……我真的回来了。&lt;/d&gt; says the young woman softly.
+
+overall_soundscape: Crackling embers in the stove, faint wind whistling through the paper window cracks, distant dog bark.
+
+non_diegetic_music: Strings fade to a low drone, leaving space for the quiet determination of the moment.">复制</button>
+      </div>
+      <pre class="pp on">How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 8.00-second mark of the target video.
+
+integrated_multimodal_description:
+[Shot 1] Wide shot of the dilapidated rural mud-brick interior — cracked walls, broken paper window, empty stove. The young woman sits on the edge of the kang, looking around the room. Static Shot, camera holds on the empty room's bleakness.
+[Shot 2] At 00:04.000, the camera cuts to a close-up of the window — dawn light beginning to show through the cracked paper. Push In slowly on the window. &lt;d&gt;[Chinese]天要亮了。新的一天，新的开始。&lt;/d&gt; says the young woman softly.
+[Shot 3] At 00:08.000, the camera cuts back to the woman's profile as she looks down at the children in her arms, her expression tender but resolute. Static Shot. &lt;d&gt;[Chinese]我不是在做梦……我真的回来了。&lt;/d&gt; says the young woman softly.
+
+overall_soundscape: Crackling embers in the stove, faint wind whistling through the paper window cracks, distant dog bark.
+
+non_diegetic_music: Strings fade to a low drone, leaving space for the quiet determination of the moment.</pre>
+      <pre class="pp">@[图片1] = 陆家土房
+@[图片2] = C01
+@[图片3] = C04
+@[图片4] = C05
+
+【人物关系与构图逻辑】
+女主坐在炕沿，环顾破败的土房；两个孩子在她身后炕上。
+
+【镜头1】
+焦距：24mm 广角，深景深
+机位：屋内对角 + 平视
+构图：三分法
+运镜：固定镜头
+景别：全景
+画面：她环视这间破屋——墙裂缝、炕席破洞、锅里空的，但眼神里没有绝望，只有一股劲。
+台词：{}
+视线落点：整个房间
+焦点：全景深
+稳定性：稳定
+
+【镜头2】
+焦距：85mm 长焦，极浅景深
+机位：窗户 + 平视
+构图：中心构图
+运镜：推镜
+景别：特写
+画面：她抬头看向窗外，天边泛起鱼肚白。
+台词：{我不是在做梦……我真的回来了。}
+视线落点：窗外
+焦点：锁定窗户
+稳定性：稳定
+
+【镜头3】
+焦距：85mm 长焦，极浅景深
+机位：母子三人侧面 + 俯视
+构图：对角线
+运镜：固定镜头
+景别：特写
+画面：她低头看着怀里两个孩子，小女孩哭得一抽一抽，小身子发抖。
+台词：{}
+视线落点：孩子
+焦点：锁定小女孩的脸
+稳定性：稳定
+
+&lt;灶膛余烬噼啪声，夜风从窗缝吹进来。&gt;
+（弦乐渐弱，留出呼吸感。）
+
+【约束】
+1. 保持无字幕，避免生成任何文字或字幕
+2. 视频全程禁止出现外形、着装、配饰完全一致的人物</pre>
+    </div>
+  </div>
+  
+</article>
+<article class="segcard" id="seg-E01-05">
+  <header class="seg-h">
+    <b>E01-05</b>
+    <span class="sec-badge">12s · 3 切</span>
+    <span class="chip">陆家土房 陆家土房</span>
+    <span class="chip lite">夜晚灶火</span>
+    <span class="beatsref">第 1 场 第 21–25 拍</span>
+  </header>
+  <div class="fquad"><div class="frame ph fcell"><div class="fcell-h"><b>主分镜图 · #1 未生成</b><button class="copy mini" data-copy="特写：三岁大宝抬头看着苏晚，小声说妹妹三天没吃饭了。">复制</button></div><span class="fprompt">特写：三岁大宝抬头看着苏晚，小声说妹妹三天没吃饭了。</span></div>
+<div class="frame ph fcell"><div class="fcell-h"><b>子分镜 2 · #2 未生成</b><button class="copy mini" data-copy="特写：苏晚的脸，听到这话心像被刀扎了，眼泪涌上来。">复制</button></div><span class="fprompt">特写：苏晚的脸，听到这话心像被刀扎了，眼泪涌上来。</span></div>
+<div class="frame ph fcell"><div class="fcell-h"><b>子分镜 3 · #3 未生成</b><button class="copy mini" data-copy="特写：苏晚深吸一口气，把眼泪擦掉，眼神变硬。">复制</button></div><span class="fprompt">特写：苏晚深吸一口气，把眼泪擦掉，眼神变硬。</span></div></div>
+  
+  <p class="seg-block"><b>走位</b>女主低头看着孩子，大宝抬头说话；母子对视。</p>
+  <div class="duo">
+    <ol class="cuts">
+<li class="cut">
+  <div class="cut-h">
+    <b>#1</b>
+    <span class="cut-t">0.00s 起 · 4s</span>
+    <span class="cut-sc">特写 · Static Shot</span>
+    
+    <span class="chip">C04</span>
+    
+    <button class="copy mini" data-copy="特写：三岁大宝抬头看着苏晚，小声说妹妹三天没吃饭了。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 男孩正面 + 仰视 · 中心构图 · 视线 女主 · 焦点 锁定男孩眼睛 · 稳定</p>
+  <p class="sline"><b>苏晚</b>天要亮了。新的一天，新的开始。</p>
+</li>
+<li class="cut">
+  <div class="cut-h">
+    <b>#2</b>
+    <span class="cut-t">4.00s 起 · 3.5s</span>
+    <span class="cut-sc">特写 · Push In</span>
+    
+    <span class="chip">C01</span>
+    
+    <button class="copy mini" data-copy="特写：苏晚的脸，听到这话心像被刀扎了，眼泪涌上来。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 女主正面 + 平视 · 中心构图 · 视线 孩子方向 · 焦点 锁定女主双眼 · 稳定</p>
+  <p class="sact">她低头看着怀里两个瘦巴巴的孩子。</p><p class="sact">小宝哭得打嗝，小身子一抽一抽。</p>
+</li>
+<li class="cut">
+  <div class="cut-h">
+    <b>#3</b>
+    <span class="cut-t">7.50s 起 · 4.5s</span>
+    <span class="cut-sc">特写 · Static Shot</span>
+    
+    <span class="chip">C01</span>
+    
+    <button class="copy mini" data-copy="特写：苏晚深吸一口气，把眼泪擦掉，眼神变硬。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 女主正面 + 平视 · 中心构图 · 视线 前方 · 焦点 锁定女主下颌 · 稳定</p>
+  <p class="sline"><b>大宝</b>妈，妹妹三天没吃饭了……</p><p class="sact">苏晚的心像被刀扎了一下。</p>
+</li>
+    </ol>
+    <div class="ppanel">
+      <div class="pp-h">
+        <span class="ptabs"><button class="ptab on" data-i="0">H3 提示词</button><button class="ptab" data-i="1">Seedance 提示词</button></span>
+        <button class="copy" data-copy="How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 7.50-second mark of the target video.
+
+integrated_multimodal_description:
+[Shot 1] Close-up of the three-year-old boy looking up at his mother, his small voice trembling. Static Shot, camera holds on the boy's earnest face.
+[Shot 2] At 00:04.000, the camera cuts to the mother's face as her heart breaks, tears welling up in her eyes. Push In slowly on her eyes. &lt;d&gt;[Chinese]天要亮了。新的一天，新的开始。&lt;/d&gt; says the young woman softly.
+[Shot 3] At 00:07.500, the camera cuts to the mother wiping her tears away, her expression hardening. Static Shot. &lt;d&gt;[Chinese]妈，妹妹三天没吃饭了……&lt;/d&gt; says a small boy's voice off-screen.
+
+overall_soundscape: A toddler's hiccuping sobs, a three-year-old's small voice, the mother's shaky breathing.
+
+non_diegetic_music: Soft single piano notes, gentle but melancholic.">复制</button>
+      </div>
+      <pre class="pp on">How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 7.50-second mark of the target video.
+
+integrated_multimodal_description:
+[Shot 1] Close-up of the three-year-old boy looking up at his mother, his small voice trembling. Static Shot, camera holds on the boy's earnest face.
+[Shot 2] At 00:04.000, the camera cuts to the mother's face as her heart breaks, tears welling up in her eyes. Push In slowly on her eyes. &lt;d&gt;[Chinese]天要亮了。新的一天，新的开始。&lt;/d&gt; says the young woman softly.
+[Shot 3] At 00:07.500, the camera cuts to the mother wiping her tears away, her expression hardening. Static Shot. &lt;d&gt;[Chinese]妈，妹妹三天没吃饭了……&lt;/d&gt; says a small boy's voice off-screen.
+
+overall_soundscape: A toddler's hiccuping sobs, a three-year-old's small voice, the mother's shaky breathing.
+
+non_diegetic_music: Soft single piano notes, gentle but melancholic.</pre>
+      <pre class="pp">@[图片1] = 陆家土房
+@[图片2] = C04
+@[图片3] = C01
+
+【人物关系与构图逻辑】
+女主低头看着孩子，大宝抬头说话；母子对视。
+
+【镜头1】
+焦距：85mm 长焦，极浅景深
+机位：男孩正面 + 仰视
+构图：中心构图
+运镜：固定镜头
+景别：特写
+画面：三岁男孩低着头小声说，妹妹三天没吃饭了。
+台词：{天要亮了。新的一天，新的开始。}
+视线落点：女主
+焦点：锁定男孩眼睛
+稳定性：稳定
+
+【镜头2】
+焦距：85mm 长焦，极浅景深
+机位：女主正面 + 平视
+构图：中心构图
+运镜：推镜
+景别：特写
+画面：她的心像被刀扎了一下，声音哽咽说对不起孩子。
+台词：{}
+视线落点：孩子方向
+焦点：锁定女主双眼
+稳定性：稳定
+
+【镜头3】
+焦距：85mm 长焦，极浅景深
+机位：女主正面 + 平视
+构图：中心构图
+运镜：固定镜头
+景别：特写
+画面：她深吸一口气擦掉眼泪，眼神变得坚硬——从今天起谁也别想再欺负他们。
+台词：{妈，妹妹三天没吃饭了……}
+视线落点：前方
+焦点：锁定女主下颌
+稳定性：稳定
+
+&lt;小宝的打嗝声，大宝小声说话。&gt;
+（钢琴单音轻柔。）
+
+【约束】
+1. 保持无字幕，避免生成任何文字或字幕</pre>
+    </div>
+  </div>
+  
+</article>
+<article class="segcard" id="seg-E01-06">
+  <header class="seg-h">
+    <b>E01-06</b>
+    <span class="sec-badge">12s · 3 切</span>
+    <span class="chip">陆家土房 陆家土房</span>
+    <span class="chip lite">夜晚灶火</span>
+    <span class="beatsref">第 1 场 第 26–30 拍</span>
+  </header>
+  <div class="fquad"><div class="frame ph fcell"><div class="fcell-h"><b>主分镜图 · #1 未生成</b><button class="copy mini" data-copy="中景：苏晚坐在炕上，两个孩子在她身后睡着，她看着窗外，眼神坚定。">复制</button></div><span class="fprompt">中景：苏晚坐在炕上，两个孩子在她身后睡着，她看着窗外，眼神坚定。</span></div>
+<div class="frame ph fcell"><div class="fcell-h"><b>子分镜 2 · #2 未生成</b><button class="copy mini" data-copy="特写：苏晚的脸，眼泪又涌上来，但她硬生生眨回去。">复制</button></div><span class="fprompt">特写：苏晚的脸，眼泪又涌上来，但她硬生生眨回去。</span></div>
+<div class="frame ph fcell"><div class="fcell-h"><b>子分镜 3 · #3 未生成</b><button class="copy mini" data-copy="特写：苏晚攥紧的拳头放在膝上，指节发白。">复制</button></div><span class="fprompt">特写：苏晚攥紧的拳头放在膝上，指节发白。</span></div></div>
+  
+  <p class="seg-block"><b>走位</b>女主坐在炕上，两个孩子在身后安睡；镜头从她正面拍。</p>
+  <div class="duo">
+    <ol class="cuts">
+<li class="cut">
+  <div class="cut-h">
+    <b>#1</b>
+    <span class="cut-t">0.00s 起 · 5s</span>
+    <span class="cut-sc">中景 · Static Shot</span>
+    
+    <span class="chip">C01</span><span class="chip">C04</span><span class="chip">C05</span>
+    
+    <button class="copy mini" data-copy="中景：苏晚坐在炕上，两个孩子在她身后睡着，她看着窗外，眼神坚定。">分镜图提示词</button>
+  </div>
+  <p class="scomp">50mm 标准，中浅景深 · 女主正面 + 平视 · 三分法 · 视线 窗外 · 焦点 锁定女主上半身 · 稳定</p>
+  <p class="sline"><b>苏晚</b>是妈不好……妈对不起你们……</p><p class="sact">她深吸一口气，把眼泪擦掉。</p>
+</li>
+<li class="cut">
+  <div class="cut-h">
+    <b>#2</b>
+    <span class="cut-t">5.00s 起 · 5s</span>
+    <span class="cut-sc">特写 · Push In</span>
+    
+    <span class="chip">C01</span>
+    
+    <button class="copy mini" data-copy="特写：苏晚的脸，眼泪又涌上来，但她硬生生眨回去。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 女主正面 + 平视 · 中心构图 · 视线 孩子方向 · 焦点 锁定女主双眼 · 稳定</p>
+  <p class="sline"><b>苏晚</b>从今天起，谁也别想再欺负我们。</p>
+</li>
+<li class="cut">
+  <div class="cut-h">
+    <b>#3</b>
+    <span class="cut-t">10.00s 起 · 2s</span>
+    <span class="cut-sc">特写 · Static Shot</span>
+    
+    <span class="chip">C01</span>
+    
+    <button class="copy mini" data-copy="特写：苏晚攥紧的拳头放在膝上，指节发白。">分镜图提示词</button>
+  </div>
+  <p class="scomp">85mm 长焦，极浅景深 · 女主膝上 + 俯视 · 中心构图 · 视线 拳头 · 焦点 锁定拳头 · 稳定</p>
+  <p class="sact">她环视这间破屋子：墙裂缝、炕席破洞、锅里空的。</p><p class="sact">但她的眼神里没有绝望，只有一股劲。</p>
+</li>
+    </ol>
+    <div class="ppanel">
+      <div class="pp-h">
+        <span class="ptabs"><button class="ptab on" data-i="0">H3 提示词</button><button class="ptab" data-i="1">Seedance 提示词</button></span>
+        <button class="copy" data-copy="How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 5.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 10.00-second mark of the target video.
+
+integrated_multimodal_description:
+[Shot 1] Medium shot of the young woman sitting on the kang, the two children sleeping behind her. She looks out the window with a resolute expression. Static Shot, camera holds. &lt;d&gt;[Chinese]妈，妹妹三天没吃饭了……&lt;/d&gt; says a small boy's voice off-screen.
+[Shot 2] At 00:05.000, the camera cuts to the mother's face as tears well up again, but she blinks them away. Push In slowly on her eyes. &lt;d&gt;[Chinese]是妈不好……妈对不起你们……&lt;/d&gt; says the young woman, voice choking.
+[Shot 3] At 00:10.000, the camera cuts to a close-up of her clenched fist on her lap, knuckles white with determination. Static Shot. &lt;d&gt;[Chinese]从今天起，谁也别想再欺负我们。&lt;/d&gt; says the young woman firmly.
+
+overall_soundscape: Crackling embers, a second distant rooster crow, the soft breathing of sleeping children.
+
+non_diegetic_music: Strings build slowly, shifting from melancholy to quiet hope and determination.">复制</button>
+      </div>
+      <pre class="pp on">How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 5.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 10.00-second mark of the target video.
+
+integrated_multimodal_description:
+[Shot 1] Medium shot of the young woman sitting on the kang, the two children sleeping behind her. She looks out the window with a resolute expression. Static Shot, camera holds. &lt;d&gt;[Chinese]妈，妹妹三天没吃饭了……&lt;/d&gt; says a small boy's voice off-screen.
+[Shot 2] At 00:05.000, the camera cuts to the mother's face as tears well up again, but she blinks them away. Push In slowly on her eyes. &lt;d&gt;[Chinese]是妈不好……妈对不起你们……&lt;/d&gt; says the young woman, voice choking.
+[Shot 3] At 00:10.000, the camera cuts to a close-up of her clenched fist on her lap, knuckles white with determination. Static Shot. &lt;d&gt;[Chinese]从今天起，谁也别想再欺负我们。&lt;/d&gt; says the young woman firmly.
+
+overall_soundscape: Crackling embers, a second distant rooster crow, the soft breathing of sleeping children.
+
+non_diegetic_music: Strings build slowly, shifting from melancholy to quiet hope and determination.</pre>
+      <pre class="pp">@[图片1] = 陆家土房
+@[图片2] = C01
+@[图片3] = C04
+@[图片4] = C05
+
+【人物关系与构图逻辑】
+女主坐在炕上，两个孩子在身后安睡；镜头从她正面拍。
+
+【镜头1】
+焦距：50mm 标准，中浅景深
+机位：女主正面 + 平视
+构图：三分法
+运镜：固定镜头
+景别：中景
+画面：她深吸一口气稳住心神，两个孩子在身后安睡，远处鸡叫了第二遍。
+台词：{是妈不好……妈对不起你们……}
+视线落点：窗外
+焦点：锁定女主上半身
+稳定性：稳定
+
+【镜头2】
+焦距：85mm 长焦，极浅景深
+机位：女主正面 + 平视
+构图：中心构图
+运镜：推镜
+景别：特写
+画面：她的心像被刀扎了一下，声音哽咽说对不起孩子。
+台词：{从今天起，谁也别想再欺负我们。}
+视线落点：孩子方向
+焦点：锁定女主双眼
+稳定性：稳定
+
+【镜头3】
+焦距：85mm 长焦，极浅景深
+机位：女主膝上 + 俯视
+构图：中心构图
+运镜：固定镜头
+景别：特写
+画面：她攥紧拳头——新的一天开始了，好日子才刚刚起步。
+台词：{}
+视线落点：拳头
+焦点：锁定拳头
+稳定性：稳定
+
+&lt;灶膛余烬噼啪，远处鸡叫第二遍。&gt;
+（弦乐渐强，走向希望。）
+
+【约束】
+1. 保持无字幕，避免生成任何文字或字幕
+2. 视频全程禁止出现外形、着装、配饰完全一致的人物</pre>
+    </div>
+  </div>
+  
+</article>
+    </div>
+  </div>
+  <button class="shmore">▾ 展开全部段</button>
+</section>
+</section>
+
+<section class="top-sec" id="sec-batches">
+  <div class="sec-h"><span class="no">03</span><h2>生成批次单</h2><span class="note">自动汇总 · 同批段共用同一张环境参考图</span></div>
+  <div class="batches">
+<article class="batch">
+  
+  <header class="batch-h"><b>批次 01</b><span class="chip">陆家土房 陆家土房</span><span class="chip lite">夜晚灶火</span></header>
+  <div class="batch-shots"><a class="chip mono" href="#seg-E01-01">E01-01</a><a class="chip mono" href="#seg-E01-02">E01-02</a><a class="chip mono" href="#seg-E01-03">E01-03</a><a class="chip mono" href="#seg-E01-04">E01-04</a><a class="chip mono" href="#seg-E01-05">E01-05</a><a class="chip mono" href="#seg-E01-06">E01-06</a></div>
+  <p class="batch-need">需要：C01、C04、C05 的角色设定图</p>
+</article>
+  </div>
+</section>
+
+<section class="top-sec" id="sec-dialogue">
+  <div class="sec-h"><span class="no">04</span><h2>配音对齐单</h2><span class="note">自动汇总 · TTS 音频对到哪一段的第几切</span></div>
+  <table><thead><tr><th>段 · 切</th><th>说话人</th><th>台词</th><th>台词秒数</th></tr></thead>
+  <tbody>
+<tr><td><a href="#seg-E01-01">E01-01</a> #1</td><td>苏晚</td><td class="serif">这……这是哪里？</td><td>1.8</td></tr>
+<tr><td><a href="#seg-E01-02">E01-02</a> #1</td><td>小宝</td><td class="serif">妈……饿……</td><td>1.3</td></tr>
+<tr><td><a href="#seg-E01-02">E01-02</a> #2</td><td>大宝</td><td class="serif">妹妹不哭……哥哥去找吃的……</td><td>3.1</td></tr>
+<tr><td><a href="#seg-E01-03">E01-03</a> #1</td><td>苏晚</td><td class="serif">大宝……小宝……</td><td>1.8</td></tr>
+<tr><td><a href="#seg-E01-03">E01-03</a> #2</td><td>苏晚</td><td class="serif">别怕，妈在。这一世，妈再也不会让你们饿肚子。</td><td>4.9</td></tr>
+<tr><td><a href="#seg-E01-04">E01-04</a> #2</td><td>苏晚</td><td class="serif">我不是在做梦……我真的回来了。</td><td>3.3</td></tr>
+<tr><td><a href="#seg-E01-05">E01-05</a> #1</td><td>苏晚</td><td class="serif">天要亮了。新的一天，新的开始。</td><td>3.3</td></tr>
+<tr><td><a href="#seg-E01-05">E01-05</a> #3</td><td>大宝</td><td class="serif">妈，妹妹三天没吃饭了……</td><td>2.7</td></tr>
+<tr><td><a href="#seg-E01-06">E01-06</a> #1</td><td>苏晚</td><td class="serif">是妈不好……妈对不起你们……</td><td>3.1</td></tr>
+<tr><td><a href="#seg-E01-06">E01-06</a> #2</td><td>苏晚</td><td class="serif">从今天起，谁也别想再欺负我们。</td><td>3.3</td></tr>
+  </tbody></table>
+</section>
+
+<section class="top-sec" id="sec-gates">
+  <div class="sec-h"><span class="no">05</span><h2>质量门</h2></div>
+  <ul class="gate">
+  <li class="ok"><span class="m">✓</span><span>剧本节拍被恰好一次、按顺序、连续认领（分镜级）</span></li>
+  <li class="ok"><span class="m">✓</span><span>每段 0 &lt; 总秒数 ≤ 15（一次生成的上限）</span></li>
+  <li class="ok"><span class="m">✓</span><span>每个分镜 2–5 秒——短剧的注意力节奏</span></li>
+  <li class="ok"><span class="m">✓</span><span>认领节拍的台词装得进分镜秒数</span></li>
+  <li class="ok"><span class="m">✓</span><span>每集总时长在剧本目标 ±15% 内</span></li>
+  <li class="ok"><span class="m">✓</span><span>单个分镜同框 ≤ 3 人，超了必须带拆解说明</span></li>
+  <li class="ok"><span class="m">✓</span><span>段号 E01-01 格式、按顺序连号</span></li>
+  <li class="ok"><span class="m">✓</span><span>景别中文词写进分镜图提示词</span></li>
+  <li class="ok"><span class="m">✓</span><span>运镜用 H3 官方词表，且出现在自己的 [Shot k] 段落里</span></li>
+  <li class="ok"><span class="m">✓</span><span>H3 首行对齐指令由分镜结构推导逐字对账，切点时刻逐个对</span></li>
+  <li class="ok"><span class="m">✓</span><span>认领节拍的台词逐字进 H3 提示词的 &lt;d&gt; 块</span></li>
+  <li class="ok"><span class="m">✓</span><span>H3 提示词语言与设定一致（promptLang=en，正文全英文、骨架 token 官方英文格式）</span></li>
+  <li class="ok"><span class="m">✓</span><span>分镜图提示词中文且非空</span></li>
+  <li class="ok"><span class="m">✓</span><span>视频提示词不含角色名（H3 正文与 Seedance 镜头正文；分镜图提示词直呼其名放行）<small>未提供 outline/cast，本门跳过（视为通过）</small></span></li>
+  <li class="ok"><span class="m">✓</span><span>构图量化字段齐全（每段 blocking；每镜焦距／机位／构图／视线落点／焦点／稳定性）</span></li>
+  <li class="ok"><span class="m">✓</span><span>Seedance 镜头正文中文非空，不写时间、镜头编号、图片引用和协议符号</span></li>
+  <li class="bad"><span class="m">✗</span><span>场次／人物／道具对账剧本<small>E01-01#1 的 C01 不在剧本该场人物里；E01-01#2 的 C01 不在剧本该场人物里；E01-01#3 的 C01 不在剧本该场人物里；E01-02#1 的 C01 不在剧本该场人物里；E01-02#1 的 C04 不在剧本该场人物里；E01-02#1 的 C05 不在剧本该场人物里；E01-02#2 的 C04 不在剧本该场人物里；E01-02#2 的 C05 不在剧本该场人物里；E01-02#3 的 C01 不在剧本该场人物里；E01-03#1 的 C01 不在剧本该场人物里；E01-03#1 的 C04 不在剧本该场人物里；E01-03#1 的 C05 不在剧本该场人物里；E01-03#2 的 C01 不在剧本该场人物里；E01-03#2 的 C04 不在剧本该场人物里；E01-03#2 的 C05 不在剧本该场人物里；E01-03#3 的 C01 不在剧本该场人物里；E01-04#1 的 C01 不在剧本该场人物里；E01-04#2 的 C01 不在剧本该场人物里；E01-04#3 的 C01 不在剧本该场人物里；E01-04#3 的 C04 不在剧本该场人物里；E01-04#3 的 C05 不在剧本该场人物里；E01-05#1 的 C04 不在剧本该场人物里；E01-05#2 的 C01 不在剧本该场人物里；E01-05#3 的 C01 不在剧本该场人物里；E01-06#1 的 C01 不在剧本该场人物里；E01-06#1 的 C04 不在剧本该场人物里；E01-06#1 的 C05 不在剧本该场人物里；E01-06#2 的 C01 不在剧本该场人物里；E01-06#3 的 C01 不在剧本该场人物里</small></span></li>
+  <li class="ok"><span class="m">✓</span><span>引用的配方存在、必备短语进了分镜图提示词、多格配方连排够格数<small>未挂载配方卡库（--shots &lt;卡片目录&gt;），本门跳过（视为通过）</small></span></li>
+</ul>
+  <p class="gsum"><b>1 项未过</b></p>
+</section>
+
+<p class="foot">分镜由模型依据剧本切分：段 = 一次生成（≤15 秒），分镜 = 段内 2–5 秒的剪切，每个分镜一张关键帧图。对齐指令、切点时刻、台词、提示词纪律全部由脚本确定性对账。分镜图出图走 codex，环境与角色设定图当参考图。</p>
+</div>
+
+<div class="lightbox" id="lightbox"><img alt=""></div>
+
+<script type="application/json" id="storyboard-data">{"source":"八零新婚夜，空间囤货养崽暴富","promptLang":"en","params":{"maxSegmentSeconds":15,"minCutSeconds":2,"maxCutSeconds":5,"maxOnScreen":3,"tolerance":0.15},"episodes":[{"ep":1,"segments":[{"id":"E01-01","sceneIndex":1,"blocking":"女主躺在土炕中央，面朝天花板；镜头从上方俯拍她的脸。","soundscape":"昏暗土房内，灶膛余烬噼啪声，远处微弱鸡鸣。","music":"低沉弦乐缓慢铺底，营造重生前的压抑感。","h3Prompt":"How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 8.00-second mark of the target video.\n\nintegrated_multimodal_description:\n[Shot 1] Close-up of a young Chinese woman's face on a dilapidated rural earthen kang bed at night. Her eyes suddenly snap open, pupils contracting in the dim firelight. Push In slowly on her face. She gasps for air, eyes darting. \u003cd>[Chinese]这……这是哪里？\u003c/d> says a young woman in a hoarse, confused voice.\n[Shot 2] At 00:04.000, the camera cuts to her hand reaching up to touch her own cheek, fingers trembling. Static Shot, camera holds steady on her hand.\n[Shot 3] At 00:08.000, the camera cuts to her eyes darting left and right, taking in the cracked mud wall and thatched roof above. Push In on her eyes as recognition dawns.\n\noverall_soundscape: Dim rural interior at night, distant faint rooster crowing, crackle of dying embers in the stove.\n\nnon_diegetic_music: Low sustained strings slowly building, creating a disorienting rebirth atmosphere.","cuts":[{"beats":[1,3],"seconds":4,"size":"close","camera":"Push In","characters":["C01"],"frame":"特写：苏晚的脸在昏暗灶火光中猛地睁开眼，瞳孔收缩，大口喘气。","shot":"年轻女子躺在土炕上，眼睛猛然睁开，大口喘气，环顾四周，嘴里喃喃问这是哪里。","lens":"85mm 长焦，极浅景深","cameraPosition":"女主面部 + 俯视30°","composition":"中心构图","eyeline":"天花板","focus":"锁定女主双眼","stability":"stable"},{"beats":[4,4],"seconds":4,"size":"close","camera":"Static Shot","characters":["C01"],"frame":"特写：苏晚的手抬起，颤抖着摸自己的脸。","shot":"她抬手摸自己的脸颊，不敢相信眼前的一切。","lens":"85mm 长焦，极浅景深","cameraPosition":"女主手部 + 俯视","composition":"对角线","eyeline":"她的脸","focus":"锁定手指","stability":"stable"},{"beats":[5,5],"seconds":5,"size":"close","camera":"Push In","characters":["C01"],"frame":"特写：苏晚的眼睛左右转动，看清头顶的裂缝土墙和草房顶。","shot":"她的眼神从迷茫变清晰，认出了这间破旧的土房。","lens":"85mm 长焦，极浅景深","cameraPosition":"女主眼睛 + 俯视","composition":"中心构图","eyeline":"四周","focus":"锁定瞳孔","stability":"stable"}]},{"id":"E01-02","sceneIndex":1,"blocking":"女主转头看向炕边，两个瘦小孩缩在那里；镜头从女主肩后拍过去。","soundscape":"小宝压抑的哭声，三岁大宝小声安慰。","music":"弦乐渐弱，留出呼吸感。","h3Prompt":"How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.50-second mark of the target video; Picture 3 (from Shot 3) aligns with the 8.50-second mark of the target video.\n\nintegrated_multimodal_description:\n[Shot 1] Medium shot over the woman's shoulder, looking at two tiny children huddled on the edge of the kang bed. The little girl is crying loudly, tears streaming down her thin face. Static Shot, camera holds. \u003cd>[Chinese]妈……饿……\u003c/d> says a toddler girl in a wailing, hungry voice.\n[Shot 2] At 00:04.500, the camera cuts to the three-year-old boy gripping his sister's hand, his own mouth trembling but trying not to cry. Push In slowly on the boy's determined little face. \u003cd>[Chinese]妹妹不哭……哥哥去找吃的……\u003c/d> says a three-year-old boy in a small, trembling voice.\n[Shot 3] At 00:08.500, the camera cuts back to the young woman's face as she stares at the children, her expression shifting from confusion to heartbreak. Static Shot.\n\noverall_soundscape: A toddler girl's suppressed crying, the soft sound of a three-year-old boy's voice comforting her, fabric rustling on the kang.\n\nnon_diegetic_music: Strings fade to a quiet piano note, emphasizing the mother's heartbreak.","cuts":[{"beats":[6,6],"seconds":4.5,"size":"medium","camera":"Static Shot","characters":["C01","C04","C05"],"frame":"中景：苏晚转头看向炕边，两个瘦得皮包骨的小孩缩在那里，小宝正在哇哇哭。","shot":"她转头看见炕边两个小孩，小女孩哭得满脸是泪，嘴里喊饿。","lens":"50mm 标准，中浅景深","cameraPosition":"炕边侧面 + 平视","composition":"三分法","eyeline":"两个孩子","focus":"锁定三个角色","stability":"stable"},{"beats":[7,8],"seconds":4,"size":"medium","camera":"Push In","characters":["C04","C05"],"frame":"中景：三岁大宝攥着小宝的手，自己瘪着嘴不敢哭，小声安慰妹妹。","shot":"三岁男孩攥着妹妹的手，小声说不哭，哥哥去找吃的。","lens":"50mm 标准，中浅景深","cameraPosition":"两个孩子侧面 + 平视","composition":"对角线","eyeline":"彼此","focus":"锁定男孩面部","stability":"stable"},{"beats":[9,10],"seconds":4.5,"size":"close","camera":"Static Shot","characters":["C01"],"frame":"特写：苏晚看着两个孩子，眼神从迷茫变心碎，前世记忆涌回。","shot":"女主看着两个孩子，前世记忆像潮水涌进来——她想起前世自己跟渣男跑了，两个孩子饿死在这间破屋。","lens":"85mm 长焦，极浅景深","cameraPosition":"女主正面 + 平视","composition":"中心构图","eyeline":"孩子方向","focus":"锁定女主双眼","stability":"stable"}]},{"id":"E01-03","sceneIndex":1,"blocking":"女主坐起身，把两个孩子搂进怀里；母子三人挤在炕角。","soundscape":"小宝的哭声渐弱，女主哽咽的呼吸声。","music":"弦乐渐强，带一丝温暖。","h3Prompt":"How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 5.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 10.00-second mark of the target video.\n\nintegrated_multimodal_description:\n[Shot 1] Medium shot of the young woman sitting up on the kang, reaching out to pull both children into her arms. Tracking Shot slowly follows her movement. \u003cd>[Chinese]大宝……小宝……\u003c/d> says a young woman in a trembling voice.\n[Shot 2] At 00:05.000, the camera cuts to a close-up of her arms wrapping tightly around the two thin children. Static Shot, camera holds. Her grip tightens protectively. \u003cd>[Chinese]别怕，妈在。这一世，妈再也不会让你们饿肚子。\u003c/d> says the young woman firmly.\n[Shot 3] At 00:10.000, the camera cuts to her face as tears stream down, but her expression hardens from grief to determination. Push In slowly on her jaw tightening.\n\noverall_soundscape: The toddler's crying subsides into sniffles, the young woman's shaky breathing, fabric rustling as she pulls the children close.\n\nnon_diegetic_music: Strings swell with a warm undertone, shifting from grief to resolve.","cuts":[{"beats":[11,12],"seconds":5,"size":"medium","camera":"Tracking Shot","characters":["C01","C04","C05"],"frame":"中景：苏晚坐起身，伸手把两个孩子搂进怀里，动作又急又轻。","shot":"她颤抖着叫两个孩子的名字，伸手把他们搂紧。","lens":"50mm 标准，中浅景深","cameraPosition":"炕角侧面 + 平视","composition":"中心构图","eyeline":"孩子头顶","focus":"锁定女主上半身","stability":"stable"},{"beats":[13,13],"seconds":5,"size":"close","camera":"Static Shot","characters":["C01","C04","C05"],"frame":"特写：苏晚的手臂紧紧搂着两个瘦巴巴的孩子，小宝的脸贴在她胸口。","shot":"她把两个孩子搂得紧紧的，发誓这一世再也不让他们饿肚子。","lens":"85mm 长焦，极浅景深","cameraPosition":"母子三人侧面 + 平视","composition":"对角线","eyeline":"怀中孩子","focus":"锁定手臂与孩子","stability":"stable"},{"beats":[14,15],"seconds":4,"size":"close","camera":"Push In","characters":["C01"],"frame":"特写：苏晚的脸，眼泪掉下来，但眼神从悲伤变坚定。","shot":"她擦了擦眼泪，喃喃说自己真的回来了，不是在做梦。","lens":"85mm 长焦，极浅景深","cameraPosition":"女主正面 + 平视","composition":"中心构图","eyeline":"前方","focus":"锁定女主双眼","stability":"stable"}]},{"id":"E01-04","sceneIndex":1,"blocking":"女主坐在炕沿，环顾破败的土房；两个孩子在她身后炕上。","soundscape":"灶膛余烬噼啪声，夜风从窗缝吹进来。","music":"弦乐渐弱，留出呼吸感。","h3Prompt":"How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 8.00-second mark of the target video.\n\nintegrated_multimodal_description:\n[Shot 1] Wide shot of the dilapidated rural mud-brick interior — cracked walls, broken paper window, empty stove. The young woman sits on the edge of the kang, looking around the room. Static Shot, camera holds on the empty room's bleakness.\n[Shot 2] At 00:04.000, the camera cuts to a close-up of the window — dawn light beginning to show through the cracked paper. Push In slowly on the window. \u003cd>[Chinese]天要亮了。新的一天，新的开始。\u003c/d> says the young woman softly.\n[Shot 3] At 00:08.000, the camera cuts back to the woman's profile as she looks down at the children in her arms, her expression tender but resolute. Static Shot. \u003cd>[Chinese]我不是在做梦……我真的回来了。\u003c/d> says the young woman softly.\n\noverall_soundscape: Crackling embers in the stove, faint wind whistling through the paper window cracks, distant dog bark.\n\nnon_diegetic_music: Strings fade to a low drone, leaving space for the quiet determination of the moment.","cuts":[{"beats":[16,17],"seconds":4,"size":"wide","camera":"Static Shot","characters":["C01"],"frame":"全景：破败的土房内景，裂缝土墙、破纸窗、空锅，苏晚坐在炕沿环顾四周。","shot":"她环视这间破屋——墙裂缝、炕席破洞、锅里空的，但眼神里没有绝望，只有一股劲。","lens":"24mm 广角，深景深","cameraPosition":"屋内对角 + 平视","composition":"三分法","eyeline":"整个房间","focus":"全景深","stability":"stable"},{"beats":[18,18],"seconds":4,"size":"close","camera":"Push In","characters":["C01"],"frame":"特写：窗外天边泛起一线鱼肚白，晨光透过破纸窗照进来。","shot":"她抬头看向窗外，天边泛起鱼肚白。","lens":"85mm 长焦，极浅景深","cameraPosition":"窗户 + 平视","composition":"中心构图","eyeline":"窗外","focus":"锁定窗户","stability":"stable"},{"beats":[19,20],"seconds":5,"size":"close","camera":"Static Shot","characters":["C01","C04","C05"],"frame":"特写：苏晚低头看着怀里两个瘦巴巴的孩子，小宝哭得打嗝。","shot":"她低头看着怀里两个孩子，小女孩哭得一抽一抽，小身子发抖。","lens":"85mm 长焦，极浅景深","cameraPosition":"母子三人侧面 + 俯视","composition":"对角线","eyeline":"孩子","focus":"锁定小女孩的脸","stability":"stable"}]},{"id":"E01-05","sceneIndex":1,"blocking":"女主低头看着孩子，大宝抬头说话；母子对视。","soundscape":"小宝的打嗝声，大宝小声说话。","music":"钢琴单音轻柔。","h3Prompt":"How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 4.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 7.50-second mark of the target video.\n\nintegrated_multimodal_description:\n[Shot 1] Close-up of the three-year-old boy looking up at his mother, his small voice trembling. Static Shot, camera holds on the boy's earnest face.\n[Shot 2] At 00:04.000, the camera cuts to the mother's face as her heart breaks, tears welling up in her eyes. Push In slowly on her eyes. \u003cd>[Chinese]天要亮了。新的一天，新的开始。\u003c/d> says the young woman softly.\n[Shot 3] At 00:07.500, the camera cuts to the mother wiping her tears away, her expression hardening. Static Shot. \u003cd>[Chinese]妈，妹妹三天没吃饭了……\u003c/d> says a small boy's voice off-screen.\n\noverall_soundscape: A toddler's hiccuping sobs, a three-year-old's small voice, the mother's shaky breathing.\n\nnon_diegetic_music: Soft single piano notes, gentle but melancholic.","cuts":[{"beats":[21,21],"seconds":4,"size":"close","camera":"Static Shot","characters":["C04"],"frame":"特写：三岁大宝抬头看着苏晚，小声说妹妹三天没吃饭了。","shot":"三岁男孩低着头小声说，妹妹三天没吃饭了。","lens":"85mm 长焦，极浅景深","cameraPosition":"男孩正面 + 仰视","composition":"中心构图","eyeline":"女主","focus":"锁定男孩眼睛","stability":"stable"},{"beats":[22,23],"seconds":3.5,"size":"close","camera":"Push In","characters":["C01"],"frame":"特写：苏晚的脸，听到这话心像被刀扎了，眼泪涌上来。","shot":"她的心像被刀扎了一下，声音哽咽说对不起孩子。","lens":"85mm 长焦，极浅景深","cameraPosition":"女主正面 + 平视","composition":"中心构图","eyeline":"孩子方向","focus":"锁定女主双眼","stability":"stable"},{"beats":[24,25],"seconds":4.5,"size":"close","camera":"Static Shot","characters":["C01"],"frame":"特写：苏晚深吸一口气，把眼泪擦掉，眼神变硬。","shot":"她深吸一口气擦掉眼泪，眼神变得坚硬——从今天起谁也别想再欺负他们。","lens":"85mm 长焦，极浅景深","cameraPosition":"女主正面 + 平视","composition":"中心构图","eyeline":"前方","focus":"锁定女主下颌","stability":"stable"}]},{"id":"E01-06","sceneIndex":1,"blocking":"女主坐在炕上，两个孩子在身后安睡；镜头从她正面拍。","soundscape":"灶膛余烬噼啪，远处鸡叫第二遍。","music":"弦乐渐强，走向希望。","h3Prompt":"How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 5.00-second mark of the target video; Picture 3 (from Shot 3) aligns with the 10.00-second mark of the target video.\n\nintegrated_multimodal_description:\n[Shot 1] Medium shot of the young woman sitting on the kang, the two children sleeping behind her. She looks out the window with a resolute expression. Static Shot, camera holds. \u003cd>[Chinese]妈，妹妹三天没吃饭了……\u003c/d> says a small boy's voice off-screen.\n[Shot 2] At 00:05.000, the camera cuts to the mother's face as tears well up again, but she blinks them away. Push In slowly on her eyes. \u003cd>[Chinese]是妈不好……妈对不起你们……\u003c/d> says the young woman, voice choking.\n[Shot 3] At 00:10.000, the camera cuts to a close-up of her clenched fist on her lap, knuckles white with determination. Static Shot. \u003cd>[Chinese]从今天起，谁也别想再欺负我们。\u003c/d> says the young woman firmly.\n\noverall_soundscape: Crackling embers, a second distant rooster crow, the soft breathing of sleeping children.\n\nnon_diegetic_music: Strings build slowly, shifting from melancholy to quiet hope and determination.","cuts":[{"beats":[26,27],"seconds":5,"size":"medium","camera":"Static Shot","characters":["C01","C04","C05"],"frame":"中景：苏晚坐在炕上，两个孩子在她身后睡着，她看着窗外，眼神坚定。","shot":"她深吸一口气稳住心神，两个孩子在身后安睡，远处鸡叫了第二遍。","lens":"50mm 标准，中浅景深","cameraPosition":"女主正面 + 平视","composition":"三分法","eyeline":"窗外","focus":"锁定女主上半身","stability":"stable"},{"beats":[28,28],"seconds":5,"size":"close","camera":"Push In","characters":["C01"],"frame":"特写：苏晚的脸，眼泪又涌上来，但她硬生生眨回去。","shot":"她的心像被刀扎了一下，声音哽咽说对不起孩子。","lens":"85mm 长焦，极浅景深","cameraPosition":"女主正面 + 平视","composition":"中心构图","eyeline":"孩子方向","focus":"锁定女主双眼","stability":"stable"},{"beats":[29,30],"seconds":2,"size":"close","camera":"Static Shot","characters":["C01"],"frame":"特写：苏晚攥紧的拳头放在膝上，指节发白。","shot":"她攥紧拳头——新的一天开始了，好日子才刚刚起步。","lens":"85mm 长焦，极浅景深","cameraPosition":"女主膝上 + 俯视","composition":"中心构图","eyeline":"拳头","focus":"锁定拳头","stability":"stable"}]}]}]}</script>
+<script>
+const L = {"copied":"已复制","failed":"复制失败","show":"▾ 展开全部段","hide":"▴ 收起"};
+
+// 分集分镜表：段卡区默认最多 760px。不超高的集直接放开；超高的集点开/收起
+document.querySelectorAll('.shmore').forEach((btn) => {
+  const zone = btn.previousElementSibling;
+  if (zone.scrollHeight <= 780) {
+    zone.classList.remove('clip');
+    btn.remove();
+    return;
+  }
+  btn.addEventListener('click', () => {
+    const clipped = zone.classList.toggle('clip');
+    btn.textContent = clipped ? L.show : L.hide;
+    if (clipped) zone.closest('.ep').scrollIntoView({ block: 'nearest' });
+  });
+});
+
+// 点图放大（主分镜图 / 子分镜图 / 批次场景图）
+const lb = document.getElementById('lightbox');
+document.addEventListener('click', (e) => {
+  const img = e.target.closest('img.frame, img.subf, img.bimg');
+  if (img) {
+    lb.querySelector('img').src = img.src;
+    lb.classList.add('on');
+    return;
+  }
+  if (e.target.closest('#lightbox')) lb.classList.remove('on');
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') lb.classList.remove('on');
+});
+
+// 提示词面板：H3 / Seedance 页签，复制键复制当前激活的那一份
+document.addEventListener('click', (e) => {
+  const tab = e.target.closest('.ptab');
+  if (!tab) return;
+  const panel = tab.closest('.ppanel');
+  const i = Number(tab.dataset.i);
+  panel.querySelectorAll('.ptab').forEach((b, k) => b.classList.toggle('on', k === i));
+  panel.querySelectorAll('.pp').forEach((pre, k) => pre.classList.toggle('on', k === i));
+  panel.querySelector('.pp-h .copy').dataset.copy = panel.querySelectorAll('.pp')[i].textContent;
+});
+
+// 复制提示词
+document.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.copy');
+  if (!btn) return;
+  e.preventDefault();
+  const label = btn.textContent;
+  try {
+    await navigator.clipboard.writeText(btn.dataset.copy);
+    btn.textContent = L.copied;
+    btn.dataset.done = '1';
+  } catch {
+    btn.textContent = L.failed;
+  }
+  setTimeout(() => { btn.textContent = label; delete btn.dataset.done; }, 1600);
+});
+
+// 导出：报告自己带着完整的 storyboard.json，下载的是它原样
+document.querySelector('.expo').addEventListener('click', (e) => {
+  const btn = e.currentTarget;
+  const url = URL.createObjectURL(
+    new Blob([document.getElementById('storyboard-data').textContent], { type: 'application/json' }),
+  );
+  const a = Object.assign(document.createElement('a'), { href: url, download: btn.dataset.name });
+  a.click();
+  // 别立刻回收——Safari 会抢在下载读完之前撤掉 blob
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+});
+</script>
+</body></html>
