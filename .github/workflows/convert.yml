@@ -1,0 +1,70 @@
+name: MD to JSON Converter
+
+on:
+  push:
+    branches:
+      - main  # 当推送到 main 分支时触发
+    paths:
+      - 'MD/**.md' # 只有当 MD 文件夹下的文件改变时才触发
+  workflow_dispatch: # 允许在网页上手动点击按钮触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # 允许 Action 提交代码回仓库
+
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+
+    - name: 设置 Python 环境
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10' # GitHub 环境自带 Python
+
+    - name: 创建输出目录
+      run: mkdir -p JSON
+
+    - name: 执行转换脚本
+      run: |
+        # 1. 先转换角色和美术（因为在根目录执行，不需要依赖）
+        echo "=== 开始转换 角色和美术 ==="
+        for f in MD/*-cast.md; do
+          [ -e "$f" ] || continue
+          python 转换脚本/cast2json.py "$f" -o "JSON/$(basename "$f" .md).json"
+        done
+
+        for f in MD/*-art.md; do
+          [ -e "$f" ] || continue
+          python 转换脚本/art2json.py "$f" -o "JSON/$(basename "$f" .md).json"
+        done
+
+        # 2. 转换大纲（排除其他特定后缀的文件）
+        echo "=== 开始转换 大纲 ==="
+        for f in MD/*.md; do
+          [ -e "$f" ] || continue
+          if [[ ! "$f" =~ -(cast|art|script|storyboard)\.md$ ]]; then
+            python 转换脚本/md2json.py "$f" -o "JSON/$(basename "$f" .md).json"
+          fi
+        done
+
+        # 3. 转换剧本和分镜（需进入 JSON 目录才能找到前面的依赖）
+        echo "=== 开始转换 剧本和分镜 ==="
+        cd JSON
+        for f in ../MD/*-script.md; do
+          [ -e "$f" ] || continue
+          python ../转换脚本/script2json.py "$f" -o "$(basename "$f" .md).json"
+        done
+
+        for f in ../MD/*-storyboard.md; do
+          [ -e "$f" ] || continue
+          python ../转换脚本/storyboard2json.py "$f" -o "$(basename "$f" .md).json"
+        done
+
+    - name: 提交并推送生成的 JSON 文件
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Auto-generated: 更新 JSON 文件 [skip ci]"
+        file_pattern: 'JSON/*.json'
