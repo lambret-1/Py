@@ -1,1 +1,803 @@
-报告界面语言目前内置 zh / en
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>刀口温柔章节摘要 · 短剧改编大纲</title>
+<style>
+:root{
+  --paper:#eceded; --panel:#f5f6f5; --side:#e4e6e3; --ink:#191d21; --ink-2:#5b636a; --ink-3:#8c9298;
+  --rule:#d2d5d0; --rule-2:#c2c6bf; --seal:#8a3324; --seal-2:#c56a4e; --seal-3:#e0a98c; --seal-soft:#8a332412; --ok:#3d6b4f;
+  --serif:"Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC",Georgia,serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+.page{max-width:1600px;margin:0 auto;padding:24px 32px 90px}
+h1,h2,h3{margin:0;font-weight:400}
+
+.hd{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.hd h1{font:400 28px/1.1 var(--serif);letter-spacing:.06em}
+.hd .sub{font-size:13px;color:var(--ink-2)}
+.hd .right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.gatepill{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--sans);border-radius:99px;padding:6px 12px}
+.gatepill.pass{color:var(--ok);border:1px solid var(--ok)}
+.gatepill.fail{color:var(--seal);border:1px solid var(--seal);background:var(--seal-soft)}
+.expo{font:500 11px/1 var(--sans);color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule-2);border-radius:2px;padding:7px 11px;cursor:pointer;transition:.15s}
+.expo:hover{border-color:var(--seal);color:var(--seal)}
+.expo:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:18px 0 6px}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:11px 14px 9px}
+.kpi .l{font:500 10px/1 var(--sans);letter-spacing:.18em;color:var(--ink-3)}
+.kpi .v{font:400 28px/1.15 var(--serif);margin-top:5px}
+.kpi .v small{font:400 14px var(--serif);color:var(--ink-2)}
+.kpi .v.mode{font-size:21px;padding-top:5px}
+.kpi .d{font-size:11px;color:var(--ink-2);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kpi.accent{border-top:2px solid var(--seal)}
+
+.galert{margin:14px 0 0;border:1px solid var(--seal);background:var(--seal-soft);border-radius:2px;
+  padding:10px 14px;font-size:13px}
+.galert b{color:var(--seal)}
+.galert span{display:block;font-size:12px;color:var(--ink-2)}
+
+section{margin-top:34px}
+.sec-h{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule-2);padding-bottom:8px;margin-bottom:16px}
+.sec-h .no{font:500 12px/1 var(--mono);color:var(--seal)}
+.sec-h h2{font:400 20px/1.2 var(--serif);letter-spacing:.05em}
+.sec-h .note{margin-left:auto;font-size:12px;color:var(--ink-3)}
+
+.tabs{display:flex;width:max-content;margin-bottom:12px;border:1px solid var(--rule-2);
+  border-radius:2px;overflow:hidden}
+.tab{font:500 12px/1 var(--sans);letter-spacing:.06em;padding:7px 16px;background:var(--panel);
+  border:0;cursor:pointer;color:var(--ink-2);transition:.15s}
+.tab + .tab{border-left:1px solid var(--rule-2)}
+.tab.on{background:var(--seal);color:#fff}
+.tab:focus-visible{outline:2px solid var(--seal);outline-offset:-2px}
+.tabpane{display:none}
+.tabpane.on{display:block}
+
+.epswrap{position:relative}
+.eps{position:relative}
+.epswrap.clip .eps .ep:nth-child(n+4){display:none}
+.epswrap.clip .eps::after{content:'';position:absolute;left:0;right:0;bottom:0;height:90px;
+  background:linear-gradient(180deg,transparent,var(--paper));pointer-events:none}
+.epsmore{display:block;margin:10px auto 0;font:500 12px/1 var(--sans);letter-spacing:.06em;
+  color:var(--ink-2);background:var(--panel);border:1px solid var(--rule-2);border-radius:2px;
+  padding:8px 18px;cursor:pointer;transition:.15s}
+.epsmore:hover{border-color:var(--seal);color:var(--seal)}
+.epsmore:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+
+.dec3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:start}
+@media(max-width:1080px){.dec3{grid-template-columns:1fr}}
+.dcol{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:4px 18px 14px}
+.dhead{margin:8px 0 0;font-size:12.5px;color:var(--ink-2)}
+.dlist{list-style:none;margin:8px 0 0;padding:0}
+.dlist li{padding:7px 0;border-top:1px solid var(--rule)}
+.dlist li:first-child{border-top:0}
+.dlist b{display:block;font:400 13.5px/1.6 var(--serif)}
+.dlist small{display:block;font-size:11.5px;color:var(--ink-2);line-height:1.6}
+.dnote{margin:10px 0 0;font-size:12px;color:var(--ink-2);line-height:1.7}
+.dnote.seal{color:var(--seal);background:var(--seal-soft);padding:7px 10px;border-radius:2px}
+.dmaj{list-style:none;margin:8px 0 0;padding:0}
+.dmaj li{display:flex;gap:9px;align-items:baseline;padding:5.5px 0;border-top:1px solid var(--rule);font-size:12.5px}
+.dmaj li:first-child{border-top:0}
+.dmaj i{flex:none;font:500 11px/1 var(--mono);color:var(--seal);font-style:normal;min-width:38px}
+.dmaj b{font:400 12.5px var(--serif)}
+.dmaj span{min-width:0}
+.dmaj em{flex:none;margin-left:auto;font:500 10px/1 var(--sans);letter-spacing:.1em;font-style:normal;
+  color:var(--seal);border:1px solid var(--seal);border-radius:99px;padding:2px 7px}
+
+.chart{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 20px 10px}
+.chart .legend{display:flex;gap:18px;font-size:12px;color:var(--ink-2);margin-bottom:2px}
+.chart .legend i{font-style:normal;display:inline-flex;align-items:center;gap:6px}
+.dotk{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--seal-2)}
+.dotk.major{width:12px;height:12px;background:var(--seal)}
+.rhythm svg{display:block;width:100%;height:auto}
+.rhythm .axis{stroke:var(--rule-2);stroke-width:1.5}
+.rhythm .tick{font:400 10.5px var(--mono);fill:var(--ink-3);paint-order:stroke;stroke:var(--panel);stroke-width:3px}
+.rhythm .stem{stroke:var(--seal-2);stroke-width:1.5}
+.rhythm .stem.major{stroke:var(--seal)}
+.rhythm .bdot{fill:var(--seal-2);stroke:var(--panel);stroke-width:2}
+.rhythm .bdot.major{fill:var(--seal)}
+.rhythm .blabel{font:500 12px var(--sans);fill:var(--ink)}
+.rhythm .bsub{font:400 10.5px var(--sans);fill:var(--ink-2)}
+.rhythm .gapnote{font:400 10.5px var(--sans);fill:var(--ink-3)}
+.rhythm .gapnote.bad{fill:var(--seal);font-weight:500}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--rule);font-size:13px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{font:500 11px/1 var(--sans);letter-spacing:.1em;color:var(--ink-3);background:var(--side)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink-2);white-space:nowrap}
+q{quotes:"「" "」";font-family:var(--serif);border-left:2px solid var(--seal);padding-left:8px;display:inline-block}
+
+.eps{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:13px}
+.ep{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:14px 16px 12px;position:relative}
+.ep .num{position:absolute;top:10px;right:14px;font:400 30px/1 var(--serif);color:var(--rule-2)}
+.ep header{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding-right:44px;flex-wrap:wrap}
+.ep header b{font:500 15px var(--serif);letter-spacing:.04em}
+.bt{font-style:normal;font-size:11px;padding:2px 8px;border:1px solid var(--seal);border-radius:99px;color:var(--seal)}
+.bt.major{background:var(--seal);color:#fff}
+.ep .syn{margin:0 0 8px;font-size:13px;line-height:1.75}
+.hk{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px;font-size:12.5px;padding:6px 0;border-top:1px solid var(--rule)}
+.hk b{font:500 11px/1.8 var(--sans);letter-spacing:.14em;color:var(--seal);white-space:nowrap}
+:root[lang="en"] .hk b,html[lang="en"] .hk b{letter-spacing:.06em}
+.ep .meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.ep .meta i{font-style:normal;font:400 10.5px/1.5 var(--mono);border:1px solid var(--rule-2);
+  border-radius:2px;padding:0 5px;background:var(--paper);color:var(--ink-2)}
+.ep .meta .warn{border-color:var(--seal);color:var(--seal);background:var(--seal-soft)}
+
+.matrix{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 18px;overflow-x:auto}
+.matrix table{border-collapse:separate;border-spacing:3px;font-size:12px;background:none;border:0;width:auto}
+.matrix th,.matrix td{border:0;padding:0}
+.matrix th{font:500 10px/1 var(--sans);letter-spacing:.1em;color:var(--ink-3);background:none;
+  text-align:left;padding:0 8px 5px 0;white-space:nowrap}
+.matrix th.ep-h{text-align:center;padding:0 0 5px;font-family:var(--mono)}
+.matrix td.name{padding-right:10px;white-space:nowrap;font-family:var(--serif);font-size:13px}
+.matrix td.tier{padding-right:10px;color:var(--ink-3);font-size:11px;white-space:nowrap}
+.matrix td.mc{width:var(--cw,26px);min-width:var(--cw,26px);height:22px;border-radius:2px;
+  background:var(--paper);border:1px solid var(--rule)}
+.matrix td.mc.on{background:var(--seal);border-color:var(--seal)}
+.matrix td.mc.on.sc{background:var(--seal-2);border-color:var(--seal-2)}
+.matrix td.mc.on.pp{background:var(--seal-3);border-color:var(--seal-3)}
+.matrix td.n{padding-left:10px;font-family:var(--mono);font-size:11px;color:var(--ink-2);white-space:nowrap}
+.matrix tr.div td{padding:8px 0 3px;font:500 10px/1 var(--sans);letter-spacing:.18em;color:var(--ink-3)}
+.matrix .mnote{font-size:11px;color:var(--ink-3);margin:10px 0 0}
+
+.scenes{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:13px;align-items:start}
+.scard{position:relative;background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:14px 16px}
+.snum{position:absolute;top:10px;right:16px;font:400 26px/1 var(--serif);color:var(--rule-2);letter-spacing:.04em}
+.scard h3{font:400 16px/1.3 var(--serif);letter-spacing:.03em;display:flex;align-items:center;gap:8px;
+  padding-right:90px;flex-wrap:wrap}
+.scard h3 .id{font:400 10.5px var(--mono);color:var(--ink-3)}
+.badge{font:500 10.5px/1 var(--sans);padding:2px 8px;border-radius:99px;border:1px solid var(--seal);color:var(--seal)}
+.badge.once{border-color:var(--seal-2);color:var(--seal-2)}
+.strip{display:flex;flex-wrap:wrap;gap:3px;margin:7px 0 6px}
+.strip i{width:16px;height:10px;border-radius:2px;background:var(--paper);border:1px solid var(--rule)}
+.strip i.on{background:var(--seal);border-color:var(--seal)}
+.strip i.on.lt{background:var(--seal-2);border-color:var(--seal-2)}
+.srow{font-size:11.5px;color:var(--ink-2);display:flex;gap:6px;flex-wrap:wrap;align-items:baseline;margin-top:3px}
+.srow b{font:500 10px/1.8 var(--sans);letter-spacing:.12em;color:var(--ink-3);flex:none}
+.srow i{font-style:normal;font:400 10.5px/1.5 var(--mono);border:1px solid var(--rule-2);
+  border-radius:2px;padding:0 5px;background:var(--paper)}
+.srow .reuse{color:var(--seal)}
+
+.plan{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 18px}
+.plan table{background:none;border:0}
+.plan th{background:none;padding-left:0}
+.plan td{padding-left:0;border-top:1px solid var(--rule);border-bottom:0}
+.plan tr:first-child td{border-top:0}
+.plan td:first-child{font-family:var(--serif);font-size:13px;color:var(--ink)}
+
+.core{font:400 17px/1.9 var(--serif);margin:0 0 6px}
+h3.sub{font:500 12px/1 var(--sans);letter-spacing:.18em;color:var(--seal);margin:20px 0 8px}
+
+.gate{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 28px}
+@media(max-width:900px){.gate{grid-template-columns:1fr}}
+.gate li{display:flex;gap:8px;padding:5px 0;font-size:12.5px;line-height:1.55}
+.gate .m{flex:none;font-weight:700}
+.gate .ok .m,.gate li.ok .m{color:var(--ok)}
+.gate li.bad .m{color:var(--seal)}
+.gate li.bad{background:var(--seal-soft);border-radius:2px;padding-left:6px}
+.gate small{display:block;color:var(--ink-3)}
+.gsum{margin:10px 0 0;font-size:12px;color:var(--ink-2)}
+.gsum b{color:var(--seal)}
+
+.foot{margin-top:40px;font-size:11px;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+  .expo,.tabs,.epsmore{display:none!important}
+  .tabpane{display:block!important;margin-bottom:14px}
+  .epswrap.clip .eps .ep{display:block!important}
+  .epswrap.clip .eps::after{display:none}
+  .page{max-width:none;padding:0}
+  section,.ep,.scard{page-break-inside:avoid}
+  body{background:#fff}
+}
+</style></head><body>
+<div class="page">
+
+<header class="hd">
+  <h1>刀口温柔章节摘要</h1>
+  <span class="sub">短剧改编大纲 · 100 集 × undefined 分钟 · 律政悬疑/复仇情感 · 忠实改编</span>
+  <span class="right">
+    <span class="gatepill fail">✗ 质量门 12 / 14</span>
+    <button class="expo" data-name="刀口温柔章节摘要-outline.json">导出 JSON</button>
+  </span>
+</header>
+
+<div class="kpis">
+  <div class="kpi accent"><div class="l">总集数</div><div class="v">100 <small>× undefined 分钟</small></div><div class="d">正片约 NaN 分钟</div></div>
+  <div class="kpi"><div class="l">爽点</div><div class="v">10</div><div class="d">0 大爆点</div></div>
+  <div class="kpi"><div class="l">角色</div><div class="v">10</div><div class="d">主角 2 · 配角 5 · 功能 3</div></div>
+  <div class="kpi"><div class="l">主场景</div><div class="v">0 <small>+8</small></div><div class="d">一次性场景 7，需复用方案</div></div>
+  <div class="kpi"><div class="l">生成难点</div><div class="v">0</div><div class="d">预警清单为空</div></div>
+  <div class="kpi"><div class="l">改编幅度</div><div class="v mode">忠实</div><div class="d">砍 4 线 · 合 0 组</div></div>
+</div>
+<div class="galert"><b>✗ 2 项未过</b><span>爽点间隔 ≤ 3 集，无真空区</span><span>大爆点不在最后一集才首次出现 — 没有 major 爽点</span></div>
+
+<section id="sec-rhythm">
+  <div class="sec-h"><span class="no">01</span><h2>爽点节奏</h2></div>
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-pane="pane-timeline">时间轴</button>
+    <button class="tab" data-pane="pane-table">明细表</button>
+  </div>
+  <div class="tabpane on" id="pane-timeline"><div class="chart rhythm">
+  <div class="legend">
+    <i><span class="dotk major"></span>大爆点</i>
+    <i><span class="dotk"></span>常规爽点</i>
+  </div>
+  <svg viewBox="0 0 1520 880" role="img" aria-label="爽点节奏">
+    <line class="axis" x1="30" y1="92" x2="1490" y2="92"/>
+    <line class="axis" x1="66.5" y1="88" x2="66.5" y2="96"/>
+    <line class="axis" x1="139.5" y1="88" x2="139.5" y2="96"/>
+    <line class="axis" x1="212.5" y1="88" x2="212.5" y2="96"/>
+    <line class="axis" x1="285.5" y1="88" x2="285.5" y2="96"/>
+    <line class="axis" x1="358.5" y1="88" x2="358.5" y2="96"/>
+    <line class="axis" x1="431.5" y1="88" x2="431.5" y2="96"/>
+    <line class="axis" x1="504.5" y1="88" x2="504.5" y2="96"/>
+    <line class="axis" x1="577.5" y1="88" x2="577.5" y2="96"/>
+    <line class="axis" x1="650.5" y1="88" x2="650.5" y2="96"/>
+    <line class="axis" x1="723.5" y1="88" x2="723.5" y2="96"/>
+    <line class="axis" x1="796.5" y1="88" x2="796.5" y2="96"/>
+    <line class="axis" x1="869.5" y1="88" x2="869.5" y2="96"/>
+    <line class="axis" x1="942.5" y1="88" x2="942.5" y2="96"/>
+    <line class="axis" x1="1015.5" y1="88" x2="1015.5" y2="96"/>
+    <line class="axis" x1="1088.5" y1="88" x2="1088.5" y2="96"/>
+    <line class="axis" x1="1161.5" y1="88" x2="1161.5" y2="96"/>
+    <line class="axis" x1="1234.5" y1="88" x2="1234.5" y2="96"/>
+    <line class="axis" x1="1307.5" y1="88" x2="1307.5" y2="96"/>
+    <line class="axis" x1="1380.5" y1="88" x2="1380.5" y2="96"/>
+    <line class="axis" x1="1453.5" y1="88" x2="1453.5" y2="96"/>
+    <line class="axis" x1="30" y1="268" x2="1490" y2="268"/>
+    <line class="axis" x1="66.5" y1="264" x2="66.5" y2="272"/>
+    <line class="axis" x1="139.5" y1="264" x2="139.5" y2="272"/>
+    <line class="axis" x1="212.5" y1="264" x2="212.5" y2="272"/>
+    <line class="axis" x1="285.5" y1="264" x2="285.5" y2="272"/>
+    <line class="axis" x1="358.5" y1="264" x2="358.5" y2="272"/>
+    <line class="axis" x1="431.5" y1="264" x2="431.5" y2="272"/>
+    <line class="axis" x1="504.5" y1="264" x2="504.5" y2="272"/>
+    <line class="axis" x1="577.5" y1="264" x2="577.5" y2="272"/>
+    <line class="axis" x1="650.5" y1="264" x2="650.5" y2="272"/>
+    <line class="axis" x1="723.5" y1="264" x2="723.5" y2="272"/>
+    <line class="axis" x1="796.5" y1="264" x2="796.5" y2="272"/>
+    <line class="axis" x1="869.5" y1="264" x2="869.5" y2="272"/>
+    <line class="axis" x1="942.5" y1="264" x2="942.5" y2="272"/>
+    <line class="axis" x1="1015.5" y1="264" x2="1015.5" y2="272"/>
+    <line class="axis" x1="1088.5" y1="264" x2="1088.5" y2="272"/>
+    <line class="axis" x1="1161.5" y1="264" x2="1161.5" y2="272"/>
+    <line class="axis" x1="1234.5" y1="264" x2="1234.5" y2="272"/>
+    <line class="axis" x1="1307.5" y1="264" x2="1307.5" y2="272"/>
+    <line class="axis" x1="1380.5" y1="264" x2="1380.5" y2="272"/>
+    <line class="axis" x1="1453.5" y1="264" x2="1453.5" y2="272"/>
+    <line class="axis" x1="30" y1="444" x2="1490" y2="444"/>
+    <line class="axis" x1="66.5" y1="440" x2="66.5" y2="448"/>
+    <line class="axis" x1="139.5" y1="440" x2="139.5" y2="448"/>
+    <line class="axis" x1="212.5" y1="440" x2="212.5" y2="448"/>
+    <line class="axis" x1="285.5" y1="440" x2="285.5" y2="448"/>
+    <line class="axis" x1="358.5" y1="440" x2="358.5" y2="448"/>
+    <line class="axis" x1="431.5" y1="440" x2="431.5" y2="448"/>
+    <line class="axis" x1="504.5" y1="440" x2="504.5" y2="448"/>
+    <line class="axis" x1="577.5" y1="440" x2="577.5" y2="448"/>
+    <line class="axis" x1="650.5" y1="440" x2="650.5" y2="448"/>
+    <line class="axis" x1="723.5" y1="440" x2="723.5" y2="448"/>
+    <line class="axis" x1="796.5" y1="440" x2="796.5" y2="448"/>
+    <line class="axis" x1="869.5" y1="440" x2="869.5" y2="448"/>
+    <line class="axis" x1="942.5" y1="440" x2="942.5" y2="448"/>
+    <line class="axis" x1="1015.5" y1="440" x2="1015.5" y2="448"/>
+    <line class="axis" x1="1088.5" y1="440" x2="1088.5" y2="448"/>
+    <line class="axis" x1="1161.5" y1="440" x2="1161.5" y2="448"/>
+    <line class="axis" x1="1234.5" y1="440" x2="1234.5" y2="448"/>
+    <line class="axis" x1="1307.5" y1="440" x2="1307.5" y2="448"/>
+    <line class="axis" x1="1380.5" y1="440" x2="1380.5" y2="448"/>
+    <line class="axis" x1="1453.5" y1="440" x2="1453.5" y2="448"/>
+    <line class="axis" x1="30" y1="620" x2="1490" y2="620"/>
+    <line class="axis" x1="66.5" y1="616" x2="66.5" y2="624"/>
+    <line class="axis" x1="139.5" y1="616" x2="139.5" y2="624"/>
+    <line class="axis" x1="212.5" y1="616" x2="212.5" y2="624"/>
+    <line class="axis" x1="285.5" y1="616" x2="285.5" y2="624"/>
+    <line class="axis" x1="358.5" y1="616" x2="358.5" y2="624"/>
+    <line class="axis" x1="431.5" y1="616" x2="431.5" y2="624"/>
+    <line class="axis" x1="504.5" y1="616" x2="504.5" y2="624"/>
+    <line class="axis" x1="577.5" y1="616" x2="577.5" y2="624"/>
+    <line class="axis" x1="650.5" y1="616" x2="650.5" y2="624"/>
+    <line class="axis" x1="723.5" y1="616" x2="723.5" y2="624"/>
+    <line class="axis" x1="796.5" y1="616" x2="796.5" y2="624"/>
+    <line class="axis" x1="869.5" y1="616" x2="869.5" y2="624"/>
+    <line class="axis" x1="942.5" y1="616" x2="942.5" y2="624"/>
+    <line class="axis" x1="1015.5" y1="616" x2="1015.5" y2="624"/>
+    <line class="axis" x1="1088.5" y1="616" x2="1088.5" y2="624"/>
+    <line class="axis" x1="1161.5" y1="616" x2="1161.5" y2="624"/>
+    <line class="axis" x1="1234.5" y1="616" x2="1234.5" y2="624"/>
+    <line class="axis" x1="1307.5" y1="616" x2="1307.5" y2="624"/>
+    <line class="axis" x1="1380.5" y1="616" x2="1380.5" y2="624"/>
+    <line class="axis" x1="1453.5" y1="616" x2="1453.5" y2="624"/>
+    <line class="axis" x1="30" y1="796" x2="1490" y2="796"/>
+    <line class="axis" x1="66.5" y1="792" x2="66.5" y2="800"/>
+    <line class="axis" x1="139.5" y1="792" x2="139.5" y2="800"/>
+    <line class="axis" x1="212.5" y1="792" x2="212.5" y2="800"/>
+    <line class="axis" x1="285.5" y1="792" x2="285.5" y2="800"/>
+    <line class="axis" x1="358.5" y1="792" x2="358.5" y2="800"/>
+    <line class="axis" x1="431.5" y1="792" x2="431.5" y2="800"/>
+    <line class="axis" x1="504.5" y1="792" x2="504.5" y2="800"/>
+    <line class="axis" x1="577.5" y1="792" x2="577.5" y2="800"/>
+    <line class="axis" x1="650.5" y1="792" x2="650.5" y2="800"/>
+    <line class="axis" x1="723.5" y1="792" x2="723.5" y2="800"/>
+    <line class="axis" x1="796.5" y1="792" x2="796.5" y2="800"/>
+    <line class="axis" x1="869.5" y1="792" x2="869.5" y2="800"/>
+    <line class="axis" x1="942.5" y1="792" x2="942.5" y2="800"/>
+    <line class="axis" x1="1015.5" y1="792" x2="1015.5" y2="800"/>
+    <line class="axis" x1="1088.5" y1="792" x2="1088.5" y2="800"/>
+    <line class="axis" x1="1161.5" y1="792" x2="1161.5" y2="800"/>
+    <line class="axis" x1="1234.5" y1="792" x2="1234.5" y2="800"/>
+    <line class="axis" x1="1307.5" y1="792" x2="1307.5" y2="800"/>
+    <line class="axis" x1="1380.5" y1="792" x2="1380.5" y2="800"/>
+    <line class="axis" x1="1453.5" y1="792" x2="1453.5" y2="800"/>
+    <line class="stem" x1="NaN" y1="NaN" x2="NaN" y2="NaN"/>
+    <circle class="bdot" cx="NaN" cy="NaN" r="6"><title>bt_01 压迫｜辩护席空置，沈知微快速举证监控、指纹、供述，法庭看似铁案 → 赵铁生每认一罪背就塌一分，眼神恐惧飘向旁听席，病号服女孩被悄悄抱走</title></circle>
+    <text class="blabel" x="NaN" y="NaN" text-anchor="middle">压迫</text>
+    <text class="bsub" x="NaN" y="NaN" text-anchor="middle">辩护席空置，沈知微快速举证监…</text>
+    <line class="stem" x1="NaN" y1="NaN" x2="NaN" y2="NaN"/>
+    <circle class="bdot" cx="NaN" cy="NaN" r="6"><title>bt_02 反转｜陆沉舟迟到登场，先质疑截图只能证明帽檐，再以体型和腰伤指出案件太整齐 → 他抛出死亡时间副本差四十分钟，沈知微发现卷宗第三页涂改，被迫申请休庭</title></circle>
+    <text class="blabel" x="NaN" y="NaN" text-anchor="middle">反转</text>
+    <text class="bsub" x="NaN" y="NaN" text-anchor="middle">陆沉舟迟到登场，先质疑截图只…</text>
+    <line class="stem" x1="NaN" y1="NaN" x2="NaN" y2="NaN"/>
+    <circle class="bdot" cx="NaN" cy="NaN" r="6"><title>bt_03 悬念｜休庭后陆沉舟隔空断言沈知微赢不了这个案子 → 沈知微在涂改数字上画圈，并回想病号服女孩被抱走的异常</title></circle>
+    <text class="blabel" x="NaN" y="NaN" text-anchor="middle">悬念</text>
+    <text class="bsub" x="NaN" y="NaN" text-anchor="middle">休庭后陆沉舟隔空断言沈知微赢…</text>
+    <line class="stem" x1="NaN" y1="NaN" x2="NaN" y2="NaN"/>
+    <circle class="bdot" cx="NaN" cy="NaN" r="6"><title>bt_04 信息差｜唐果以监控、指纹、口供三证齐全劝阻陆沉舟接赵铁生铁案 → 陆沉舟看到死者是鸿远财务总监周敬山，执意接案，显露等鸿远八年的执念</title></circle>
+    <text class="blabel" x="NaN" y="NaN" text-anchor="middle">信息差</text>
+    <text class="bsub" x="NaN" y="NaN" text-anchor="middle">唐果以监控、指纹、口供三证齐…</text>
+    <line class="stem" x1="NaN" y1="NaN" x2="NaN" y2="NaN"/>
+    <circle class="bdot" cx="NaN" cy="NaN" r="6"><title>bt_05 情感｜赵铁生反复认罪却对楼层和作案过程支吾，只惦记白血病女儿 → 陆沉舟点破腰伤不可能四分钟作案，赵铁生气声承认没杀人又翻供护女</title></circle>
+    <text class="blabel" x="NaN" y="NaN" text-anchor="middle">情感</text>
+    <text class="bsub" x="NaN" y="NaN" text-anchor="middle">赵铁生反复认罪却对楼层和作案…</text>
+    <line class="stem" x1="NaN" y1="NaN" x2="NaN" y2="NaN"/>
+    <circle class="bdot" cx="NaN" cy="NaN" r="6"><title>bt_06 悬念｜赵铁生被押上车前死死盯着西装徽章男，脸色惨白 → 陆沉舟拍下徽章，老魏来电告知周敬山生前刚动过银行保管箱</title></circle>
+    <text class="blabel" x="NaN" y="NaN" text-anchor="middle">悬念</text>
+    <text class="bsub" x="NaN" y="NaN" text-anchor="middle">赵铁生被押上车前死死盯着西装…</text>
+    <line class="stem" x1="NaN" y1="NaN" x2="NaN" y2="NaN"/>
+    <circle class="bdot" cx="NaN" cy="NaN" r="6"><title>bt_07 反转｜林小夏从刑警队重拷小区东门原始监控 → 发现23:33:41至58十七秒花屏，韩峥推演赵铁生进门时死者已死37分钟，沈知微判断是预谋替罪</title></circle>
+    <text class="blabel" x="NaN" y="NaN" text-anchor="middle">反转</text>
+    <text class="bsub" x="NaN" y="NaN" text-anchor="middle">林小夏从刑警队重拷小区东门原…</text>
+    <line class="stem" x1="NaN" y1="NaN" x2="NaN" y2="NaN"/>
+    <circle class="bdot" cx="NaN" cy="NaN" r="6"><title>bt_08 信息差｜陈守仁证实死亡时间在案发当晚以补正名义被改，补正需检察院系统点头 → 沈知微数补正五账号到第四个熟人时停住，深夜电梯响起</title></circle>
+    <text class="blabel" x="NaN" y="NaN" text-anchor="middle">信息差</text>
+    <text class="bsub" x="NaN" y="NaN" text-anchor="middle">陈守仁证实死亡时间在案发当晚…</text>
+    <line class="stem" x1="NaN" y1="NaN" x2="NaN" y2="NaN"/>
+    <circle class="bdot" cx="NaN" cy="NaN" r="6"><title>bt_09 压迫｜沈知微在停车场质问陆沉舟为何能提前拿到法医原始记录 → 陆沉舟反问她想赢还是想对，警告能改鉴定的人坐在她身后，文件袋暂不交出</title></circle>
+    <text class="blabel" x="NaN" y="NaN" text-anchor="middle">压迫</text>
+    <text class="bsub" x="NaN" y="NaN" text-anchor="middle">沈知微在停车场质问陆沉舟为何…</text>
+    <line class="stem" x1="NaN" y1="NaN" x2="NaN" y2="NaN"/>
+    <circle class="bdot" cx="NaN" cy="NaN" r="6"><title>bt_10 悬念｜沈知微深夜回家发现锁芯有新划痕，出门前开的小夜灯被关 → 鞋柜上出现威胁撤诉并提及其母亲的打印字条，楼下黑色轿车红点明灭，陆沉舟提醒她已被监视</title></circle>
+    <text class="blabel" x="NaN" y="NaN" text-anchor="middle">悬念</text>
+    <text class="bsub" x="NaN" y="NaN" text-anchor="middle">沈知微深夜回家发现锁芯有新划…</text>
+    <text class="tick" x="66.5" y="112" text-anchor="middle">1</text>
+    <text class="tick" x="139.5" y="112" text-anchor="middle">2</text>
+    <text class="tick" x="212.5" y="112" text-anchor="middle">3</text>
+    <text class="tick" x="285.5" y="112" text-anchor="middle">4</text>
+    <text class="tick" x="358.5" y="112" text-anchor="middle">5</text>
+    <text class="tick" x="431.5" y="112" text-anchor="middle">6</text>
+    <text class="tick" x="504.5" y="112" text-anchor="middle">7</text>
+    <text class="tick" x="577.5" y="112" text-anchor="middle">8</text>
+    <text class="tick" x="650.5" y="112" text-anchor="middle">9</text>
+    <text class="tick" x="723.5" y="112" text-anchor="middle">10</text>
+    <text class="tick" x="796.5" y="112" text-anchor="middle">11</text>
+    <text class="tick" x="869.5" y="112" text-anchor="middle">12</text>
+    <text class="tick" x="942.5" y="112" text-anchor="middle">13</text>
+    <text class="tick" x="1015.5" y="112" text-anchor="middle">14</text>
+    <text class="tick" x="1088.5" y="112" text-anchor="middle">15</text>
+    <text class="tick" x="1161.5" y="112" text-anchor="middle">16</text>
+    <text class="tick" x="1234.5" y="112" text-anchor="middle">17</text>
+    <text class="tick" x="1307.5" y="112" text-anchor="middle">18</text>
+    <text class="tick" x="1380.5" y="112" text-anchor="middle">19</text>
+    <text class="tick" x="1453.5" y="112" text-anchor="middle">20</text>
+    <text class="tick" x="66.5" y="288" text-anchor="middle">21</text>
+    <text class="tick" x="139.5" y="288" text-anchor="middle">22</text>
+    <text class="tick" x="212.5" y="288" text-anchor="middle">23</text>
+    <text class="tick" x="285.5" y="288" text-anchor="middle">24</text>
+    <text class="tick" x="358.5" y="288" text-anchor="middle">25</text>
+    <text class="tick" x="431.5" y="288" text-anchor="middle">26</text>
+    <text class="tick" x="504.5" y="288" text-anchor="middle">27</text>
+    <text class="tick" x="577.5" y="288" text-anchor="middle">28</text>
+    <text class="tick" x="650.5" y="288" text-anchor="middle">29</text>
+    <text class="tick" x="723.5" y="288" text-anchor="middle">30</text>
+    <text class="tick" x="796.5" y="288" text-anchor="middle">31</text>
+    <text class="tick" x="869.5" y="288" text-anchor="middle">32</text>
+    <text class="tick" x="942.5" y="288" text-anchor="middle">33</text>
+    <text class="tick" x="1015.5" y="288" text-anchor="middle">34</text>
+    <text class="tick" x="1088.5" y="288" text-anchor="middle">35</text>
+    <text class="tick" x="1161.5" y="288" text-anchor="middle">36</text>
+    <text class="tick" x="1234.5" y="288" text-anchor="middle">37</text>
+    <text class="tick" x="1307.5" y="288" text-anchor="middle">38</text>
+    <text class="tick" x="1380.5" y="288" text-anchor="middle">39</text>
+    <text class="tick" x="1453.5" y="288" text-anchor="middle">40</text>
+    <text class="tick" x="66.5" y="464" text-anchor="middle">41</text>
+    <text class="tick" x="139.5" y="464" text-anchor="middle">42</text>
+    <text class="tick" x="212.5" y="464" text-anchor="middle">43</text>
+    <text class="tick" x="285.5" y="464" text-anchor="middle">44</text>
+    <text class="tick" x="358.5" y="464" text-anchor="middle">45</text>
+    <text class="tick" x="431.5" y="464" text-anchor="middle">46</text>
+    <text class="tick" x="504.5" y="464" text-anchor="middle">47</text>
+    <text class="tick" x="577.5" y="464" text-anchor="middle">48</text>
+    <text class="tick" x="650.5" y="464" text-anchor="middle">49</text>
+    <text class="tick" x="723.5" y="464" text-anchor="middle">50</text>
+    <text class="tick" x="796.5" y="464" text-anchor="middle">51</text>
+    <text class="tick" x="869.5" y="464" text-anchor="middle">52</text>
+    <text class="tick" x="942.5" y="464" text-anchor="middle">53</text>
+    <text class="tick" x="1015.5" y="464" text-anchor="middle">54</text>
+    <text class="tick" x="1088.5" y="464" text-anchor="middle">55</text>
+    <text class="tick" x="1161.5" y="464" text-anchor="middle">56</text>
+    <text class="tick" x="1234.5" y="464" text-anchor="middle">57</text>
+    <text class="tick" x="1307.5" y="464" text-anchor="middle">58</text>
+    <text class="tick" x="1380.5" y="464" text-anchor="middle">59</text>
+    <text class="tick" x="1453.5" y="464" text-anchor="middle">60</text>
+    <text class="tick" x="66.5" y="640" text-anchor="middle">61</text>
+    <text class="tick" x="139.5" y="640" text-anchor="middle">62</text>
+    <text class="tick" x="212.5" y="640" text-anchor="middle">63</text>
+    <text class="tick" x="285.5" y="640" text-anchor="middle">64</text>
+    <text class="tick" x="358.5" y="640" text-anchor="middle">65</text>
+    <text class="tick" x="431.5" y="640" text-anchor="middle">66</text>
+    <text class="tick" x="504.5" y="640" text-anchor="middle">67</text>
+    <text class="tick" x="577.5" y="640" text-anchor="middle">68</text>
+    <text class="tick" x="650.5" y="640" text-anchor="middle">69</text>
+    <text class="tick" x="723.5" y="640" text-anchor="middle">70</text>
+    <text class="tick" x="796.5" y="640" text-anchor="middle">71</text>
+    <text class="tick" x="869.5" y="640" text-anchor="middle">72</text>
+    <text class="tick" x="942.5" y="640" text-anchor="middle">73</text>
+    <text class="tick" x="1015.5" y="640" text-anchor="middle">74</text>
+    <text class="tick" x="1088.5" y="640" text-anchor="middle">75</text>
+    <text class="tick" x="1161.5" y="640" text-anchor="middle">76</text>
+    <text class="tick" x="1234.5" y="640" text-anchor="middle">77</text>
+    <text class="tick" x="1307.5" y="640" text-anchor="middle">78</text>
+    <text class="tick" x="1380.5" y="640" text-anchor="middle">79</text>
+    <text class="tick" x="1453.5" y="640" text-anchor="middle">80</text>
+    <text class="tick" x="66.5" y="816" text-anchor="middle">81</text>
+    <text class="tick" x="139.5" y="816" text-anchor="middle">82</text>
+    <text class="tick" x="212.5" y="816" text-anchor="middle">83</text>
+    <text class="tick" x="285.5" y="816" text-anchor="middle">84</text>
+    <text class="tick" x="358.5" y="816" text-anchor="middle">85</text>
+    <text class="tick" x="431.5" y="816" text-anchor="middle">86</text>
+    <text class="tick" x="504.5" y="816" text-anchor="middle">87</text>
+    <text class="tick" x="577.5" y="816" text-anchor="middle">88</text>
+    <text class="tick" x="650.5" y="816" text-anchor="middle">89</text>
+    <text class="tick" x="723.5" y="816" text-anchor="middle">90</text>
+    <text class="tick" x="796.5" y="816" text-anchor="middle">91</text>
+    <text class="tick" x="869.5" y="816" text-anchor="middle">92</text>
+    <text class="tick" x="942.5" y="816" text-anchor="middle">93</text>
+    <text class="tick" x="1015.5" y="816" text-anchor="middle">94</text>
+    <text class="tick" x="1088.5" y="816" text-anchor="middle">95</text>
+    <text class="tick" x="1161.5" y="816" text-anchor="middle">96</text>
+    <text class="tick" x="1234.5" y="816" text-anchor="middle">97</text>
+    <text class="tick" x="1307.5" y="816" text-anchor="middle">98</text>
+    <text class="tick" x="1380.5" y="816" text-anchor="middle">99</text>
+    <text class="tick" x="1453.5" y="816" text-anchor="middle">100</text>
+  </svg>
+</div></div>
+  <div class="tabpane" id="pane-table">
+  <table><thead><tr><th>ID</th><th>类型</th><th>量级</th><th>集</th><th>铺垫</th><th>兑现</th></tr></thead>
+<tbody><tr><td>bt_01</td><td>压迫</td><td>常规</td><td>undefined</td><td>辩护席空置，沈知微快速举证监控、指纹、供述，法庭看似铁案</td><td>赵铁生每认一罪背就塌一分，眼神恐惧飘向旁听席，病号服女孩被悄悄抱走</td></tr>
+<tr><td>bt_02</td><td>反转</td><td>常规</td><td>undefined</td><td>陆沉舟迟到登场，先质疑截图只能证明帽檐，再以体型和腰伤指出案件太整齐</td><td>他抛出死亡时间副本差四十分钟，沈知微发现卷宗第三页涂改，被迫申请休庭</td></tr>
+<tr><td>bt_03</td><td>悬念</td><td>常规</td><td>undefined</td><td>休庭后陆沉舟隔空断言沈知微赢不了这个案子</td><td>沈知微在涂改数字上画圈，并回想病号服女孩被抱走的异常</td></tr>
+<tr><td>bt_04</td><td>信息差</td><td>常规</td><td>undefined</td><td>唐果以监控、指纹、口供三证齐全劝阻陆沉舟接赵铁生铁案</td><td>陆沉舟看到死者是鸿远财务总监周敬山，执意接案，显露等鸿远八年的执念</td></tr>
+<tr><td>bt_05</td><td>情感</td><td>常规</td><td>undefined</td><td>赵铁生反复认罪却对楼层和作案过程支吾，只惦记白血病女儿</td><td>陆沉舟点破腰伤不可能四分钟作案，赵铁生气声承认没杀人又翻供护女</td></tr>
+<tr><td>bt_06</td><td>悬念</td><td>常规</td><td>undefined</td><td>赵铁生被押上车前死死盯着西装徽章男，脸色惨白</td><td>陆沉舟拍下徽章，老魏来电告知周敬山生前刚动过银行保管箱</td></tr>
+<tr><td>bt_07</td><td>反转</td><td>常规</td><td>undefined</td><td>林小夏从刑警队重拷小区东门原始监控</td><td>发现23:33:41至58十七秒花屏，韩峥推演赵铁生进门时死者已死37分钟，沈知微判断是预谋替罪</td></tr>
+<tr><td>bt_08</td><td>信息差</td><td>常规</td><td>undefined</td><td>陈守仁证实死亡时间在案发当晚以补正名义被改，补正需检察院系统点头</td><td>沈知微数补正五账号到第四个熟人时停住，深夜电梯响起</td></tr>
+<tr><td>bt_09</td><td>压迫</td><td>常规</td><td>undefined</td><td>沈知微在停车场质问陆沉舟为何能提前拿到法医原始记录</td><td>陆沉舟反问她想赢还是想对，警告能改鉴定的人坐在她身后，文件袋暂不交出</td></tr>
+<tr><td>bt_10</td><td>悬念</td><td>常规</td><td>undefined</td><td>沈知微深夜回家发现锁芯有新划痕，出门前开的小夜灯被关</td><td>鞋柜上出现威胁撤诉并提及其母亲的打印字条，楼下黑色轿车红点明灭，陆沉舟提醒她已被监视</td></tr></tbody></table>
+  </div>
+</section>
+
+<section id="sec-episodes">
+  <div class="sec-h"><span class="no">02</span><h2>分集概览</h2><span class="note">核心交付 · 每集三栏齐全</span></div>
+  <div class="epswrap clip">
+    <div class="eps">
+<article class="ep" id="ep-1">
+  <span class="num">1</span>
+  <header><b>第 1 集</b></header>
+  <p class="syn">沈知微趁辩护席空置快速举证，监控显示赵铁生23:47进单元门、23:51死者坠亡，刀柄只有赵指纹，赵当庭认罪。沈知微却注意到赵每认一罪背就塌一分，眼神恐惧飘向旁听席，末排病号服女孩被人悄悄抱走。</p>
+  <div class="hk"><b>钩子</b><span>辩护席仍空，开庭二十七分钟后迟到者是谁</span></div>
+  <div class="hk"><b>悬念</b><span>赵铁生为何恐惧旁听席，病号服女孩是谁</span></div>
+  <div class="meta"><i>sc_court</i><i>ch_shen</i><i>ch_zhao</i><i>ch_lu</i><i>ch_lin</i><i class="warn" title="法庭同框拆解：沈知微在公诉席举证，赵铁生在被告席认罪，林小夏在旁听侧记录，陆沉舟于集末从法庭后门入画；用席位高低和视线方向拆四人关系。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-2">
+  <span class="num">2</span>
+  <header><b>第 2 集</b></header>
+  <p class="syn">陆沉舟迟到登场，先质疑保安截图只能证明低头帽檐，再以死者一米八二、赵铁生一米六五且有腰伤指出案件干净得太整齐。他申请核对法医死亡时间，称庭上副本与法援中心原始记录相差四十分钟，沈知微发现卷宗第三页数字涂改，被迫申请休庭。</p>
+  <div class="hk"><b>钩子</b><span>休庭后陆沉舟为何断言沈知微赢不了</span></div>
+  <div class="hk"><b>悬念</b><span>谁改了死亡时间，原始记录为何在陆沉舟手里</span></div>
+  <div class="meta"><i>sc_court</i><i>ch_shen</i><i>ch_lu</i><i>ch_zhao</i><i class="warn" title="法庭同框拆解：陆沉舟在辩护席连续抛出截图、体型、死亡时间三问，沈知微在公诉席翻卷宗发现涂改，赵铁生在被告席低头发抖；三人以法庭中线形成控辩审三角。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-3">
+  <span class="num">3</span>
+  <header><b>第 3 集</b></header>
+  <p class="syn">休庭后沈知微在法庭走廊被陆沉舟隔空提醒赢不了这个案子。她回到卷宗前，在涂改的死亡时间数字上画圈，并回想旁听末排病号服女孩被抱走的异常，第一次对铁案产生裂痕。</p>
+  <div class="hk"><b>钩子</b><span>病号服女孩为何会出现在法庭</span></div>
+  <div class="hk"><b>悬念</b><span>陆沉舟为何对卷宗异常熟悉</span></div>
+  <div class="meta"><i>sc_court</i><i>ch_shen</i><i>ch_lu</i><i>ch_nian</i><i class="warn" title="同场拆解：沈知微在走廊一侧翻卷宗，陆沉舟在远处尽头只留背影和侧脸，病号服女孩只在沈知微回忆画面中被抱走；三人不同框，用空间距离制造压迫。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-4">
+  <span class="num">4</span>
+  <header><b>第 4 集</b></header>
+  <p class="syn">三日前法援中心指派赵铁生铁案，唐果以监控、指纹、口供三证齐全劝阻。陆沉舟看到死者是鸿远集团财务总监周敬山后执意接案，显露他等鸿远八年的执念。</p>
+  <div class="hk"><b>钩子</b><span>陆沉舟与鸿远到底有什么旧怨</span></div>
+  <div class="hk"><b>悬念</b><span>他为何偏偏等这个案子八年</span></div>
+  <div class="meta"><i>sc_legal_aid</i><i>ch_lu</i><i>ch_tang</i></div>
+</article>
+<article class="ep" id="ep-5">
+  <span class="num">5</span>
+  <header><b>第 5 集</b></header>
+  <p class="syn">第二看守所会见，赵铁生反复认罪却对死者家楼层和作案过程支吾，只惦记患白血病住在康和医院的七岁女儿。陆沉舟点破其腰伤不可能四分钟作案，赵铁生气声承认没杀人，随即翻供，称好心人承诺只要认罪女儿的药就管到底。</p>
+  <div class="hk"><b>钩子</b><span>好心人是谁，为何能控制医院用药</span></div>
+  <div class="hk"><b>悬念</b><span>赵铁生为何宁可用命换女儿的药</span></div>
+  <div class="meta"><i>sc_detention</i><i>ch_lu</i><i>ch_zhao</i></div>
+</article>
+<article class="ep" id="ep-6">
+  <span class="num">6</span>
+  <header><b>第 6 集</b></header>
+  <p class="syn">休庭后法院后门，赵铁生被押上车前死死盯着一个穿西装、胸前别鸿远徽章的男人，脸色惨白。陆沉舟拍下徽章，老魏来电告知周敬山生前刚动过一个银行保管箱。</p>
+  <div class="hk"><b>钩子</b><span>徽章男与保管箱之间有什么联系</span></div>
+  <div class="hk"><b>悬念</b><span>周敬山死前为何要动保管箱</span></div>
+  <div class="meta"><i>sc_court_backdoor</i><i>ch_lu</i><i>ch_zhao</i><i>ch_badge_man</i><i>ch_wei</i><i class="warn" title="后门同框拆解：赵铁生在押解车门口视线锁定徽章男，陆沉舟在侧后方举手机拍照，徽章男站在人群边缘，老魏只以电话声入画不入同框。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-7">
+  <span class="num">7</span>
+  <header><b>第 7 集</b></header>
+  <p class="syn">林小夏从刑警队重拷小区东门原始监控，发现23:33:41至58有十七秒齐得像尺子量过的花屏。韩峥对时间线，若原始死亡时间为23:10，赵铁生23:47进门时死者已死三十七分钟，沈知微判断监控被提前剪，赵铁生是预谋替罪羊。</p>
+  <div class="hk"><b>钩子</b><span>真凶比赵铁生早十四分钟进入小区</span></div>
+  <div class="hk"><b>悬念</b><span>谁有能力提前剪掉监控</span></div>
+  <div class="meta"><i>sc_police_monitor</i><i>ch_shen</i><i>ch_lin</i><i>ch_han</i><i class="warn" title="监控室同框拆解：林小夏操作电脑逐帧回放，韩峥在白板推时间线，沈知微用卷宗在旁边比对死亡时间；三人围成工作三角。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-8">
+  <span class="num">8</span>
+  <header><b>第 8 集</b></header>
+  <p class="syn">法医中心陈守仁证实死亡时间鉴定在案发当晚以补正名义被改，补正申请走检察院系统、需立案部门点头。沈知微数到补正五账号中的第四个熟人时停住，深夜电梯忽然响起。</p>
+  <div class="hk"><b>钩子</b><span>第四个熟人是谁</span></div>
+  <div class="hk"><b>悬念</b><span>深夜电梯里走出来的是谁</span></div>
+  <div class="meta"><i>sc_forensic</i><i>ch_shen</i><i>ch_chen</i></div>
+</article>
+<article class="ep" id="ep-9">
+  <span class="num">9</span>
+  <header><b>第 9 集</b></header>
+  <p class="syn">法院地下停车场，沈知微质问陆沉舟为何能提前拿到法医原始记录。陆沉舟反问她想赢还是想对，警告若把证据全摊在庭上，当事人会在看守所出事、原始视频会意外损坏，因为能改鉴定的人坐在她身后。他手里夹着文件袋暂不交出。</p>
+  <div class="hk"><b>钩子</b><span>文件袋里到底装着什么</span></div>
+  <div class="hk"><b>悬念</b><span>坐在沈知微身后的那个人是谁</span></div>
+  <div class="meta"><i>sc_parking</i><i>ch_shen</i><i>ch_lu</i></div>
+</article>
+<article class="ep" id="ep-10">
+  <span class="num">10</span>
+  <header><b>第 10 集</b></header>
+  <p class="syn">沈知微深夜回家发现锁芯有新划痕、出门前开的小夜灯被关，鞋柜上多了一张打印字条，威胁她撤诉并提及其母亲。她看向亡母合影，楼下黑色轿车里红点明灭，陆沉舟提醒她已被监视。</p>
+  <div class="hk"><b>钩子</b><span>谁在楼下监视沈知微</span></div>
+  <div class="hk"><b>悬念</b><span>母亲的死与这起案子到底有什么关联</span></div>
+  <div class="meta"><i>sc_shen_home</i><i>ch_shen</i><i>ch_lu</i></div>
+</article>
+    </div>
+    <button class="epsmore">▾ 展开全部 10 集</button>
+  </div>
+</section>
+
+<section id="sec-scenes">
+  <div class="sec-h"><span class="no">03</span><h2>场景概览</h2><span class="note">右上 = 出现集</span></div>
+  <div class="scenes">
+<article class="scard">
+  <span class="snum">1–3</span>
+  <h3><span class="id">sc_court</span>市中级法院法庭<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class="on lt"></i><i class="on lt"></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>出场角色</b><i>ch_shen</i><i>ch_zhao</i><i>ch_lu</i><i>ch_lin</i><i>ch_nian</i></div>
+</article>
+<article class="scard">
+  <span class="snum">6</span>
+  <h3><span class="id">sc_court_backdoor</span>法院后门押解通道<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">后续复用为法院侧门或押解通道，换押解车与门牌即可承接法院外冲突</span></div>
+</article>
+<article class="scard">
+  <span class="snum">4</span>
+  <h3><span class="id">sc_legal_aid</span>法援中心接待区<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">可复用为沉舟律所接待区，调整桌面卷宗与门牌即可</span></div>
+</article>
+<article class="scard">
+  <span class="snum">5</span>
+  <h3><span class="id">sc_detention</span>第二看守所会见室<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">可复用为看守所其他会见隔间，换隔断编号与铁门声</span></div>
+</article>
+<article class="scard">
+  <span class="snum">7</span>
+  <h3><span class="id">sc_police_monitor</span>刑警队监控室<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">可复用为刑警队办公室，换白板内容与显示器画面</span></div>
+</article>
+<article class="scard">
+  <span class="snum">8</span>
+  <h3><span class="id">sc_forensic</span>法医中心办公室<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">可复用为法医中心走廊或办公室，换鉴定报告封面</span></div>
+</article>
+<article class="scard">
+  <span class="snum">9</span>
+  <h3><span class="id">sc_parking</span>法院地下停车场<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">可复用为法院地下车库，换车位号与灯光</span></div>
+</article>
+<article class="scard">
+  <span class="snum">10</span>
+  <h3><span class="id">sc_shen_home</span>沈知微家客厅<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">可复用为沈知微家客厅与阳台，换威胁字条与窗外车影</span></div>
+</article>
+  </div>
+</section>
+
+<section id="sec-decisions">
+  <div class="sec-h"><span class="no">04</span><h2>关键决策</h2><span class="note">拍板过的三件事，落进纸面</span></div>
+  <div class="dec3">
+  <div class="dcol">
+    <h3 class="sub">砍了哪条线</h3>
+    <ul class="dlist"><li><b>第1章完整举证流程与三次供述细节</b><small>90秒单集只保留死亡时间疑点与赵铁生恐惧两个钩子，避免程序信息压垮开场</small></li><li><b>第2章法援中心指派程序与看守所手续</b><small>程序性信息压缩为唐果一句劝阻，保留赵铁生护女动机</small></li><li><b>第3章法医补正技术流程的完整说明</b><small>用陈守仁结论性证词替代，保留五账号与第四熟人悬念</small></li><li><b>第4章停车场重复性警告</b><small>合并为一次警告与字条威胁，避免前10集节奏重复</small></li></ul>
+    <p class="dnote seal">本批删减以庭审程序说明、重复警告和技术流程为主，核心证据链、人物动机与情感钩子全部保留。</p>
+  </div>
+  <div class="dcol">
+    <h3 class="sub">合了哪些人</h3>
+    <p class="dhead">10 个角色位（主角组 2 · 重要配角 5 · 功能性 3）</p>
+    <p class="dhead">主角组：沈知微、陆沉舟</p>
+    
+    <p class="dnote seal">本批未合并主要角色；林小夏独立承担17秒发现，唐果、老魏各自保留功能，避免功能重叠。</p>
+  </div>
+  <div class="dcol">
+    <h3 class="sub">大爆点落在第几集</h3>
+    <p class="dnote">没有 major 爽点</p>
+  </div>
+</div>
+</section>
+
+<section id="sec-matrix">
+  <div class="sec-h"><span class="no">05</span><h2>每集调度矩阵</h2><span class="note">一列 = 这一集要谁、在哪拍</span></div>
+  <div class="matrix" style="--cw:12px">
+  <table>
+    <tr><th>角色 / 场景 / 道具</th><th>层级</th><th class="ep-h">1</th><th class="ep-h">2</th><th class="ep-h">3</th><th class="ep-h">4</th><th class="ep-h">5</th><th class="ep-h">6</th><th class="ep-h">7</th><th class="ep-h">8</th><th class="ep-h">9</th><th class="ep-h">10</th><th class="ep-h">11</th><th class="ep-h">12</th><th class="ep-h">13</th><th class="ep-h">14</th><th class="ep-h">15</th><th class="ep-h">16</th><th class="ep-h">17</th><th class="ep-h">18</th><th class="ep-h">19</th><th class="ep-h">20</th><th class="ep-h">21</th><th class="ep-h">22</th><th class="ep-h">23</th><th class="ep-h">24</th><th class="ep-h">25</th><th class="ep-h">26</th><th class="ep-h">27</th><th class="ep-h">28</th><th class="ep-h">29</th><th class="ep-h">30</th><th class="ep-h">31</th><th class="ep-h">32</th><th class="ep-h">33</th><th class="ep-h">34</th><th class="ep-h">35</th><th class="ep-h">36</th><th class="ep-h">37</th><th class="ep-h">38</th><th class="ep-h">39</th><th class="ep-h">40</th><th class="ep-h">41</th><th class="ep-h">42</th><th class="ep-h">43</th><th class="ep-h">44</th><th class="ep-h">45</th><th class="ep-h">46</th><th class="ep-h">47</th><th class="ep-h">48</th><th class="ep-h">49</th><th class="ep-h">50</th><th class="ep-h">51</th><th class="ep-h">52</th><th class="ep-h">53</th><th class="ep-h">54</th><th class="ep-h">55</th><th class="ep-h">56</th><th class="ep-h">57</th><th class="ep-h">58</th><th class="ep-h">59</th><th class="ep-h">60</th><th class="ep-h">61</th><th class="ep-h">62</th><th class="ep-h">63</th><th class="ep-h">64</th><th class="ep-h">65</th><th class="ep-h">66</th><th class="ep-h">67</th><th class="ep-h">68</th><th class="ep-h">69</th><th class="ep-h">70</th><th class="ep-h">71</th><th class="ep-h">72</th><th class="ep-h">73</th><th class="ep-h">74</th><th class="ep-h">75</th><th class="ep-h">76</th><th class="ep-h">77</th><th class="ep-h">78</th><th class="ep-h">79</th><th class="ep-h">80</th><th class="ep-h">81</th><th class="ep-h">82</th><th class="ep-h">83</th><th class="ep-h">84</th><th class="ep-h">85</th><th class="ep-h">86</th><th class="ep-h">87</th><th class="ep-h">88</th><th class="ep-h">89</th><th class="ep-h">90</th><th class="ep-h">91</th><th class="ep-h">92</th><th class="ep-h">93</th><th class="ep-h">94</th><th class="ep-h">95</th><th class="ep-h">96</th><th class="ep-h">97</th><th class="ep-h">98</th><th class="ep-h">99</th><th class="ep-h">100</th><th>合计</th></tr>
+    <tr><td class="name">沈知微</td><td class="tier">主角组</td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">7</td></tr>
+<tr><td class="name">陆沉舟</td><td class="tier">主角组</td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">8</td></tr>
+<tr><td class="name">赵铁生</td><td class="tier">重要配角</td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">4</td></tr>
+<tr><td class="name">林小夏</td><td class="tier">重要配角</td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">2</td></tr>
+<tr><td class="name">韩峥</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1</td></tr>
+<tr><td class="name">唐果</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1</td></tr>
+<tr><td class="name">老魏</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1</td></tr>
+<tr><td class="name">老法医</td><td class="tier">功能性角色</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1</td></tr>
+<tr><td class="name">病号服女孩</td><td class="tier">功能性角色</td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1</td></tr>
+<tr><td class="name">西装徽章男</td><td class="tier">功能性角色</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1</td></tr>
+<tr class="div"><td colspan="103">场　景</td></tr>
+<tr><td class="name">市中级法院法庭</td><td class="tier">一次性</td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">3</td></tr>
+<tr><td class="name">法院后门押解通道</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1 ⚠</td></tr>
+<tr><td class="name">法援中心接待区</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1 ⚠</td></tr>
+<tr><td class="name">第二看守所会见室</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1 ⚠</td></tr>
+<tr><td class="name">刑警队监控室</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1 ⚠</td></tr>
+<tr><td class="name">法医中心办公室</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1 ⚠</td></tr>
+<tr><td class="name">法院地下停车场</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1 ⚠</td></tr>
+<tr><td class="name">沈知微家客厅</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1 ⚠</td></tr>
+<tr class="div"><td colspan="103">道　具</td></tr>
+<tr><td class="name">赵铁生案卷宗</td><td class="tier">bt_02、bt_08</td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">7</td></tr>
+<tr><td class="name">死亡时间鉴定</td><td class="tier">bt_02、bt_08</td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">3</td></tr>
+<tr><td class="name">小区东门监控</td><td class="tier">bt_01、bt_07</td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">3</td></tr>
+<tr><td class="name">鸿远集团徽章</td><td class="tier">bt_06</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1</td></tr>
+<tr><td class="name">银行保管箱线索</td><td class="tier">bt_06</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1</td></tr>
+<tr><td class="name">打印威胁字条</td><td class="tier">bt_10</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1</td></tr>
+<tr><td class="name">楼下黑色轿车</td><td class="tier">bt_10</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">1</td></tr>
+  </table>
+  <p class="mnote">⚠ 法院后门押解通道 · 复用方案：后续复用为法院侧门或押解通道，换押解车与门牌即可承接法院外冲突<br>⚠ 法援中心接待区 · 复用方案：可复用为沉舟律所接待区，调整桌面卷宗与门牌即可<br>⚠ 第二看守所会见室 · 复用方案：可复用为看守所其他会见隔间，换隔断编号与铁门声<br>⚠ 刑警队监控室 · 复用方案：可复用为刑警队办公室，换白板内容与显示器画面<br>⚠ 法医中心办公室 · 复用方案：可复用为法医中心走廊或办公室，换鉴定报告封面<br>⚠ 法院地下停车场 · 复用方案：可复用为法院地下车库，换车位号与灯光<br>⚠ 沈知微家客厅 · 复用方案：可复用为沈知微家客厅与阳台，换威胁字条与窗外车影</p>
+</div>
+</section>
+
+<section id="sec-plan">
+  <div class="sec-h"><span class="no">06</span><h2>资产量折算</h2><span class="note">按档自动折算 · 不让模型写</span></div>
+  <div class="plan">
+  <table><thead><tr><th>层级</th><th>人数</th><th>角色</th><th>资产量</th></tr></thead>
+<tbody><tr><td>主角组</td><td>2</td><td>沈知微、陆沉舟</td><td>全套角色设定图 + 逐镜一致性核对</td></tr>
+<tr><td>重要配角</td><td>5</td><td>赵铁生、林小夏、韩峥、唐果、老魏</td><td>半身参考图，关键戏核对</td></tr>
+<tr><td>功能性角色</td><td>3</td><td>老法医、病号服女孩、西装徽章男</td><td>提示词直出，松散一致即可</td></tr>
+<tr><td>场景环境</td><td>0+7</td><td>（+法院后门押解通道、法援中心接待区、第二看守所会见室、刑警队监控室、法医中心办公室、法院地下停车场、沈知微家客厅复用）</td><td>主场景各一套环境参考 + 光照基调</td></tr>
+<tr><td>叙事道具</td><td>7</td><td>赵铁生案卷宗、死亡时间鉴定、小区东门监控、鸿远集团徽章、银行保管箱线索、打印威胁字条、楼下黑色轿车</td><td>每件一套白底设定图 + 状态变体，跨集要长一样</td></tr>
+<tr><td>生成难点</td><td>0</td><td>—</td><td>拍摄前逐条过预警清单</td></tr></tbody></table>
+  </div>
+</section>
+
+<section id="sec-characters">
+  <div class="sec-h"><span class="no">07</span><h2>人物表</h2></div>
+  <table><thead><tr><th>ID</th><th>角色</th><th>层级</th><th>定位</th><th>人物弧</th><th>← 改动记录</th></tr></thead>
+<tbody><tr><td>ch_shen</td><td>沈知微</td><td>主角组</td><td></td><td>从相信铁案的公诉人，转为发现卷宗涂改并怀疑系统内部，最终被威胁仍追真相</td><td></td></tr>
+<tr><td>ch_lu</td><td>陆沉舟</td><td>主角组</td><td></td><td>迟到律师，表面为赵铁生辩护，实为鸿远旧案布局，借赵案接近七年前真相</td><td></td></tr>
+<tr><td>ch_zhao</td><td>赵铁生</td><td>重要配角</td><td></td><td>被胁迫的替罪羊，为救白血病女儿认罪，又在律师点破腰伤后动摇</td><td></td></tr>
+<tr><td>ch_lin</td><td>林小夏</td><td>重要配角</td><td></td><td>沈知微助手，重拷监控发现17秒花屏，成为技术突破口</td><td></td></tr>
+<tr><td>ch_han</td><td>韩峥</td><td>重要配角</td><td></td><td>刑警，坚定支持沈知微，用时间线推演赵铁生不可能作案</td><td></td></tr>
+<tr><td>ch_tang</td><td>唐果</td><td>重要配角</td><td></td><td>陆沉舟助理，起初劝阻接铁案，后成为查案跑腿与情感缓冲</td><td></td></tr>
+<tr><td>ch_wei</td><td>老魏</td><td>重要配角</td><td></td><td>市井外勤，负责银行与外围调查，告知周敬山生前动过保管箱</td><td></td></tr>
+<tr><td>ch_chen</td><td>老法医</td><td>功能性角色</td><td></td><td>陈守仁，证实死亡时间以补正名义被改</td><td></td></tr>
+<tr><td>ch_nian</td><td>病号服女孩</td><td>功能性角色</td><td></td><td>赵念念，旁听末排被悄悄抱走，牵出赵铁生护女动机</td><td></td></tr>
+<tr><td>ch_badge_man</td><td>西装徽章男</td><td>功能性角色</td><td></td><td>胸前别鸿远徽章，被赵铁生死盯，连接胁迫者与鸿远</td><td></td></tr></tbody></table>
+</section>
+
+<section id="sec-adaptation">
+  <div class="sec-h"><span class="no">08</span><h2>改编说明</h2><span class="note">为什么这么改 · 附原文依据</span></div>
+  <p class="core"></p>
+  <h3 class="sub">保留</h3><table><thead><tr><th>内容</th><th>理由</th><th>原文依据</th></tr></thead>
+<tbody><tr><td>死亡时间四十分钟差、卷宗第三页涂改</td><td>全剧第一反转与休庭触发器</td><td><q>庭上副本与他在法援中心调取的原始记录相差四十分钟</q></td></tr>
+<tr><td>17秒花屏与真凶早14分钟进入</td><td>替罪羊结构核心证据</td><td><q>23:33:41–58有17秒齐得像尺子量过的花屏</q></td></tr>
+<tr><td>赵铁生护女认罪与病号服女孩</td><td>情感发动机与后续小熊线起点</td><td><q>只要他痛快认罪，女儿的药就管到底</q></td></tr>
+<tr><td>沈知微被威胁撤诉并牵连母亲</td><td>把案件与沈母旧案绑定的关键钩子</td><td><q>撤诉。为你母亲好。</q></td></tr></tbody></table>
+  <h3 class="sub">砍掉</h3><table><thead><tr><th>内容</th><th>理由</th></tr></thead>
+<tbody><tr><td>第1章完整举证流程与三次供述细节</td><td>90秒单集只保留死亡时间疑点与赵铁生恐惧两个钩子，避免程序信息压垮开场</td></tr>
+<tr><td>第2章法援中心指派程序与看守所手续</td><td>程序性信息压缩为唐果一句劝阻，保留赵铁生护女动机</td></tr>
+<tr><td>第3章法医补正技术流程的完整说明</td><td>用陈守仁结论性证词替代，保留五账号与第四熟人悬念</td></tr>
+<tr><td>第4章停车场重复性警告</td><td>合并为一次警告与字条威胁，避免前10集节奏重复</td></tr></tbody></table>
+  
+  
+</section>
+
+<section id="sec-gates">
+  <div class="sec-h"><span class="no">09</span><h2>质量门</h2></div>
+  <ul class="gate">
+  <li class="ok"><span class="m">✓</span><span>主角组 1–5 人</span></li>
+  <li class="ok"><span class="m">✓</span><span>重要配角 ≤ 10 人</span></li>
+  <li class="ok"><span class="m">✓</span><span>功能性角色 ≤ 10 人</span></li>
+  <li class="ok"><span class="m">✓</span><span>主场景 ≤ 14</span></li>
+  <li class="ok"><span class="m">✓</span><span>叙事道具 ≤ 8 件</span></li>
+  <li class="ok"><span class="m">✓</span><span>一次性场景已标注规避方案</span></li>
+  <li class="bad"><span class="m">✗</span><span>爽点间隔 ≤ 3 集，无真空区</span></li>
+  <li class="ok"><span class="m">✓</span><span>第 1 集有钩子</span></li>
+  <li class="bad"><span class="m">✗</span><span>大爆点不在最后一集才首次出现<small>没有 major 爽点</small></span></li>
+  <li class="ok"><span class="m">✓</span><span>每集梗概三栏齐全（含【钩子】【悬念】）</span></li>
+  <li class="ok"><span class="m">✓</span><span>三人以上同框已标注拆解方案</span></li>
+  <li class="ok"><span class="m">✓</span><span>生成难点已进预警清单</span></li>
+  <li class="ok"><span class="m">✓</span><span>场景/角色/道具引用完整，无失业角色、无空转场景、无零集道具</span></li>
+  <li class="ok"><span class="m">✓</span><span>梗概是叙述体，无引号对白</span></li>
+</ul>
+  <p class="gsum"><b>2 项未过</b></p>
+</section>
+
+<p class="foot">大纲由模型依据原文生成，质量门由脚本确定性检查。</p>
+</div>
+
+<script type="application/json" id="outline-data">{"source":"刀口温柔章节摘要","lang":"zh","params":{"episodes":100,"batchEpisodes":10,"durationSec":90,"genre":"律政悬疑/复仇情感","adaptMode":"忠实","maxBeatGap":3},"batch":{"range":"1-10","note":"全局100集分批交付，本批仅列第1-10集并按本批校验覆盖约束"},"adaptation":{"cut":[{"what":"第1章完整举证流程与三次供述细节","why":"90秒单集只保留死亡时间疑点与赵铁生恐惧两个钩子，避免程序信息压垮开场"},{"what":"第2章法援中心指派程序与看守所手续","why":"程序性信息压缩为唐果一句劝阻，保留赵铁生护女动机"},{"what":"第3章法医补正技术流程的完整说明","why":"用陈守仁结论性证词替代，保留五账号与第四熟人悬念"},{"what":"第4章停车场重复性警告","why":"合并为一次警告与字条威胁，避免前10集节奏重复"}],"keep":[{"what":"死亡时间四十分钟差、卷宗第三页涂改","why":"全剧第一反转与休庭触发器","evidence":"庭上副本与他在法援中心调取的原始记录相差四十分钟"},{"what":"17秒花屏与真凶早14分钟进入","why":"替罪羊结构核心证据","evidence":"23:33:41–58有17秒齐得像尺子量过的花屏"},{"what":"赵铁生护女认罪与病号服女孩","why":"情感发动机与后续小熊线起点","evidence":"只要他痛快认罪，女儿的药就管到底"},{"what":"沈知微被威胁撤诉并牵连母亲","why":"把案件与沈母旧案绑定的关键钩子","evidence":"撤诉。为你母亲好。"}],"cutNote":"本批删减以庭审程序说明、重复警告和技术流程为主，核心证据链、人物动机与情感钩子全部保留。","mergeNote":"本批未合并主要角色；林小夏独立承担17秒发现，唐果、老魏各自保留功能，避免功能重叠。"},"characters":[{"id":"ch_shen","name":"沈知微","tier":"lead","arc":"从相信铁案的公诉人，转为发现卷宗涂改并怀疑系统内部，最终被威胁仍追真相"},{"id":"ch_lu","name":"陆沉舟","tier":"lead","arc":"迟到律师，表面为赵铁生辩护，实为鸿远旧案布局，借赵案接近七年前真相"},{"id":"ch_zhao","name":"赵铁生","tier":"support","arc":"被胁迫的替罪羊，为救白血病女儿认罪，又在律师点破腰伤后动摇"},{"id":"ch_lin","name":"林小夏","tier":"support","arc":"沈知微助手，重拷监控发现17秒花屏，成为技术突破口"},{"id":"ch_han","name":"韩峥","tier":"support","arc":"刑警，坚定支持沈知微，用时间线推演赵铁生不可能作案"},{"id":"ch_tang","name":"唐果","tier":"support","arc":"陆沉舟助理，起初劝阻接铁案，后成为查案跑腿与情感缓冲"},{"id":"ch_wei","name":"老魏","tier":"support","arc":"市井外勤，负责银行与外围调查，告知周敬山生前动过保管箱"},{"id":"ch_chen","name":"老法医","tier":"functional","arc":"陈守仁，证实死亡时间以补正名义被改"},{"id":"ch_nian","name":"病号服女孩","tier":"functional","arc":"赵念念，旁听末排被悄悄抱走，牵出赵铁生护女动机"},{"id":"ch_badge_man","name":"西装徽章男","tier":"functional","arc":"胸前别鸿远徽章，被赵铁生死盯，连接胁迫者与鸿远"}],"scenes":[{"id":"sc_court","name":"市中级法院法庭","type":"法庭"},{"id":"sc_court_backdoor","name":"法院后门押解通道","type":"法院侧门","reusePlan":"后续复用为法院侧门或押解通道，换押解车与门牌即可承接法院外冲突"},{"id":"sc_legal_aid","name":"法援中心接待区","type":"办公场所","reusePlan":"可复用为沉舟律所接待区，调整桌面卷宗与门牌即可"},{"id":"sc_detention","name":"第二看守所会见室","type":"会见室","reusePlan":"可复用为看守所其他会见隔间，换隔断编号与铁门声"},{"id":"sc_police_monitor","name":"刑警队监控室","type":"警队办公室","reusePlan":"可复用为刑警队办公室，换白板内容与显示器画面"},{"id":"sc_forensic","name":"法医中心办公室","type":"法医中心","reusePlan":"可复用为法医中心走廊或办公室，换鉴定报告封面"},{"id":"sc_parking","name":"法院地下停车场","type":"地下车库","reusePlan":"可复用为法院地下车库，换车位号与灯光"},{"id":"sc_shen_home","name":"沈知微家客厅","type":"家庭空间","reusePlan":"可复用为沈知微家客厅与阳台，换威胁字条与窗外车影"}],"props":[{"id":"pr_case_file","name":"赵铁生案卷宗","function":"承载死亡时间涂改疑点，触发休庭与内部调查","beatIds":["bt_02","bt_08"]},{"id":"pr_death_time","name":"死亡时间鉴定","function":"庭上副本与原始记录相差四十分钟，是全剧第一反转","beatIds":["bt_02","bt_08"]},{"id":"pr_monitor","name":"小区东门监控","function":"先以截图质疑人脸，再以17秒花屏揭示真凶提前进入","beatIds":["bt_01","bt_07"]},{"id":"pr_badge","name":"鸿远集团徽章","function":"赵铁生死盯徽章男，陆沉舟拍照锁定鸿远胁迫线","beatIds":["bt_06"]},{"id":"pr_safe_box","name":"银行保管箱线索","function":"老魏告知周敬山死前刚动过保管箱，引出死者留证线","beatIds":["bt_06"]},{"id":"pr_note","name":"打印威胁字条","function":"把查案压力转向沈知微亡母，绑定七年前旧案","beatIds":["bt_10"]},{"id":"pr_black_car","name":"楼下黑色轿车","function":"可视化监视与人身威胁，提示沈知微已被盯上","beatIds":["bt_10"]}],"beats":[{"id":"bt_01","ep":1,"type":"压迫","level":"minor","setup":"辩护席空置，沈知微快速举证监控、指纹、供述，法庭看似铁案","payoff":"赵铁生每认一罪背就塌一分，眼神恐惧飘向旁听席，病号服女孩被悄悄抱走"},{"id":"bt_02","ep":2,"type":"反转","level":"major","setup":"陆沉舟迟到登场，先质疑截图只能证明帽檐，再以体型和腰伤指出案件太整齐","payoff":"他抛出死亡时间副本差四十分钟，沈知微发现卷宗第三页涂改，被迫申请休庭"},{"id":"bt_03","ep":3,"type":"悬念","level":"minor","setup":"休庭后陆沉舟隔空断言沈知微赢不了这个案子","payoff":"沈知微在涂改数字上画圈，并回想病号服女孩被抱走的异常"},{"id":"bt_04","ep":4,"type":"信息差","level":"minor","setup":"唐果以监控、指纹、口供三证齐全劝阻陆沉舟接赵铁生铁案","payoff":"陆沉舟看到死者是鸿远财务总监周敬山，执意接案，显露等鸿远八年的执念"},{"id":"bt_05","ep":5,"type":"情感","level":"minor","setup":"赵铁生反复认罪却对楼层和作案过程支吾，只惦记白血病女儿","payoff":"陆沉舟点破腰伤不可能四分钟作案，赵铁生气声承认没杀人又翻供护女"},{"id":"bt_06","ep":6,"type":"悬念","level":"minor","setup":"赵铁生被押上车前死死盯着西装徽章男，脸色惨白","payoff":"陆沉舟拍下徽章，老魏来电告知周敬山生前刚动过银行保管箱"},{"id":"bt_07","ep":7,"type":"反转","level":"major","setup":"林小夏从刑警队重拷小区东门原始监控","payoff":"发现23:33:41至58十七秒花屏，韩峥推演赵铁生进门时死者已死37分钟，沈知微判断是预谋替罪"},{"id":"bt_08","ep":8,"type":"信息差","level":"minor","setup":"陈守仁证实死亡时间在案发当晚以补正名义被改，补正需检察院系统点头","payoff":"沈知微数补正五账号到第四个熟人时停住，深夜电梯响起"},{"id":"bt_09","ep":9,"type":"压迫","level":"minor","setup":"沈知微在停车场质问陆沉舟为何能提前拿到法医原始记录","payoff":"陆沉舟反问她想赢还是想对，警告能改鉴定的人坐在她身后，文件袋暂不交出"},{"id":"bt_10","ep":10,"type":"悬念","level":"major","setup":"沈知微深夜回家发现锁芯有新划痕，出门前开的小夜灯被关","payoff":"鞋柜上出现威胁撤诉并提及其母亲的打印字条，楼下黑色轿车红点明灭，陆沉舟提醒她已被监视"}],"episodes":[{"ep":1,"title":"公诉席上的空位","sceneIds":["sc_court"],"characterIds":["ch_shen","ch_zhao","ch_lu","ch_lin"],"propIds":["pr_case_file","pr_monitor"],"synopsis":"沈知微趁辩护席空置快速举证，监控显示赵铁生23:47进单元门、23:51死者坠亡，刀柄只有赵指纹，赵当庭认罪。沈知微却注意到赵每认一罪背就塌一分，眼神恐惧飘向旁听席，末排病号服女孩被人悄悄抱走。","hook":"辩护席仍空，开庭二十七分钟后迟到者是谁","suspense":"赵铁生为何恐惧旁听席，病号服女孩是谁","crowdPlan":"法庭同框拆解：沈知微在公诉席举证，赵铁生在被告席认罪，林小夏在旁听侧记录，陆沉舟于集末从法庭后门入画；用席位高低和视线方向拆四人关系。","beatIds":["bt_01"]},{"ep":2,"title":"迟到律师","sceneIds":["sc_court"],"characterIds":["ch_shen","ch_lu","ch_zhao"],"propIds":["pr_case_file","pr_death_time","pr_monitor"],"synopsis":"陆沉舟迟到登场，先质疑保安截图只能证明低头帽檐，再以死者一米八二、赵铁生一米六五且有腰伤指出案件干净得太整齐。他申请核对法医死亡时间，称庭上副本与法援中心原始记录相差四十分钟，沈知微发现卷宗第三页数字涂改，被迫申请休庭。","hook":"休庭后陆沉舟为何断言沈知微赢不了","suspense":"谁改了死亡时间，原始记录为何在陆沉舟手里","crowdPlan":"法庭同框拆解：陆沉舟在辩护席连续抛出截图、体型、死亡时间三问，沈知微在公诉席翻卷宗发现涂改，赵铁生在被告席低头发抖；三人以法庭中线形成控辩审三角。","beatIds":["bt_02"]},{"ep":3,"title":"庭后挑衅","sceneIds":["sc_court"],"characterIds":["ch_shen","ch_lu","ch_nian"],"propIds":["pr_case_file"],"synopsis":"休庭后沈知微在法庭走廊被陆沉舟隔空提醒赢不了这个案子。她回到卷宗前，在涂改的死亡时间数字上画圈，并回想旁听末排病号服女孩被抱走的异常，第一次对铁案产生裂痕。","hook":"病号服女孩为何会出现在法庭","suspense":"陆沉舟为何对卷宗异常熟悉","crowdPlan":"同场拆解：沈知微在走廊一侧翻卷宗，陆沉舟在远处尽头只留背影和侧脸，病号服女孩只在沈知微回忆画面中被抱走；三人不同框，用空间距离制造压迫。","beatIds":["bt_03"]},{"ep":4,"title":"魔鬼代言人","sceneIds":["sc_legal_aid"],"characterIds":["ch_lu","ch_tang"],"propIds":["pr_case_file"],"synopsis":"三日前法援中心指派赵铁生铁案，唐果以监控、指纹、口供三证齐全劝阻。陆沉舟看到死者是鸿远集团财务总监周敬山后执意接案，显露他等鸿远八年的执念。","hook":"陆沉舟与鸿远到底有什么旧怨","suspense":"他为何偏偏等这个案子八年","beatIds":["bt_04"]},{"ep":5,"title":"看守所会见","sceneIds":["sc_detention"],"characterIds":["ch_lu","ch_zhao"],"propIds":["pr_case_file"],"synopsis":"第二看守所会见，赵铁生反复认罪却对死者家楼层和作案过程支吾，只惦记患白血病住在康和医院的七岁女儿。陆沉舟点破其腰伤不可能四分钟作案，赵铁生气声承认没杀人，随即翻供，称好心人承诺只要认罪女儿的药就管到底。","hook":"好心人是谁，为何能控制医院用药","suspense":"赵铁生为何宁可用命换女儿的药","beatIds":["bt_05"]},{"ep":6,"title":"徽章与保管箱","sceneIds":["sc_court_backdoor"],"characterIds":["ch_lu","ch_zhao","ch_badge_man","ch_wei"],"propIds":["pr_badge","pr_safe_box"],"synopsis":"休庭后法院后门，赵铁生被押上车前死死盯着一个穿西装、胸前别鸿远徽章的男人，脸色惨白。陆沉舟拍下徽章，老魏来电告知周敬山生前刚动过一个银行保管箱。","hook":"徽章男与保管箱之间有什么联系","suspense":"周敬山死前为何要动保管箱","crowdPlan":"后门同框拆解：赵铁生在押解车门口视线锁定徽章男，陆沉舟在侧后方举手机拍照，徽章男站在人群边缘，老魏只以电话声入画不入同框。","beatIds":["bt_06"]},{"ep":7,"title":"十七秒","sceneIds":["sc_police_monitor"],"characterIds":["ch_shen","ch_lin","ch_han"],"propIds":["pr_monitor"],"synopsis":"林小夏从刑警队重拷小区东门原始监控，发现23:33:41至58有十七秒齐得像尺子量过的花屏。韩峥对时间线，若原始死亡时间为23:10，赵铁生23:47进门时死者已死三十七分钟，沈知微判断监控被提前剪，赵铁生是预谋替罪羊。","hook":"真凶比赵铁生早十四分钟进入小区","suspense":"谁有能力提前剪掉监控","crowdPlan":"监控室同框拆解：林小夏操作电脑逐帧回放，韩峥在白板推时间线，沈知微用卷宗在旁边比对死亡时间；三人围成工作三角。","beatIds":["bt_07"]},{"ep":8,"title":"补正五账号","sceneIds":["sc_forensic"],"characterIds":["ch_shen","ch_chen"],"propIds":["pr_death_time","pr_case_file"],"synopsis":"法医中心陈守仁证实死亡时间鉴定在案发当晚以补正名义被改，补正申请走检察院系统、需立案部门点头。沈知微数到补正五账号中的第四个熟人时停住，深夜电梯忽然响起。","hook":"第四个熟人是谁","suspense":"深夜电梯里走出来的是谁","beatIds":["bt_08"]},{"ep":9,"title":"停车场对峙","sceneIds":["sc_parking"],"characterIds":["ch_shen","ch_lu"],"propIds":["pr_death_time","pr_case_file"],"synopsis":"法院地下停车场，沈知微质问陆沉舟为何能提前拿到法医原始记录。陆沉舟反问她想赢还是想对，警告若把证据全摊在庭上，当事人会在看守所出事、原始视频会意外损坏，因为能改鉴定的人坐在她身后。他手里夹着文件袋暂不交出。","hook":"文件袋里到底装着什么","suspense":"坐在沈知微身后的那个人是谁","beatIds":["bt_09"]},{"ep":10,"title":"字条与黑车","sceneIds":["sc_shen_home"],"characterIds":["ch_shen","ch_lu"],"propIds":["pr_note","pr_black_car"],"synopsis":"沈知微深夜回家发现锁芯有新划痕、出门前开的小夜灯被关，鞋柜上多了一张打印字条，威胁她撤诉并提及其母亲。她看向亡母合影，楼下黑色轿车里红点明灭，陆沉舟提醒她已被监视。","hook":"谁在楼下监视沈知微","suspense":"母亲的死与这起案子到底有什么关联","beatIds":["bt_10"]}]}</script>
+<script>
+document.querySelectorAll('.tab').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach((b) => b.classList.toggle('on', b === btn));
+    document.querySelectorAll('.tabpane').forEach((p) => p.classList.toggle('on', p.id === btn.dataset.pane));
+  });
+});
+
+const epsMore = document.querySelector('.epsmore');
+if (epsMore) {
+  epsMore.addEventListener('click', () => {
+    document.querySelector('.epswrap').classList.remove('clip');
+    epsMore.remove();
+  });
+}
+
+document.querySelector('.expo').addEventListener('click', (e) => {
+  const btn = e.currentTarget;
+  const url = URL.createObjectURL(
+    new Blob([document.getElementById('outline-data').textContent], { type: 'application/json' }),
+  );
+  const a = Object.assign(document.createElement('a'), { href: url, download: btn.dataset.name });
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+});
+</script>
+</body></html>
