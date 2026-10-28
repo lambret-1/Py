@@ -28,7 +28,7 @@ jobs:
     - name: 执行渲染
       run: |
         set +e
-        mkdir -p 剧本
+        mkdir -p JSON
         
         echo "======================================="
         echo "正在扫描 json 下的所有 JSON..."
