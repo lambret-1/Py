@@ -1,175 +1,1186 @@
 {
-  "source": "公诉席上的空位",
+  "source": "刀口温柔",
   "lang": "zh",
   "params": {
-    "episodes": 2,
-    "minutesPerEpisode": 2,
-    "genre": "律政悬疑",
+    "episodes": 80,
+    "minutesPerEpisode": 1.5,
+    "genre": "悬疑司法犯罪",
     "adaptMode": "抽核",
-    "preferences": [],
-    "thresholds": {
-      "maxLeads": 5,
-      "maxSupport": 10,
-      "maxFunctional": 10,
-      "maxBeatGap": 3,
-      "maxPrimaryScenes": 5
-    }
+    "preferences": []
   },
   "adaptation": {
-    "core": "赵铁生故意杀人案开庭，公诉人沈知微眼看铁案即将落锤，迟到的辩护律师陆沉舟当庭抛出证据疑点，揭露法医鉴定卷宗存在涂改痕迹，当庭击碎看似无懈可击的证据链",
+    "core": "女检察官沈知微与律师陆沉舟因七年前母亲许曼死于康泰宁假药案相遇。二人从互相试探、彼此利用，到并肩追查，最终掀翻政法委副书记梁伯韬与鸿远董事长霍明远的黑金网络，为两代检察官、被灭口的护士与会计讨回公道。",
     "keep": [
       {
-        "what": "庭审开庭、辩护席空置二十七分钟，沈知微举证，陆沉舟迟到登场、质疑监控辨认、双方对被告人身体条件的辩驳、死亡时间鉴定被涂改、休庭收尾、结尾病号服小女孩伏笔",
-        "why": "为本章全部核心冲突与钩子，是短剧必须保留主线素材",
-        "evidence": "公诉席对面的辩护席，空了二十七分钟；辩护人陆沉舟，因向法援中心调取卷宗，迟到；两份记录上的死亡时间，相差四十分钟；卷宗那个时间数字，确实有问题。墨迹颜色比周围深，0字的收口微微发毛；旁听席的最后一排，一个穿病号服、戴着口罩的小女孩，被人悄悄抱了起来，很快消失在门外"
+        "what": "庭审戏与证据链递进",
+        "why": "原著核心爽点",
+        "evidence": "沈知微在终审中逐项呈上苏雯指甲皮屑DNA、康泰宁三批次原始数据、林小夏U盘IP链路、方既明以命送出的录音母版、周敬山亲笔签批指令。"
+      },
+      {
+        "what": "两代检察官父子/母女同构",
+        "why": "情感内核",
+        "evidence": "陆正阳停在二十二点零七分的手表；沈知微十七岁在太平间送走母亲许曼。"
+      },
+      {
+        "what": "刀口温柔点题",
+        "why": "书名落点",
+        "evidence": "雨夜沈知微替陆沉舟缝合子弹伤口；法庭最后陈述回忆那一夜。"
+      },
+      {
+        "what": "反派霍明远妹妹霍小满雨夜病夭动机",
+        "why": "反派复杂性",
+        "evidence": "十一岁的小满凑不齐十二块医药费，在收费窗口前病夭。"
       }
     ],
     "cut": [
       {
-        "what": "保安详细问答的部分细节、被告人全部心理细碎描写、沈知微大量内心心理独白",
-        "why": "两分钟短剧篇幅有限，保留动作与冲突，删减大段心理描写，加快叙事节奏"
+        "what": "原著第6-9章医院流程戏、体检戏、唐果日常铺垫",
+        "why": "短剧只装一条主线，缓场砍掉"
       },
       {
-        "what": "下章预告相关鸿远集团、后续伏笔文字注释内容",
-        "why": "属于原著章末备注，不属于正片剧情，放到分集悬念钩子实现同等效果"
+        "what": "原著第33-35章林小夏住院苏醒支线",
+        "why": "保留林小夏工作证夹层芯片这条关键道具线，住院治疗压缩成一集过场"
+      },
+      {
+        "what": "原著第48-50章雪落、墓后回访、人物新日常",
+        "why": "结尾收在判决与雪落墓前即可，番外不拍"
       }
     ],
-    "merge": [],
+    "merge": [
+      {
+        "what": "原著中老魏、韩峥、老秦三位警察合并为两位",
+        "why": "老魏与韩峥职能重叠，都是陆父旧部与救场角色，合成韩峥；省厅老秦独立保留"
+      },
+      {
+        "what": "原著中方既明妻子、周禾母亲、沈知微舅舅等远亲全部删除",
+        "why": "短剧不需要家庭背景群像"
+      }
+    ],
     "risks": [
       {
-        "what": "法庭多人物同框，AI生成容易出现人物表情错位，卷宗涂改细节特写难还原",
-        "plan": "多用正反切镜头；卷宗涂改采用局部特写镜头处理；减少大场面群像，旁听席做虚化背景处理"
+        "what": "80集×1.5分钟节奏极快，证据链不能学术化",
+        "plan": "每个证据出现都用一场具象戏带出，如坠楼、车祸、金库、指纹仪，不上解说"
+      },
+      {
+        "what": "AI短剧同框人群多",
+        "plan": "法庭戏用三人以内特写调度，旁听席虚化；街头人群只做背景虚化"
+      },
+      {
+        "what": "反派梁伯韬/霍明远都是体制内体面人，容易拍平",
+        "plan": "给两人各一个失控特写：梁伯韬慌摔茶杯、霍明远法庭失态追问沈知微母亲年龄"
       }
     ],
-    "cutNote": "这意味着：全剧两集只聚焦本次庭审冲突爆发，不延展庭外侦查剧情，把内部证据篡改作为核心悬念留下",
-    "mergeNote": "主角组为沈知微、陆沉舟、赵铁生，三人均具备清晰行为转变与立场冲突，构成本单元完整人物张力"
+    "cutNote": "全剧终点是终审宣判与雪落墓前，原著后2章日常番外不拍；感情线只留雨夜缝针与并肩站在长廊两个画面。",
+    "mergeNote": "主角组四人各有完整转变弧：沈知微从母亲冤案走向公诉人；陆沉舟从父亲被构陷走向律师与合法复仇；梁伯韬从政法委内鬼到被专案组带走；霍明远从体面药企老板面具到法庭认罪。"
   },
   "characters": [
     {
       "id": "C01",
       "name": "沈知微",
-      "role": "女主，公诉检察官",
+      "role": "女主，市检察院公诉人，许曼之女",
       "tier": "lead",
-      "arc": "原本认定证据确凿铁案，庭审之中发现自己卷宗存在人为篡改，内心开始动摇，决定核查真相",
-      "from": ["原著-沈知微"]
+      "arc": "从十七岁签下和解协议的女孩，到三年后穿上检服翻母亲旧案，再到被通缉、被周敬山女儿的钢笔提醒后重新穿上检服，最终在终审为所有死者发声。",
+      "from": ["原著沈知微"]
     },
     {
       "id": "C02",
       "name": "陆沉舟",
-      "role": "男主，法律援助辩护律师",
+      "role": "男主，律师，陆正阳之子",
       "tier": "lead",
-      "arc": "迟到登场，看似散漫，手握关键卷宗疑点，当庭撕开案件漏洞，言语暗示此案背后另有隐情",
-      "from": ["原著-陆沉舟"]
+      "arc": "从带着复仇目的接近沈知微的棋手，到坦白利用、选择合法程序、放弃个人复仇，最后以辩护人身份替赵铁生作无罪辩护。",
+      "from": ["原著陆沉舟"]
     },
     {
       "id": "C03",
-      "name": "赵铁生",
-      "role": "本案被告人",
+      "name": "梁伯韬",
+      "role": "大反派，政法委副书记，七年前构陷陆正阳的执行人",
       "tier": "lead",
-      "arc": "被动认罪，神情恐惧，并非真心伏法，似在被迫替人顶罪",
-      "from": ["原著-赵铁生"]
+      "arc": "从从容坐镇四楼专线，到证据上门时慌摔茶杯，再到命令灭口，最终被异地专案组带走。",
+      "from": ["原著梁伯韬"]
     },
     {
       "id": "C04",
-      "name": "林小夏",
-      "role": "公诉助理",
-      "tier": "support",
-      "arc": "旁观庭审，感知案件气氛异常，作为辅助视角",
-      "from": ["原著-林小夏"]
+      "name": "霍明远",
+      "role": "反派，鸿远集团董事长，康泰宁假药案真正主使",
+      "tier": "lead",
+      "arc": "从慈善家长期面具，到法庭上揭出妹妹病夭往事，再到体面崩塌，最后鞠躬认罪。",
+      "from": ["原著霍明远"]
     },
     {
       "id": "C05",
-      "name": "审判长",
-      "role": "法庭审判长",
-      "tier": "functional",
-      "arc": "",
-      "from": ["原著-审判长"]
+      "name": "方既明",
+      "role": "殉职检察官，七年前被胁迫的知情人",
+      "tier": "support",
+      "arc": "从躲了七年的畏罪者，到深夜约见沈知微、把女儿托付战友、穿洗旧熨平的检服赴死。",
+      "from": ["原著方既明"]
     },
     {
       "id": "C06",
-      "name": "小区保安",
-      "role": "出庭证人",
-      "tier": "functional",
-      "arc": "",
-      "from": ["原著-小区保安"]
+      "name": "苏雯",
+      "role": "康和医院护士，吹哨人",
+      "tier": "support",
+      "arc": "从试图上报药物不良反应的护士，到被反咬自杀、坠楼。",
+      "from": ["原著苏雯"]
     },
     {
       "id": "C07",
-      "name": "病号服小女孩",
-      "role": "神秘旁听者",
+      "name": "周敬山",
+      "role": "鸿远内审，被灭口的会计",
+      "tier": "support",
+      "arc": "七年前偷偷刻下女儿名字的钢笔藏U盘，死后以指纹解锁方式把证据交出来。",
+      "from": ["原著周敬山（回忆/遗物出场）"]
+    },
+    {
+      "id": "C08",
+      "name": "周禾",
+      "role": "周敬山女儿，大学生",
+      "tier": "support",
+      "arc": "从被灭口名单上的孩子，到法庭上以父亲指纹授权U盘。",
+      "from": ["原著周禾"]
+    },
+    {
+      "id": "C09",
+      "name": "钱坤",
+      "role": "梁伯韬打手，直接执行人",
+      "tier": "support",
+      "arc": "从楼顶假装报警人，到被抓后口供咬出梁伯韬。",
+      "from": ["原著钱坤"]
+    },
+    {
+      "id": "C10",
+      "name": "林小夏",
+      "role": "检察院技术处技术员",
+      "tier": "support",
+      "arc": "从诱饵被撞伤，到工作证夹层替沈知微藏下备份芯片。",
+      "from": ["原著林小夏"]
+    },
+    {
+      "id": "C11",
+      "name": "韩峥",
+      "role": "老刑警，陆正阳旧部",
+      "tier": "support",
+      "arc": "从偏远派出所调回，开车绕三县把沈知微送出江城。",
+      "from": ["原著韩峥 + 合并老魏"]
+    },
+    {
+      "id": "C12",
+      "name": "唐果",
+      "role": "沈知微闺蜜，赵念念监护人",
+      "tier": "support",
+      "arc": "从以为沈知微疯了，到在灭口名单下抱起赵念念躲起来。",
+      "from": ["原著唐果"]
+    },
+    {
+      "id": "C13",
+      "name": "老秦",
+      "role": "省厅刑侦局老刑警",
       "tier": "functional",
-      "arc": "",
-      "from": ["原著-赵念念"]
+      "arc": "从省厅老刑警到异地专案组牵头人，接下录音并推动收网。",
+      "from": ["原著老秦"]
+    },
+    {
+      "id": "C14",
+      "name": "审判长",
+      "role": "终审法庭主持",
+      "tier": "functional",
+      "arc": "控制庭审节奏，在关键证据争议中作出裁定。",
+      "from": ["原著审判长"]
+    },
+    {
+      "id": "C15",
+      "name": "急诊医生",
+      "role": "苏雯坠楼值班医生；雨夜枪伤处理医生",
+      "tier": "functional",
+      "arc": "以值班判断与枪伤处理串起苏雯之死和雨夜缝针回忆。",
+      "from": ["原创合并"]
+    },
+    {
+      "id": "C16",
+      "name": "赵念念",
+      "role": "赵铁生之女，幼童，布偶熊主人",
+      "tier": "support",
+      "arc": "从灭口名单上的孩子，到被唐果抱走保护；布偶熊成为周敬山暗账U盘载体。",
+      "from": ["原著赵念念/补全角色"]
     }
   ],
   "scenes": [
-    {
-      "id": "S01",
-      "name": "江城市中级法院法庭",
-      "primary": true,
-      "reusePlan": ""
-    }
+    {"id": "S01", "name": "市检察院办公室", "primary": true, "reusePlan": ""},
+    {"id": "S02", "name": "终审法庭", "primary": true, "reusePlan": ""},
+    {"id": "S03", "name": "陆沉舟律所", "primary": true, "reusePlan": ""},
+    {"id": "S04", "name": "鸿远集团大楼霍明远办公室", "primary": true, "reusePlan": ""},
+    {"id": "S05", "name": "康和医院走廊与太平间", "primary": true, "reusePlan": ""},
+    {"id": "S06", "name": "政法委四楼梁伯韬办公室", "primary": true, "reusePlan": ""},
+    {"id": "S07", "name": "沈知微公寓", "primary": true, "reusePlan": ""},
+    {"id": "S08", "name": "看守所审讯室", "primary": true, "reusePlan": "复用S11省纪委办案点，换铁栏杆+旧灯改"},
+    {"id": "S09", "name": "城南废弃粮库", "primary": true, "reusePlan": "复用S03律所，换暗灯+旧文件柜改"},
+    {"id": "S10", "name": "立交桥下陆正阳死亡现场", "primary": true, "reusePlan": "复用S05医院外夜景，换雨夜立交桥灯"},
+    {"id": "S11", "name": "省纪委办案点", "primary": true, "reusePlan": "复用S08看守所，换白布桌+卷宗墙改"},
+    {"id": "S12", "name": "大雪墓前", "primary": true, "reusePlan": "外景生成"}
   ],
   "props": [
     {
       "id": "P01",
-      "name": "案件卷宗",
-      "function": "承载核心线索，卷宗内法医死亡时间数字被涂改，是推翻铁案的关键物证",
-      "beatIds": ["B02"]
+      "name": "许曼的旧围巾",
+      "function": "许曼遗物，情感锚点；雨夜沈知微用它替陆沉舟按住伤口。",
+      "beatIds": ["B02", "B29", "B30", "B32"]
     },
     {
       "id": "P02",
-      "name": "带血水果刀（物证袋）",
-      "function": "公诉方出示的定罪凶器，构建最初完整证据链",
-      "beatIds": ["B01"]
+      "name": "陆正阳停走手表",
+      "function": "停在22:07的旧手表，陆正阳遗物；父子同构信物，最后陈述时露出。",
+      "beatIds": ["B06", "B30", "B32"]
     },
     {
       "id": "P03",
-      "name": "监控截图投影",
-      "function": "展示被告人进入小区画面，作为公诉方主要定罪影像证据",
-      "beatIds": ["B01"]
+      "name": "周敬山刻禾钢笔",
+      "function": "笔帽是周敬山指纹密钥，笔身内藏U盘。",
+      "beatIds": ["B25", "B26"]
+    },
+    {
+      "id": "P04",
+      "name": "黑色存储芯片",
+      "function": "核心证据：梁伯韬与霍明远通话录音。",
+      "beatIds": ["B15", "B17", "B18"]
+    },
+    {
+      "id": "P05",
+      "name": "方既明的检徽",
+      "function": "殉职信物，从看守所遗物中交回沈知微。",
+      "beatIds": ["B11", "B32"]
+    },
+    {
+      "id": "P06",
+      "name": "林小夏的工作证",
+      "function": "夹层藏备份芯片，沈知微在逃亡中发现。",
+      "beatIds": ["B09", "B15"]
+    },
+    {
+      "id": "P07",
+      "name": "赵念念的布偶熊",
+      "function": "熊腹藏周敬山暗账U盘。",
+      "beatIds": ["B14"]
+    },
+    {
+      "id": "P08",
+      "name": "鸿远慈善基金会账册",
+      "function": "洗钱链路物证。",
+      "beatIds": ["B19", "B26", "B29"]
     }
   ],
   "beats": [
-    {
-      "id": "B01",
-      "type": "定罪举证",
-      "weight": "minor",
-      "episode": 1,
-      "setup": "辩护席空置，沈知微抓紧时间出示监控、凶器证据，被告人赵铁生当庭认罪，看似铁案已成",
-      "payoff": "法庭所有人都认为赵铁生故意杀人罪名即将成立"
-    },
-    {
-      "id": "B02",
-      "type": "反转揭疑",
-      "weight": "major",
-      "episode": 2,
-      "setup": "陆沉舟迟到闯入法庭，质疑监控辨认、质疑赵铁生身体条件不可能完成犯罪动作，拿出法医原始记录",
-      "payoff": "当庭揭露卷宗死亡时间被涂改，沈知微申请休庭核查证据，案件彻底反转"
-    }
+    {"id": "B01", "type": "揭破", "weight": "minor", "episode": 2, "setup": "沈知微整理母亲遗物，翻出药品鉴定报告", "payoff": "报告背面有一枚她十七岁看不懂的红色印章"},
+    {"id": "B02", "type": "反转", "weight": "major", "episode": 5, "setup": "雨夜，陆沉舟携另一份鉴定报告上门", "payoff": "同一份药检结论相反，许曼之死并非意外"},
+    {"id": "B03", "type": "悬念", "weight": "minor", "episode": 8, "setup": "苏雯电话打到沈知微手机", "payoff": "男人脚步声逼近，通话断线"},
+    {"id": "B04", "type": "揭破", "weight": "major", "episode": 10, "setup": "苏雯坠楼被定性自杀", "payoff": "沈知微在太平间从她指甲缝里发现皮屑"},
+    {"id": "B05", "type": "反转", "weight": "minor", "episode": 12, "setup": "皮屑DNA比对", "payoff": "与七年前另一具尸体上的皮肤组织同源"},
+    {"id": "B06", "type": "揭破", "weight": "major", "episode": 15, "setup": "陆沉舟亮出父亲停在22:07的手表", "payoff": "陆正阳不是贪官，而是被撞下立交桥的证人"},
+    {"id": "B07", "type": "危机", "weight": "minor", "episode": 18, "setup": "沈知微回到工位", "payoff": "鼠标垫偏移两厘米，电脑被人动过"},
+    {"id": "B08", "type": "危机", "weight": "minor", "episode": 20, "setup": "林小夏反查IP", "payoff": "无牌SUV朝她撞来"},
+    {"id": "B09", "type": "反转", "weight": "major", "episode": 26, "setup": "方既明告别时捧起林小夏的工作证", "payoff": "他把薄如蝉翼的黑色芯片滑进夹层"},
+    {"id": "B10", "type": "泪点", "weight": "minor", "episode": 25, "setup": "方既明把女儿照片交给沈知微", "payoff": "他说已把女儿托付给老家战友，自己回检察院门口等九点"},
+    {"id": "B11", "type": "反转", "weight": "major", "episode": 28, "setup": "深夜天台", "payoff": "方既明坠楼前回望沈知微一眼"},
+    {"id": "B12", "type": "营救", "weight": "minor", "episode": 30, "setup": "沈知微被反锁在办公区", "payoff": "韩峥带队从消防通道破门而入"},
+    {"id": "B13", "type": "危机", "weight": "minor", "episode": 33, "setup": "通缉令贴出", "payoff": "沈知微被当众摘下检徽"},
+    {"id": "B14", "type": "掩护", "weight": "minor", "episode": 35, "setup": "唐果家门外传来钥匙声", "payoff": "唐果抱起赵念念从后门撤离，短刀擦过头发钉入门框"},
+    {"id": "B15", "type": "揭破", "weight": "major", "episode": 38, "setup": "沈知微在暗处捏着林小夏的工作证", "payoff": "夹层滑出黑色备份芯片"},
+    {"id": "B16", "type": "营救", "weight": "minor", "episode": 41, "setup": "韩峥开车绕三县", "payoff": "天亮前把沈知微送出江城"},
+    {"id": "B17", "type": "反击", "weight": "minor", "episode": 43, "setup": "省纪委办案点外放录音", "payoff": "老秦拍桌，决定成立异地专案组"},
+    {"id": "B18", "type": "反击", "weight": "minor", "episode": 46, "setup": "沈知微逐项呈交证据", "payoff": "省院下文：通缉暂停、身份恢复、借调专案"},
+    {"id": "B19", "type": "揭破", "weight": "minor", "episode": 47, "setup": "霍明远让秘书转出境外资产", "payoff": "银行端被异地专案组冻结"},
+    {"id": "B20", "type": "打脸", "weight": "major", "episode": 50, "setup": "梁伯韬在四楼办公室", "payoff": "老秦带人敲门进入"},
+    {"id": "B21", "type": "危机", "weight": "minor", "episode": 53, "setup": "霍明远潜逃前写灭口名单", "payoff": "名单最上面是赵念念、周禾"},
+    {"id": "B22", "type": "反转", "weight": "minor", "episode": 55, "setup": "钱坤被审", "payoff": "口供咬出梁伯韬下令楼顶报警"},
+    {"id": "B23", "type": "反转", "weight": "minor", "episode": 58, "setup": "霍明远走进法庭", "payoff": "他第一次在媒体镜头前没有笑"},
+    {"id": "B24", "type": "反转", "weight": "major", "episode": 60, "setup": "沈知微当庭追问动机", "payoff": "霍明远讲出妹妹小满十一岁雨夜病夭"},
+    {"id": "B25", "type": "反击", "weight": "minor", "episode": 62, "setup": "周禾出庭", "payoff": "她抱着父亲刻禾的钢笔站上证人席"},
+    {"id": "B26", "type": "揭破", "weight": "major", "episode": 65, "setup": "周禾把笔帽按在指纹仪上", "payoff": "指纹匹配周敬山，U盘解锁，七年暗账全开"},
+    {"id": "B27", "type": "反击", "weight": "minor", "episode": 68, "setup": "沈知微当庭", "payoff": "你妹妹死于不肯先用药的窗口，你如今亲手把别人变成那个窗口"},
+    {"id": "B28", "type": "反击", "weight": "minor", "episode": 70, "setup": "霍明远首席辩护人质疑录音来源", "payoff": "沈知微以苏雯指甲皮屑DNA时间戳反杀"},
+    {"id": "B29", "type": "打脸", "weight": "major", "episode": 72, "setup": "最后陈述", "payoff": "沈知微替许曼及所有康泰宁受害者发声"},
+    {"id": "B30", "type": "打脸", "weight": "major", "episode": 75, "setup": "陆沉舟最后陈述", "payoff": "露出父亲停在22:07的手表"},
+    {"id": "B31", "type": "打脸", "weight": "major", "episode": 78, "setup": "审判长宣判", "payoff": "霍明远数罪并罚被判死刑；梁伯韬、钱坤另行宣判"},
+    {"id": "B32", "type": "收束", "weight": "minor", "episode": 80, "setup": "大雪墓前", "payoff": "沈知微与陆沉舟并肩无言，检徽与手表留在雪中"}
   ],
   "episodes": [
     {
       "ep": 1,
-      "synopsis": "赵铁生故意杀人案开庭，辩护律师迟迟不到位，辩护席空位长达二十七分钟。公诉人沈知微抓紧庭审节奏，依次出示小区监控截图、带血水果刀物证。面对证据，被告人赵铁生当庭认罪。沈知微综合监控、指纹、口供，准备向法庭递交完整有罪证据链，旁听席一片哗然，助理林小夏察觉赵铁生认罪状态异常。就在公诉即将完成陈述之时，法庭后门被推开，一身带着室外潮气的陆沉舟迟到赶到辩护席。",
-      "hook": "迟到的辩护律师陆沉舟突然现身，庭审局面即将发生变化",
-      "suspense": "姗姗来迟的陆沉舟能否打破已经成型的有罪证据链？赵铁生如此干脆认罪背后是否另有隐情？",
-      "sceneIds": ["S01"],
-      "characterIds": ["C01", "C03", "C04", "C05", "C02"],
-      "propIds": ["P02", "P03"],
-      "crowdPlan": "多人同框法庭场景，分镜头剪辑：公诉席、被告席、辩护席分别切镜，旁听席虚化作为背景群像",
-      "warnings": ["法庭大群像，物证袋特写镜头"]
+      "synopsis": "沈知微坐在十七岁那年的医院走廊里，面前摊着调解协议，舅舅被两个穿西装的人挤在墙角。她签了字。三年后，她穿上检服回到同一栋楼。",
+      "hook": "母亲到底是怎么死的？",
+      "suspense": "康泰宁从哪一批药开始出问题",
+      "sceneIds": ["S05"],
+      "characterIds": ["C01"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
     },
     {
       "ep": 2,
-      "synopsis": "陆沉舟向法庭致歉迟到，直接针对公诉证据展开质询，盘问出庭保安，点出监控截图无法确认人脸，又指出身材瘦弱、身体有伤病的赵铁生，生理上很难短时间内将高大健壮的被害人推下高楼。他拿出法医原始鉴定记录，指出庭上卷宗的死亡时间被人篡改，前后相差四十分钟。沈知微翻看手中卷宗，亲眼看见鉴定时间存在涂改痕迹。沈知微当即向审判长申请休庭核验原始证据。休庭之时，陆沉舟望向沈知微无声传递警示话语。旁听席角落，一名身穿病号服戴口罩的小女孩被人悄悄带走消失。",
-      "hook": "卷宗内部出现人为涂改痕迹，铁案假象彻底破碎",
-      "suspense": "是谁篡改检察院内部卷宗？病号服小女孩是什么身份，此案背后还藏着什么秘密？",
-      "sceneIds": ["S01"],
-      "characterIds": ["C01", "C02", "C03", "C05", "C06", "C07"],
+      "synopsis": "她整理母亲遗物，翻出那份药品鉴定报告，背面盖着一枚她十七岁看不懂的红色印章。",
+      "hook": "这枚章是谁盖的？",
+      "suspense": "印章对应的签字人是谁",
+      "sceneIds": ["S07"],
+      "characterIds": ["C01"],
       "propIds": ["P01"],
-      "crowdPlan": "主要角色聚焦审判区对手戏，旁听席人物只保留结尾小女孩局部镜头，其余旁听人员做虚化处理",
-      "warnings": ["卷宗涂改细节特写，人物口型表演镜头"]
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 3,
+      "synopsis": "市检察院办公室，沈知微翻旧案卷，发现康泰宁案三年前已结案，可卷内缺了一页。",
+      "hook": "缺失的那一页去了哪里？",
+      "suspense": "谁调走过这份卷",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 4,
+      "synopsis": "她申请复查被驳回。下班时，一个陌生男人撑着伞站在她楼下。",
+      "hook": "这个男人是谁？",
+      "suspense": "他为什么知道她住这里",
+      "sceneIds": ["S07"],
+      "characterIds": ["C01", "C02"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 5,
+      "synopsis": "雨夜。陆沉舟跟着她上楼，把另一份鉴定报告放在桌上——结论和她手里那份相反。",
+      "hook": "他手里为什么会有另一份？",
+      "suspense": "他究竟是谁",
+      "sceneIds": ["S07"],
+      "characterIds": ["C01", "C02"],
+      "propIds": ["P01"],
+      "crowdPlan": "",
+      "warnings": ["雨戏"]
+    },
+    {
+      "ep": 6,
+      "synopsis": "两份鉴定报告并排摊开，结论相反。陆沉舟告诉她：我父亲七年前也是这么死的。",
+      "hook": "他父亲是谁？",
+      "suspense": "两份报告哪一份是真的",
+      "sceneIds": ["S07"],
+      "characterIds": ["C01", "C02"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 7,
+      "synopsis": "两人在律所核对证据来源。沈知微怀疑他的动机，他不解释，只把自己的律师证推过来。",
+      "hook": "他为什么一定要查下去？",
+      "suspense": "他父亲当年发生了什么",
+      "sceneIds": ["S03"],
+      "characterIds": ["C01", "C02"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 8,
+      "synopsis": "康和医院，护士苏雯打给沈知微，说她管的床出了事。电话那头传来急促的男人脚步声，随后断线。",
+      "hook": "苏雯现在怎么样了？",
+      "suspense": "那个男人是谁",
+      "sceneIds": ["S05"],
+      "characterIds": ["C01", "C06"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 9,
+      "synopsis": "沈知微赶到医院，得知苏雯已从检察院大楼坠下，值班医生称是自杀。",
+      "hook": "一个想上报药物反应的护士为什么要自杀？",
+      "suspense": "她死前到底想说什么",
+      "sceneIds": ["S05"],
+      "characterIds": ["C01", "C06", "C15"],
+      "propIds": [],
+      "crowdPlan": "三人同框，正反打为主，第三人过肩带入",
+      "warnings": []
+    },
+    {
+      "ep": 10,
+      "synopsis": "太平间里，沈知微翻开苏雯掌心，指甲缝里有一点不属于她的皮肤组织。",
+      "hook": "那点皮屑是谁的？",
+      "suspense": "苏雯死前和谁搏斗过",
+      "sceneIds": ["S05"],
+      "characterIds": ["C01", "C06"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": ["手部特写"]
+    },
+    {
+      "ep": 11,
+      "synopsis": "她把皮屑送检。陆沉舟带来消息：七年前陆正阳案的现场报告里，也有类似的皮肤组织记录。",
+      "hook": "两起案子是同一个人做的？",
+      "suspense": "陆正阳案的真凶是谁",
+      "sceneIds": ["S03"],
+      "characterIds": ["C01", "C02"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 12,
+      "synopsis": "DNA比对结果出来，两份皮屑同源。沈陆两人对视——这不是个案，是一张网。",
+      "hook": "这张网里还有谁？",
+      "suspense": "谁在七年前同时杀了两个人",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01", "C02", "C10"],
+      "propIds": [],
+      "crowdPlan": "三人同框，正反打为主，第三人过肩带入",
+      "warnings": []
+    },
+    {
+      "ep": 13,
+      "synopsis": "沈知微第一次把案件向院领导汇报，被压下。她走出办公楼，看见车顶上有人留了一张纸条。",
+      "hook": "纸条上写了什么？",
+      "suspense": "监视她的人是谁",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 14,
+      "synopsis": "陆沉舟带她去立交桥下，指着护栏：我父亲就是从这里被撞下去的。他掏出一只停走的手表。",
+      "hook": "手表为什么停了？",
+      "suspense": "那一秒钟发生了什么",
+      "sceneIds": ["S10"],
+      "characterIds": ["C01", "C02"],
+      "propIds": ["P02"],
+      "crowdPlan": "",
+      "warnings": ["雨戏"]
+    },
+    {
+      "ep": 15,
+      "synopsis": "手表指针停在二十二点零七分。陆沉舟讲父亲被指控贪污、实际是证人的真相。",
+      "hook": "陆正阳真的不是贪官？",
+      "suspense": "当年谁给他定的罪",
+      "sceneIds": ["S10"],
+      "characterIds": ["C01", "C02"],
+      "propIds": ["P02"],
+      "crowdPlan": "",
+      "warnings": ["雨戏"]
+    },
+    {
+      "ep": 16,
+      "synopsis": "沈知微回到家，翻出母亲七年前的病历，发现死亡时间也在那一周。",
+      "hook": "母亲和陆父是同一周死的？",
+      "suspense": "两起案子背后是同一伙人？",
+      "sceneIds": ["S07"],
+      "characterIds": ["C01"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 17,
+      "synopsis": "她一夜没睡。天亮时她做出决定：把两个案子并起来查。",
+      "hook": "她敢一个人对抗整个系统吗？",
+      "suspense": "上级会不会再次压案",
+      "sceneIds": ["S07"],
+      "characterIds": ["C01"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 18,
+      "synopsis": "第二天她回到工位，发现鼠标垫位置偏了两厘米——她习惯把它和桌沿对齐，分毫不差。",
+      "hook": "有人动过她的电脑？",
+      "suspense": "那个人拿走了什么",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01", "C10"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 19,
+      "synopsis": "她调监控，发现凌晨两点有人刷工牌进过办公区。工牌登记的名字是——方既明。",
+      "hook": "方既明是谁？",
+      "suspense": "他七年前为什么离开检察院",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01", "C05", "C10"],
+      "propIds": [],
+      "crowdPlan": "三人同框，正反打为主，第三人过肩带入",
+      "warnings": []
+    },
+    {
+      "ep": 20,
+      "synopsis": "林小夏在技术处反查方既明备用机的IP，一辆没有牌照的SUV朝她撞来。",
+      "hook": "林小夏能不能躲开？",
+      "suspense": "开车的人是谁派的",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01", "C10"],
+      "propIds": [],
+      "crowdPlan": "街头群演虚化，只保留车与人物近景",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 21,
+      "synopsis": "林小夏住院，沈知微在病床边攥着她的工作证。林小夏昏迷前低声说了一个名字：梁。",
+      "hook": "梁是谁？",
+      "suspense": "梁和方既明是什么关系",
+      "sceneIds": ["S05"],
+      "characterIds": ["C01", "C10"],
+      "propIds": ["P06"],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 22,
+      "synopsis": "深夜，穿洗旧熨平检服的方既明出现在沈知微家门口。他手里提着一个布袋。",
+      "hook": "布袋里是什么？",
+      "suspense": "他为什么七年后才出现",
+      "sceneIds": ["S07"],
+      "characterIds": ["C01", "C05"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 23,
+      "synopsis": "城南废弃粮库。方既明讲七年前他是账户对接内勤，被胁迫在假笔录上签了字。",
+      "hook": "他签的那一页现在在哪里？",
+      "suspense": "胁迫他的人是谁",
+      "sceneIds": ["S09"],
+      "characterIds": ["C01", "C05"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 24,
+      "synopsis": "方既明说他把梁伯韬和霍明远通话的录音，存在一片黑色芯片里。芯片他已经托人另藏。",
+      "hook": "藏在哪里？",
+      "suspense": "他为什么不早拿出来",
+      "sceneIds": ["S09"],
+      "characterIds": ["C01", "C05"],
+      "propIds": ["P04"],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 25,
+      "synopsis": "方既明把一个信封交给沈知微：里面是他女儿的照片。他说已经把女儿托付给老家战友。",
+      "hook": "他打算做什么？",
+      "suspense": "他是不是知道自己活不过今晚",
+      "sceneIds": ["S09"],
+      "characterIds": ["C01", "C05"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 26,
+      "synopsis": "他约定明早九点在检察院门口等，把芯片亲手交给她。告别时，他捧起林小夏的工作证。",
+      "hook": "明天他真的会来吗？",
+      "suspense": "他在工作证上做了什么",
+      "sceneIds": ["S09"],
+      "characterIds": ["C01", "C05"],
+      "propIds": ["P06"],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 27,
+      "synopsis": "沈知微夜里反复想他临走那一眼。天亮她赶到检察院门口，门口没有他。",
+      "hook": "方既明去哪里了？",
+      "suspense": "他是不是出事了",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 28,
+      "synopsis": "检察院大楼天台。方既明站在边缘，回头看了她一眼，然后坠下。",
+      "hook": "那一眼里他想说什么？",
+      "suspense": "他为什么必须死",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01", "C05"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 29,
+      "synopsis": "沈知微冲上天台时，只看见栏杆外的风。她攥住他留下来的检徽。",
+      "hook": "这枚检徽最后会落到谁手里？",
+      "suspense": "他到底藏了什么没来得及说",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01"],
+      "propIds": ["P05"],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 30,
+      "synopsis": "办公区大门被反锁。外面有人刷了梁伯韬的工牌进来。消防通道门被一脚踹开——韩峥到了。",
+      "hook": "韩峥为什么会在这里？",
+      "suspense": "他是哪一边的",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01", "C11"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 31,
+      "synopsis": "韩峥把沈知微从消防通道带离。楼下停着一辆没有牌照的车。",
+      "hook": "车要开去哪里？",
+      "suspense": "他们会不会被追上",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01", "C11"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 32,
+      "synopsis": "第二天，市检察院门口贴出通缉令。罪名：违法取证、诬陷上级。",
+      "hook": "通缉令是谁签的？",
+      "suspense": "她还能不能翻案",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01"],
+      "propIds": [],
+      "crowdPlan": "围观人群虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 33,
+      "synopsis": "她被当众摘下检徽。摘徽的人是她曾经的领导。她没有反抗。",
+      "hook": "她下一步怎么办？",
+      "suspense": "谁还敢帮她",
+      "sceneIds": ["S01"],
+      "characterIds": ["C01"],
+      "propIds": [],
+      "crowdPlan": "围观人群虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 34,
+      "synopsis": "唐果把她接回家。两个女人在客厅里坐了一夜，赵念念抱着布偶熊睡在沙发上。",
+      "hook": "她们安全吗？",
+      "suspense": "梁伯韬会不会派人来",
+      "sceneIds": ["S07"],
+      "characterIds": ["C01", "C12", "C16"],
+      "propIds": ["P07"],
+      "crowdPlan": "三人同框，正反打为主，第三人过肩带入",
+      "warnings": []
+    },
+    {
+      "ep": 35,
+      "synopsis": "门外传来钥匙声。唐果抱起赵念念从后门走，一把短刀擦过她们的头发钉进门框。",
+      "hook": "杀手追上来了吗？",
+      "suspense": "唐果和孩子能躲到哪里",
+      "sceneIds": ["S07"],
+      "characterIds": ["C01", "C12", "C16", "C09"],
+      "propIds": ["P07"],
+      "crowdPlan": "三人同框，正反打为主，第三人过肩带入",
+      "warnings": ["肢体接触"]
+    },
+    {
+      "ep": 36,
+      "synopsis": "沈知微独自钻进一辆出租车，让司机往城外开。司机从后视镜里看她。",
+      "hook": "这个司机是不是自己人？",
+      "suspense": "后面是不是有车跟着",
+      "sceneIds": ["S10"],
+      "characterIds": ["C01"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 37,
+      "synopsis": "城郊一间废弃抽水房。她躲在角落，听见外面脚步声来回。",
+      "hook": "他们什么时候会找到她？",
+      "suspense": "她手里还有什么牌",
+      "sceneIds": ["S09"],
+      "characterIds": ["C01", "C02"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": ["雨戏"]
+    },
+    {
+      "ep": 38,
+      "synopsis": "陆沉舟从黑暗里走出来接她。她瘫坐在地上，手里攥着林小夏的工作证——夹层里，一片黑色芯片滑了出来。",
+      "hook": "芯片里录了什么？",
+      "suspense": "方既明是不是早就把备份放在这里了",
+      "sceneIds": ["S09"],
+      "characterIds": ["C01", "C02"],
+      "propIds": ["P04", "P06"],
+      "crowdPlan": "",
+      "warnings": ["手部特写"]
+    },
+    {
+      "ep": 39,
+      "synopsis": "她把芯片握紧。两人对视——这一次，他们不再是谁利用谁。",
+      "hook": "他们接下来去哪里？",
+      "suspense": "芯片的解码权在谁手里",
+      "sceneIds": ["S09"],
+      "characterIds": ["C01", "C02"],
+      "propIds": ["P04"],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 40,
+      "synopsis": "韩峥开着一辆旧越野车来接她。车后座堆满了换洗衣物。",
+      "hook": "韩峥要把她送去哪里？",
+      "suspense": "这条路会不会被检查站拦",
+      "sceneIds": ["S10"],
+      "characterIds": ["C01", "C11"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": ["雨戏"]
+    },
+    {
+      "ep": 41,
+      "synopsis": "车绕了三县一夜。检查站一个接一个，韩峥每一次都递出同一本证件。",
+      "hook": "那本证件是谁的？",
+      "suspense": "他们能不能在天亮前出去",
+      "sceneIds": ["S10"],
+      "characterIds": ["C01", "C11"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 42,
+      "synopsis": "邻市省纪委办案点。老秦坐在长桌对面，听完沈知微呈上的所有东西。",
+      "hook": "老秦敢接这个案子吗？",
+      "suspense": "梁伯韬在省里有没有人",
+      "sceneIds": ["S11"],
+      "characterIds": ["C01", "C13"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 43,
+      "synopsis": "芯片里的录音被外放。梁伯韬和霍明远的声音清晰可辨。老秦当场拍桌。",
+      "hook": "他们能不能立刻抓人？",
+      "suspense": "异地管辖够不够硬",
+      "sceneIds": ["S11"],
+      "characterIds": ["C01", "C13", "C03", "C04"],
+      "propIds": ["P04"],
+      "crowdPlan": "三人同框，正反打为主，第三人过肩带入；录音角色只作声音出演",
+      "warnings": []
+    },
+    {
+      "ep": 44,
+      "synopsis": "老秦召集合肥专案组。韩峥、老秦、沈知微围在一张长桌前，名单一项项写上去。",
+      "hook": "专案组里有没有内鬼？",
+      "suspense": "第一个抓的是谁",
+      "sceneIds": ["S11"],
+      "characterIds": ["C01", "C11", "C13"],
+      "propIds": [],
+      "crowdPlan": "三人同框，正反打为主，第三人过肩带入",
+      "warnings": []
+    },
+    {
+      "ep": 45,
+      "synopsis": "沈知微逐项呈交证据：苏雯DNA、康泰宁数据、IP链路、联名信。老秦逐条记录。",
+      "hook": "证据链完整了吗？",
+      "suspense": "还差哪一环",
+      "sceneIds": ["S11"],
+      "characterIds": ["C01", "C13"],
+      "propIds": ["P04", "P08"],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 46,
+      "synopsis": "省检察院下文件：沈知微通缉暂停、身份恢复，以省院借调身份参与专案。",
+      "hook": "她敢不敢再穿上检服？",
+      "suspense": "江城那边会怎么反应",
+      "sceneIds": ["S11"],
+      "characterIds": ["C01", "C13"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 47,
+      "synopsis": "霍明远在鸿远大楼让秘书把资产转去境外。银行端弹出一行红字：异地冻结。",
+      "hook": "霍明远还有多少底牌？",
+      "suspense": "他会不会跑",
+      "sceneIds": ["S04"],
+      "characterIds": ["C04"],
+      "propIds": ["P08"],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 48,
+      "synopsis": "梁伯韬在四楼办公室慌得摔了茶杯。他拿起电话想打，发现线路已经断了。",
+      "hook": "他现在还能联系谁？",
+      "suspense": "他的保护伞在哪里",
+      "sceneIds": ["S06"],
+      "characterIds": ["C03"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 49,
+      "synopsis": "霍明远依旧冷静。他对秘书说：我早留了三扇门。",
+      "hook": "三扇门分别是什么？",
+      "suspense": "他准备牺牲谁",
+      "sceneIds": ["S04"],
+      "characterIds": ["C04"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 50,
+      "synopsis": "老秦带着两名干警敲开四楼办公室的门。梁伯韬抬头，脸惨白。",
+      "hook": "他会不会当场反抗？",
+      "suspense": "他还知道多少没说",
+      "sceneIds": ["S06"],
+      "characterIds": ["C03", "C13"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 51,
+      "synopsis": "梁伯韬被带走。走廊尽头有人举着手机拍。他第一次没有整理西装。",
+      "hook": "他会咬出谁？",
+      "suspense": "霍明远知不知道他被抓了",
+      "sceneIds": ["S06"],
+      "characterIds": ["C03", "C13"],
+      "propIds": [],
+      "crowdPlan": "走廊围观人群虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 52,
+      "synopsis": "霍明远坐在办公室里，拉开抽屉拿出一张白纸，开始写名字。",
+      "hook": "他在写什么名单？",
+      "suspense": "上面会有哪些人",
+      "sceneIds": ["S04"],
+      "characterIds": ["C04", "C09"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": ["手部特写"]
+    },
+    {
+      "ep": 53,
+      "synopsis": "名单最上面两个名字：赵念念、周禾。他签了字，递给钱坤。",
+      "hook": "钱坤敢动这两个孩子吗？",
+      "suspense": "沈知微能不能提前保护她们",
+      "sceneIds": ["S04"],
+      "characterIds": ["C04", "C09", "C16", "C08"],
+      "propIds": [],
+      "crowdPlan": "三人同框，正反打为主，第三人过肩带入",
+      "warnings": []
+    },
+    {
+      "ep": 54,
+      "synopsis": "钱坤在城郊被韩峥堵住。他没有反抗，把短刀扔在地上。",
+      "hook": "钱坤为什么这么容易就被抓？",
+      "suspense": "他是不是想戴罪立功",
+      "sceneIds": ["S09"],
+      "characterIds": ["C09", "C11"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 55,
+      "synopsis": "审讯室。钱坤把楼顶报警、伪造自杀、追杀林小夏的事全咬出来——命令来自梁伯韬。",
+      "hook": "梁伯韬这下跑不掉了？",
+      "suspense": "霍明远自己还能撑多久",
+      "sceneIds": ["S08"],
+      "characterIds": ["C09", "C13"],
+      "propIds": [],
+      "crowdPlan": "三人同框，正反打为主，第三人过肩带入",
+      "warnings": []
+    },
+    {
+      "ep": 56,
+      "synopsis": "霍明远请到全国知名刑辩律师。律师在媒体前放话：明天要请真正的凶手出庭。",
+      "hook": "真正的凶手是谁？",
+      "suspense": "律师想用什么翻案",
+      "sceneIds": ["S04"],
+      "characterIds": ["C04"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 57,
+      "synopsis": "开庭前一夜。沈知微在更衣室重新别上检徽，陆沉舟在隔壁房间重新穿上律师袍。",
+      "hook": "他们明天能不能赢？",
+      "suspense": "霍明远会出什么招",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C02"],
+      "propIds": [],
+      "crowdPlan": "",
+      "warnings": []
+    },
+    {
+      "ep": 58,
+      "synopsis": "霍明远走进法庭时，媒体镜头全对着他。他第一次没有笑。",
+      "hook": "他在怕什么？",
+      "suspense": "开庭他准备好了吗",
+      "sceneIds": ["S02"],
+      "characterIds": ["C04", "C14"],
+      "propIds": [],
+      "crowdPlan": "媒体与旁听席虚化，只拍霍明远近景",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 59,
+      "synopsis": "审判长宣布开庭。沈知微站起身，第一项证据呈上：康泰宁三批次原始质量记录。",
+      "hook": "这一项能不能站住？",
+      "suspense": "霍明远的辩护人会怎么打",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C04", "C14"],
+      "propIds": [],
+      "crowdPlan": "三人同框，正反打为主，旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 60,
+      "synopsis": "沈知微当庭追打霍明远的动机。霍明远沉默很久，在法庭的雨声里讲出妹妹小满十一岁那年雨夜病夭的往事。",
+      "hook": "他是在忏悔还是在狡辩？",
+      "suspense": "他做这一切真的是为了不再有人像小满吗",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C04"],
+      "propIds": [],
+      "crowdPlan": "旁听席虚化，只保留控辩被告近景",
+      "warnings": ["人群", "雨戏"]
+    },
+    {
+      "ep": 61,
+      "synopsis": "沈知微当庭反击：你妹妹死于医院不肯先用药的窗口，你如今亲手把别人变成了那个窗口。",
+      "hook": "霍明远会怎么接？",
+      "suspense": "他会不会崩溃",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C04"],
+      "propIds": [],
+      "crowdPlan": "旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 62,
+      "synopsis": "周禾被法警带上证人席。她抱着一支钢笔，手在抖。",
+      "hook": "她敢不敢按那个按钮？",
+      "suspense": "这支笔里到底藏了什么",
+      "sceneIds": ["S02"],
+      "characterIds": ["C08", "C14"],
+      "propIds": ["P03"],
+      "crowdPlan": "旁听席虚化，证人席特写",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 63,
+      "synopsis": "她讲父亲七年前最后一次回家，把这支笔塞进她手里，说做对的事不怕。",
+      "hook": "周敬山当年知道自己会死？",
+      "suspense": "他为什么把证据藏在笔里",
+      "sceneIds": ["S02"],
+      "characterIds": ["C07", "C08"],
+      "propIds": ["P03"],
+      "crowdPlan": "周敬山以回忆/证言方式出现，旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 64,
+      "synopsis": "她站上证人席，把钢笔举到胸前。辩护人站起来反对。",
+      "hook": "反对能不能成立？",
+      "suspense": "她下一步会做什么",
+      "sceneIds": ["S02"],
+      "characterIds": ["C08", "C04", "C14"],
+      "propIds": ["P03"],
+      "crowdPlan": "三人同框，正反打为主，旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 65,
+      "synopsis": "她把笔帽按在指纹仪上。屏幕绿灯亮起——指纹匹配周敬山。",
+      "hook": "U盘里有什么？",
+      "suspense": "七年暗账会不会完整",
+      "sceneIds": ["S02"],
+      "characterIds": ["C08", "C14"],
+      "propIds": ["P03"],
+      "crowdPlan": "旁听席虚化，指纹仪手部特写",
+      "warnings": ["人群", "手部特写"]
+    },
+    {
+      "ep": 66,
+      "synopsis": "投影幕布上，周敬山七年暗账一行一行展开。鸿远慈善基金会的钱去了哪里，全部对上。",
+      "hook": "梁伯韬还有没有辩解余地？",
+      "suspense": "霍明远本人有没有签字",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C04", "C14"],
+      "propIds": ["P03", "P08"],
+      "crowdPlan": "三人同框，正反打为主，旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 67,
+      "synopsis": "沈知微把周敬山亲笔签批的生产指令推到证据席。霍明远第一次把头低下。",
+      "hook": "他终于撑不住了？",
+      "suspense": "他会不会当庭认罪",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C04", "C14"],
+      "propIds": [],
+      "crowdPlan": "三人同框，正反打为主，旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 68,
+      "synopsis": "沈知微看着被告席，说出“窗口论”。法庭里一片寂静。",
+      "hook": "霍明远听完会做什么？",
+      "suspense": "这是不是压垮他的最后一根稻草",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C04"],
+      "propIds": [],
+      "crowdPlan": "旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 69,
+      "synopsis": "辩护人站起来发难：录音来自已死的方既明，原始载体由通缉犯沈知微违法取得。",
+      "hook": "程序瑕疵能不能扳倒证据？",
+      "suspense": "沈知微有没有后手",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C04", "C14"],
+      "propIds": [],
+      "crowdPlan": "三人同框，正反打为主，旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 70,
+      "synopsis": "沈知微不慌不忙呈上苏雯指甲皮屑的时间戳鉴定——证明苏雯死前被搏斗过，推翻自杀定性。",
+      "hook": "这一反击能不能成立？",
+      "suspense": "霍明远还剩什么牌",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C06", "C14"],
+      "propIds": [],
+      "crowdPlan": "三人同框，正反打为主，旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 71,
+      "synopsis": "六类证据相互印证，形成闭环。审判长问公诉方是否举证完毕。",
+      "hook": "沈知微还有什么要说的？",
+      "suspense": "最后陈述她会讲什么",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C14"],
+      "propIds": ["P04", "P08"],
+      "crowdPlan": "旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 72,
+      "synopsis": "沈知微站在公诉席前方。她先回答霍明远那一夜的问题：我母亲死的时候四十二岁。",
+      "hook": "她要替谁讲这句话？",
+      "suspense": "最后陈述她会怎么说",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C04"],
+      "propIds": ["P01"],
+      "crowdPlan": "旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 73,
+      "synopsis": "她替许曼、替苏雯、替周敬山、替赵铁生、替方既明讲完最后陈述。法庭里有人低声哭。",
+      "hook": "法庭会怎么判？",
+      "suspense": "霍明远听完会不会认罪",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C14"],
+      "propIds": [],
+      "crowdPlan": "旁听席虚化，只保留低声哭的反应镜头",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 74,
+      "synopsis": "陆沉舟站起身作辩护人最后陈述。他说他接案之初是在利用沈知微。",
+      "hook": "他为什么要当庭坦白？",
+      "suspense": "他手里还有什么没讲",
+      "sceneIds": ["S02"],
+      "characterIds": ["C02", "C14"],
+      "propIds": [],
+      "crowdPlan": "旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 75,
+      "synopsis": "他掏出父亲那只停在二十二点零七分的手表，放在证据席上。",
+      "hook": "这只手表今天为什么要拿出来？",
+      "suspense": "他要替父亲讲什么",
+      "sceneIds": ["S02"],
+      "characterIds": ["C02", "C14"],
+      "propIds": ["P02"],
+      "crowdPlan": "旁听席虚化，手表手部特写",
+      "warnings": ["人群", "手部特写"]
+    },
+    {
+      "ep": 76,
+      "synopsis": "他讲雨夜沈知微替他缝合子弹伤口那一夜，窗外是大雨。刀口上的温柔。",
+      "hook": "书名的意思终于点透？",
+      "suspense": "他请求法庭怎么判",
+      "sceneIds": ["S02"],
+      "characterIds": ["C01", "C02"],
+      "propIds": ["P01"],
+      "crowdPlan": "旁听席虚化，回忆画面只拍两人近景",
+      "warnings": ["人群", "雨戏", "肢体接触"]
+    },
+    {
+      "ep": 77,
+      "synopsis": "霍明远听完，缓缓站起来。他解开西装最上面那一颗纽扣。",
+      "hook": "他要做什么？",
+      "suspense": "他会不会认罪",
+      "sceneIds": ["S02"],
+      "characterIds": ["C04", "C14"],
+      "propIds": [],
+      "crowdPlan": "旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 78,
+      "synopsis": "审判长宣判：数罪并罚，判处霍明远死刑。梁伯韬、钱坤另行宣判。",
+      "hook": "霍明远听完会怎么样？",
+      "suspense": "沈知微和陆沉舟能不能走出法庭",
+      "sceneIds": ["S02"],
+      "characterIds": ["C14", "C04"],
+      "propIds": [],
+      "crowdPlan": "旁听席虚化，宣判与被告近景",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 79,
+      "synopsis": "霍明远面向审判席深深鞠了一躬。他低声说：是我输了。我认罪。",
+      "hook": "这一躬算不算迟到的道歉？",
+      "suspense": "这个结局许曼能不能看见",
+      "sceneIds": ["S02"],
+      "characterIds": ["C04", "C14"],
+      "propIds": [],
+      "crowdPlan": "旁听席虚化",
+      "warnings": ["人群"]
+    },
+    {
+      "ep": 80,
+      "synopsis": "大雪。沈知微和陆沉舟并肩站在墓前。她把检徽放在碑上，他把手表留在雪地里。",
+      "hook": "故事真的结束了吗？",
+      "suspense": "他们接下来去哪里",
+      "sceneIds": ["S12"],
+      "characterIds": ["C01", "C02"],
+      "propIds": ["P01", "P02", "P05"],
+      "crowdPlan": "",
+      "warnings": []
     }
   ]
 }
