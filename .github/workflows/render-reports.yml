@@ -151,14 +151,14 @@ jobs:
         
         echo "======================================="
         echo "生成的剧本文件如下："
-        ls -lh 剧本/
+        ls -lh JSON/
         echo "======================================="
 
     - name: 将报告打包为下载附件 (防丢失)
       uses: actions/upload-artifact@v4
       with:
         name: 剧本渲染报告
-        path: 剧本/
+        path: JSON/
         if-no-files-found: warn
 
     - name: 提交并推送生成的报告
