@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>渡口 · 剧本（第 1–6 集）</title>
+<style>
+:root{
+  --paper:#eceded; --panel:#f5f6f5; --side:#e4e6e3; --ink:#191d21; --ink-2:#5b636a; --ink-3:#8c9298;
+  --rule:#d2d5d0; --rule-2:#c2c6bf; --seal:#8a3324; --seal-2:#c56a4e; --seal-soft:#8a332412; --ok:#3d6b4f;
+  --band:#3d6b4f22;
+  --serif:"Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC",Georgia,serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+.page{max-width:1600px;margin:0 auto;padding:24px 32px 90px}
+h1,h2,h3{margin:0;font-weight:400}
+
+.hd{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.hd h1{font:400 28px/1.1 var(--serif);letter-spacing:.06em}
+.hd .sub{font-size:13px;color:var(--ink-2)}
+.hd .right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.gatepill{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--sans);border-radius:99px;padding:6px 12px}
+.gatepill.pass{color:var(--ok);border:1px solid var(--ok)}
+.gatepill.fail{color:var(--seal);border:1px solid var(--seal);background:var(--seal-soft)}
+.expo{font:500 11px/1 var(--sans);color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule-2);border-radius:2px;padding:7px 11px;cursor:pointer;transition:.15s}
+.expo:hover{border-color:var(--seal);color:var(--seal)}
+.expo:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0 6px}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:11px 14px 9px}
+.kpi .l{font:500 10px/1 var(--sans);letter-spacing:.18em;color:var(--ink-3)}
+.kpi .v{font:400 28px/1.15 var(--serif);margin-top:5px}
+.kpi .v small{font:400 14px var(--serif);color:var(--ink-2)}
+.kpi .d{font-size:11px;color:var(--ink-2);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kpi.accent{border-top:2px solid var(--seal)}
+.galert{margin:14px 0 0;border:1px solid var(--seal);background:var(--seal-soft);border-radius:2px;
+  padding:10px 14px;font-size:13px}
+.galert b{color:var(--seal)}
+.galert span{display:block;font-size:12px;color:var(--ink-2)}
+
+section.top-sec{margin-top:34px}
+.sec-h{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule-2);padding-bottom:8px;margin-bottom:16px}
+.sec-h .no{font:500 12px/1 var(--mono);color:var(--seal)}
+.sec-h h2{font:400 20px/1.2 var(--serif);letter-spacing:.05em}
+.sec-h .note{margin-left:auto;font-size:12px;color:var(--ink-3)}
+
+/* duration gauge */
+.timing{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 20px 10px}
+.trow{display:grid;grid-template-columns:44px minmax(0,1fr) 220px;gap:12px;align-items:center;padding:5px 0}
+.tep{font:500 12px/1 var(--mono);color:var(--ink-2)}
+.track{position:relative;height:18px;background:var(--paper);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.band{position:absolute;top:0;bottom:0;background:var(--band)}
+.fill{position:absolute;top:2px;bottom:2px;border-radius:1px}
+.fill.dlg{left:0;background:var(--seal)}
+.fill.act{background:var(--seal-2)}
+.tval{font:500 12px/1.5 var(--sans);color:var(--ink-2)}
+.tval.okc{color:var(--ok)}
+.tval .over{color:var(--seal);font-weight:600}
+.legend{display:flex;gap:18px;font-size:12px;color:var(--ink-2);margin:8px 0 2px}
+.legend i{font-style:normal;display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px}
+
+/* episode scripts: two per row; scene area clips at 300px with a fade, expandable */
+.eps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.eps.solo{grid-template-columns:minmax(0,1fr)}
+@media(max-width:1100px){.eps{grid-template-columns:minmax(0,1fr)}}
+.ep{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:18px 22px}
+.scenes{position:relative}
+.scenes.clip{max-height:300px;overflow:hidden}
+.scenes.clip::after{content:'';position:absolute;left:0;right:0;bottom:0;height:70px;
+  background:linear-gradient(180deg,transparent,var(--panel));pointer-events:none}
+.scmore{display:block;width:100%;margin-top:8px;font:500 11.5px/1 var(--sans);letter-spacing:.06em;
+  color:var(--ink-2);background:var(--paper);border:1px solid var(--rule-2);border-radius:2px;
+  padding:7px 0;cursor:pointer;transition:.15s}
+.scmore:hover{border-color:var(--seal);color:var(--seal)}
+.scmore:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+.ep-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--rule-2);padding-bottom:10px}
+.ep-n{font:400 22px/1 var(--serif);letter-spacing:.04em;color:var(--seal)}
+.ep-est{font-size:12.5px;color:var(--ink-2)}
+.bt{font-style:normal;font-size:11px;padding:2px 8px;border:1px solid var(--seal);border-radius:99px;color:var(--seal)}
+.hk{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:10px;font-size:13px;padding:10px 0;border-bottom:1px solid var(--rule)}
+.hk.cliff{border-bottom:0;border-top:1px solid var(--rule)}
+.hk b{font:500 11px/1.9 var(--sans);letter-spacing:.14em;color:var(--seal);white-space:nowrap}
+.scene-blk{margin-top:14px}
+.scene-h{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;margin-bottom:8px}
+.scene-h b{font:500 13px var(--serif);letter-spacing:.06em}
+.chip{font:400 10.5px/1.6 var(--mono);border:1px solid var(--rule-2);border-radius:2px;
+  padding:0 6px;background:var(--paper);color:var(--ink-2)}
+.chip.lite{border-color:var(--seal-2);color:var(--seal-2)}
+.chip.prop{border-color:var(--seal);color:var(--seal)}
+.act-line{margin:8px 0;font:400 13.5px/1.9 var(--sans);color:var(--ink-2)}
+.act-line.hooked,.dlg-line.hooked{border-left:2px solid var(--seal);padding-left:10px;background:var(--seal-soft)}
+.hookat{font-style:normal;font-size:11px;padding:1px 8px;border:1px solid var(--seal);border-radius:99px;color:var(--seal);margin-left:8px;white-space:nowrap}
+.dlg-line{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:12px;align-items:baseline;
+  padding:5px 0 5px 10px;border-left:2px solid var(--rule-2)}
+.dlg-line:hover{border-left-color:var(--seal)}
+.who{font:500 13px/1.6 var(--serif)}
+.who i{display:block;font:400 11px var(--sans);color:var(--ink-3);font-style:normal}
+.said{font:400 14.5px/1.8 var(--serif)}
+.dlg-line .copy{opacity:0;transition:.15s}
+.dlg-line:hover .copy{opacity:1}
+
+/* tables */
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--rule);font-size:13px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{font:500 11px/1 var(--sans);letter-spacing:.1em;color:var(--ink-3);background:var(--side)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink-2);white-space:nowrap}
+
+/* line book: two per row; lists capped at 6 rows, scroll vertically */
+.casts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+@media(max-width:1100px){.casts{grid-template-columns:minmax(0,1fr)}}
+.cast-blk{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:14px 18px}
+.cast-h{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule-2);padding-bottom:8px}
+.cast-h b{font:400 17px/1.2 var(--serif);letter-spacing:.04em}
+.cast-meta{font-size:12px;color:var(--ink-2)}
+.cast-h .copy{margin-left:auto}
+.cast-lines{margin:8px 0 0;padding:0 6px 0 0;list-style:none;max-height:186px;overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:var(--rule-2) transparent}
+.cast-lines::-webkit-scrollbar{width:6px}
+.cast-lines::-webkit-scrollbar-thumb{background:var(--rule-2);border-radius:3px}
+.cast-lines li{display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:12px;align-items:baseline;
+  padding:4.5px 0;border-top:1px solid var(--rule);font-size:13px}
+.cast-lines li:first-child{border-top:0}
+.cast-lines i{font:400 11px/1.8 var(--mono);color:var(--ink-3);font-style:normal}
+.cast-lines span{font-family:var(--serif)}
+.cast-lines em{font-style:normal;font-size:11.5px;color:var(--ink-3)}
+
+.copy{flex:none;font:500 11px/1 var(--sans);color:var(--ink-2);background:var(--paper);
+  border:1px solid var(--rule-2);border-radius:2px;padding:4px 10px;cursor:pointer;transition:.15s}
+.copy:hover{border-color:var(--seal);color:var(--seal)}
+.copy:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+.copy[data-done]{border-color:var(--seal);color:var(--seal)}
+.copy.mini{padding:2px 7px;font-size:10.5px}
+
+.gate{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 28px}
+@media(max-width:900px){.gate{grid-template-columns:1fr}}
+.gate li{display:flex;gap:8px;padding:5px 0;font-size:12.5px;line-height:1.55}
+.gate .m{flex:none;font-weight:700}
+.gate li.ok .m{color:var(--ok)}
+.gate li.bad .m{color:var(--seal)}
+.gate li.bad{background:var(--seal-soft);border-radius:2px;padding-left:6px}
+.gate small{display:block;color:var(--ink-3)}
+.gsum{margin:10px 0 0;font-size:12px;color:var(--ink-2)}
+.gsum b{color:var(--seal)}
+
+.foot{margin-top:40px;font-size:11px;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+  .expo,.copy,.scmore{display:none!important}
+  .scenes.clip{max-height:none}
+  .scenes.clip::after{display:none}
+  .cast-lines{max-height:none;overflow:visible}
+  .eps,.casts{grid-template-columns:minmax(0,1fr)}
+  .page{max-width:none;padding:0}
+  section.top-sec,.ep,.cast-blk{page-break-inside:avoid}
+  body{background:#fff}
+}
+</style></head><body>
+<div class="page">
+
+<header class="hd">
+  <h1>渡口</h1>
+  <span class="sub">剧本 · 第 1–6 集</span>
+  <span class="right">
+    <span class="gatepill pass">✓ 质量门 10 / 10</span>
+    <button class="expo" data-name="渡口-script.json">导出 JSON</button>
+  </span>
+</header>
+
+<div class="kpis">
+  <div class="kpi accent"><div class="l">集数</div><div class="v">6</div><div class="d">9 场戏</div></div>
+  <div class="kpi"><div class="l">预估总时长</div><div class="v">10 分 52 秒</div><div class="d">目标 12 分 0 秒</div></div>
+  <div class="kpi"><div class="l">台词</div><div class="v">123 <small>句</small></div><div class="d">约 434.6 秒对白</div></div>
+  <div class="kpi"><div class="l">台词占比</div><div class="v">67<small>%</small></div><div class="d">其余是画面与动作</div></div>
+  <div class="kpi"><div class="l">平均每场</div><div class="v">72.5 <small>秒</small></div><div class="d">换景是统计不是门——AI 换景不要钱</div></div>
+</div>
+
+
+<section class="top-sec" id="sec-timing">
+  <div class="sec-h"><span class="no">01</span><h2>时长仪表</h2><span class="note">绿带 = 目标 ±15%；台词按语速折算，动作按节拍估时</span></div>
+  <div class="timing">
+    <div class="legend">
+      <i><span class="sw" style="background:var(--seal)"></span>台词</i>
+      <i><span class="sw" style="background:var(--seal-2)"></span>动作</i>
+      <i><span class="sw" style="background:var(--band)"></span>目标区间</i>
+    </div>
+<div class="trow">
+  <span class="tep">E01</span>
+  <div class="track">
+    <span class="band" style="left:68.4%;width:24.2%"></span>
+    <span class="fill dlg" style="width:43.1%"></span>
+    <span class="fill act" style="left:43.1%;width:26.8%"></span>
+  </div>
+  <span class="tval okc">104.2s / 120s</span>
+</div>
+<div class="trow">
+  <span class="tep">E02</span>
+  <div class="track">
+    <span class="band" style="left:68.4%;width:24.2%"></span>
+    <span class="fill dlg" style="width:47%"></span>
+    <span class="fill act" style="left:47%;width:23.5%"></span>
+  </div>
+  <span class="tval okc">105s / 120s</span>
+</div>
+<div class="trow">
+  <span class="tep">E03</span>
+  <div class="track">
+    <span class="band" style="left:68.4%;width:24.2%"></span>
+    <span class="fill dlg" style="width:50.7%"></span>
+    <span class="fill act" style="left:50.7%;width:25.2%"></span>
+  </div>
+  <span class="tval okc">113.1s / 120s</span>
+</div>
+<div class="trow">
+  <span class="tep">E04</span>
+  <div class="track">
+    <span class="band" style="left:68.4%;width:24.2%"></span>
+    <span class="fill dlg" style="width:51.3%"></span>
+    <span class="fill act" style="left:51.3%;width:21.8%"></span>
+  </div>
+  <span class="tval okc">108.9s / 120s</span>
+</div>
+<div class="trow">
+  <span class="tep">E05</span>
+  <div class="track">
+    <span class="band" style="left:68.4%;width:24.2%"></span>
+    <span class="fill dlg" style="width:51.7%"></span>
+    <span class="fill act" style="left:51.7%;width:23.5%"></span>
+  </div>
+  <span class="tval okc">112.1s / 120s</span>
+</div>
+<div class="trow">
+  <span class="tep">E06</span>
+  <div class="track">
+    <span class="band" style="left:68.4%;width:24.2%"></span>
+    <span class="fill dlg" style="width:47.8%"></span>
+    <span class="fill act" style="left:47.8%;width:25.2%"></span>
+  </div>
+  <span class="tval okc">108.8s / 120s</span>
+</div>
+  </div>
+</section>
+
+<section class="top-sec" id="sec-script">
+  <div class="sec-h"><span class="no">02</span><h2>分集剧本</h2><span class="note">一排两集 · 场次信息超高自动截断，点开看全部</span></div>
+  <div class="eps">
+<article class="ep" id="ep-1">
+  <header class="ep-h">
+    <span class="ep-n">E01</span>
+    <span class="ep-est">预估 104.2 秒 / 目标 120 秒</span>
+    <i class="bt">悬念钩</i>
+  </header>
+  <div class="hk"><b>开场钩子</b><span>皮箱里到底装了什么，值得她指节发白 <i class="hookat">第 1 场第 1 拍兑现</i></span></div>
+  <div class="scenes clip">
+  <section class="scene-blk">
+  <header class="scene-h">
+    <b>第 1 场</b>
+    <span class="chip">S02 渡口栈桥</span>
+    <span class="chip lite">光照 · 浓雾清晨</span>
+    <span class="chip">沈知微</span><span class="chip">老周</span><span class="chip">胡二爷</span>
+    <span class="chip prop">旧皮箱</span>
+  </header>
+  <p class="act-line hooked" title="开场钩子">冷开场：一个年轻女人抱着旧皮箱，在雾里的河岸土路上跑，鞋底踏得水洼直响，箱子搂得死紧。雾把她的背影吞掉。</p>
+<p class="act-line">跑到头，雾里才露出栈桥，只剩三步能见。老周把篙靠在船帮上，蹲在船头吧嗒旱烟，梆子声闷得像隔了层棉絮。</p>
+<div class="dlg-line"><span class="who">老周<i>扯着嗓子，不急不躁</i></span><span class="said">上船喽——过河的抓紧，雾要变天。</span><button class="copy mini" data-copy="上船喽——过河的抓紧，雾要变天。">复制</button></div>
+<p class="act-line">跳板尽头传来担子的响动，胡二爷挑着货担赶上来，嗓门比人先到。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>气喘吁吁，自来熟</i></span><span class="said">等等二爷我！这雾天赶船，命都得跑掉半条。</span><button class="copy mini" data-copy="等等二爷我！这雾天赶船，命都得跑掉半条。">复制</button></div>
+<p class="act-line">胡二爷挑着担子上船，老周搭手帮他把担子卸进舱里。</p>
+<div class="dlg-line"><span class="who">老周<i>旱烟不离嘴</i></span><span class="said">胡二爷，你这担子比人金贵。</span><button class="copy mini" data-copy="胡二爷，你这担子比人金贵。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>拍着担子笑</i></span><span class="said">那可不——吃饭的家伙，比命金贵。</span><button class="copy mini" data-copy="那可不——吃饭的家伙，比命金贵。">复制</button></div>
+<p class="act-line">沈知微最后一个踏上跳板。旧皮箱抱在怀里，指节因为用力而发白。</p>
+<div class="dlg-line"><span class="who">老周<i>眼皮都没抬</i></span><span class="said">箱子沉就搁船头，掉河里我可不捞。</span><button class="copy mini" data-copy="箱子沉就搁船头，掉河里我可不捞。">复制</button></div>
+<div class="dlg-line"><span class="who">沈知微<i>声音很轻，却没商量</i></span><span class="said">不劳烦。它跟我。</span><button class="copy mini" data-copy="不劳烦。它跟我。">复制</button></div>
+<p class="act-line">老周看了她一眼，没说话。他收了跳板，撑篙离岸，栈桥缩回雾里。</p>
+<div class="dlg-line"><span class="who">老周<i>篙一点岸</i></span><span class="said">坐稳——开船。</span><button class="copy mini" data-copy="坐稳——开船。">复制</button></div>
+</section>
+<section class="scene-blk">
+  <header class="scene-h">
+    <b>第 2 场</b>
+    <span class="chip">S01 渡船船舱</span>
+    <span class="chip lite">光照 · 晨雾</span>
+    <span class="chip">沈知微</span><span class="chip">陆行远</span><span class="chip">老周</span><span class="chip">胡二爷</span>
+    <span class="chip prop">旧皮箱</span>
+  </header>
+  <p class="act-line">舱里坐着两个人。胡二爷的货担占了半条长凳，陆行远靠着舱壁，右手揣在大衣口袋里没动过。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>自来熟地凑近</i></span><span class="said">姑娘头回走这条水路吧？我一看一个准。</span><button class="copy mini" data-copy="姑娘头回走这条水路吧？我一看一个准。">复制</button></div>
+<p class="act-line">沈知微拣了离所有人最远的角落坐下，皮箱搁在膝上，双臂环着。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>追着问</i></span><span class="said">城里亲戚接站，还是投店？二爷我熟门熟路。</span><button class="copy mini" data-copy="城里亲戚接站，还是投店？二爷我熟门熟路。">复制</button></div>
+<div class="dlg-line"><span class="who">沈知微<i>不抬眼</i></span><span class="said">借过就好，不敢劳动。</span><button class="copy mini" data-copy="借过就好，不敢劳动。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>笑着，手已经伸向皮箱</i></span><span class="said">嗨，出门在外别客气——箱子给我，搁上头稳当。</span><button class="copy mini" data-copy="嗨，出门在外别客气——箱子给我，搁上头稳当。">复制</button></div>
+<p class="act-line">沈知微一把按住箱盖，动作快得吓人。</p>
+<p class="act-line">满舱的闲谈声戛然而止。胡二爷的手停在半空，笑僵在脸上。</p>
+<div class="dlg-line"><span class="who">老周<i>从船头传来，不紧不慢</i></span><span class="said">船上有个规矩——不问来路，不碰行李。</span><button class="copy mini" data-copy="船上有个规矩——不问来路，不碰行李。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>讪讪收手</i></span><span class="said">是是，二爷我多嘴，多嘴。</span><button class="copy mini" data-copy="是是，二爷我多嘴，多嘴。">复制</button></div>
+<p class="act-line">船行河心，雾贴着水皮走。胡二爷东张西望，眼睛老往皮箱上瞟。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>没话找话</i></span><span class="said">老周，今儿这雾邪性，走得完吗？</span><button class="copy mini" data-copy="老周，今儿这雾邪性，走得完吗？">复制</button></div>
+<div class="dlg-line"><span class="who">老周<i>篙声不停</i></span><span class="said">走了四十年，没有走不完的河。</span><button class="copy mini" data-copy="走了四十年，没有走不完的河。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>转头找新话头</i></span><span class="said">这位先生面生得很，也是去县城？</span><button class="copy mini" data-copy="这位先生面生得很，也是去县城？">复制</button></div>
+<p class="act-line">陆行远点了点头，眼睛却看着舱外的雾，没接这个话头。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>自讨没趣</i></span><span class="said">得，一船的闷葫芦，就我一个人长嘴。</span><button class="copy mini" data-copy="得，一船的闷葫芦，就我一个人长嘴。">复制</button></div>
+<p class="act-line">老周在船头笑了一声，没回头。水声在船底一下一下，像谁在数着到岸的时辰。</p>
+<p class="act-line">陆行远从头到尾没看这场热闹，可他口袋里的右手，攥紧了一下。</p>
+<div class="dlg-line"><span class="who">陆行远<i>低声，几乎自语</i></span><span class="said">这条河，今晚怕是不太平。</span><button class="copy mini" data-copy="这条河，今晚怕是不太平。">复制</button></div>
+<p class="act-line">汽笛在雾深处闷闷响了一声，没人接话。</p>
+<div class="dlg-line"><span class="who">画外音<i>沈知微的心声，冷</i></span><span class="said">谁都别碰它。到了县城，它就是我全部的话。</span><button class="copy mini" data-copy="谁都别碰它。到了县城，它就是我全部的话。">复制</button></div>
+<p class="act-line">雾从舱口漫进来，皮箱上的铜扣绿锈在昏光里一闪。栈桥的灯缩成一粒黄豆，灭了。</p>
+</section>
+  </div>
+  <button class="scmore">▾ 展开全部场次</button>
+  <div class="hk cliff"><b>结尾悬念</b><span>陆行远的右手从上船起就没离开过大衣口袋</span></div>
+</article>
+<article class="ep" id="ep-2">
+  <header class="ep-h">
+    <span class="ep-n">E02</span>
+    <span class="ep-est">预估 105 秒 / 目标 120 秒</span>
+    
+  </header>
+  <div class="hk"><b>开场钩子</b><span>陆行远为什么替一桩旧案说话 <i class="hookat">第 1 场第 1 拍兑现</i></span></div>
+  <div class="scenes clip">
+  <section class="scene-blk">
+  <header class="scene-h">
+    <b>第 1 场</b>
+    <span class="chip">S01 渡船船舱</span>
+    <span class="chip lite">光照 · 晨雾</span>
+    <span class="chip">沈知微</span><span class="chip">陆行远</span><span class="chip">胡二爷</span>
+    <span class="chip prop">旧皮箱</span>
+  </header>
+  <p class="act-line hooked" title="开场钩子">冷开场：船身猛一晃，陆行远的右手在大衣口袋里攥紧了什么，眼睛始终盯着雾外。船进了河心的雾档，胡二爷从货担里摸出一包炒豆，挨个让。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>殷勤</i></span><span class="said">尝尝？县城东街炒的，隔着雾都香。</span><button class="copy mini" data-copy="尝尝？县城东街炒的，隔着雾都香。">复制</button></div>
+<p class="act-line">沈知微摇头。陆行远像没听见。胡二爷自己嚼上了，越嚼话越多。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>眉飞色舞</i></span><span class="said">这趟进城你们可赶巧了，集市比年根还热闹。</span><button class="copy mini" data-copy="这趟进城你们可赶巧了，集市比年根还热闹。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>压低声音卖关子</i></span><span class="said">为啥？县衙在翻一桩十年前的旧案，全城都在看戏。</span><button class="copy mini" data-copy="为啥？县衙在翻一桩十年前的旧案，全城都在看戏。">复制</button></div>
+<p class="act-line">他说着话，眼睛却直往沈知微怀里的皮箱看。</p>
+<p class="act-line">沈知微把箱子抱得更紧，头垂得更低。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>咂着嘴</i></span><span class="said">听说当年错杀了人，如今苦主的后人要翻案。</span><button class="copy mini" data-copy="听说当年错杀了人，如今苦主的后人要翻案。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>叹一声，眼却瞟着皮箱</i></span><span class="said">沈家啊——城里老户，说没就没了大半门。</span><button class="copy mini" data-copy="沈家啊——城里老户，说没就没了大半门。">复制</button></div>
+<p class="act-line">沈字一出口，舱里静了一瞬。沈知微垂着头，肩膀绷紧了。</p>
+<div class="dlg-line"><span class="who">陆行远<i>突然开口</i></span><span class="said">那案子，查错了人。</span><button class="copy mini" data-copy="那案子，查错了人。">复制</button></div>
+<p class="act-line">满舱静了。胡二爷嚼豆的嘴停在半空。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>眯起眼</i></span><span class="said">哟，先生知道内情？</span><button class="copy mini" data-copy="哟，先生知道内情？">复制</button></div>
+<div class="dlg-line"><span class="who">陆行远<i>语气平得像念书</i></span><span class="said">卷宗我读过。人证是屈打成招，物证对不上。</span><button class="copy mini" data-copy="卷宗我读过。人证是屈打成招，物证对不上。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>笑里藏针</i></span><span class="said">卷宗那是衙门里的东西，先生贵姓？</span><button class="copy mini" data-copy="卷宗那是衙门里的东西，先生贵姓？">复制</button></div>
+<p class="act-line">陆行远不答。右手在大衣口袋里，轻轻动了一下。</p>
+<div class="dlg-line"><span class="who">陆行远<i>不接招</i></span><span class="said">姓什么不要紧。要紧的是错案就是错案。</span><button class="copy mini" data-copy="姓什么不要紧。要紧的是错案就是错案。">复制</button></div>
+<p class="act-line">沈知微抬起头，第一次正眼看向这个沉默的男人。</p>
+<div class="dlg-line"><span class="who">画外音<i>沈知微的心声</i></span><span class="said">他是谁？他为什么替沈家说话？</span><button class="copy mini" data-copy="他是谁？他为什么替沈家说话？">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>冷不丁转向她</i></span><span class="said">姑娘也姓沈？我瞧你上船就没说过几句话。</span><button class="copy mini" data-copy="姑娘也姓沈？我瞧你上船就没说过几句话。">复制</button></div>
+<div class="dlg-line"><span class="who">沈知微<i>平静得过了头</i></span><span class="said">出门人，姓什么都是过客。</span><button class="copy mini" data-copy="出门人，姓什么都是过客。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>拍腿笑</i></span><span class="said">好好好，是二爷我多问。</span><button class="copy mini" data-copy="好好好，是二爷我多问。">复制</button></div>
+<p class="act-line">他笑着，身子却往沈知微那边又挪了半条凳。</p>
+<div class="dlg-line"><span class="who">陆行远<i>淡淡地</i></span><span class="said">胡老板，你的豆撒了。</span><button class="copy mini" data-copy="胡老板，你的豆撒了。">复制</button></div>
+<p class="act-line">胡二爷低头去捡豆，挪过去的半条凳又缩了回来。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>捡着豆嘟囔</i></span><span class="said">邪性，今儿这船上人人都护着人人。</span><button class="copy mini" data-copy="邪性，今儿这船上人人都护着人人。">复制</button></div>
+<p class="act-line">篙声从船头传来，一下，又一下，稳得让人心慌。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>不死心</i></span><span class="said">你们说句公道话，那旧案到底冤不冤？</span><button class="copy mini" data-copy="你们说句公道话，那旧案到底冤不冤？">复制</button></div>
+<p class="act-line">没人回答，只有篙点进水里的闷响。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>自己接上</i></span><span class="said">得，问了也白问——这船上的规矩，不问来路。</span><button class="copy mini" data-copy="得，问了也白问——这船上的规矩，不问来路。">复制</button></div>
+<div class="dlg-line"><span class="who">陆行远<i>低声补了半句</i></span><span class="said">也不问去处。</span><button class="copy mini" data-copy="也不问去处。">复制</button></div>
+<p class="act-line">陆行远说完这四个字，目光落回舱外。雾里隐约有另一条船的影子，一晃就没了。</p>
+<div class="dlg-line"><span class="who">画外音<i>胡二爷的心声，算盘声</i></span><span class="said">一个护箱的，一个懂案的，这船有意思了。</span><button class="copy mini" data-copy="一个护箱的，一个懂案的，这船有意思了。">复制</button></div>
+<p class="act-line">沈知微顺着他的目光看向雾里，什么都没看见，抱箱的手又紧了紧。</p>
+</section>
+  </div>
+  <button class="scmore">▾ 展开全部场次</button>
+  <div class="hk cliff"><b>结尾悬念</b><span>胡二爷讲见闻时，指名道姓提了沈家</span></div>
+</article>
+<article class="ep" id="ep-3">
+  <header class="ep-h">
+    <span class="ep-n">E03</span>
+    <span class="ep-est">预估 113.1 秒 / 目标 120 秒</span>
+    <i class="bt">身份揭破</i>
+  </header>
+  <div class="hk"><b>开场钩子</b><span>县衙的砚台为什么在他身上 <i class="hookat">第 1 场第 1 拍兑现</i></span></div>
+  <div class="scenes clip">
+  <section class="scene-blk">
+  <header class="scene-h">
+    <b>第 1 场</b>
+    <span class="chip">S01 渡船船舱</span>
+    <span class="chip lite">光照 · 晨雾</span>
+    <span class="chip">沈知微</span><span class="chip">陆行远</span><span class="chip">老周</span><span class="chip">胡二爷</span>
+    <span class="chip prop">旧皮箱</span><span class="chip prop">县衙旧砚</span>
+  </header>
+  <p class="act-line hooked" title="开场钩子">冷开场：一声汽笛从雾里剜出来，陆行远的手猛地按住大衣口袋——那里鼓着一块方硬的轮廓。满舱的人都直了背。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>竖起耳朵</i></span><span class="said">听听，这动静——巡查的船。</span><button class="copy mini" data-copy="听听，这动静——巡查的船。">复制</button></div>
+<div class="dlg-line"><span class="who">老周<i>从船头，声音没起伏</i></span><span class="said">商船改的巡查船，烧的煤不一样，听声就知道。</span><button class="copy mini" data-copy="商船改的巡查船，烧的煤不一样，听声就知道。">复制</button></div>
+<p class="act-line">老周说着，篙却往雾更深的地方点。船身一偏，离了主航道。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>嗓门故意抬高</i></span><span class="said">老周哥这是躲啊？咱船上又没人揣着硬家伙。</span><button class="copy mini" data-copy="老周哥这是躲啊？咱船上又没人揣着硬家伙。">复制</button></div>
+<p class="act-line">舱里一下没了声。胡二爷笑着，眼睛盯住了陆行远的大衣口袋。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>步步紧逼</i></span><span class="said">先生，你说是不是？这年头查得严，说不清可就麻烦了。</span><button class="copy mini" data-copy="先生，你说是不是？这年头查得严，说不清可就麻烦了。">复制</button></div>
+<p class="act-line">满舱的目光跟着聚过去。那只从上船就没露过面的右手，正揣在口袋里。</p>
+<p class="act-line">沈知微也在看。她自己抱着箱子，最懂被人盯着的滋味，可她还是看了。</p>
+<div class="dlg-line"><span class="who">老周<i>声音沉了下来</i></span><span class="said">胡二爷，船上的规矩。</span><button class="copy mini" data-copy="胡二爷，船上的规矩。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>摊着手</i></span><span class="said">规矩是不问来路——可没说不问口袋。汽笛在催了。</span><button class="copy mini" data-copy="规矩是不问来路——可没说不问口袋。汽笛在催了。">复制</button></div>
+<p class="act-line">汽笛又是一声，近得能听出船头破水的哗声。</p>
+<div class="dlg-line"><span class="who">陆行远<i>很轻地笑了一下</i></span><span class="said">好。</span><button class="copy mini" data-copy="好。">复制</button></div>
+<p class="act-line">陆行远站起身。右手从口袋里抽出来的那一瞬，半船人屏住了呼吸。</p>
+<p class="act-line">摊开的手心里没有枪。是一方旧砚，砚身乌沉，边角磕出了茬口。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>愣住</i></span><span class="said">砚台？先生你揣块砚台过河？</span><button class="copy mini" data-copy="砚台？先生你揣块砚台过河？">复制</button></div>
+<div class="dlg-line"><span class="who">陆行远<i>把砚举到光下</i></span><span class="said">物归原主。就这四个字，多的没有。</span><button class="copy mini" data-copy="物归原主。就这四个字，多的没有。">复制</button></div>
+<p class="act-line">他把砚翻过来。砚底一方刻印，在昏光里露出笔画——县衙的印。</p>
+<div class="dlg-line"><span class="who">画外音<i>胡二爷的心声</i></span><span class="said">县衙的东西，在一个不肯报姓的人手里。</span><button class="copy mini" data-copy="县衙的东西，在一个不肯报姓的人手里。">复制</button></div>
+<div class="dlg-line"><span class="who">沈知微<i>声音发紧</i></span><span class="said">这砚……是县衙大堂的？</span><button class="copy mini" data-copy="这砚……是县衙大堂的？">复制</button></div>
+<div class="dlg-line"><span class="who">陆行远<i>看她一眼</i></span><span class="said">姑娘认得？</span><button class="copy mini" data-copy="姑娘认得？">复制</button></div>
+<p class="act-line">沈知微抱紧箱子别开脸，像是刚才那句话不是她问的。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>打圆场，眼神却亮了</i></span><span class="said">认不认得不打紧，打紧的是巡查船来了怎么说。</span><button class="copy mini" data-copy="认不认得不打紧，打紧的是巡查船来了怎么说。">复制</button></div>
+<div class="dlg-line"><span class="who">老周<i>篙不停</i></span><span class="said">说什么？一船过客，一块石头。</span><button class="copy mini" data-copy="说什么？一船过客，一块石头。">复制</button></div>
+<p class="act-line">老周把船撑进更浓的雾里，贴着芦苇的影子走。汽笛声从船尾远去。</p>
+<p class="act-line">满舱人不约而同松了口气，又不约而同互相看了一眼——谁也没资格笑话谁。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>抹了把汗</i></span><span class="said">邪门，二爷我走这条河十几年，头回盼着雾再大点。</span><button class="copy mini" data-copy="邪门，二爷我走这条河十几年，头回盼着雾再大点。">复制</button></div>
+<div class="dlg-line"><span class="who">陆行远<i>收砚入袋</i></span><span class="said">雾大，才好赶路。</span><button class="copy mini" data-copy="雾大，才好赶路。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>贼心不死</i></span><span class="said">先生这砚少说值些银子，就不怕船上有黑手？</span><button class="copy mini" data-copy="先生这砚少说值些银子，就不怕船上有黑手？">复制</button></div>
+<div class="dlg-line"><span class="who">陆行远<i>看都不看他</i></span><span class="said">值钱的不是砚，是砚底那方印。</span><button class="copy mini" data-copy="值钱的不是砚，是砚底那方印。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>嘿嘿一笑</i></span><span class="said">那更得小心——有人连印带命一起收。</span><button class="copy mini" data-copy="那更得小心——有人连印带命一起收。">复制</button></div>
+<p class="act-line">这话说完，舱里又静了。胡二爷自己也觉出说过了头，讪讪去摸他的炒豆。</p>
+<div class="dlg-line"><span class="who">老周<i>慢悠悠，像说给全船听</i></span><span class="said">到岸之前，都是船客。到了岸，各归各命。</span><button class="copy mini" data-copy="到岸之前，都是船客。到了岸，各归各命。">复制</button></div>
+<p class="act-line">陆行远坐回舱壁边，右手又揣回口袋。只是这一次，没人再觉得那里藏着凶器。</p>
+<div class="dlg-line"><span class="who">画外音<i>沈知微的心声</i></span><span class="said">县衙的砚，冤案的年份——他是来送东西的，还是来找人的？</span><button class="copy mini" data-copy="县衙的砚，冤案的年份——他是来送东西的，还是来找人的？">复制</button></div>
+<p class="act-line">船在雾里继续往前走，四下只剩水声。</p>
+</section>
+  </div>
+  <button class="scmore">▾ 展开全部场次</button>
+  <div class="hk cliff"><b>结尾悬念</b><span>巡查船的汽笛越来越近，老周却把船往雾更深处撑</span></div>
+</article>
+<article class="ep" id="ep-4">
+  <header class="ep-h">
+    <span class="ep-n">E04</span>
+    <span class="ep-est">预估 108.9 秒 / 目标 120 秒</span>
+    
+  </header>
+  <div class="hk"><b>开场钩子</b><span>冤案两个字为什么让她瞬间失态 <i class="hookat">第 1 场第 1 拍兑现</i></span></div>
+  <div class="scenes clip">
+  <section class="scene-blk">
+  <header class="scene-h">
+    <b>第 1 场</b>
+    <span class="chip">S01 渡船船舱</span>
+    <span class="chip lite">光照 · 晨雾</span>
+    <span class="chip">沈知微</span><span class="chip">陆行远</span><span class="chip">胡二爷</span>
+    <span class="chip prop">旧皮箱</span><span class="chip prop">县衙旧砚</span>
+  </header>
+  <p class="act-line hooked" title="开场钩子">冷开场一闪：沈知微抱箱的手臂猛地收紧，指节又白了一层。汽笛声擦着船尾远去，雾里只剩水声，舱里没有一个人放松下来。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>压低嗓门</i></span><span class="said">先生，二爷我嘴碎，可眼不瞎——你那砚，来路不一般。</span><button class="copy mini" data-copy="先生，二爷我嘴碎，可眼不瞎——你那砚，来路不一般。">复制</button></div>
+<p class="act-line">陆行远沉默片刻。开口时，声音压得只有舱内三个人听得见。</p>
+<div class="dlg-line"><span class="who">陆行远<i>一字一顿</i></span><span class="said">十年前县衙断过一桩案，断错了。</span><button class="copy mini" data-copy="十年前县衙断过一桩案，断错了。">复制</button></div>
+<div class="dlg-line"><span class="who">陆行远<i>手按着口袋</i></span><span class="said">主审的师爷收了这方砚，案子就歪了。</span><button class="copy mini" data-copy="主审的师爷收了这方砚，案子就歪了。">复制</button></div>
+<p class="act-line">沈知微把箱子抱得更紧了。</p>
+<div class="dlg-line"><span class="who">陆行远<i>平静，却压着分量</i></span><span class="said">师爷临终托我把砚送回去。冤案的首尾，总要有人来了。</span><button class="copy mini" data-copy="师爷临终托我把砚送回去。冤案的首尾，总要有人来了。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>咂舌</i></span><span class="said">送回去？衙门的东西送回衙门，那不是自投罗网？</span><button class="copy mini" data-copy="送回去？衙门的东西送回衙门，那不是自投罗网？">复制</button></div>
+<div class="dlg-line"><span class="who">陆行远<i>只有这一句</i></span><span class="said">砚不回去，案翻不动。</span><button class="copy mini" data-copy="砚不回去，案翻不动。">复制</button></div>
+<p class="act-line">冤案两个字第二次出口的时候，沈知微的指节又掐白了。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>眼尖</i></span><span class="said">姑娘？姑娘你脸色不对。</span><button class="copy mini" data-copy="姑娘？姑娘你脸色不对。">复制</button></div>
+<div class="dlg-line"><span class="who">沈知微<i>声音绷着</i></span><span class="said">舱里闷，没事。</span><button class="copy mini" data-copy="舱里闷，没事。">复制</button></div>
+<p class="act-line">她说没事，人却往角落的阴影里缩了缩，把箱子搂在身前。</p>
+<p class="act-line">胡二爷看看她，又看看陆行远，脸上的笑淡了下来。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>笑容淡了</i></span><span class="said">二爷我见天琢磨人心。可有的心，琢磨着琢磨着就不忍了。</span><button class="copy mini" data-copy="二爷我见天琢磨人心。可有的心，琢磨着琢磨着就不忍了。">复制</button></div>
+<div class="dlg-line"><span class="who">陆行远<i>接得很快</i></span><span class="said">不忍，就别琢磨。</span><button class="copy mini" data-copy="不忍，就别琢磨。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>摆手苦笑</i></span><span class="said">做不到啊先生。这一船的心事，比我一担子的货还沉。</span><button class="copy mini" data-copy="做不到啊先生。这一船的心事，比我一担子的货还沉。">复制</button></div>
+<p class="act-line">船头传来一声咳。不重，却让舱里三个人同时停了话头。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>压得更低</i></span><span class="said">听见没？老周哥这一嗓子，是提醒咱们雾里有耳朵。</span><button class="copy mini" data-copy="听见没？老周哥这一嗓子，是提醒咱们雾里有耳朵。">复制</button></div>
+<div class="dlg-line"><span class="who">陆行远<i>摇头</i></span><span class="said">也可能是警告——别把到不了岸的话说出口。</span><button class="copy mini" data-copy="也可能是警告——别把到不了岸的话说出口。">复制</button></div>
+<p class="act-line">沈知微在阴影里抬眼，飞快地看了陆行远一眼，又垂下去。</p>
+<div class="dlg-line"><span class="who">画外音<i>沈知微的心声</i></span><span class="said">他说的那桩案，年份对得上。可我不能问，一问就全露了。</span><button class="copy mini" data-copy="他说的那桩案，年份对得上。可我不能问，一问就全露了。">复制</button></div>
+<p class="act-line">胡二爷把货担往里挪了挪，给沈知微让出半条凳的空，什么也没说。</p>
+<p class="act-line">让完地方，他自己愣了一下，挠了挠头。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>给自己找补</i></span><span class="said">凳子硌得慌，二爷我换个坐处。</span><button class="copy mini" data-copy="凳子硌得慌，二爷我换个坐处。">复制</button></div>
+<p class="act-line">没人拆穿他。船身在雾里轻轻晃。</p>
+<div class="dlg-line"><span class="who">陆行远<i>望着舱外</i></span><span class="said">雾要到晌午才散。散之前，各自把话想清楚。</span><button class="copy mini" data-copy="雾要到晌午才散。散之前，各自把话想清楚。">复制</button></div>
+<div class="dlg-line"><span class="who">沈知微<i>忽然开口</i></span><span class="said">先生方才说，砚不回去，案翻不动。</span><button class="copy mini" data-copy="先生方才说，砚不回去，案翻不动。">复制</button></div>
+<div class="dlg-line"><span class="who">沈知微<i>轻得像自言自语</i></span><span class="said">那要是……有人连状纸都备好了呢？</span><button class="copy mini" data-copy="那要是……有人连状纸都备好了呢？">复制</button></div>
+<p class="act-line">陆行远猛地转头，第一次正眼看她。</p>
+<p class="act-line">两人对视了一眼，谁都没有再问。</p>
+<div class="dlg-line"><span class="who">画外音<i>胡二爷的心声</i></span><span class="said">状纸？好家伙，这船上没有一个人是过客。</span><button class="copy mini" data-copy="状纸？好家伙，这船上没有一个人是过客。">复制</button></div>
+</section>
+  </div>
+  <button class="scmore">▾ 展开全部场次</button>
+  <div class="hk cliff"><b>结尾悬念</b><span>老周在船头咳了一声，像是提醒，又像是警告</span></div>
+</article>
+<article class="ep" id="ep-5">
+  <header class="ep-h">
+    <span class="ep-n">E05</span>
+    <span class="ep-est">预估 112.1 秒 / 目标 120 秒</span>
+    <i class="bt">反转</i>
+  </header>
+  <div class="hk"><b>开场钩子</b><span>老周怎么会知道她要投奔谁 <i class="hookat">第 1 场第 1 拍兑现</i></span></div>
+  <div class="scenes clip">
+  <section class="scene-blk">
+  <header class="scene-h">
+    <b>第 1 场</b>
+    <span class="chip">S03 对岸芦苇滩</span>
+    <span class="chip lite">光照 · 薄雾午前</span>
+    <span class="chip">沈知微</span><span class="chip">老周</span>
+    <span class="chip prop">旧皮箱</span>
+  </header>
+  <p class="act-line hooked" title="开场钩子">冷开场：撑了四十年篙、从不开口问客的船夫收住篙，转头看向船舷边的沈知微，嘴唇动了。薄雾的午前，对岸芦苇滩第一次露出轮廓，像一道灰绿的堤。</p>
+<p class="act-line">沈知微不知何时到了船舷边，抱着箱子，望着那道越来越近的岸线出神。</p>
+<div class="dlg-line"><span class="who">老周<i>身后，忽然</i></span><span class="said">姑娘，到了岸，往哪儿去？</span><button class="copy mini" data-copy="姑娘，到了岸，往哪儿去？">复制</button></div>
+<p class="act-line">四十年不问来路的船夫，头一回开了口。沈知微的背僵住了。</p>
+<div class="dlg-line"><span class="who">沈知微<i>稳住声音</i></span><span class="said">北门外，投亲。</span><button class="copy mini" data-copy="北门外，投亲。">复制</button></div>
+<div class="dlg-line"><span class="who">老周<i>篙没停</i></span><span class="said">投谁？</span><button class="copy mini" data-copy="投谁？">复制</button></div>
+<div class="dlg-line"><span class="who">沈知微<i>指节收紧</i></span><span class="said">……姓沈的本家。</span><button class="copy mini" data-copy="……姓沈的本家。">复制</button></div>
+<p class="act-line">老周撑篙的手没停，船擦着芦苇缓缓地走，惊起两只水鸟。</p>
+<div class="dlg-line"><span class="who">老周<i>声音很平</i></span><span class="said">县城北门外，早就没有姓沈的接应了。</span><button class="copy mini" data-copy="县城北门外，早就没有姓沈的接应了。">复制</button></div>
+<p class="act-line">沈知微猛地回头。</p>
+<div class="dlg-line"><span class="who">沈知微<i>声音变了</i></span><span class="said">你说什么？</span><button class="copy mini" data-copy="你说什么？">复制</button></div>
+<div class="dlg-line"><span class="who">老周<i>不看她</i></span><span class="said">三年前就走绝了。走的走，没的没。姑娘，你投的是空门。</span><button class="copy mini" data-copy="三年前就走绝了。走的走，没的没。姑娘，你投的是空门。">复制</button></div>
+<p class="act-line">风从芦苇滩那边吹过来，她抱着箱子站在船舷边，一动不动。</p>
+<div class="dlg-line"><span class="who">沈知微<i>逼近一步</i></span><span class="said">你怎么知道我要投谁？你到底是谁？</span><button class="copy mini" data-copy="你怎么知道我要投谁？你到底是谁？">复制</button></div>
+<div class="dlg-line"><span class="who">老周<i>撑篙，望着河面</i></span><span class="said">我就是个摆渡的。四十年，什么人没渡过。</span><button class="copy mini" data-copy="我就是个摆渡的。四十年，什么人没渡过。">复制</button></div>
+<p class="act-line">他顿了顿，篙尖从水里提起来，滴着水。</p>
+<div class="dlg-line"><span class="who">老周<i>像在说别人的故事</i></span><span class="said">渡过去的人多了，回来的少。回来的里头，有人说过沈家的事。</span><button class="copy mini" data-copy="渡过去的人多了，回来的少。回来的里头，有人说过沈家的事。">复制</button></div>
+<p class="act-line">说完这句，老周不再开口，一篙一篙，照旧撑船。</p>
+</section>
+<section class="scene-blk">
+  <header class="scene-h">
+    <b>第 2 场</b>
+    <span class="chip">S01 渡船船舱</span>
+    <span class="chip lite">光照 · 晨雾</span>
+    <span class="chip">沈知微</span><span class="chip">胡二爷</span>
+    <span class="chip prop">旧皮箱</span>
+  </header>
+  <p class="act-line">沈知微抱着箱子回到舱里，脚步发飘，在角落坐下。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>递过水囊</i></span><span class="said">姑娘，喝口水。脸白成这样，可不像晕船。</span><button class="copy mini" data-copy="姑娘，喝口水。脸白成这样，可不像晕船。">复制</button></div>
+<div class="dlg-line"><span class="who">沈知微<i>机械地摇头</i></span><span class="said">不用。</span><button class="copy mini" data-copy="不用。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>收回水囊，状似无意</i></span><span class="said">方才船头的话，二爷我隔着舱板，听见了几个字。</span><button class="copy mini" data-copy="方才船头的话，二爷我隔着舱板，听见了几个字。">复制</button></div>
+<p class="act-line">沈知微猛地抬头。胡二爷的笑还挂在脸上，手却停在了半空。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>说得很慢</i></span><span class="said">沈姓、接应——就这四个字。</span><button class="copy mini" data-copy="沈姓、接应——就这四个字。">复制</button></div>
+<p class="act-line">说出这四个字，他脸上的笑挂不住了。</p>
+<div class="dlg-line"><span class="who">沈知微<i>盯着他</i></span><span class="said">胡老板听见了，打算怎么样？</span><button class="copy mini" data-copy="胡老板听见了，打算怎么样？">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>半晌，苦笑</i></span><span class="said">不怎么样。二爷我就是忽然想起来，我也有对不住沈家的地方。</span><button class="copy mini" data-copy="不怎么样。二爷我就是忽然想起来，我也有对不住沈家的地方。">复制</button></div>
+<p class="act-line">他说完就去理货担，理了半天，一件货也没理出来。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>背对着她，忽然</i></span><span class="said">当年沈家出事，满城看热闹的人里，有二爷我一个。</span><button class="copy mini" data-copy="当年沈家出事，满城看热闹的人里，有二爷我一个。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>声音哑了半度</i></span><span class="said">看了，没说话。这就是对不住。</span><button class="copy mini" data-copy="看了，没说话。这就是对不住。">复制</button></div>
+<div class="dlg-line"><span class="who">沈知微<i>轻声</i></span><span class="said">说话的人，后来都怎么样了？</span><button class="copy mini" data-copy="说话的人，后来都怎么样了？">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>半天才答</i></span><span class="said">没有说话的人。一个都没有。</span><button class="copy mini" data-copy="没有说话的人。一个都没有。">复制</button></div>
+<p class="act-line">舱里静得能听见雾珠子从篷顶滴下来的声音。</p>
+<div class="dlg-line"><span class="who">画外音<i>沈知微的心声</i></span><span class="said">接应没了，路断了。可这箱子，拼了命也得送进县城。</span><button class="copy mini" data-copy="接应没了，路断了。可这箱子，拼了命也得送进县城。">复制</button></div>
+<div class="dlg-line"><span class="who">画外音<i>沈知微的心声，一字一钉</i></span><span class="said">满城没有一个人说话。所以状纸只能我自己送。</span><button class="copy mini" data-copy="满城没有一个人说话。所以状纸只能我自己送。">复制</button></div>
+<p class="act-line">舱外的芦苇影子从船舷滑过去，岸越来越近，雾越来越薄。</p>
+</section>
+  </div>
+  <button class="scmore">▾ 展开全部场次</button>
+  <div class="hk cliff"><b>结尾悬念</b><span>胡二爷听到沈姓接应四个字，笑容第一次挂不住</span></div>
+</article>
+<article class="ep" id="ep-6">
+  <header class="ep-h">
+    <span class="ep-n">E06</span>
+    <span class="ep-est">预估 108.8 秒 / 目标 120 秒</span>
+    <i class="bt">收束</i>
+  </header>
+  <div class="hk"><b>开场钩子</b><span>状纸和旧砚拼出的到底是谁的冤案 <i class="hookat">第 1 场第 1 拍兑现</i></span></div>
+  <div class="scenes clip">
+  <section class="scene-blk">
+  <header class="scene-h">
+    <b>第 1 场</b>
+    <span class="chip">S01 渡船船舱</span>
+    <span class="chip lite">光照 · 雾散近岸</span>
+    <span class="chip">沈知微</span><span class="chip">陆行远</span><span class="chip">老周</span><span class="chip">胡二爷</span>
+    <span class="chip prop">旧皮箱</span><span class="chip prop">县衙旧砚</span>
+  </header>
+  <p class="act-line hooked" title="开场钩子">冷开场特写：皮箱铜扣被一根拇指推开的一瞬。雾开始散了，舱里第一次照进真正的天光，每个人脸上的影子都藏不住了。</p>
+<div class="dlg-line"><span class="who">老周<i>从船头</i></span><span class="said">前头就是渡口，一炷香靠岸。</span><button class="copy mini" data-copy="前头就是渡口，一炷香靠岸。">复制</button></div>
+<p class="act-line">沈知微站起来。她把皮箱放在舱板正中，当着所有人，打开了铜扣。</p>
+<p class="act-line">没有金银。一摞压得整整齐齐的状纸，状纸上头，一方小小的灵位。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>倒吸一口气</i></span><span class="said">状纸……姑娘，你这是要去翻案？</span><button class="copy mini" data-copy="状纸……姑娘，你这是要去翻案？">复制</button></div>
+<div class="dlg-line"><span class="who">沈知微<i>声音不大，字字清楚</i></span><span class="said">十年前的沈家案。人证物证，我收了十年。</span><button class="copy mini" data-copy="十年前的沈家案。人证物证，我收了十年。">复制</button></div>
+<p class="act-line">陆行远走过来，从大衣口袋里取出那方旧砚，轻轻放在状纸上面。</p>
+<div class="dlg-line"><span class="who">陆行远<i>像落下一枚棋子</i></span><span class="said">砚归原案。证物齐了。</span><button class="copy mini" data-copy="砚归原案。证物齐了。">复制</button></div>
+<p class="act-line">砚底的刻印和状纸上的案号摆在一起，正好对上。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>指着灵位，声音小了</i></span><span class="said">这位是……？</span><button class="copy mini" data-copy="这位是……？">复制</button></div>
+<div class="dlg-line"><span class="who">沈知微<i>平静得吓人</i></span><span class="said">我爹。当年顶罪的人。</span><button class="copy mini" data-copy="我爹。当年顶罪的人。">复制</button></div>
+<p class="act-line">舱里没人再说话，只有水声从船底流过。</p>
+<div class="dlg-line"><span class="who">沈知微<i>看着陆行远</i></span><span class="said">你早知道我是谁。</span><button class="copy mini" data-copy="你早知道我是谁。">复制</button></div>
+<div class="dlg-line"><span class="who">陆行远<i>把话说开了</i></span><span class="said">船到河心就猜到了。雾里认不出脸，认得出十年不肯放手的人。</span><button class="copy mini" data-copy="船到河心就猜到了。雾里认不出脸，认得出十年不肯放手的人。">复制</button></div>
+<p class="act-line">胡二爷盯着那摞状纸看了很久，忽然长长叹了一口气。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>把货担一放</i></span><span class="said">得，二爷我也交个底。</span><button class="copy mini" data-copy="得，二爷我也交个底。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>说得又快又狠</i></span><span class="said">我在县衙当差，管的就是案牍。这趟出来，本是盯着这条水路。</span><button class="copy mini" data-copy="我在县衙当差，管的就是案牍。这趟出来，本是盯着这条水路。">复制</button></div>
+<p class="act-line">满舱一静。老周的篙声都停了半拍。</p>
+<div class="dlg-line"><span class="who">沈知微<i>后退半步</i></span><span class="said">盯谁？</span><button class="copy mini" data-copy="盯谁？">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>苦笑</i></span><span class="said">盯一个可能带着旧案证物过河的人。可盯了一路，我改主意了。</span><button class="copy mini" data-copy="盯一个可能带着旧案证物过河的人。可盯了一路，我改主意了。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>一拍胸口</i></span><span class="said">北门进不去，我领你们走侧门。案牍房的门，我熟。</span><button class="copy mini" data-copy="北门进不去，我领你们走侧门。案牍房的门，我熟。">复制</button></div>
+<div class="dlg-line"><span class="who">老周<i>忽然从船头开口</i></span><span class="said">都定了？定了就把话收好——岸上人多。</span><button class="copy mini" data-copy="都定了？定了就把话收好——岸上人多。">复制</button></div>
+<p class="act-line">这是老周在船上说的最后一句话。天光照在摊开的状纸上。</p>
+<div class="dlg-line"><span class="who">画外音<i>陆行远的心声</i></span><span class="said">一船的伪装，到了岸倒都成了同路人。</span><button class="copy mini" data-copy="一船的伪装，到了岸倒都成了同路人。">复制</button></div>
+</section>
+<section class="scene-blk">
+  <header class="scene-h">
+    <b>第 2 场</b>
+    <span class="chip">S02 渡口栈桥</span>
+    
+    <span class="chip">沈知微</span><span class="chip">陆行远</span><span class="chip">老周</span><span class="chip">胡二爷</span><span class="chip">岸上挑灯的更夫</span>
+    <span class="chip prop">旧皮箱</span>
+  </header>
+  <p class="act-line">船帮碰上栈桥的旧木，闷闷一声。岸上的更夫挑着灯笼站在桥头，梆子别在腰里。</p>
+<div class="dlg-line"><span class="who">岸上挑灯的更夫<i>扬声报岸</i></span><span class="said">渡船靠岸——雾散了，各走各路喽。</span><button class="copy mini" data-copy="渡船靠岸——雾散了，各走各路喽。">复制</button></div>
+<p class="act-line">更夫凑近了打量三人，灯笼抬了抬，又什么都没问地放下了。</p>
+<div class="dlg-line"><span class="who">岸上挑灯的更夫<i>压低声，像随口一提</i></span><span class="said">城门口新添了岗，几位走西巷绕一绕稳当。</span><button class="copy mini" data-copy="城门口新添了岗，几位走西巷绕一绕稳当。">复制</button></div>
+<div class="dlg-line"><span class="who">胡二爷<i>笑着拱手</i></span><span class="said">老哥懂行。</span><button class="copy mini" data-copy="老哥懂行。">复制</button></div>
+<p class="act-line">沈知微抱着重新合上的皮箱，第一个踏上跳板。这一次，指节没有发白。</p>
+<div class="dlg-line"><span class="who">陆行远<i>在她身后</i></span><span class="said">走吧。状纸在，路就在。</span><button class="copy mini" data-copy="走吧。状纸在，路就在。">复制</button></div>
+<p class="act-line">胡二爷挑起货担跟上，走两步又回头，朝船头拱了拱手。</p>
+<div class="dlg-line"><span class="who">胡二爷<i>难得正经</i></span><span class="said">老周哥，回见。</span><button class="copy mini" data-copy="老周哥，回见。">复制</button></div>
+<div class="dlg-line"><span class="who">老周<i>撑篙调头，头也不回</i></span><span class="said">河上不说回见。要过河，我都在。</span><button class="copy mini" data-copy="河上不说回见。要过河，我都在。">复制</button></div>
+<p class="act-line">三个人的影子一前一后进了城门方向的路。更夫的灯笼在他们身后晃了晃，梆子敲了两下。</p>
+<div class="dlg-line"><span class="who">岸上挑灯的更夫<i>望着背影，自语</i></span><span class="said">这一船渡的，怕不只是人。</span><button class="copy mini" data-copy="这一船渡的，怕不只是人。">复制</button></div>
+<p class="act-line">老周把船撑回河心。雾散后的渡口空空荡荡，只剩栈桥上一串湿脚印，朝着县城。</p>
+</section>
+  </div>
+  <button class="scmore">▾ 展开全部场次</button>
+  <div class="hk cliff"><b>结尾悬念</b><span>胡二爷这个身份是真交底，还是又一层伪装</span></div>
+</article>
+  </div>
+</section>
+
+<section class="top-sec" id="sec-scenes">
+  <div class="sec-h"><span class="no">03</span><h2>场次总表</h2><span class="note">自动汇总 · 模型不写</span></div>
+  <table><thead><tr><th>集</th><th>场</th><th>场景</th><th>光照</th><th>人物</th><th>台词句数</th><th>估秒</th></tr></thead>
+<tbody><tr><td>1</td><td>1</td><td>S02 渡口栈桥</td><td>浓雾清晨</td><td>沈知微、老周、胡二爷</td><td>7</td><td>36.3</td></tr>
+<tr><td>1</td><td>2</td><td>S01 渡船船舱</td><td>晨雾</td><td>沈知微、陆行远、老周、胡二爷</td><td>12</td><td>67.9</td></tr>
+<tr><td>2</td><td>1</td><td>S01 渡船船舱</td><td>晨雾</td><td>沈知微、陆行远、胡二爷</td><td>20</td><td>105</td></tr>
+<tr><td>3</td><td>1</td><td>S01 渡船船舱</td><td>晨雾</td><td>沈知微、陆行远、老周、胡二爷</td><td>21</td><td>113.1</td></tr>
+<tr><td>4</td><td>1</td><td>S01 渡船船舱</td><td>晨雾</td><td>沈知微、陆行远、胡二爷</td><td>19</td><td>108.9</td></tr>
+<tr><td>5</td><td>1</td><td>S03 对岸芦苇滩</td><td>薄雾午前</td><td>沈知微、老周</td><td>10</td><td>51.3</td></tr>
+<tr><td>5</td><td>2</td><td>S01 渡船船舱</td><td>晨雾</td><td>沈知微、胡二爷</td><td>12</td><td>60.8</td></tr>
+<tr><td>6</td><td>1</td><td>S01 渡船船舱</td><td>雾散近岸</td><td>沈知微、陆行远、老周、胡二爷</td><td>15</td><td>74.9</td></tr>
+<tr><td>6</td><td>2</td><td>S02 渡口栈桥</td><td></td><td>沈知微、陆行远、老周、胡二爷、岸上挑灯的更夫</td><td>7</td><td>33.9</td></tr></tbody></table>
+</section>
+
+<section class="top-sec" id="sec-cast">
+  <div class="sec-h"><span class="no">04</span><h2>台词本</h2><span class="note">按角色聚合 · 列表最多显示 6 行可滚动 · 直接对接 TTS 批量生成</span></div>
+  <div class="casts">
+<section class="cast-blk">
+  <header class="cast-h">
+    <b>胡二爷</b>
+    <span class="cast-meta">52 句 · 936 字 · 约 208 秒</span>
+    
+    <button class="copy" data-copy="等等二爷我！这雾天赶船，命都得跑掉半条。
+那可不——吃饭的家伙，比命金贵。
+姑娘头回走这条水路吧？我一看一个准。
+城里亲戚接站，还是投店？二爷我熟门熟路。
+嗨，出门在外别客气——箱子给我，搁上头稳当。
+是是，二爷我多嘴，多嘴。
+老周，今儿这雾邪性，走得完吗？
+这位先生面生得很，也是去县城？
+得，一船的闷葫芦，就我一个人长嘴。
+尝尝？县城东街炒的，隔着雾都香。
+这趟进城你们可赶巧了，集市比年根还热闹。
+为啥？县衙在翻一桩十年前的旧案，全城都在看戏。
+听说当年错杀了人，如今苦主的后人要翻案。
+沈家啊——城里老户，说没就没了大半门。
+哟，先生知道内情？
+卷宗那是衙门里的东西，先生贵姓？
+姑娘也姓沈？我瞧你上船就没说过几句话。
+好好好，是二爷我多问。
+邪性，今儿这船上人人都护着人人。
+你们说句公道话，那旧案到底冤不冤？
+得，问了也白问——这船上的规矩，不问来路。
+听听，这动静——巡查的船。
+老周哥这是躲啊？咱船上又没人揣着硬家伙。
+先生，你说是不是？这年头查得严，说不清可就麻烦了。
+规矩是不问来路——可没说不问口袋。汽笛在催了。
+砚台？先生你揣块砚台过河？
+认不认得不打紧，打紧的是巡查船来了怎么说。
+邪门，二爷我走这条河十几年，头回盼着雾再大点。
+先生这砚少说值些银子，就不怕船上有黑手？
+那更得小心——有人连印带命一起收。
+先生，二爷我嘴碎，可眼不瞎——你那砚，来路不一般。
+送回去？衙门的东西送回衙门，那不是自投罗网？
+姑娘？姑娘你脸色不对。
+二爷我见天琢磨人心。可有的心，琢磨着琢磨着就不忍了。
+做不到啊先生。这一船的心事，比我一担子的货还沉。
+听见没？老周哥这一嗓子，是提醒咱们雾里有耳朵。
+凳子硌得慌，二爷我换个坐处。
+姑娘，喝口水。脸白成这样，可不像晕船。
+方才船头的话，二爷我隔着舱板，听见了几个字。
+沈姓、接应——就这四个字。
+不怎么样。二爷我就是忽然想起来，我也有对不住沈家的地方。
+当年沈家出事，满城看热闹的人里，有二爷我一个。
+看了，没说话。这就是对不住。
+没有说话的人。一个都没有。
+状纸……姑娘，你这是要去翻案？
+这位是……？
+得，二爷我也交个底。
+我在县衙当差，管的就是案牍。这趟出来，本是盯着这条水路。
+盯一个可能带着旧案证物过河的人。可盯了一路，我改主意了。
+北门进不去，我领你们走侧门。案牍房的门，我熟。
+老哥懂行。
+老周哥，回见。">复制全部台词</button>
+  </header>
+  <ol class="cast-lines"><li><i>E01 第 1 场</i><span>等等二爷我！这雾天赶船，命都得跑掉半条。</span><em>气喘吁吁，自来熟</em></li><li><i>E01 第 1 场</i><span>那可不——吃饭的家伙，比命金贵。</span><em>拍着担子笑</em></li><li><i>E01 第 2 场</i><span>姑娘头回走这条水路吧？我一看一个准。</span><em>自来熟地凑近</em></li><li><i>E01 第 2 场</i><span>城里亲戚接站，还是投店？二爷我熟门熟路。</span><em>追着问</em></li><li><i>E01 第 2 场</i><span>嗨，出门在外别客气——箱子给我，搁上头稳当。</span><em>笑着，手已经伸向皮箱</em></li><li><i>E01 第 2 场</i><span>是是，二爷我多嘴，多嘴。</span><em>讪讪收手</em></li><li><i>E01 第 2 场</i><span>老周，今儿这雾邪性，走得完吗？</span><em>没话找话</em></li><li><i>E01 第 2 场</i><span>这位先生面生得很，也是去县城？</span><em>转头找新话头</em></li><li><i>E01 第 2 场</i><span>得，一船的闷葫芦，就我一个人长嘴。</span><em>自讨没趣</em></li><li><i>E02 第 1 场</i><span>尝尝？县城东街炒的，隔着雾都香。</span><em>殷勤</em></li><li><i>E02 第 1 场</i><span>这趟进城你们可赶巧了，集市比年根还热闹。</span><em>眉飞色舞</em></li><li><i>E02 第 1 场</i><span>为啥？县衙在翻一桩十年前的旧案，全城都在看戏。</span><em>压低声音卖关子</em></li><li><i>E02 第 1 场</i><span>听说当年错杀了人，如今苦主的后人要翻案。</span><em>咂着嘴</em></li><li><i>E02 第 1 场</i><span>沈家啊——城里老户，说没就没了大半门。</span><em>叹一声，眼却瞟着皮箱</em></li><li><i>E02 第 1 场</i><span>哟，先生知道内情？</span><em>眯起眼</em></li><li><i>E02 第 1 场</i><span>卷宗那是衙门里的东西，先生贵姓？</span><em>笑里藏针</em></li><li><i>E02 第 1 场</i><span>姑娘也姓沈？我瞧你上船就没说过几句话。</span><em>冷不丁转向她</em></li><li><i>E02 第 1 场</i><span>好好好，是二爷我多问。</span><em>拍腿笑</em></li><li><i>E02 第 1 场</i><span>邪性，今儿这船上人人都护着人人。</span><em>捡着豆嘟囔</em></li><li><i>E02 第 1 场</i><span>你们说句公道话，那旧案到底冤不冤？</span><em>不死心</em></li><li><i>E02 第 1 场</i><span>得，问了也白问——这船上的规矩，不问来路。</span><em>自己接上</em></li><li><i>E03 第 1 场</i><span>听听，这动静——巡查的船。</span><em>竖起耳朵</em></li><li><i>E03 第 1 场</i><span>老周哥这是躲啊？咱船上又没人揣着硬家伙。</span><em>嗓门故意抬高</em></li><li><i>E03 第 1 场</i><span>先生，你说是不是？这年头查得严，说不清可就麻烦了。</span><em>步步紧逼</em></li><li><i>E03 第 1 场</i><span>规矩是不问来路——可没说不问口袋。汽笛在催了。</span><em>摊着手</em></li><li><i>E03 第 1 场</i><span>砚台？先生你揣块砚台过河？</span><em>愣住</em></li><li><i>E03 第 1 场</i><span>认不认得不打紧，打紧的是巡查船来了怎么说。</span><em>打圆场，眼神却亮了</em></li><li><i>E03 第 1 场</i><span>邪门，二爷我走这条河十几年，头回盼着雾再大点。</span><em>抹了把汗</em></li><li><i>E03 第 1 场</i><span>先生这砚少说值些银子，就不怕船上有黑手？</span><em>贼心不死</em></li><li><i>E03 第 1 场</i><span>那更得小心——有人连印带命一起收。</span><em>嘿嘿一笑</em></li><li><i>E04 第 1 场</i><span>先生，二爷我嘴碎，可眼不瞎——你那砚，来路不一般。</span><em>压低嗓门</em></li><li><i>E04 第 1 场</i><span>送回去？衙门的东西送回衙门，那不是自投罗网？</span><em>咂舌</em></li><li><i>E04 第 1 场</i><span>姑娘？姑娘你脸色不对。</span><em>眼尖</em></li><li><i>E04 第 1 场</i><span>二爷我见天琢磨人心。可有的心，琢磨着琢磨着就不忍了。</span><em>笑容淡了</em></li><li><i>E04 第 1 场</i><span>做不到啊先生。这一船的心事，比我一担子的货还沉。</span><em>摆手苦笑</em></li><li><i>E04 第 1 场</i><span>听见没？老周哥这一嗓子，是提醒咱们雾里有耳朵。</span><em>压得更低</em></li><li><i>E04 第 1 场</i><span>凳子硌得慌，二爷我换个坐处。</span><em>给自己找补</em></li><li><i>E05 第 2 场</i><span>姑娘，喝口水。脸白成这样，可不像晕船。</span><em>递过水囊</em></li><li><i>E05 第 2 场</i><span>方才船头的话，二爷我隔着舱板，听见了几个字。</span><em>收回水囊，状似无意</em></li><li><i>E05 第 2 场</i><span>沈姓、接应——就这四个字。</span><em>说得很慢</em></li><li><i>E05 第 2 场</i><span>不怎么样。二爷我就是忽然想起来，我也有对不住沈家的地方。</span><em>半晌，苦笑</em></li><li><i>E05 第 2 场</i><span>当年沈家出事，满城看热闹的人里，有二爷我一个。</span><em>背对着她，忽然</em></li><li><i>E05 第 2 场</i><span>看了，没说话。这就是对不住。</span><em>声音哑了半度</em></li><li><i>E05 第 2 场</i><span>没有说话的人。一个都没有。</span><em>半天才答</em></li><li><i>E06 第 1 场</i><span>状纸……姑娘，你这是要去翻案？</span><em>倒吸一口气</em></li><li><i>E06 第 1 场</i><span>这位是……？</span><em>指着灵位，声音小了</em></li><li><i>E06 第 1 场</i><span>得，二爷我也交个底。</span><em>把货担一放</em></li><li><i>E06 第 1 场</i><span>我在县衙当差，管的就是案牍。这趟出来，本是盯着这条水路。</span><em>说得又快又狠</em></li><li><i>E06 第 1 场</i><span>盯一个可能带着旧案证物过河的人。可盯了一路，我改主意了。</span><em>苦笑</em></li><li><i>E06 第 1 场</i><span>北门进不去，我领你们走侧门。案牍房的门，我熟。</span><em>一拍胸口</em></li><li><i>E06 第 2 场</i><span>老哥懂行。</span><em>笑着拱手</em></li><li><i>E06 第 2 场</i><span>老周哥，回见。</span><em>难得正经</em></li></ol>
+</section>
+<section class="cast-blk">
+  <header class="cast-h">
+    <b>陆行远</b>
+    <span class="cast-meta">21 句 · 284 字 · 约 63.1 秒</span>
+    
+    <button class="copy" data-copy="这条河，今晚怕是不太平。
+那案子，查错了人。
+卷宗我读过。人证是屈打成招，物证对不上。
+姓什么不要紧。要紧的是错案就是错案。
+胡老板，你的豆撒了。
+也不问去处。
+好。
+物归原主。就这四个字，多的没有。
+姑娘认得？
+雾大，才好赶路。
+值钱的不是砚，是砚底那方印。
+十年前县衙断过一桩案，断错了。
+主审的师爷收了这方砚，案子就歪了。
+师爷临终托我把砚送回去。冤案的首尾，总要有人来了。
+砚不回去，案翻不动。
+不忍，就别琢磨。
+也可能是警告——别把到不了岸的话说出口。
+雾要到晌午才散。散之前，各自把话想清楚。
+砚归原案。证物齐了。
+船到河心就猜到了。雾里认不出脸，认得出十年不肯放手的人。
+走吧。状纸在，路就在。">复制全部台词</button>
+  </header>
+  <ol class="cast-lines"><li><i>E01 第 2 场</i><span>这条河，今晚怕是不太平。</span><em>低声，几乎自语</em></li><li><i>E02 第 1 场</i><span>那案子，查错了人。</span><em>突然开口</em></li><li><i>E02 第 1 场</i><span>卷宗我读过。人证是屈打成招，物证对不上。</span><em>语气平得像念书</em></li><li><i>E02 第 1 场</i><span>姓什么不要紧。要紧的是错案就是错案。</span><em>不接招</em></li><li><i>E02 第 1 场</i><span>胡老板，你的豆撒了。</span><em>淡淡地</em></li><li><i>E02 第 1 场</i><span>也不问去处。</span><em>低声补了半句</em></li><li><i>E03 第 1 场</i><span>好。</span><em>很轻地笑了一下</em></li><li><i>E03 第 1 场</i><span>物归原主。就这四个字，多的没有。</span><em>把砚举到光下</em></li><li><i>E03 第 1 场</i><span>姑娘认得？</span><em>看她一眼</em></li><li><i>E03 第 1 场</i><span>雾大，才好赶路。</span><em>收砚入袋</em></li><li><i>E03 第 1 场</i><span>值钱的不是砚，是砚底那方印。</span><em>看都不看他</em></li><li><i>E04 第 1 场</i><span>十年前县衙断过一桩案，断错了。</span><em>一字一顿</em></li><li><i>E04 第 1 场</i><span>主审的师爷收了这方砚，案子就歪了。</span><em>手按着口袋</em></li><li><i>E04 第 1 场</i><span>师爷临终托我把砚送回去。冤案的首尾，总要有人来了。</span><em>平静，却压着分量</em></li><li><i>E04 第 1 场</i><span>砚不回去，案翻不动。</span><em>只有这一句</em></li><li><i>E04 第 1 场</i><span>不忍，就别琢磨。</span><em>接得很快</em></li><li><i>E04 第 1 场</i><span>也可能是警告——别把到不了岸的话说出口。</span><em>摇头</em></li><li><i>E04 第 1 场</i><span>雾要到晌午才散。散之前，各自把话想清楚。</span><em>望着舱外</em></li><li><i>E06 第 1 场</i><span>砚归原案。证物齐了。</span><em>像落下一枚棋子</em></li><li><i>E06 第 1 场</i><span>船到河心就猜到了。雾里认不出脸，认得出十年不肯放手的人。</span><em>把话说开了</em></li><li><i>E06 第 2 场</i><span>走吧。状纸在，路就在。</span><em>在她身后</em></li></ol>
+</section>
+<section class="cast-blk">
+  <header class="cast-h">
+    <b>老周</b>
+    <span class="cast-meta">19 句 · 299 字 · 约 66.4 秒</span>
+    
+    <button class="copy" data-copy="上船喽——过河的抓紧，雾要变天。
+胡二爷，你这担子比人金贵。
+箱子沉就搁船头，掉河里我可不捞。
+坐稳——开船。
+船上有个规矩——不问来路，不碰行李。
+走了四十年，没有走不完的河。
+商船改的巡查船，烧的煤不一样，听声就知道。
+胡二爷，船上的规矩。
+说什么？一船过客，一块石头。
+到岸之前，都是船客。到了岸，各归各命。
+姑娘，到了岸，往哪儿去？
+投谁？
+县城北门外，早就没有姓沈的接应了。
+三年前就走绝了。走的走，没的没。姑娘，你投的是空门。
+我就是个摆渡的。四十年，什么人没渡过。
+渡过去的人多了，回来的少。回来的里头，有人说过沈家的事。
+前头就是渡口，一炷香靠岸。
+都定了？定了就把话收好——岸上人多。
+河上不说回见。要过河，我都在。">复制全部台词</button>
+  </header>
+  <ol class="cast-lines"><li><i>E01 第 1 场</i><span>上船喽——过河的抓紧，雾要变天。</span><em>扯着嗓子，不急不躁</em></li><li><i>E01 第 1 场</i><span>胡二爷，你这担子比人金贵。</span><em>旱烟不离嘴</em></li><li><i>E01 第 1 场</i><span>箱子沉就搁船头，掉河里我可不捞。</span><em>眼皮都没抬</em></li><li><i>E01 第 1 场</i><span>坐稳——开船。</span><em>篙一点岸</em></li><li><i>E01 第 2 场</i><span>船上有个规矩——不问来路，不碰行李。</span><em>从船头传来，不紧不慢</em></li><li><i>E01 第 2 场</i><span>走了四十年，没有走不完的河。</span><em>篙声不停</em></li><li><i>E03 第 1 场</i><span>商船改的巡查船，烧的煤不一样，听声就知道。</span><em>从船头，声音没起伏</em></li><li><i>E03 第 1 场</i><span>胡二爷，船上的规矩。</span><em>声音沉了下来</em></li><li><i>E03 第 1 场</i><span>说什么？一船过客，一块石头。</span><em>篙不停</em></li><li><i>E03 第 1 场</i><span>到岸之前，都是船客。到了岸，各归各命。</span><em>慢悠悠，像说给全船听</em></li><li><i>E05 第 1 场</i><span>姑娘，到了岸，往哪儿去？</span><em>身后，忽然</em></li><li><i>E05 第 1 场</i><span>投谁？</span><em>篙没停</em></li><li><i>E05 第 1 场</i><span>县城北门外，早就没有姓沈的接应了。</span><em>声音很平</em></li><li><i>E05 第 1 场</i><span>三年前就走绝了。走的走，没的没。姑娘，你投的是空门。</span><em>不看她</em></li><li><i>E05 第 1 场</i><span>我就是个摆渡的。四十年，什么人没渡过。</span><em>撑篙，望着河面</em></li><li><i>E05 第 1 场</i><span>渡过去的人多了，回来的少。回来的里头，有人说过沈家的事。</span><em>像在说别人的故事</em></li><li><i>E06 第 1 场</i><span>前头就是渡口，一炷香靠岸。</span><em>从船头</em></li><li><i>E06 第 1 场</i><span>都定了？定了就把话收好——岸上人多。</span><em>忽然从船头开口</em></li><li><i>E06 第 2 场</i><span>河上不说回见。要过河，我都在。</span><em>撑篙调头，头也不回</em></li></ol>
+</section>
+<section class="cast-blk">
+  <header class="cast-h">
+    <b>沈知微</b>
+    <span class="cast-meta">18 句 · 185 字 · 约 41.1 秒</span>
+    
+    <button class="copy" data-copy="不劳烦。它跟我。
+借过就好，不敢劳动。
+出门人，姓什么都是过客。
+这砚……是县衙大堂的？
+舱里闷，没事。
+先生方才说，砚不回去，案翻不动。
+那要是……有人连状纸都备好了呢？
+北门外，投亲。
+……姓沈的本家。
+你说什么？
+你怎么知道我要投谁？你到底是谁？
+不用。
+胡老板听见了，打算怎么样？
+说话的人，后来都怎么样了？
+十年前的沈家案。人证物证，我收了十年。
+我爹。当年顶罪的人。
+你早知道我是谁。
+盯谁？">复制全部台词</button>
+  </header>
+  <ol class="cast-lines"><li><i>E01 第 1 场</i><span>不劳烦。它跟我。</span><em>声音很轻，却没商量</em></li><li><i>E01 第 2 场</i><span>借过就好，不敢劳动。</span><em>不抬眼</em></li><li><i>E02 第 1 场</i><span>出门人，姓什么都是过客。</span><em>平静得过了头</em></li><li><i>E03 第 1 场</i><span>这砚……是县衙大堂的？</span><em>声音发紧</em></li><li><i>E04 第 1 场</i><span>舱里闷，没事。</span><em>声音绷着</em></li><li><i>E04 第 1 场</i><span>先生方才说，砚不回去，案翻不动。</span><em>忽然开口</em></li><li><i>E04 第 1 场</i><span>那要是……有人连状纸都备好了呢？</span><em>轻得像自言自语</em></li><li><i>E05 第 1 场</i><span>北门外，投亲。</span><em>稳住声音</em></li><li><i>E05 第 1 场</i><span>……姓沈的本家。</span><em>指节收紧</em></li><li><i>E05 第 1 场</i><span>你说什么？</span><em>声音变了</em></li><li><i>E05 第 1 场</i><span>你怎么知道我要投谁？你到底是谁？</span><em>逼近一步</em></li><li><i>E05 第 2 场</i><span>不用。</span><em>机械地摇头</em></li><li><i>E05 第 2 场</i><span>胡老板听见了，打算怎么样？</span><em>盯着他</em></li><li><i>E05 第 2 场</i><span>说话的人，后来都怎么样了？</span><em>轻声</em></li><li><i>E06 第 1 场</i><span>十年前的沈家案。人证物证，我收了十年。</span><em>声音不大，字字清楚</em></li><li><i>E06 第 1 场</i><span>我爹。当年顶罪的人。</span><em>平静得吓人</em></li><li><i>E06 第 1 场</i><span>你早知道我是谁。</span><em>看着陆行远</em></li><li><i>E06 第 1 场</i><span>盯谁？</span><em>后退半步</em></li></ol>
+</section>
+<section class="cast-blk">
+  <header class="cast-h">
+    <b>画外音</b>
+    <span class="cast-meta">10 句 · 205 字 · 约 45.6 秒</span>
+    
+    <button class="copy" data-copy="谁都别碰它。到了县城，它就是我全部的话。
+他是谁？他为什么替沈家说话？
+一个护箱的，一个懂案的，这船有意思了。
+县衙的东西，在一个不肯报姓的人手里。
+县衙的砚，冤案的年份——他是来送东西的，还是来找人的？
+他说的那桩案，年份对得上。可我不能问，一问就全露了。
+状纸？好家伙，这船上没有一个人是过客。
+接应没了，路断了。可这箱子，拼了命也得送进县城。
+满城没有一个人说话。所以状纸只能我自己送。
+一船的伪装，到了岸倒都成了同路人。">复制全部台词</button>
+  </header>
+  <ol class="cast-lines"><li><i>E01 第 2 场</i><span>谁都别碰它。到了县城，它就是我全部的话。</span><em>沈知微的心声，冷</em></li><li><i>E02 第 1 场</i><span>他是谁？他为什么替沈家说话？</span><em>沈知微的心声</em></li><li><i>E02 第 1 场</i><span>一个护箱的，一个懂案的，这船有意思了。</span><em>胡二爷的心声，算盘声</em></li><li><i>E03 第 1 场</i><span>县衙的东西，在一个不肯报姓的人手里。</span><em>胡二爷的心声</em></li><li><i>E03 第 1 场</i><span>县衙的砚，冤案的年份——他是来送东西的，还是来找人的？</span><em>沈知微的心声</em></li><li><i>E04 第 1 场</i><span>他说的那桩案，年份对得上。可我不能问，一问就全露了。</span><em>沈知微的心声</em></li><li><i>E04 第 1 场</i><span>状纸？好家伙，这船上没有一个人是过客。</span><em>胡二爷的心声</em></li><li><i>E05 第 2 场</i><span>接应没了，路断了。可这箱子，拼了命也得送进县城。</span><em>沈知微的心声</em></li><li><i>E05 第 2 场</i><span>满城没有一个人说话。所以状纸只能我自己送。</span><em>沈知微的心声，一字一钉</em></li><li><i>E06 第 1 场</i><span>一船的伪装，到了岸倒都成了同路人。</span><em>陆行远的心声</em></li></ol>
+</section>
+<section class="cast-blk">
+  <header class="cast-h">
+    <b>岸上挑灯的更夫</b>
+    <span class="cast-meta">3 句 · 47 字 · 约 10.4 秒</span>
+    
+    <button class="copy" data-copy="渡船靠岸——雾散了，各走各路喽。
+城门口新添了岗，几位走西巷绕一绕稳当。
+这一船渡的，怕不只是人。">复制全部台词</button>
+  </header>
+  <ol class="cast-lines"><li><i>E06 第 2 场</i><span>渡船靠岸——雾散了，各走各路喽。</span><em>扬声报岸</em></li><li><i>E06 第 2 场</i><span>城门口新添了岗，几位走西巷绕一绕稳当。</span><em>压低声，像随口一提</em></li><li><i>E06 第 2 场</i><span>这一船渡的，怕不只是人。</span><em>望着背影，自语</em></li></ol>
+</section>
+  </div>
+</section>
+
+<section class="top-sec" id="sec-gates">
+  <div class="sec-h"><span class="no">05</span><h2>质量门</h2></div>
+  <ul class="gate">
+  <li class="ok"><span class="m">✓</span><span>每集时长在目标 ±15% 内</span></li>
+  <li class="ok"><span class="m">✓</span><span>单句台词 ≤ 35 字</span></li>
+  <li class="ok"><span class="m">✓</span><span>说话人在本场人物里，或明确标画外音 VO</span></li>
+  <li class="ok"><span class="m">✓</span><span>每集开场钩子与结尾悬念都落在纸面</span></li>
+  <li class="ok"><span class="m">✓</span><span>钩子的具象在全集前 3 拍内兑现（hookBeat 认领）</span></li>
+  <li class="ok"><span class="m">✓</span><span>每场至少一个动作节拍——纯对白的场是广播剧</span></li>
+  <li class="ok"><span class="m">✓</span><span>动作描述叙述体，台词只进 dialogue 字段</span></li>
+  <li class="ok"><span class="m">✓</span><span>大纲爽点逐集认领</span></li>
+  <li class="ok"><span class="m">✓</span><span>角色引用对账大纲</span></li>
+  <li class="ok"><span class="m">✓</span><span>场景／光照／道具对账美术设定</span></li>
+</ul>
+  <p class="gsum">全部通过</p>
+</section>
+
+<p class="foot">剧本由模型依据大纲与美术设定生成，时长与引用由脚本确定性检查。分镜与首帧提示词是下一层的事，不在本报告里。</p>
+</div>
+
+<script type="application/json" id="script-data">{"source":"渡口","episodes":[{"ep":1,"targetSeconds":120,"hook":"皮箱里到底装了什么，值得她指节发白","cliff":"陆行远的右手从上船起就没离开过大衣口袋","beatsClaimed":["悬念钩"],"scenes":[{"sceneId":"S02","lighting":"浓雾清晨","characters":["C01","C03","C04"],"props":["P01"],"flow":[{"action":"冷开场：一个年轻女人抱着旧皮箱，在雾里的河岸土路上跑，鞋底踏得水洼直响，箱子搂得死紧。雾把她的背影吞掉。"},{"action":"跑到头，雾里才露出栈桥，只剩三步能见。老周把篙靠在船帮上，蹲在船头吧嗒旱烟，梆子声闷得像隔了层棉絮。"},{"speaker":"C03","line":"上船喽——过河的抓紧，雾要变天。","delivery":"扯着嗓子，不急不躁"},{"action":"跳板尽头传来担子的响动，胡二爷挑着货担赶上来，嗓门比人先到。"},{"speaker":"C04","line":"等等二爷我！这雾天赶船，命都得跑掉半条。","delivery":"气喘吁吁，自来熟"},{"action":"胡二爷挑着担子上船，老周搭手帮他把担子卸进舱里。"},{"speaker":"C03","line":"胡二爷，你这担子比人金贵。","delivery":"旱烟不离嘴"},{"speaker":"C04","line":"那可不——吃饭的家伙，比命金贵。","delivery":"拍着担子笑"},{"action":"沈知微最后一个踏上跳板。旧皮箱抱在怀里，指节因为用力而发白。"},{"speaker":"C03","line":"箱子沉就搁船头，掉河里我可不捞。","delivery":"眼皮都没抬"},{"speaker":"C01","line":"不劳烦。它跟我。","delivery":"声音很轻，却没商量"},{"action":"老周看了她一眼，没说话。他收了跳板，撑篙离岸，栈桥缩回雾里。"},{"speaker":"C03","line":"坐稳——开船。","delivery":"篙一点岸"}]},{"sceneId":"S01","lighting":"晨雾","characters":["C01","C02","C03","C04"],"props":["P01"],"flow":[{"action":"舱里坐着两个人。胡二爷的货担占了半条长凳，陆行远靠着舱壁，右手揣在大衣口袋里没动过。"},{"speaker":"C04","line":"姑娘头回走这条水路吧？我一看一个准。","delivery":"自来熟地凑近"},{"action":"沈知微拣了离所有人最远的角落坐下，皮箱搁在膝上，双臂环着。"},{"speaker":"C04","line":"城里亲戚接站，还是投店？二爷我熟门熟路。","delivery":"追着问"},{"speaker":"C01","line":"借过就好，不敢劳动。","delivery":"不抬眼"},{"speaker":"C04","line":"嗨，出门在外别客气——箱子给我，搁上头稳当。","delivery":"笑着，手已经伸向皮箱"},{"action":"沈知微一把按住箱盖，动作快得吓人。"},{"action":"满舱的闲谈声戛然而止。胡二爷的手停在半空，笑僵在脸上。"},{"speaker":"C03","line":"船上有个规矩——不问来路，不碰行李。","delivery":"从船头传来，不紧不慢"},{"speaker":"C04","line":"是是，二爷我多嘴，多嘴。","delivery":"讪讪收手"},{"action":"船行河心，雾贴着水皮走。胡二爷东张西望，眼睛老往皮箱上瞟。"},{"speaker":"C04","line":"老周，今儿这雾邪性，走得完吗？","delivery":"没话找话"},{"speaker":"C03","line":"走了四十年，没有走不完的河。","delivery":"篙声不停"},{"speaker":"C04","line":"这位先生面生得很，也是去县城？","delivery":"转头找新话头"},{"action":"陆行远点了点头，眼睛却看着舱外的雾，没接这个话头。"},{"speaker":"C04","line":"得，一船的闷葫芦，就我一个人长嘴。","delivery":"自讨没趣"},{"action":"老周在船头笑了一声，没回头。水声在船底一下一下，像谁在数着到岸的时辰。"},{"action":"陆行远从头到尾没看这场热闹，可他口袋里的右手，攥紧了一下。"},{"speaker":"C02","line":"这条河，今晚怕是不太平。","delivery":"低声，几乎自语"},{"action":"汽笛在雾深处闷闷响了一声，没人接话。"},{"speaker":"VO","line":"谁都别碰它。到了县城，它就是我全部的话。","delivery":"沈知微的心声，冷"},{"action":"雾从舱口漫进来，皮箱上的铜扣绿锈在昏光里一闪。栈桥的灯缩成一粒黄豆，灭了。"}]}],"hookBeat":[1,1]},{"ep":2,"targetSeconds":120,"hook":"陆行远为什么替一桩旧案说话","cliff":"胡二爷讲见闻时，指名道姓提了沈家","beatsClaimed":[],"scenes":[{"sceneId":"S01","lighting":"晨雾","characters":["C01","C02","C04"],"props":["P01"],"flow":[{"action":"冷开场：船身猛一晃，陆行远的右手在大衣口袋里攥紧了什么，眼睛始终盯着雾外。船进了河心的雾档，胡二爷从货担里摸出一包炒豆，挨个让。"},{"speaker":"C04","line":"尝尝？县城东街炒的，隔着雾都香。","delivery":"殷勤"},{"action":"沈知微摇头。陆行远像没听见。胡二爷自己嚼上了，越嚼话越多。"},{"speaker":"C04","line":"这趟进城你们可赶巧了，集市比年根还热闹。","delivery":"眉飞色舞"},{"speaker":"C04","line":"为啥？县衙在翻一桩十年前的旧案，全城都在看戏。","delivery":"压低声音卖关子"},{"action":"他说着话，眼睛却直往沈知微怀里的皮箱看。"},{"action":"沈知微把箱子抱得更紧，头垂得更低。"},{"speaker":"C04","line":"听说当年错杀了人，如今苦主的后人要翻案。","delivery":"咂着嘴"},{"speaker":"C04","line":"沈家啊——城里老户，说没就没了大半门。","delivery":"叹一声，眼却瞟着皮箱"},{"action":"沈字一出口，舱里静了一瞬。沈知微垂着头，肩膀绷紧了。"},{"speaker":"C02","line":"那案子，查错了人。","delivery":"突然开口"},{"action":"满舱静了。胡二爷嚼豆的嘴停在半空。"},{"speaker":"C04","line":"哟，先生知道内情？","delivery":"眯起眼"},{"speaker":"C02","line":"卷宗我读过。人证是屈打成招，物证对不上。","delivery":"语气平得像念书"},{"speaker":"C04","line":"卷宗那是衙门里的东西，先生贵姓？","delivery":"笑里藏针"},{"action":"陆行远不答。右手在大衣口袋里，轻轻动了一下。"},{"speaker":"C02","line":"姓什么不要紧。要紧的是错案就是错案。","delivery":"不接招"},{"action":"沈知微抬起头，第一次正眼看向这个沉默的男人。"},{"speaker":"VO","line":"他是谁？他为什么替沈家说话？","delivery":"沈知微的心声"},{"speaker":"C04","line":"姑娘也姓沈？我瞧你上船就没说过几句话。","delivery":"冷不丁转向她"},{"speaker":"C01","line":"出门人，姓什么都是过客。","delivery":"平静得过了头"},{"speaker":"C04","line":"好好好，是二爷我多问。","delivery":"拍腿笑"},{"action":"他笑着，身子却往沈知微那边又挪了半条凳。"},{"speaker":"C02","line":"胡老板，你的豆撒了。","delivery":"淡淡地"},{"action":"胡二爷低头去捡豆，挪过去的半条凳又缩了回来。"},{"speaker":"C04","line":"邪性，今儿这船上人人都护着人人。","delivery":"捡着豆嘟囔"},{"action":"篙声从船头传来，一下，又一下，稳得让人心慌。"},{"speaker":"C04","line":"你们说句公道话，那旧案到底冤不冤？","delivery":"不死心"},{"action":"没人回答，只有篙点进水里的闷响。"},{"speaker":"C04","line":"得，问了也白问——这船上的规矩，不问来路。","delivery":"自己接上"},{"speaker":"C02","line":"也不问去处。","delivery":"低声补了半句"},{"action":"陆行远说完这四个字，目光落回舱外。雾里隐约有另一条船的影子，一晃就没了。"},{"speaker":"VO","line":"一个护箱的，一个懂案的，这船有意思了。","delivery":"胡二爷的心声，算盘声"},{"action":"沈知微顺着他的目光看向雾里，什么都没看见，抱箱的手又紧了紧。"}]}],"hookBeat":[1,1]},{"ep":3,"targetSeconds":120,"hook":"县衙的砚台为什么在他身上","cliff":"巡查船的汽笛越来越近，老周却把船往雾更深处撑","beatsClaimed":["身份揭破"],"scenes":[{"sceneId":"S01","lighting":"晨雾","characters":["C01","C02","C03","C04"],"props":["P01","P02"],"flow":[{"action":"冷开场：一声汽笛从雾里剜出来，陆行远的手猛地按住大衣口袋——那里鼓着一块方硬的轮廓。满舱的人都直了背。"},{"speaker":"C04","line":"听听，这动静——巡查的船。","delivery":"竖起耳朵"},{"speaker":"C03","line":"商船改的巡查船，烧的煤不一样，听声就知道。","delivery":"从船头，声音没起伏"},{"action":"老周说着，篙却往雾更深的地方点。船身一偏，离了主航道。"},{"speaker":"C04","line":"老周哥这是躲啊？咱船上又没人揣着硬家伙。","delivery":"嗓门故意抬高"},{"action":"舱里一下没了声。胡二爷笑着，眼睛盯住了陆行远的大衣口袋。"},{"speaker":"C04","line":"先生，你说是不是？这年头查得严，说不清可就麻烦了。","delivery":"步步紧逼"},{"action":"满舱的目光跟着聚过去。那只从上船就没露过面的右手，正揣在口袋里。"},{"action":"沈知微也在看。她自己抱着箱子，最懂被人盯着的滋味，可她还是看了。"},{"speaker":"C03","line":"胡二爷，船上的规矩。","delivery":"声音沉了下来"},{"speaker":"C04","line":"规矩是不问来路——可没说不问口袋。汽笛在催了。","delivery":"摊着手"},{"action":"汽笛又是一声，近得能听出船头破水的哗声。"},{"speaker":"C02","line":"好。","delivery":"很轻地笑了一下"},{"action":"陆行远站起身。右手从口袋里抽出来的那一瞬，半船人屏住了呼吸。"},{"action":"摊开的手心里没有枪。是一方旧砚，砚身乌沉，边角磕出了茬口。"},{"speaker":"C04","line":"砚台？先生你揣块砚台过河？","delivery":"愣住"},{"speaker":"C02","line":"物归原主。就这四个字，多的没有。","delivery":"把砚举到光下"},{"action":"他把砚翻过来。砚底一方刻印，在昏光里露出笔画——县衙的印。"},{"speaker":"VO","line":"县衙的东西，在一个不肯报姓的人手里。","delivery":"胡二爷的心声"},{"speaker":"C01","line":"这砚……是县衙大堂的？","delivery":"声音发紧"},{"speaker":"C02","line":"姑娘认得？","delivery":"看她一眼"},{"action":"沈知微抱紧箱子别开脸，像是刚才那句话不是她问的。"},{"speaker":"C04","line":"认不认得不打紧，打紧的是巡查船来了怎么说。","delivery":"打圆场，眼神却亮了"},{"speaker":"C03","line":"说什么？一船过客，一块石头。","delivery":"篙不停"},{"action":"老周把船撑进更浓的雾里，贴着芦苇的影子走。汽笛声从船尾远去。"},{"action":"满舱人不约而同松了口气，又不约而同互相看了一眼——谁也没资格笑话谁。"},{"speaker":"C04","line":"邪门，二爷我走这条河十几年，头回盼着雾再大点。","delivery":"抹了把汗"},{"speaker":"C02","line":"雾大，才好赶路。","delivery":"收砚入袋"},{"speaker":"C04","line":"先生这砚少说值些银子，就不怕船上有黑手？","delivery":"贼心不死"},{"speaker":"C02","line":"值钱的不是砚，是砚底那方印。","delivery":"看都不看他"},{"speaker":"C04","line":"那更得小心——有人连印带命一起收。","delivery":"嘿嘿一笑"},{"action":"这话说完，舱里又静了。胡二爷自己也觉出说过了头，讪讪去摸他的炒豆。"},{"speaker":"C03","line":"到岸之前，都是船客。到了岸，各归各命。","delivery":"慢悠悠，像说给全船听"},{"action":"陆行远坐回舱壁边，右手又揣回口袋。只是这一次，没人再觉得那里藏着凶器。"},{"speaker":"VO","line":"县衙的砚，冤案的年份——他是来送东西的，还是来找人的？","delivery":"沈知微的心声"},{"action":"船在雾里继续往前走，四下只剩水声。"}]}],"hookBeat":[1,1]},{"ep":4,"targetSeconds":120,"hook":"冤案两个字为什么让她瞬间失态","cliff":"老周在船头咳了一声，像是提醒，又像是警告","beatsClaimed":[],"scenes":[{"sceneId":"S01","lighting":"晨雾","characters":["C01","C02","C04"],"props":["P01","P02"],"flow":[{"action":"冷开场一闪：沈知微抱箱的手臂猛地收紧，指节又白了一层。汽笛声擦着船尾远去，雾里只剩水声，舱里没有一个人放松下来。"},{"speaker":"C04","line":"先生，二爷我嘴碎，可眼不瞎——你那砚，来路不一般。","delivery":"压低嗓门"},{"action":"陆行远沉默片刻。开口时，声音压得只有舱内三个人听得见。"},{"speaker":"C02","line":"十年前县衙断过一桩案，断错了。","delivery":"一字一顿"},{"speaker":"C02","line":"主审的师爷收了这方砚，案子就歪了。","delivery":"手按着口袋"},{"action":"沈知微把箱子抱得更紧了。"},{"speaker":"C02","line":"师爷临终托我把砚送回去。冤案的首尾，总要有人来了。","delivery":"平静，却压着分量"},{"speaker":"C04","line":"送回去？衙门的东西送回衙门，那不是自投罗网？","delivery":"咂舌"},{"speaker":"C02","line":"砚不回去，案翻不动。","delivery":"只有这一句"},{"action":"冤案两个字第二次出口的时候，沈知微的指节又掐白了。"},{"speaker":"C04","line":"姑娘？姑娘你脸色不对。","delivery":"眼尖"},{"speaker":"C01","line":"舱里闷，没事。","delivery":"声音绷着"},{"action":"她说没事，人却往角落的阴影里缩了缩，把箱子搂在身前。"},{"action":"胡二爷看看她，又看看陆行远，脸上的笑淡了下来。"},{"speaker":"C04","line":"二爷我见天琢磨人心。可有的心，琢磨着琢磨着就不忍了。","delivery":"笑容淡了"},{"speaker":"C02","line":"不忍，就别琢磨。","delivery":"接得很快"},{"speaker":"C04","line":"做不到啊先生。这一船的心事，比我一担子的货还沉。","delivery":"摆手苦笑"},{"action":"船头传来一声咳。不重，却让舱里三个人同时停了话头。"},{"speaker":"C04","line":"听见没？老周哥这一嗓子，是提醒咱们雾里有耳朵。","delivery":"压得更低"},{"speaker":"C02","line":"也可能是警告——别把到不了岸的话说出口。","delivery":"摇头"},{"action":"沈知微在阴影里抬眼，飞快地看了陆行远一眼，又垂下去。"},{"speaker":"VO","line":"他说的那桩案，年份对得上。可我不能问，一问就全露了。","delivery":"沈知微的心声"},{"action":"胡二爷把货担往里挪了挪，给沈知微让出半条凳的空，什么也没说。"},{"action":"让完地方，他自己愣了一下，挠了挠头。"},{"speaker":"C04","line":"凳子硌得慌，二爷我换个坐处。","delivery":"给自己找补"},{"action":"没人拆穿他。船身在雾里轻轻晃。"},{"speaker":"C02","line":"雾要到晌午才散。散之前，各自把话想清楚。","delivery":"望着舱外"},{"speaker":"C01","line":"先生方才说，砚不回去，案翻不动。","delivery":"忽然开口"},{"speaker":"C01","line":"那要是……有人连状纸都备好了呢？","delivery":"轻得像自言自语"},{"action":"陆行远猛地转头，第一次正眼看她。"},{"action":"两人对视了一眼，谁都没有再问。"},{"speaker":"VO","line":"状纸？好家伙，这船上没有一个人是过客。","delivery":"胡二爷的心声"}]}],"hookBeat":[1,1]},{"ep":5,"targetSeconds":120,"hook":"老周怎么会知道她要投奔谁","cliff":"胡二爷听到沈姓接应四个字，笑容第一次挂不住","beatsClaimed":["反转"],"scenes":[{"sceneId":"S03","lighting":"薄雾午前","characters":["C01","C03"],"props":["P01"],"flow":[{"action":"冷开场：撑了四十年篙、从不开口问客的船夫收住篙，转头看向船舷边的沈知微，嘴唇动了。薄雾的午前，对岸芦苇滩第一次露出轮廓，像一道灰绿的堤。"},{"action":"沈知微不知何时到了船舷边，抱着箱子，望着那道越来越近的岸线出神。"},{"speaker":"C03","line":"姑娘，到了岸，往哪儿去？","delivery":"身后，忽然"},{"action":"四十年不问来路的船夫，头一回开了口。沈知微的背僵住了。"},{"speaker":"C01","line":"北门外，投亲。","delivery":"稳住声音"},{"speaker":"C03","line":"投谁？","delivery":"篙没停"},{"speaker":"C01","line":"……姓沈的本家。","delivery":"指节收紧"},{"action":"老周撑篙的手没停，船擦着芦苇缓缓地走，惊起两只水鸟。"},{"speaker":"C03","line":"县城北门外，早就没有姓沈的接应了。","delivery":"声音很平"},{"action":"沈知微猛地回头。"},{"speaker":"C01","line":"你说什么？","delivery":"声音变了"},{"speaker":"C03","line":"三年前就走绝了。走的走，没的没。姑娘，你投的是空门。","delivery":"不看她"},{"action":"风从芦苇滩那边吹过来，她抱着箱子站在船舷边，一动不动。"},{"speaker":"C01","line":"你怎么知道我要投谁？你到底是谁？","delivery":"逼近一步"},{"speaker":"C03","line":"我就是个摆渡的。四十年，什么人没渡过。","delivery":"撑篙，望着河面"},{"action":"他顿了顿，篙尖从水里提起来，滴着水。"},{"speaker":"C03","line":"渡过去的人多了，回来的少。回来的里头，有人说过沈家的事。","delivery":"像在说别人的故事"},{"action":"说完这句，老周不再开口，一篙一篙，照旧撑船。"}]},{"sceneId":"S01","lighting":"晨雾","characters":["C01","C04"],"props":["P01"],"flow":[{"action":"沈知微抱着箱子回到舱里，脚步发飘，在角落坐下。"},{"speaker":"C04","line":"姑娘，喝口水。脸白成这样，可不像晕船。","delivery":"递过水囊"},{"speaker":"C01","line":"不用。","delivery":"机械地摇头"},{"speaker":"C04","line":"方才船头的话，二爷我隔着舱板，听见了几个字。","delivery":"收回水囊，状似无意"},{"action":"沈知微猛地抬头。胡二爷的笑还挂在脸上，手却停在了半空。"},{"speaker":"C04","line":"沈姓、接应——就这四个字。","delivery":"说得很慢"},{"action":"说出这四个字，他脸上的笑挂不住了。"},{"speaker":"C01","line":"胡老板听见了，打算怎么样？","delivery":"盯着他"},{"speaker":"C04","line":"不怎么样。二爷我就是忽然想起来，我也有对不住沈家的地方。","delivery":"半晌，苦笑"},{"action":"他说完就去理货担，理了半天，一件货也没理出来。"},{"speaker":"C04","line":"当年沈家出事，满城看热闹的人里，有二爷我一个。","delivery":"背对着她，忽然"},{"speaker":"C04","line":"看了，没说话。这就是对不住。","delivery":"声音哑了半度"},{"speaker":"C01","line":"说话的人，后来都怎么样了？","delivery":"轻声"},{"speaker":"C04","line":"没有说话的人。一个都没有。","delivery":"半天才答"},{"action":"舱里静得能听见雾珠子从篷顶滴下来的声音。"},{"speaker":"VO","line":"接应没了，路断了。可这箱子，拼了命也得送进县城。","delivery":"沈知微的心声"},{"speaker":"VO","line":"满城没有一个人说话。所以状纸只能我自己送。","delivery":"沈知微的心声，一字一钉"},{"action":"舱外的芦苇影子从船舷滑过去，岸越来越近，雾越来越薄。"}]}],"hookBeat":[1,1]},{"ep":6,"targetSeconds":120,"hook":"状纸和旧砚拼出的到底是谁的冤案","cliff":"胡二爷这个身份是真交底，还是又一层伪装","beatsClaimed":["收束"],"scenes":[{"sceneId":"S01","lighting":"雾散近岸","characters":["C01","C02","C03","C04"],"props":["P01","P02"],"flow":[{"action":"冷开场特写：皮箱铜扣被一根拇指推开的一瞬。雾开始散了，舱里第一次照进真正的天光，每个人脸上的影子都藏不住了。"},{"speaker":"C03","line":"前头就是渡口，一炷香靠岸。","delivery":"从船头"},{"action":"沈知微站起来。她把皮箱放在舱板正中，当着所有人，打开了铜扣。"},{"action":"没有金银。一摞压得整整齐齐的状纸，状纸上头，一方小小的灵位。"},{"speaker":"C04","line":"状纸……姑娘，你这是要去翻案？","delivery":"倒吸一口气"},{"speaker":"C01","line":"十年前的沈家案。人证物证，我收了十年。","delivery":"声音不大，字字清楚"},{"action":"陆行远走过来，从大衣口袋里取出那方旧砚，轻轻放在状纸上面。"},{"speaker":"C02","line":"砚归原案。证物齐了。","delivery":"像落下一枚棋子"},{"action":"砚底的刻印和状纸上的案号摆在一起，正好对上。"},{"speaker":"C04","line":"这位是……？","delivery":"指着灵位，声音小了"},{"speaker":"C01","line":"我爹。当年顶罪的人。","delivery":"平静得吓人"},{"action":"舱里没人再说话，只有水声从船底流过。"},{"speaker":"C01","line":"你早知道我是谁。","delivery":"看着陆行远"},{"speaker":"C02","line":"船到河心就猜到了。雾里认不出脸，认得出十年不肯放手的人。","delivery":"把话说开了"},{"action":"胡二爷盯着那摞状纸看了很久，忽然长长叹了一口气。"},{"speaker":"C04","line":"得，二爷我也交个底。","delivery":"把货担一放"},{"speaker":"C04","line":"我在县衙当差，管的就是案牍。这趟出来，本是盯着这条水路。","delivery":"说得又快又狠"},{"action":"满舱一静。老周的篙声都停了半拍。"},{"speaker":"C01","line":"盯谁？","delivery":"后退半步"},{"speaker":"C04","line":"盯一个可能带着旧案证物过河的人。可盯了一路，我改主意了。","delivery":"苦笑"},{"speaker":"C04","line":"北门进不去，我领你们走侧门。案牍房的门，我熟。","delivery":"一拍胸口"},{"speaker":"C03","line":"都定了？定了就把话收好——岸上人多。","delivery":"忽然从船头开口"},{"action":"这是老周在船上说的最后一句话。天光照在摊开的状纸上。"},{"speaker":"VO","line":"一船的伪装，到了岸倒都成了同路人。","delivery":"陆行远的心声"}]},{"sceneId":"S02","characters":["C01","C02","C03","C04","C05"],"props":["P01"],"flow":[{"action":"船帮碰上栈桥的旧木，闷闷一声。岸上的更夫挑着灯笼站在桥头，梆子别在腰里。"},{"speaker":"C05","line":"渡船靠岸——雾散了，各走各路喽。","delivery":"扬声报岸"},{"action":"更夫凑近了打量三人，灯笼抬了抬，又什么都没问地放下了。"},{"speaker":"C05","line":"城门口新添了岗，几位走西巷绕一绕稳当。","delivery":"压低声，像随口一提"},{"speaker":"C04","line":"老哥懂行。","delivery":"笑着拱手"},{"action":"沈知微抱着重新合上的皮箱，第一个踏上跳板。这一次，指节没有发白。"},{"speaker":"C02","line":"走吧。状纸在，路就在。","delivery":"在她身后"},{"action":"胡二爷挑起货担跟上，走两步又回头，朝船头拱了拱手。"},{"speaker":"C04","line":"老周哥，回见。","delivery":"难得正经"},{"speaker":"C03","line":"河上不说回见。要过河，我都在。","delivery":"撑篙调头，头也不回"},{"action":"三个人的影子一前一后进了城门方向的路。更夫的灯笼在他们身后晃了晃，梆子敲了两下。"},{"speaker":"C05","line":"这一船渡的，怕不只是人。","delivery":"望着背影，自语"},{"action":"老周把船撑回河心。雾散后的渡口空空荡荡，只剩栈桥上一串湿脚印，朝着县城。"}]}],"hookBeat":[1,1]}]}</script>
+<script>
+const L = {"copied":"已复制","failed":"复制失败","show":"▾ 展开全部场次","hide":"▴ 收起场次"};
+
+// episode scripts: scene areas clip at 300px; short ones unclip, tall ones toggle
+document.querySelectorAll('.scmore').forEach((btn) => {
+  const zone = btn.previousElementSibling;
+  if (zone.scrollHeight <= 320) {
+    zone.classList.remove('clip');
+    btn.remove();
+    return;
+  }
+  btn.addEventListener('click', () => {
+    const clipped = zone.classList.toggle('clip');
+    btn.textContent = clipped ? L.show : L.hide;
+    if (clipped) zone.closest('.ep').scrollIntoView({ block: 'nearest' });
+  });
+});
+
+// copy buttons (a single line / a character's whole line book)
+document.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.copy');
+  if (!btn) return;
+  e.preventDefault();
+  const label = btn.textContent;
+  try {
+    await navigator.clipboard.writeText(btn.dataset.copy);
+    btn.textContent = L.copied;
+    btn.dataset.done = '1';
+  } catch {
+    btn.textContent = L.failed;
+  }
+  setTimeout(() => { btn.textContent = label; delete btn.dataset.done; }, 1600);
+});
+
+// export: the report carries the full script.json; the download is it verbatim
+document.querySelector('.expo').addEventListener('click', (e) => {
+  const btn = e.currentTarget;
+  const url = URL.createObjectURL(
+    new Blob([document.getElementById('script-data').textContent], { type: 'application/json' }),
+  );
+  const a = Object.assign(document.createElement('a'), { href: url, download: btn.dataset.name });
+  a.click();
+  // don't revoke right away — Safari kills the blob before the download finishes reading it
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+});
+</script>
+</body></html>
